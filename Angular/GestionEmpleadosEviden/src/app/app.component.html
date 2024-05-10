@@ -1,3 +1,14 @@
-<h1 class="text-3xl font-bold underline">
-  Hello world!
-</h1>
+<div class="flex flex-col h-screen"> <!-- Flex columna y altura completa -->
+
+  <nav class="navbar m-10 p-3 rounded-lg bg-white"> <!-- Navbar -->
+    <img src="https://www.cyberark.com/wp-content/uploads/2023/06/Logotype_Eviden_RGB_Orange-1536x274.png" alt="logo Eviden" class="p-2 h-10 w-30 ml-20">
+  </nav>
+
+  <section class="mainbox flex-1 ml-10 mr-10 mb-10 bg-white rounded-lg"> <!-- Sección principal -->
+    <div class="p-8"> <!-- Padding interno -->
+      <app-filters></app-filters>
+      <app-filtered-table></app-filtered-table>
+    </div>
+  </section>
+
+</div>
