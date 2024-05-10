@@ -1,6 +1,15 @@
-<section class="mainbox flex-1 ml-10 mr-10 mb-10 bg-white rounded-lg"> <!-- Sección principal -->
-    <div class="p-24"> 
-        <p>Selection of filters</p> 
+<section class="mainbox flex-1 ml-10 mr-10 mb-10 bg-white rounded-lg relative">
+    <div class="p-24 relative">
+        <div class="filters absolute top-3 left-3">Selection of filters</div>
+        <select class="filters absolute top-12 left-3" name="col" id="col">
+            <option value="" disabled selected>Name of columns</option>
+            <option value="ciudad">ciudad</option>
+            <option value="nombre">nombre</option>
+            <option value="calle">calle</option>
+        </select>
+
+        <form class="search-container m-auto w-20 h-10 p-10">
+            <input type="text" id="search-bar" placeholder=" Filter here your fields">
+        </form>
     </div>
-    
 </section>
