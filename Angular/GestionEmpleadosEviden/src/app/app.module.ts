@@ -4,11 +4,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FiltersComponent } from './filters/filters.component';
+import { FilteredTableComponent } from './filtered-table/filtered-table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FiltersComponent
+    FiltersComponent,
+    FilteredTableComponent
   ],
   imports: [
     BrowserModule,
