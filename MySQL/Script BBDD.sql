@@ -5,6 +5,15 @@ use personal_disponibles;
 drop table job_technology;
 drop table empleado;
 
+create table grupo(
+    grupos varchar(255) primary key,
+    grupo1 varchar(255),
+    grupo2 varchar(255),
+    grupo3 varchar(255),
+    grupo4 varchar(255),
+    cc varchar(50)
+);
+
 create table if not exists empleado ( 
 	gin int primary key,
     name varchar(255) not null,
@@ -42,16 +51,7 @@ create table if not exists empleado (
     foreign key(grupos) references grupo(grupos)
 );
 
-UPDATE excel SET grupos = CONCAT(group1, ' | ', group2, ' | ', group3, ' | ', group4);
-
-create table grupo(
-    grupos varchar(255) primary key,
-    grupo1 varchar(255),
-    grupo2 varchar(255),
-    grupo3 varchar(255),
-    grupo4 varchar(255),
-    cc varchar(50)
-);
+-- UPDATE excel SET grupos = CONCAT(group1, ' | ', group2, ' | ', group3, ' | ', group4);
 
 create table job_technology(
 	id_job_technology int primary key auto_increment,
