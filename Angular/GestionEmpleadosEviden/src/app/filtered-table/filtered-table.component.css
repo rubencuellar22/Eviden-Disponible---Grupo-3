@@ -1,0 +1,26 @@
+.titulo{
+    color: #ff6d43;
+
+}
+.tabla{
+    border: 1px solid;
+    border-collapse: collapse;
+    width: 100%;
+}
+th, td {
+    border-bottom: 2px solid black;
+    text-align: left;
+}
+.cabecera {
+    color: white;
+    background-color: #ff6d43;
+    font-size: large;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.boton{
+    color: white;
+    background-color: #ff6d43;
+}
+.boton:hover{
+    background-color: #f05124;
+}
