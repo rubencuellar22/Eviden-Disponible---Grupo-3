@@ -2,9 +2,6 @@ create database if not exists personal_disponibles;
 
 use personal_disponibles;
 
-drop table job_technology;
-drop table empleado;
-
 create table grupo(
     grupos varchar(255) primary key,
     grupo1 varchar(255),
