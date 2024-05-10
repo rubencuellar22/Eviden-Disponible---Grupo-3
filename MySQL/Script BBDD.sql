@@ -123,7 +123,6 @@ create table tecnologias(
     foreign key(gin) references empleado(gin)
 );
 
-select * from excel;
 
 insert into empleado(gin,name,subgroup,status,bench,das,ciudad,line_manager,jornada,gcm,categoria,nivelgcm,scr,cc,ccname,group1,group2,group3,group4,n_4,agrupacion,job_technology,jobtechnology_profile,skills,role,rlt,sklanguages,skmethods,sktechskills,skcertif,sktechnologies,skbusskills)
  values(86,'Nombre_86','A2','RESKILLING',2003-12-20,'A000548','Madrid','Manager_14',87.5,'ICC05', 'AG3BN2', 5, 37.97, 'ESJAHD5427', 'AMS DIRECTORY', 'DIGITAL', 'AMS', 'Practice AMS Direct', 'Practice AMS General', 'nombre_4','' , 'BAU;BAU','ORACLE VERSION', 'JAVA/J2BC','SENIOR APPLICATION DEVELOPER [4 Senior]', '', 'English (B1/B2 Intermediate)|Spanish (C2 Mastery)', 'SCRUM (1)|ERD Entity Relationship Diagram (4)|Object Oriented Analysis & Design (OOAD) (3)|Rational Unified Process (RUP) (3)|Unified Modeling Language (UML) (3)|Web Services (General) (4)|Web Services Description Language (WSDL) (3)|XML Schema Definition (XSD) (3)|Yourdon (1)', 'Product Design & Creation (4)|Database Modelling (5)|Requirements Definition & Management (4)|Agile Processes & Methodologies (1)|Electronic Data Interchange (EDI) (4)|Geographical Information Systems (GIS) (1)', '', 'dskjsdkjfsfsjfdlsdfjslfdjsdkfsds','');
