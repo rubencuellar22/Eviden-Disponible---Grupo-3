@@ -48,7 +48,7 @@ create table if not exists empleado (
     foreign key(grupos) references grupo(grupos)
 );
 
--- UPDATE excel SET grupos = CONCAT(group1, ' | ', group2, ' | ', group3, ' | ', group4);
+-- UPDATE empleado SET grupos = CONCAT(group1, ' | ', group2, ' | ', group3, ' | ', group4);
 
 create table job_technology(
 	id_job_technology int primary key auto_increment,
@@ -60,7 +60,7 @@ create table job_technology(
 create table job_technology_profile(
 	id_job_technology_profile int primary key auto_increment,
     job_technology_profile varchar(100) not null,
-    nivel int not null,
+    nivel varchar(25),
     gin int not null,
     foreign key(gin) references empleado(gin)
 );
@@ -68,56 +68,42 @@ create table job_technology_profile(
 create table tech_skills(
 	id_tech_skills int primary key auto_increment,
     tech_skills text not null,
-    nivel int not null,
-    gin int not null,
-    foreign key(gin) references empleado(gin)
+    nivel int not null
 );
 
 create table role(
     role varchar(255) primary key,
-    nivel int not null,
-    gin int not null,
-    foreign key(gin) references empleado(gin)
+    nivel varchar(50) not null
 );
 
 create table sub_skills(
 	id_sub_skills int primary key auto_increment,
     sub_skills text not null,
-    nivel int not null,
-    gin int not null,
-    foreign key(gin) references empleado(gin)
+    nivel int not null
 );
 
 create table certificaciones(
 	id_certificaciones int primary key auto_increment,
     certificaciones text not null,
-    nivel int not null,
-    gin int not null,
-    foreign key(gin) references empleado(gin)
+    nivel varchar(25) not null
 );
 
 create table metodologias(
 	id_metodologias int primary key auto_increment,
     metodologias varchar(255) not null,
-    nivel int not null,
-    gin int not null,
-    foreign key(gin) references empleado(gin)
+    nivel int not null
 );
 
 create table idiomas(
 	id_idiomas int primary key auto_increment,
     idiomas varchar(255) not null,
-    nivel int not null,
-    gin int not null,
-    foreign key(gin) references empleado(gin)
+    nivel varchar(50) not null
 );
 
 create table tecnologias(
 	id_tecnologias int primary key auto_increment,
     tecnologias text not null,
-    nivel int not null,
-    gin int not null,
-    foreign key(gin) references empleado(gin)
+    nivel int not null
 );
 
 
