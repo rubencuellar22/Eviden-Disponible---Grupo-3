@@ -9,7 +9,7 @@ import jakarta.persistence.*;
  * 
  */
 @Entity
-@Table(name="buss_skills")
+@Table(name="buss_skill")
 @NamedQuery(name="BussSkill.findAll", query="SELECT s FROM BussSkill s")
 public class BussSkill implements Serializable {
 	private static final long serialVersionUID = 1L;

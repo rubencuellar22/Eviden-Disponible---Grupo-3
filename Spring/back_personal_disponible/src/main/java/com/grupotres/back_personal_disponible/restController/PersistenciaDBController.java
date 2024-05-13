@@ -92,14 +92,17 @@ public class PersistenciaDBController {
 
         String[] skmethods = csvArray[27].split("\\|");
         for (String skmethodString : skmethods) {
-            String[] parts = skmethodString.split("\\(");
             Metodologia metodo = new Metodologia();
-            metodo.setMetodologia(parts[0].trim());
-            if (parts.length > 1) {
-                String level = parts[1].replaceAll("\\)", "");
+            int lastParenthesisIndex = skmethodString.lastIndexOf("(");
+            if (lastParenthesisIndex != -1) {
+                String methodName = skmethodString.substring(0, lastParenthesisIndex).trim();
+                String level = skmethodString.substring(lastParenthesisIndex).replaceAll("[()]", "").trim();
+                metodo.setMetodologia(methodName);
                 if (!level.isEmpty()) {
-                    metodo.setNivel(Integer.parseInt(level.trim()));
+                    metodo.setNivel(Integer.parseInt(level));
                 }
+            } else {
+                metodo.setMetodologia(skmethodString.trim());
             }
             emp.addMetodologia(metodo);
         }
@@ -151,23 +154,28 @@ public class PersistenciaDBController {
             emp.addTecnologia(tecnologia);
         }
 
-        String[] skbusskills = csvArray[31].split("\\|");
-        for (String skbusskillString : skbusskills) {
-            BussSkill habilidadNegocio = new BussSkill();
-            int lastParenthesisIndex = skbusskillString.lastIndexOf("(");
-            if (lastParenthesisIndex != -1) {
-                String bussSkillName = skbusskillString.substring(0, lastParenthesisIndex).trim();
-                String level = skbusskillString.substring(lastParenthesisIndex).replaceAll("[()]", "").trim();
-                habilidadNegocio.setBussSkill(bussSkillName);
-                if (!level.isEmpty()) {
-                    habilidadNegocio.setNivel(Integer.parseInt(level));
-                }
-            } else {
-                habilidadNegocio.setBussSkill(skbusskillString.trim());
-            }
-            emp.addBussSkill(habilidadNegocio);
-        }
+        // Index 31 out of bounds for length 31
+        if (csvArray.length > 31) {
 
+            String[] skbusskills = csvArray[31].split("\\|");
+            for (String skbusskillString : skbusskills) {
+                BussSkill habilidadNegocio = new BussSkill();
+                int lastParenthesisIndex = skbusskillString.lastIndexOf("(");
+                if (lastParenthesisIndex != -1) {
+                    String bussSkillName = skbusskillString.substring(0, lastParenthesisIndex).trim();
+                    String level = skbusskillString.substring(lastParenthesisIndex).replaceAll("[()]", "").trim();
+                    habilidadNegocio.setBussSkill(bussSkillName);
+                    if (!level.isEmpty()) {
+                        habilidadNegocio.setNivel(Integer.parseInt(level));
+                    }
+                } else {
+                    habilidadNegocio.setBussSkill(skbusskillString.trim());
+                }
+                emp.addBussSkill(habilidadNegocio);
+            }
+
+
+        }
         System.out.println(emp);
     }
 }

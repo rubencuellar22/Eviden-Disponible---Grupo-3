@@ -70,10 +70,6 @@ public class Empleado implements Serializable {
 	@OneToMany(mappedBy="empleado")
 	private List<Idioma> idiomas  = new ArrayList<Idioma>();
 
-	//bi-directional many-to-one association to JobTechnology
-	@OneToMany(mappedBy="empleado")
-	private List<JobTechnology> jobTechnologies;
-
 	//bi-directional many-to-one association to JobTechnologyProfile
 	@OneToMany(mappedBy="empleado")
 	private List<JobTechnologyProfile> jobTechnologyProfiles = new ArrayList<JobTechnologyProfile>();
@@ -295,28 +291,6 @@ public class Empleado implements Serializable {
 		return idioma;
 	}
 
-	public List<JobTechnology> getJobTechnologies() {
-		return this.jobTechnologies;
-	}
-
-	public void setJobTechnologies(List<JobTechnology> jobTechnologies) {
-		this.jobTechnologies = jobTechnologies;
-	}
-
-	public JobTechnology addJobTechnology(JobTechnology jobTechnology) {
-		getJobTechnologies().add(jobTechnology);
-		jobTechnology.setEmpleado(this);
-
-		return jobTechnology;
-	}
-
-	public JobTechnology removeJobTechnology(JobTechnology jobTechnology) {
-		getJobTechnologies().remove(jobTechnology);
-		jobTechnology.setEmpleado(null);
-
-		return jobTechnology;
-	}
-
 	public List<JobTechnologyProfile> getJobTechnologyProfiles() {
 		return this.jobTechnologyProfiles;
 	}
@@ -449,7 +423,6 @@ public class Empleado implements Serializable {
 				", certificaciones=" + certificaciones + "\n" +
 				", grupo=" + grupo + "\n" +
 				", idiomas=" + idiomas + "\n" +
-				", jobTechnologies=" + jobTechnologies + "\n" +
 				", jobTechnologyProfiles=" + jobTechnologyProfiles + "\n" +
 				", metodologias=" + metodologias + "\n" +
 				", rol=" + rol + "\n" +
