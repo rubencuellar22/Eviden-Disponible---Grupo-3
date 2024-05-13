@@ -16,9 +16,9 @@ public class Metodologia implements Serializable {
 
 	@Id
 	@Column(name="id_metodologias")
-	private int idMetodologias;
+	private int idMetodologia;
 
-	private String metodologias;
+	private String metodologia;
 
 	private int nivel;
 
@@ -30,20 +30,20 @@ public class Metodologia implements Serializable {
 	public Metodologia() {
 	}
 
-	public int getIdMetodologias() {
-		return this.idMetodologias;
+	public int getIdMetodologia() {
+		return this.idMetodologia;
 	}
 
-	public void setIdMetodologias(int idMetodologias) {
-		this.idMetodologias = idMetodologias;
+	public void setIdMetodologia(int idMetodologia) {
+		this.idMetodologia = idMetodologia;
 	}
 
-	public String getMetodologias() {
-		return this.metodologias;
+	public String getMetodologia() {
+		return this.metodologia;
 	}
 
-	public void setMetodologias(String metodologias) {
-		this.metodologias = metodologias;
+	public void setMetodologia(String metodologia) {
+		this.metodologia = metodologia;
 	}
 
 	public int getNivel() {
@@ -62,4 +62,13 @@ public class Metodologia implements Serializable {
 		this.empleado = empleado;
 	}
 
+	@Override
+	public String toString() {
+		return "Metodologia{" +
+				"idMetodologia=" + idMetodologia +
+				", metodologia='" + metodologia + '\'' +
+				", nivel=" + nivel +
+				", empleado=" + empleado +
+				'}';
+	}
 }

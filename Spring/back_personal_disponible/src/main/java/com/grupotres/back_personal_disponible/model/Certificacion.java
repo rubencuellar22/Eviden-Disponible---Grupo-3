@@ -16,12 +16,12 @@ public class Certificacion implements Serializable {
 
 	@Id
 	@Column(name="id_certificaciones")
-	private int idCertificaciones;
+	private int idCertificacion;
 
 	@Lob
-	private String certificaciones;
+	private String certificacion;
 
-	private int nivel;
+	private boolean external;
 
 	//bi-directional many-to-one association to Empleado
 	@ManyToOne
@@ -31,28 +31,28 @@ public class Certificacion implements Serializable {
 	public Certificacion() {
 	}
 
-	public int getIdCertificaciones() {
-		return this.idCertificaciones;
+	public int getIdCertificacion() {
+		return this.idCertificacion;
 	}
 
-	public void setIdCertificaciones(int idCertificaciones) {
-		this.idCertificaciones = idCertificaciones;
+	public void setIdCertificacion(int idCertificacion) {
+		this.idCertificacion = idCertificacion;
 	}
 
-	public String getCertificaciones() {
-		return this.certificaciones;
+	public String getCertificacion() {
+		return this.certificacion;
 	}
 
-	public void setCertificaciones(String certificaciones) {
-		this.certificaciones = certificaciones;
+	public void setCertificacion(String certificacion) {
+		this.certificacion = certificacion;
 	}
 
-	public int getNivel() {
-		return this.nivel;
+	public boolean getExternal() {
+		return this.external;
 	}
 
-	public void setNivel(int nivel) {
-		this.nivel = nivel;
+	public void setExternal(boolean external) {
+		this.external = external;
 	}
 
 	public Empleado getEmpleado() {
@@ -63,4 +63,13 @@ public class Certificacion implements Serializable {
 		this.empleado = empleado;
 	}
 
+	@Override
+	public String toString() {
+		return "Certificacion{" +
+				"idCertificacion=" + idCertificacion +
+				", certificacion='" + certificacion + '\'' +
+				", external=" + (external ? "external" : "Internal") +
+				", empleado=" + empleado +
+				'}';
+	}
 }

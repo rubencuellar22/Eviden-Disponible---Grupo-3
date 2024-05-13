@@ -16,13 +16,13 @@ public class TechSkill implements Serializable {
 
 	@Id
 	@Column(name="id_tech_skills")
-	private int idTechSkills;
+	private int idTechSkill;
 
 	private int nivel;
 
 	@Lob
 	@Column(name="tech_skills")
-	private String techSkills;
+	private String techSkill;
 
 	//bi-directional many-to-one association to Empleado
 	@ManyToOne
@@ -32,12 +32,12 @@ public class TechSkill implements Serializable {
 	public TechSkill() {
 	}
 
-	public int getIdTechSkills() {
-		return this.idTechSkills;
+	public int getIdTechSkill() {
+		return this.idTechSkill;
 	}
 
-	public void setIdTechSkills(int idTechSkills) {
-		this.idTechSkills = idTechSkills;
+	public void setIdTechSkill(int idTechSkill) {
+		this.idTechSkill = idTechSkill;
 	}
 
 	public int getNivel() {
@@ -48,12 +48,12 @@ public class TechSkill implements Serializable {
 		this.nivel = nivel;
 	}
 
-	public String getTechSkills() {
-		return this.techSkills;
+	public String getTechSkill() {
+		return this.techSkill;
 	}
 
-	public void setTechSkills(String techSkills) {
-		this.techSkills = techSkills;
+	public void setTechSkill(String techSkill) {
+		this.techSkill = techSkill;
 	}
 
 	public Empleado getEmpleado() {
@@ -64,4 +64,13 @@ public class TechSkill implements Serializable {
 		this.empleado = empleado;
 	}
 
+	@Override
+	public String toString() {
+		return "TechSkill{" +
+				"idTechSkill=" + idTechSkill +
+				", nivel=" + nivel +
+				", techSkill='" + techSkill + '\'' +
+				", empleado=" + empleado +
+				'}';
+	}
 }

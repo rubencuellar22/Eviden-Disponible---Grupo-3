@@ -20,7 +20,7 @@ public class Rol implements Serializable {
 	private int nivel;
 
 	//bi-directional many-to-one association to Empleado
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name="gin")
 	private Empleado empleado;
 
@@ -51,4 +51,12 @@ public class Rol implements Serializable {
 		this.empleado = empleado;
 	}
 
+	@Override
+	public String toString() {
+		return "Rol{" +
+				"role='" + role + '\'' +
+				", nivel=" + nivel +
+				", empleado=" + empleado +
+				'}';
+	}
 }

@@ -16,11 +16,11 @@ public class Idioma implements Serializable {
 
 	@Id
 	@Column(name="id_idiomas")
-	private int idIdiomas;
+	private int idIdioma;
 
-	private String idiomas;
+	private String idioma;
 
-	private int nivel;
+	private String nivel;
 
 	//bi-directional many-to-one association to Empleado
 	@ManyToOne
@@ -30,27 +30,27 @@ public class Idioma implements Serializable {
 	public Idioma() {
 	}
 
-	public int getIdIdiomas() {
-		return this.idIdiomas;
+	public int getIdIdioma() {
+		return this.idIdioma;
 	}
 
-	public void setIdIdiomas(int idIdiomas) {
-		this.idIdiomas = idIdiomas;
+	public void setIdIdioma(int idIdioma) {
+		this.idIdioma = idIdioma;
 	}
 
-	public String getIdiomas() {
-		return this.idiomas;
+	public String getIdioma() {
+		return this.idioma;
 	}
 
-	public void setIdiomas(String idiomas) {
-		this.idiomas = idiomas;
+	public void setIdioma(String idioma) {
+		this.idioma = idioma;
 	}
 
-	public int getNivel() {
+	public String getNivel() {
 		return this.nivel;
 	}
 
-	public void setNivel(int nivel) {
+	public void setNivel(String nivel) {
 		this.nivel = nivel;
 	}
 
@@ -62,4 +62,13 @@ public class Idioma implements Serializable {
 		this.empleado = empleado;
 	}
 
+	@Override
+	public String toString() {
+		return "Idioma{" +
+				"idIdioma=" + idIdioma +
+				", idioma='" + idioma + '\'' +
+				", nivel='" + nivel + '\'' +
+				", empleado=" + empleado +
+				'}';
+	}
 }

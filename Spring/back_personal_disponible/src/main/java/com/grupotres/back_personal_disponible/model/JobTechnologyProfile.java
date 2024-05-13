@@ -63,4 +63,13 @@ public class JobTechnologyProfile implements Serializable {
 		this.empleado = empleado;
 	}
 
+	@Override
+	public String toString() {
+		return "JobTechnologyProfile{" +
+				"idJobTechnologyProfile=" + idJobTechnologyProfile +
+				", jobTechnologyProfile='" + jobTechnologyProfile + '\'' +
+				", nivel=" + nivel +
+				", empleado=" + empleado +
+				'}';
+	}
 }

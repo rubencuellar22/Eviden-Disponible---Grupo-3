@@ -5,38 +5,39 @@ import jakarta.persistence.*;
 
 
 /**
- * The persistent class for the tecnologias database table.
+ * The persistent class for the sub_skills database table.
  * 
  */
 @Entity
-@Table(name="tecnologias")
-@NamedQuery(name="Tecnologia.findAll", query="SELECT t FROM Tecnologia t")
-public class Tecnologia implements Serializable {
+@Table(name="buss_skills")
+@NamedQuery(name="BussSkill.findAll", query="SELECT s FROM BussSkill s")
+public class BussSkill implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="id_tecnologias")
-	private int idTecnologia;
+	@Column(name="id_sub_skill")
+	private int idBussSkill;
 
 	private int nivel;
 
 	@Lob
-	private String tecnologia;
+	@Column(name="buss_skill")
+	private String bussSkill;
 
 	//bi-directional many-to-one association to Empleado
 	@ManyToOne
 	@JoinColumn(name="gin")
 	private Empleado empleado;
 
-	public Tecnologia() {
+	public BussSkill() {
 	}
 
-	public int getIdTecnologia() {
-		return this.idTecnologia;
+	public int getIdBussSkill() {
+		return this.idBussSkill;
 	}
 
-	public void setIdTecnologia(int idTecnologia) {
-		this.idTecnologia = idTecnologia;
+	public void setIdBussSkill(int idBussSkill) {
+		this.idBussSkill = idBussSkill;
 	}
 
 	public int getNivel() {
@@ -47,12 +48,12 @@ public class Tecnologia implements Serializable {
 		this.nivel = nivel;
 	}
 
-	public String getTecnologia() {
-		return this.tecnologia;
+	public String getBussSkill() {
+		return this.bussSkill;
 	}
 
-	public void setTecnologia(String tecnologia) {
-		this.tecnologia = tecnologia;
+	public void setBussSkill(String bussSkill) {
+		this.bussSkill = bussSkill;
 	}
 
 	public Empleado getEmpleado() {
@@ -65,10 +66,10 @@ public class Tecnologia implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Tecnologia{" +
-				"idTecnologia=" + idTecnologia +
+		return "BussSkill{" +
+				"idBussSkill=" + idBussSkill +
 				", nivel=" + nivel +
-				", tecnologia='" + tecnologia + '\'' +
+				", bussSkill='" + bussSkill + '\'' +
 				", empleado=" + empleado +
 				'}';
 	}
