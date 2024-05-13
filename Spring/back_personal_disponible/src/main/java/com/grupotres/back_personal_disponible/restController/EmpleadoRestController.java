@@ -1,5 +1,6 @@
 package com.grupotres.back_personal_disponible.restController;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,7 @@ public class EmpleadoRestController {
 	@Autowired
 	private EmpleadoRepository empleadoRepository;
 	
-	@Autowired 
-	private EmpleadoService empleadoService;
+
 	
 	@GetMapping("todos")
 	public List<Empleado> findAll(){
@@ -35,4 +35,42 @@ public class EmpleadoRestController {
 		return empleadoRepository.findbyStatus(status);
 		
 }
+	@GetMapping("bench/{bench}")
+	public List<Empleado> findByBench(@PathVariable String bench) {
+	    return empleadoRepository.findByBench(bench);
+	}
+
+	@GetMapping("ciudad/{ciudad}")
+	public List<Empleado> findByCiudad(@PathVariable String ciudad) {
+	    return empleadoRepository.findByCiudad(ciudad);
+	}
+
+	@GetMapping("jornada/{jornada}")
+	public List<Empleado> findByJornada(@PathVariable BigDecimal jornada) {
+	    return empleadoRepository.findByJornada(jornada);
+	}
+	
+	@GetMapping("n4/{n4}")
+	public List<Empleado> findbyN4(@PathVariable String n4) {
+		return empleadoRepository.findbyN4(n4);
+ 
+	}
+	
+	@GetMapping("categoria/{categoria}")
+	public List<Empleado> findbyCategoria(@PathVariable String categoria){
+		return empleadoRepository.findbyCategoria(categoria);
+	}
+	
+	@GetMapping("ccname/{ccname}")
+	public List<Empleado> findbyCcname(@PathVariable String ccname){
+		return empleadoRepository.findbyCcname(ccname);
+	}
+	
+	@GetMapping("scr/{scr}")
+	public List<Empleado> findbyScr(@PathVariable BigDecimal scr) {
+	    return empleadoRepository.findbyScr(scr);
+	}
+	
+
+
 }
