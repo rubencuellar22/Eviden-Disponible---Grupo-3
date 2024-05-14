@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -20,280 +21,197 @@ public class Empleado implements Serializable {
 
 	@Id
 	private int gin;
-
-	private String agrupacion;
-
-	private String bench;
-
-	private String categoria;
-
-	private String ciudad;
-
+	private String name;
+	private String subgroup;
+	private String status;
+	private Date bench;
 	private String das;
-
-	private String gcm;
-
-	@Column(name="job_technology")
-	private String jobTechnology;
-
-	private BigDecimal jornada;
-
+	private String ciudad;
+	private String agrupacion;
 	@Column(name="line_manager")
 	private String lineManager;
-
-	@Column(name="n_4")
-	private String n4;
-
-	private String name;
-
+	private Double jornada;
+	private String gcm;
+	private String categoria;
 	private int nivelgcm;
-
-	private boolean rlt;
-
-	private BigDecimal scr;
-
-	private String skills;
-
-	private String status;
-
-	private String subgroup;
-
-	//bi-directional many-to-one association to Certificacion
-	@OneToMany(mappedBy="empleado")
-	private List<Certificacion> certificaciones = new ArrayList<Certificacion>();
-
-	//bi-directional many-to-one association to Grupo
+	private Double scr;
 	@ManyToOne
 	@JoinColumn(name="grupos")
 	private Grupo grupo;
+	@Column(name="n_4")
+	private String n4;
+	@Column(name="job_technology")
+	private String jobTechnology;
 
-	//bi-directional many-to-one association to Idioma
-	@OneToMany(mappedBy="empleado")
-	private List<Idioma> idiomas  = new ArrayList<Idioma>();
-
-	//bi-directional many-to-one association to JobTechnologyProfile
 	@OneToMany(mappedBy="empleado")
 	private List<JobTechnologyProfile> jobTechnologyProfiles = new ArrayList<JobTechnologyProfile>();
 
-	//bi-directional many-to-one association to Metodologia
-	@OneToMany(mappedBy="empleado")
-	private List<Metodologia> metodologias = new ArrayList<Metodologia>();
+	private String skills;
 
-	//bi-directional many-to-one association to Rol
 	@OneToOne(mappedBy="empleado")
-	private Rol rol;
+	private Role role;
 
-	//bi-directional many-to-one association to SubSkill
-	@OneToMany(mappedBy="empleado")
-	private List<BussSkill> bussSkills = new ArrayList<BussSkill>();
+	private boolean rlt;
 
-	//bi-directional many-to-one association to TechSkill
 	@OneToMany(mappedBy="empleado")
-	private List<TechSkill> techSkills = new ArrayList<TechSkill>();
+	private List<SkLenguage> skLenguages  = new ArrayList<SkLenguage>();
 
-	//bi-directional many-to-one association to Tecnologia
 	@OneToMany(mappedBy="empleado")
-	private List<Tecnologia> tecnologias = new ArrayList<Tecnologia>();
+	private List<SkMethod> skMethods = new ArrayList<SkMethod>();
+
+	@OneToMany(mappedBy="empleado")
+	private List<SkTechSkill> skTechSkills = new ArrayList<SkTechSkill>();
+
+	@OneToMany(mappedBy="empleado")
+	private List<SkCertif> skCertifs = new ArrayList<SkCertif>();
+
+	@OneToMany(mappedBy="empleado")
+	private List<SkTechnology> skTechnologies = new ArrayList<SkTechnology>();
+
+	@OneToMany(mappedBy="empleado")
+	private List<SkBusSkill> skBusSkills = new ArrayList<SkBusSkill>();
 
 	public Empleado() {
 	}
 
 	public int getGin() {
-		return this.gin;
+		return gin;
 	}
 
 	public void setGin(int gin) {
 		this.gin = gin;
 	}
 
-	public String getAgrupacion() {
-		return this.agrupacion;
-	}
-
-	public void setAgrupacion(String agrupacion) {
-		this.agrupacion = agrupacion;
-	}
-
-	public String getBench() {
-		return this.bench;
-	}
-
-	public void setBench(String bench) {
-		this.bench = bench;
-	}
-
-	public String getCategoria() {
-		return this.categoria;
-	}
-
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
-	}
-
-	public String getCiudad() {
-		return this.ciudad;
-	}
-
-	public void setCiudad(String ciudad) {
-		this.ciudad = ciudad;
-	}
-
-	public String getDas() {
-		return this.das;
-	}
-
-	public void setDas(String das) {
-		this.das = das;
-	}
-
-	public String getGcm() {
-		return this.gcm;
-	}
-
-	public void setGcm(String gcm) {
-		this.gcm = gcm;
-	}
-
-	public String getJobTechnology() {
-		return this.jobTechnology;
-	}
-
-	public void setJobTechnology(String jobTechnology) {
-		this.jobTechnology = jobTechnology;
-	}
-
-	public BigDecimal getJornada() {
-		return this.jornada;
-	}
-
-	public void setJornada(BigDecimal jornada) {
-		this.jornada = jornada;
-	}
-
-	public String getLineManager() {
-		return this.lineManager;
-	}
-
-	public void setLineManager(String lineManager) {
-		this.lineManager = lineManager;
-	}
-
-	public String getN4() {
-		return this.n4;
-	}
-
-	public void setN4(String n4) {
-		this.n4 = n4;
-	}
-
 	public String getName() {
-		return this.name;
+		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	public int getNivelgcm() {
-		return this.nivelgcm;
-	}
-
-	public void setNivelgcm(int nivelgcm) {
-		this.nivelgcm = nivelgcm;
-	}
-
-	public boolean getRlt() {
-		return this.rlt;
-	}
-
-	public void setRlt(boolean rlt) {
-		this.rlt = rlt;
-	}
-
-	public BigDecimal getScr() {
-		return this.scr;
-	}
-
-	public void setScr(BigDecimal scr) {
-		this.scr = scr;
-	}
-
-	public String getSkills() {
-		return this.skills;
-	}
-
-	public void setSkills(String skills) {
-		this.skills = skills;
-	}
-
-	public String getStatus() {
-		return this.status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
 	public String getSubgroup() {
-		return this.subgroup;
+		return subgroup;
 	}
 
 	public void setSubgroup(String subgroup) {
 		this.subgroup = subgroup;
 	}
 
-	public List<Certificacion> getCertificaciones() {
-		return this.certificaciones;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setCertificaciones(List<Certificacion> certificaciones) {
-		this.certificaciones = certificaciones;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
-	public void addCertificacione(Certificacion certificacione) {
-		getCertificaciones().add(certificacione);
-
+	public Date getBench() {
+		return bench;
 	}
 
-	public Certificacion removeCertificacione(Certificacion certificacione) {
-		getCertificaciones().remove(certificacione);
-		certificacione.setEmpleado(null);
+	public void setBench(Date bench) {
+		this.bench = bench;
+	}
 
-		return certificacione;
+	public String getDas() {
+		return das;
+	}
+
+	public void setDas(String das) {
+		this.das = das;
+	}
+
+	public String getCiudad() {
+		return ciudad;
+	}
+
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
+	}
+
+	public String getAgrupacion() {
+		return agrupacion;
+	}
+
+	public void setAgrupacion(String agrupacion) {
+		this.agrupacion = agrupacion;
+	}
+
+	public String getLineManager() {
+		return lineManager;
+	}
+
+	public void setLineManager(String lineManager) {
+		this.lineManager = lineManager;
+	}
+
+	public Double getJornada() {
+		return jornada;
+	}
+
+	public void setJornada(Double jornada) {
+		this.jornada = jornada;
+	}
+
+	public String getGcm() {
+		return gcm;
+	}
+
+	public void setGcm(String gcm) {
+		this.gcm = gcm;
+	}
+
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+
+	public int getNivelgcm() {
+		return nivelgcm;
+	}
+
+	public void setNivelgcm(int nivelgcm) {
+		this.nivelgcm = nivelgcm;
+	}
+
+	public Double getScr() {
+		return scr;
+	}
+
+	public void setScr(Double scr) {
+		this.scr = scr;
 	}
 
 	public Grupo getGrupo() {
-		return this.grupo;
+		return grupo;
 	}
 
 	public void setGrupo(Grupo grupo) {
 		this.grupo = grupo;
 	}
 
-	public List<Idioma> getIdiomas() {
-		return this.idiomas;
+	public String getN4() {
+		return n4;
 	}
 
-	public void setIdiomas(List<Idioma> idiomas) {
-		this.idiomas = idiomas;
+	public void setN4(String n4) {
+		this.n4 = n4;
 	}
 
-	public Idioma addIdioma(Idioma idioma) {
-		getIdiomas().add(idioma);
-		// idioma.setEmpleado(this); WARNING: This line is commented out because it causes a stack overflow error
-
-		return idioma;
+	public String getJobTechnology() {
+		return jobTechnology;
 	}
 
-	public Idioma removeIdioma(Idioma idioma) {
-		getIdiomas().remove(idioma);
-		idioma.setEmpleado(null);
-
-		return idioma;
+	public void setJobTechnology(String jobTechnology) {
+		this.jobTechnology = jobTechnology;
 	}
 
 	public List<JobTechnologyProfile> getJobTechnologyProfiles() {
-		return this.jobTechnologyProfiles;
+		return jobTechnologyProfiles;
 	}
 
 	public void setJobTechnologyProfiles(List<JobTechnologyProfile> jobTechnologyProfiles) {
@@ -302,134 +220,162 @@ public class Empleado implements Serializable {
 
 	public void addJobTechnologyProfile(JobTechnologyProfile jobTechnologyProfile) {
 		this.jobTechnologyProfiles.add(jobTechnologyProfile);
-		// jobTechnologyProfile.setEmpleado(this); TODO: This line is commented out because it causes a stack overflow error
 	}
 
-	public JobTechnologyProfile removeJobTechnologyProfile(JobTechnologyProfile jobTechnologyProfile) {
-		getJobTechnologyProfiles().remove(jobTechnologyProfile);
-		jobTechnologyProfile.setEmpleado(null);
-
-		return jobTechnologyProfile;
+	public void removeJobTechnologyProfile(JobTechnologyProfile jobTechnologyProfile) {
+		this.jobTechnologyProfiles.remove(jobTechnologyProfile);
 	}
 
-	public List<Metodologia> getMetodologias() {
-		return this.metodologias;
+	public String getSkills() {
+		return skills;
 	}
 
-	public void setMetodologias(List<Metodologia> metodologias) {
-		this.metodologias = metodologias;
+	public void setSkills(String skills) {
+		this.skills = skills;
 	}
 
-	public void addMetodologia(Metodologia metodologia) {
-		getMetodologias().add(metodologia);
-		// metodologia.setEmpleado(this); WARNING: This line is commented out because it causes a stack overflow error
+	public Role getRole() {
+		return role;
 	}
 
-	public Metodologia removeMetodologia(Metodologia metodologia) {
-		getMetodologias().remove(metodologia);
-		metodologia.setEmpleado(null);
-
-		return metodologia;
+	public void setRole(Role role) {
+		this.role = role;
 	}
 
-	public Rol getRol() {
-		return this.rol;
+	public boolean isRlt() {
+		return rlt;
 	}
 
-	public void setRol(Rol role) {
-		this.rol = role;
+	public void setRlt(boolean rlt) {
+		this.rlt = rlt;
 	}
 
-	public List<BussSkill> getSubSkills() {
-		return this.bussSkills;
+	public List<SkLenguage> getSkLenguages() {
+		return skLenguages;
 	}
 
-	public void setSubSkills(List<BussSkill> bussSkills) {
-		this.bussSkills = bussSkills;
+	public void setSkLenguages(List<SkLenguage> skLenguages) {
+		this.skLenguages = skLenguages;
 	}
 
-	public void addBussSkill(BussSkill subSkill) {
-		getSubSkills().add(subSkill);
-		// subSkill.setEmpleado(this); WARNING: This line is commented out because it causes a stack overflow error
+	public void addSklenguage(SkLenguage skLenguage) {
+		this.skLenguages.add(skLenguage);
 	}
 
-	public BussSkill removeSubSkill(BussSkill subSkill) {
-		getSubSkills().remove(subSkill);
-		subSkill.setEmpleado(null);
-
-		return subSkill;
+	public void removeSklenguage(SkLenguage skLenguage) {
+		this.skLenguages.remove(skLenguage);
 	}
 
-	public List<TechSkill> getTechSkills() {
-		return this.techSkills;
+	public List<SkMethod> getSkMethods() {
+		return skMethods;
 	}
 
-	public void setTechSkills(List<TechSkill> techSkills) {
-		this.techSkills = techSkills;
+	public void setSkMethods(List<SkMethod> skMethods) {
+		this.skMethods = skMethods;
 	}
 
-	public void addTechSkill(TechSkill techSkill) {
-		getTechSkills().add(techSkill);
-		// techSkill.setEmpleado(this); WARNING: This line is commented out because it causes a stack overflow error
+	public void addSkMethod(SkMethod skMethod) {
+		this.skMethods.add(skMethod);
 	}
 
-	public TechSkill removeTechSkill(TechSkill techSkill) {
-		getTechSkills().remove(techSkill);
-		techSkill.setEmpleado(null);
-
-		return techSkill;
+	public void removeSkMethod(SkMethod skMethod) {
+		this.skMethods.remove(skMethod);
 	}
 
-	public List<Tecnologia> getTecnologias() {
-		return this.tecnologias;
+	public List<SkTechSkill> getSkTechSkills() {
+		return skTechSkills;
 	}
 
-	public void setTecnologias(List<Tecnologia> tecnologias) {
-		this.tecnologias = tecnologias;
+	public void setSkTechSkills(List<SkTechSkill> skTechSkills) {
+		this.skTechSkills = skTechSkills;
 	}
 
-	public void addTecnologia(Tecnologia tecnologia) {
-		getTecnologias().add(tecnologia);
-		// tecnologia.setEmpleado(this); WARNING: This line is commented out because it causes a stack overflow error
+	public void addSkTechSkill(SkTechSkill skTechSkill) {
+		this.skTechSkills.add(skTechSkill);
 	}
 
-	public Tecnologia removeTecnologia(Tecnologia tecnologia) {
-		getTecnologias().remove(tecnologia);
-		tecnologia.setEmpleado(null);
+	public void removeSkTechSkill(SkTechSkill skTechSkill) {
+		this.skTechSkills.remove(skTechSkill);
+	}
 
-		return tecnologia;
+	public List<SkCertif> getSkCertifs() {
+		return skCertifs;
+	}
+
+	public void setSkCertifs(List<SkCertif> skCertifs) {
+		this.skCertifs = skCertifs;
+	}
+
+	public void addSkCertif(SkCertif skCertif) {
+		this.skCertifs.add(skCertif);
+	}
+
+	public void removeSkCertif(SkCertif skCertif) {
+		this.skCertifs.remove(skCertif);
+	}
+
+	public List<SkTechnology> getSkTechnologies() {
+		return skTechnologies;
+	}
+
+	public void setSkTechnologies(List<SkTechnology> skTechnologies) {
+		this.skTechnologies = skTechnologies;
+	}
+
+	public void addSkTechnology(SkTechnology skTechnology) {
+		this.skTechnologies.add(skTechnology);
+	}
+
+	public void removeSkTechnology(SkTechnology skTechnology) {
+		this.skTechnologies.remove(skTechnology);
+	}
+
+	public List<SkBusSkill> getSkBusSkills() {
+		return skBusSkills;
+	}
+
+	public void setSkBusSkills(List<SkBusSkill> skBusSkills) {
+		this.skBusSkills = skBusSkills;
+	}
+
+	public void addSkbusSkill(SkBusSkill skBusSkill) {
+		this.skBusSkills.add(skBusSkill);
+	}
+
+	public void removeSkbusSkill(SkBusSkill skBusSkill) {
+		this.skBusSkills.remove(skBusSkill);
 	}
 
 	@Override
 	public String toString() {
 		return "Empleado{" +
-				"gin=" + gin + "\n" +
-				", agrupacion='" + agrupacion + '\'' + "\n" +
-				", bench='" + bench + '\'' + "\n" +
-				", categoria='" + categoria + '\'' + "\n" +
-				", ciudad='" + ciudad + '\'' + "\n" +
-				", das='" + das + '\'' + "\n" +
-				", gcm='" + gcm + '\'' + "\n" +
-				", jobTechnology='" + jobTechnology + '\'' + "\n" +
-				", jornada=" + jornada + "\n" +
-				", lineManager='" + lineManager + '\'' + "\n" +
-				", n4='" + n4 + '\'' + "\n" +
-				", name='" + name + '\'' + "\n" +
-				", nivelgcm=" + nivelgcm + "\n" +
-				", rlt='" + rlt + '\'' + "\n" +
-				", scr=" + scr + "\n" +
-				", skills='" + skills + '\'' + "\n" +
-				", status='" + status + '\'' + "\n" +
-				", subgroup='" + subgroup + '\'' + "\n" +
-				", certificaciones=" + certificaciones + "\n" +
-				", grupo=" + grupo + "\n" +
-				", idiomas=" + idiomas + "\n" +
-				", jobTechnologyProfiles=" + jobTechnologyProfiles + "\n" +
-				", metodologias=" + metodologias + "\n" +
-				", rol=" + rol + "\n" +
-				", bussSkills=" + bussSkills + "\n" +
-				", techSkills=" + techSkills + "\n" +
-				", tecnologias=" + tecnologias + "\n" +
+				"gin=" + gin +
+				", name='" + name + '\'' +
+				", subgroup='" + subgroup + '\'' +
+				", status='" + status + '\'' +
+				", bench=" + bench +
+				", das='" + das + '\'' +
+				", ciudad='" + ciudad + '\'' +
+				", agrupacion='" + agrupacion + '\'' +
+				", lineManager='" + lineManager + '\'' +
+				", jornada=" + jornada +
+				", gcm='" + gcm + '\'' +
+				", categoria='" + categoria + '\'' +
+				", nivelgcm=" + nivelgcm +
+				", scr=" + scr +
+				", grupo=" + grupo +
+				", n4='" + n4 + '\'' +
+				", jobTechnology='" + jobTechnology + '\'' +
+				", jobTechnologyProfiles=" + jobTechnologyProfiles +
+				", skills='" + skills + '\'' +
+				", role=" + role +
+				", rlt=" + rlt +
+				", skLenguages=" + skLenguages +
+				", skMethods=" + skMethods +
+				", skTechSkills=" + skTechSkills +
+				", skCertifs=" + skCertifs +
+				", skTechnologies=" + skTechnologies +
+				", skBusSkills=" + skBusSkills +
 				'}';
 	}
 }

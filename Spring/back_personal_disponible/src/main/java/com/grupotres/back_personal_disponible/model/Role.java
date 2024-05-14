@@ -10,21 +10,32 @@ import jakarta.persistence.*;
  */
 @Entity
 @Table(name="role")
-@NamedQuery(name="Rol.findAll", query="SELECT r FROM Rol r")
-public class Rol implements Serializable {
+@NamedQuery(name="Role.findAll", query="SELECT r FROM Role r")
+public class Role implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private String role;
+	@Column(name = "id_role")
+	private int idRole;
 
-	private int nivel;
-
-	//bi-directional many-to-one association to Empleado
 	@OneToOne
 	@JoinColumn(name="gin")
 	private Empleado empleado;
 
-	public Rol() {
+	private String role;
+
+	private int nivel;
+
+
+	public Role() {
+	}
+
+	public int getIdRole() {
+		return idRole;
+	}
+
+	public void setIdRole(int idRole) {
+		this.idRole = idRole;
 	}
 
 	public String getRole() {
@@ -53,10 +64,11 @@ public class Rol implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Rol{" +
-				"role='" + role + '\'' +
-				", nivel=" + nivel +
+		return "Role{" +
+				"idRole=" + idRole +
 				", empleado=" + empleado +
+				", role='" + role + '\'' +
+				", nivel=" + nivel +
 				'}';
 	}
 }

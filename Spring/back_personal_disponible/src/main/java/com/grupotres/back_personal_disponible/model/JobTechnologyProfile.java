@@ -18,15 +18,16 @@ public class JobTechnologyProfile implements Serializable {
 	@Column(name="id_job_technology_profile")
 	private int idJobTechnologyProfile;
 
+	@ManyToOne
+	@JoinColumn(name="gin")
+	private Empleado empleado;
+
+
 	@Column(name="job_technology_profile")
 	private String jobTechnologyProfile;
 
 	private int nivel;
 
-	//bi-directional many-to-one association to Empleado
-	@ManyToOne
-	@JoinColumn(name="gin")
-	private Empleado empleado;
 
 	public JobTechnologyProfile() {
 	}
@@ -67,9 +68,9 @@ public class JobTechnologyProfile implements Serializable {
 	public String toString() {
 		return "JobTechnologyProfile{" +
 				"idJobTechnologyProfile=" + idJobTechnologyProfile +
+				", empleado=" + empleado +
 				", jobTechnologyProfile='" + jobTechnologyProfile + '\'' +
 				", nivel=" + nivel +
-				", empleado=" + empleado +
 				'}';
 	}
 }
