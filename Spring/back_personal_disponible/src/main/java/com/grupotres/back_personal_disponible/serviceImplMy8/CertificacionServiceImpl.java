@@ -1,8 +1,8 @@
 package com.grupotres.back_personal_disponible.serviceImplMy8;
 
 
-import com.grupotres.back_personal_disponible.service.CertificacionService;
+import com.grupotres.back_personal_disponible.service.SkCertifService;
 
-public class CertificacionServiceImpl implements CertificacionService{
+public class CertificacionServiceImpl implements SkCertifService{
 
 }

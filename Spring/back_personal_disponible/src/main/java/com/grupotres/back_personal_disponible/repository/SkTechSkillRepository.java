@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.grupotres.back_personal_disponible.model.SkTechSkill;
 
-public interface TechSkillRepository extends JpaRepository<SkTechSkill, Integer>{
+public interface SkTechSkillRepository extends JpaRepository<SkTechSkill, Integer>{
 
 }

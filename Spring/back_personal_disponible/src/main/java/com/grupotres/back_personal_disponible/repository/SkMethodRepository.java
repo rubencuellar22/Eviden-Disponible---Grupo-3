@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.grupotres.back_personal_disponible.model.SkMethod;
 
-public interface MetodologiaRepository extends JpaRepository<SkMethod, Integer>{
+public interface SkMethodRepository extends JpaRepository<SkMethod, Integer>{
 
 }

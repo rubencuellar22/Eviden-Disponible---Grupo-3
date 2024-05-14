@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.grupotres.back_personal_disponible.model.SkBusSkill;
 
-public interface SubSkillRepository extends JpaRepository<SkBusSkill, Integer>{
+public interface SkBusSkillRepository extends JpaRepository<SkBusSkill, Integer>{
 
 }
