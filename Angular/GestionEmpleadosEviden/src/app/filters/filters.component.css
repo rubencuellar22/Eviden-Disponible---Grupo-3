@@ -11,6 +11,10 @@
     border-radius: 5px;
 }
 
+.boton{
+    color: white;
+    background-color: #ff6d43;
+}
 
 .search-container{
     width: 490px;
