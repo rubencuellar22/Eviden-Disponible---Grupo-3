@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
 /**
  * The persistent class for the empleado database table.
  * 
