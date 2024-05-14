@@ -31,32 +31,25 @@ td {
   font-size: large;
   font-family: Arial, Helvetica, sans-serif;
 }
-.boton {
-  color: white;
-  background-color: #ff6d43;
-}
-.boton:hover {
-  background-color: #f05124;
-}
 
 /* width */
 ::-webkit-scrollbar {
-  width: 4px;
-  height: 6px; /* Altura más pequeña para la barra */
+    width: 4px;
+    height: 4px; /* Altura más pequeña para la barra */
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+    background: #f1f1f1;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #ff6d43;
-  border-radius: 20px;
+    background: #FF6D43;
+    border-radius: 5px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #ff6d43;
+    background: #FF6D43;
 }
