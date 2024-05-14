@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.grupotres.back_personal_disponible.model.Role;
 
-public interface RolRepository extends JpaRepository<Role, String>{
+public interface RoleRepository extends JpaRepository<Role, Integer>{
 
 }
