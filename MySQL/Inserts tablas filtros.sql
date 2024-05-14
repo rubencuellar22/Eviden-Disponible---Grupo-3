@@ -1,6 +1,5 @@
 use personal_disponibles;
 
-
 -- **********************************INSERTS CERTIFICACIONES*****************************************
 
 insert into certificaciones (certificaciones, nivel) values('Agile Essentials', 'Internal');
