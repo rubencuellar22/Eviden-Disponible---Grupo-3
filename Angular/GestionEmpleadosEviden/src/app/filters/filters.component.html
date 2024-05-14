@@ -1,17 +1,17 @@
 <section
-  class="flex flex-wrap mainbox ml-10 mr-10 mb-10 bg-white rounded-lg relative"
+  class="flex flex-wrap mainbox ml-10 mr-10 mb-4 bg-white rounded-lg relative"
 >
   <div class="flex flex-wrap">
-    <div class="p-8 flex flex-wrap flex-auto flex-col gap-2">
-      <div class="filters pb-2">Selection of filters</div>
+    <div class="p-1 flex flex-wrap flex-auto flex-col gap-2">
+      <div class="mt-2 ml-2 filters pb-2">Selection of filters</div>
 
-      <div class="flex flex-wrap gap-4">
+      <div class="ml-2 flex flex-wrap gap-4">
         <div>
           <select class="filters" name="col" id="col">
             <option value="" disabled selected>Name of columns</option>
-            <option value="ciudad">ciudad</option>
-            <option value="nombre">nombre</option>
-            <option value="calle">calle</option>
+            <option value="ciudad">Ciudad</option>
+            <option value="nombre">Nombre</option>
+            <option value="calle">Calle</option>
           </select>
         </div>
 
@@ -25,82 +25,80 @@
             />
           </div>
 
-          <h3 class="mb-4 font-semibold text-gray-900 dark:text-white">
-            Identification
-          </h3>
-          <ul
-            class="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-          >
-            <li
-              class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600"
-            >
-              <div class="flex items-center ps-3">
-                <input
-                  id="vue-checkbox-list"
-                  type="checkbox"
-                  value=""
-                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                />
-                <label
-                  for="vue-checkbox-list"
-                  class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                  >Vue JS</label
-                >
+          <div>
+            <h3 class="mb-2 font-semibold mt-2 text-black">Level</h3>
+            <div class="flex">
+              <div class="w-56">
+                <div class="p-1">
+                  <div class="flex items-center">
+                    <input
+                      id="novice-checkbox"
+                      type="checkbox"
+                      value=""
+                      class="w-4 h-4 text-sky-500 bg-sky-100 border-sky-300 rounded focus:ring-sky-500 dark:focus:ring-sky-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-sky-600 dark:border-sky-500"
+                    />
+                    <label for="novice-checkbox" class="ml-2 text-sm font-medium text-black dark:text-black">1 - Novice</label>
+                  </div>
+                </div>
+                <div class="p-1">
+                  <div class="flex items-center">
+                    <input
+                      id="junior-checkbox"
+                      type="checkbox"
+                      value=""
+                      class="w-4 h-4 text-sky-500 bg-sky-100 border-sky-300 rounded focus:ring-sky-500 dark:focus:ring-sky-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-sky-600 dark:border-sky-500"
+                    />
+                    <label for="junior-checkbox" class="ml-2 text-sm font-medium text-black dark:text-black">2 - Junior</label>
+                  </div>
+                </div>
+                <div class="p-1">
+                  <div class="flex items-center">
+                    <input
+                      id="proficient-checkbox"
+                      type="checkbox"
+                      value=""
+                      class="w-4 h-4 text-sky-500 bg-sky-100 border-sky-300 rounded focus:ring-sky-500 dark:focus:ring-sky-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-sky-600 dark:border-sky-500"
+                    />
+                    <label for="proficient-checkbox" class="ml-2 text-sm font-medium text-black dark:text-black">3 - Proficient</label>
+                  </div>
+                </div>
               </div>
-            </li>
-            <li
-              class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600"
-            >
-              <div class="flex items-center ps-3">
-                <input
-                  id="react-checkbox-list"
-                  type="checkbox"
-                  value=""
-                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                />
-                <label
-                  for="react-checkbox-list"
-                  class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                  >React</label
-                >
+              <div class="w-1/2">
+                <div class="p-1">
+                  <div class="flex items-center">
+                    <input
+                      id="senior-checkbox"
+                      type="checkbox"
+                      value=""
+                      class="w-4 h-4 text-sky-500 bg-sky-100 border-sky-300 rounded focus:ring-sky-500 dark:focus:ring-sky-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-sky-600 dark:border-sky-500"
+                    />
+                    <label for="senior-checkbox" class="ml-2 text-sm font-medium text-black dark:text-black">4 - Senior</label>
+                  </div>
+                </div>
+                <div class="p-1">
+                  <div class="flex items-center">
+                    <input
+                      id="expert-checkbox"
+                      type="checkbox"
+                      value=""
+                      class="w-4 h-4 text-sky-500 bg-sky-100 border-sky-300 rounded focus:ring-sky-500 dark:focus:ring-sky-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-sky-600 dark:border-sky-500"
+                    />
+                    <label for="expert-checkbox" class="ml-2 text-sm font-medium text-black dark:text-black">5 - Expert</label>
+                  </div>
+                </div>
+                <div class="p-1">
+                  <div class="flex items-center">
+                   <button class="boton text-white py-1 px-2 font-bold rounded  bottom-4 right-4 m-3">Add</button>
+                  </div>
+                </div>
               </div>
-            </li>
-            <li
-              class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600"
-            >
-              <div class="flex items-center ps-3">
-                <input
-                  id="angular-checkbox-list"
-                  type="checkbox"
-                  value=""
-                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                />
-                <label
-                  for="angular-checkbox-list"
-                  class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                  >Angular</label
-                >
-              </div>
-            </li>
-            <li class="w-full dark:border-gray-600">
-              <div class="flex items-center ps-3">
-                <input
-                  id="laravel-checkbox-list"
-                  type="checkbox"
-                  value=""
-                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                />
-                <label
-                  for="laravel-checkbox-list"
-                  class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                  >Laravel</label
-                >
-              </div>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+          
+          
 
     <div class="flex flex-auto gap-3 mt-4">
       <div>
@@ -171,10 +169,8 @@
 
   <div class="grid place-content-end m-4 flex-auto">
     <div>
-      <button
-        class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-amber-500 rounded shadow"
-      >
-        Button
+      <button class="boton text-white font-bold py-2 px-4 rounded absolute bottom-4 right-4">
+        Apply
       </button>
     </div>
   </div>
