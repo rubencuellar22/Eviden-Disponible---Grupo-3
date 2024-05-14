@@ -1,14 +1,13 @@
-.titulo{
-    color: #ff6d43;
-
+.titulo {
+  color: #ff6d43;
 }
-.tabla{
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
-    border: 1px solid;
-    border-collapse: collapse;
-    width: 100%;
+.tabla {
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+  border: 1px solid;
+  border-collapse: collapse;
+  width: 100%;
 }
 /*
 table tbody {
@@ -21,41 +20,43 @@ div.wrapper {
     overflow-x: auto;
     white-space: nowrap;
 }*/
-th, td {
-    border-bottom: 2px solid black;
-    text-align: left;
+th,
+td {
+  border-bottom: 2px solid black;
+  text-align: left;
 }
 .cabecera {
-    color: white;
-    background-color: #ff6d43;
-    font-size: large;
-    font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  background-color: #ff6d43;
+  font-size: large;
+  font-family: Arial, Helvetica, sans-serif;
 }
-.boton{
-    color: white;
-    background-color: #ff6d43;
+.boton {
+  color: white;
+  background-color: #ff6d43;
 }
-.boton:hover{
-    background-color: #f05124;
+.boton:hover {
+  background-color: #f05124;
 }
- 
+
 /* width */
 ::-webkit-scrollbar {
-    width: 10px;
+  width: 4px;
+  height: 6px; /* Altura más pequeña para la barra */
 }
- 
+
 /* Track */
 ::-webkit-scrollbar-track {
-    background: #f1f1f1;
+  background: #f1f1f1;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #FF6D43;
-    border-radius: 5px;
+  background: #ff6d43;
+  border-radius: 20px;
 }
- 
+
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #FF6D43;
+  background: #ff6d43;
 }
