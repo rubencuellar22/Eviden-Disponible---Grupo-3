@@ -12,7 +12,7 @@ import com.grupotres.back_personal_disponible.service.EmpleadoService;
 
 
 @Service
-public class EmpleadoServiceImpl implements EmpleadoService{
+public class EmpleadoServiceImpl implements EmpleadoService {
 
 	
 	@Autowired
@@ -46,11 +46,11 @@ public class EmpleadoServiceImpl implements EmpleadoService{
 		// TODO Auto-generated method stub
 		return empleadoRepository.findbyCategoria(categoria);
 	}
-	@Override
+	/*@Override
 	public List<Empleado> findbyCcname(String ccname) {
 		// TODO Auto-generated method stub
 		return empleadoRepository.findbyCcname(ccname);
-	}
+	} Commented bc ccname is the name of the group cc in Grupos class*/
 	@Override
 	public List<Empleado> findbyScr(BigDecimal scr) {
 		// TODO Auto-generated method stub

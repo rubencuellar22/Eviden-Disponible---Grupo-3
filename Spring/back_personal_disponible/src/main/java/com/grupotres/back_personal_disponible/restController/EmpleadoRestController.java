@@ -61,10 +61,10 @@ public class EmpleadoRestController {
 		return empleadoRepository.findbyCategoria(categoria);
 	}
 	
-	@GetMapping("ccname/{ccname}")
+	/*@GetMapping("ccname/{ccname}")
 	public List<Empleado> findbyCcname(@PathVariable String ccname){
 		return empleadoRepository.findbyCcname(ccname);
-	}
+	}*/
 	
 	@GetMapping("scr/{scr}")
 	public List<Empleado> findbyScr(@PathVariable BigDecimal scr) {

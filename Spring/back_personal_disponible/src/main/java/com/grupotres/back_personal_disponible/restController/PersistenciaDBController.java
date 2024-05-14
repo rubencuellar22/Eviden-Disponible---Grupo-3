@@ -14,7 +14,7 @@ import java.util.List;
 @RequestMapping("/persistenciaDB/")
 public class PersistenciaDBController {
     @PostMapping("persistir")
-    public void persistir(@RequestBody String csv) {
+    public Empleado persistir(@RequestBody String csv) {
         // CSV HEAD: GIN,NAME,SUBGROUP,STATUS,BENCH,DAS,CIUDAD,LINE_MANAGER,JORNADA,GCM,CATEGORIA,NIVELGCM,SCR,CC,CCNAME,GROUP1,GROUP2,GROUP3,GROUP4,N_4,AGRUPACION,Job Technology,JobTechnology Profile,SKILLs,ROLE,RLT,SKLANGUAGES,SKMETHODS,SKTECHSKILLS,SKCERTIF,SKTECHNOLOGIES,SKBUSSKILLS
         // EJ CSV: 2,Nombre_2,A2,AVAILABLE,4/1/2024,A000002,Sevilla,Manager_27,100,AD02,A3GEN2,2,18.45,ES755K0E41,AMS LDC SEV ATOS IT,DIGITAL,AMS,Practice AMS Direct,Practice AMS General,Nombre_N_4_03,,BAU,Java_EE,Java/J2EE,APPLICATION DEVELOPER [2 Junior],,English (B1/B2 Intermediate)|Spanish (C2 Mastery),SCRUM (2),Application Development (2)|Agile Processes & Methodologies (2)|Web Development (2)|Software Design (1)|Microservices/API (1)|Test Automation (1),Cambridge First English (FCE) (External),Angular (2)|JavaScript (2)|MS Office 365 (2)|MS Visual Studio Code (3)|MongoDB (2)|TypeScript (2)|Python (1)|Eclipse (3)|Java EE (J2EE) 8 (2)|MySQL (2)|Cypress (Testing Framework) (1)|Ionic Framework (2)|JPA (2)|NetBeans (3),Presentation Skills (1)
         String[] csvArray = csv.split(",");
@@ -177,5 +177,6 @@ public class PersistenciaDBController {
 
         }
         System.out.println(emp);
+        return emp;
     }
 }

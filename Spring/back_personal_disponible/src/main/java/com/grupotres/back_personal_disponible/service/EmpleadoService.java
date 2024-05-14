@@ -19,9 +19,11 @@ public interface EmpleadoService {
 	List<Empleado> findByJornada(BigDecimal jornada);
 	
 	List<Empleado> findbyN4(String n4);
-	
-
-	
 
 
+	List<Empleado> findbyCategoria(String categoria);
+
+	// List<Empleado> findbyCcname(String ccname);
+
+	List<Empleado> findbyScr(BigDecimal scr);
 }
