@@ -1,5 +1,5 @@
 package com.grupotres.back_personal_disponible.service;
 
-public interface CertificacionService {
+public interface SkTechSkillService {
 
 }

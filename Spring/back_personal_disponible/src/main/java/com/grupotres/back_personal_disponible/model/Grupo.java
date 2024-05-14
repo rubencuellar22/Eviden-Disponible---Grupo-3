@@ -104,4 +104,16 @@ public class Grupo implements Serializable {
 		return empleado;
 	}
 
+	@Override
+	public String toString() {
+		return "Grupo{" +
+				"grupos='" + grupos + '\'' +
+				", cc='" + cc + '\'' +
+				", grupo1='" + grupo1 + '\'' +
+				", grupo2='" + grupo2 + '\'' +
+				", grupo3='" + grupo3 + '\'' +
+				", grupo4='" + grupo4 + '\'' +
+				", empleados=" + empleados +
+				'}';
+	}
 }
