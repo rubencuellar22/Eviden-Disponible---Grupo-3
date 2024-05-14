@@ -1,14 +1,17 @@
-<div class="flex flex-col h-screen"> <!-- Flex columna y altura completa -->
+<div class="flex flex-col h-screen relative"> 
 
-  <nav class="navbar m-10 p-3 rounded-lg bg-white"> <!-- Navbar -->
+  <nav class="navbar m-10 p-3 rounded-lg bg-white"> 
     <img src="https://www.cyberark.com/wp-content/uploads/2023/06/Logotype_Eviden_RGB_Orange-1536x274.png" alt="logo Eviden" class="p-2 h-10 w-30 ml-20">
   </nav>
 
-  <section class="mainbox flex-1 ml-10 mr-10 mb-10 bg-white rounded-lg"> <!-- Sección principal -->
-    <div class="p-8"> <!-- Padding interno -->
+  <section class="mainbox flex-1 ml-10 mr-10 mb-10 bg-white rounded-lg relative"> 
+    <div class="p-8">
       <app-filters></app-filters>
       <app-filtered-table></app-filtered-table>
     </div>
+    <button class="boton text-white font-bold py-2 px-4 rounded absolute bottom-4 right-4">
+      Details
+    </button>
   </section>
 
 </div>
