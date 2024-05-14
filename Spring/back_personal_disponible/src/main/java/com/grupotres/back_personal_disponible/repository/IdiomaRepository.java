@@ -2,8 +2,8 @@ package com.grupotres.back_personal_disponible.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.grupotres.back_personal_disponible.model.Idioma;
+import com.grupotres.back_personal_disponible.model.SkLenguage;
 
-public interface IdiomaRepository extends JpaRepository<Idioma, Integer>{
+public interface IdiomaRepository extends JpaRepository<SkLenguage, Integer>{
 
 }
