@@ -1,5 +1,11 @@
 package com.grupotres.back_personal_disponible.service;
 
-public interface SkTechSkillService {
+import com.grupotres.back_personal_disponible.model.SkTechSkill;
 
+import java.util.List;
+
+public interface SkTechSkillService {
+    List<SkTechSkill> findBySkTechSkill(String skTechSkill);
+    
+    List<SkTechSkill> findBySkTechSkillAndNivel(String skTechSkill, int nivel);
 }

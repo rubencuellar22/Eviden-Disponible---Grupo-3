@@ -79,11 +79,6 @@ public class EmpleadoRestController {
 	    return empleadoRepository.findbyScr(scr);
 	}
 	
-	/*@GetMapping("sklenguage/{sklenguage}")
-	public List<SkLenguage> findByEmpleadoGinAndSklenguage(@RequestParam("gin") Integer gin, @RequestParam("sklenguage") String sklenguage) {
-	    return skLenguageRepository.findByEmpleadoGinAndSklenguage(gin, sklenguage);
-	}*/
-	
 	@GetMapping("sklenguage/{sklenguage}")
 	public List<Empleado> getEmpleadosBySkLenguage(@PathVariable String sklenguage) {
 	    return skLenguageService.findEmpleadosBySkLenguage(sklenguage);
