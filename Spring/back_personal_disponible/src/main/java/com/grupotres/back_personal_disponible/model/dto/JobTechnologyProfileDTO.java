@@ -28,3 +28,4 @@ public class JobTechnologyProfileDTO implements Serializable {
 		return jtpDTO;
     }
 }
+
