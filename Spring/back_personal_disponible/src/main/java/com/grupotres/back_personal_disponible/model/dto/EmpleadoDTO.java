@@ -5,9 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.grupotres.back_personal_disponible.model.Grupo;
-import com.grupotres.back_personal_disponible.model.JobTechnologyProfile;
-import com.grupotres.back_personal_disponible.model.Role;
+import com.grupotres.back_personal_disponible.model.*;
 
 import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
@@ -50,4 +48,55 @@ public class EmpleadoDTO implements Serializable {
     private List<SkTechnologyDTO> skTechnologies;
     private List<SkBusSkillDTO> skBusSkills;
 
+    public EmpleadoDTO empleadoToEmpleadoDTO(Empleado emp) {
+        	this.setGin(emp.getGin());
+        	this.setName(emp.getName());
+        	this.setSubgroup(emp.getSubgroup());
+        	this.setStatus(emp.getStatus());
+        	this.setBench(emp.getBench());
+        	this.setDas(emp.getDas());
+        	this.setCiudad(emp.getCiudad());
+        	this.setAgrupacion(emp.getAgrupacion());
+        	this.setLineManager(emp.getLineManager());
+        	this.setJornada(emp.getJornada());
+        	this.setGcm(emp.getGcm());
+        	this.setCategoria(emp.getCategoria());
+        	this.setNivelgcm(emp.getNivelgcm());
+        	this.setScr(emp.getScr());
+        	this.setN4(emp.getN4());
+        	this.setJobTechnology(emp.getJobTechnology());
+        	this.setSkills(emp.getSkills());
+        	this.setRole(new RoleDTO().roleToRoleDTO(emp.getRole()));
+        	this.setRlt(emp.isRlt());
+        	this.setJobTechnologyProfiles(new ArrayList<JobTechnologyProfileDTO>());
+        	for(JobTechnologyProfile jtp : emp.getJobTechnologyProfiles()) {
+        		this.getJobTechnologyProfiles().add(new JobTechnologyProfileDTO().jobTechnologyProfileToJobTechnologyProfileDTO(jtp));
+        	}
+        	this.setSkLenguages(new ArrayList<SkLenguageDTO>());
+        	for(SkLenguage skl : emp.getSkLenguages()) {
+        		this.getSkLenguages().add(new SkLenguageDTO().skLenguageToSkLenguageDTO(skl));
+        	}
+        	this.setSkMethods(new ArrayList<SkMethodDTO>());
+        	for(SkMethod skm : emp.getSkMethods()) {
+        		this.getSkMethods().add(new SkMethodDTO().skMethodToSkMethodDTO(skm));
+        	}
+        	this.setSkTechSkills(new ArrayList<SkTechSkillDTO>());
+        	for(SkTechSkill skts : emp.getSkTechSkills()) {
+        		this.getSkTechSkills().add(new SkTechSkillDTO().skTechSkillToSkTechSkillDTO(skts));
+        	}
+        	this.setSkCertifs(new ArrayList<SkCertifDTO>());
+            for(SkCertif skc : emp.getSkCertifs()) {
+                this.getSkCertifs().add(new SkCertifDTO().skCertifToSkCertifDTO(skc));
+            }
+            this.setSkTechnologies(new ArrayList<SkTechnologyDTO>());
+            for(SkTechnology skt : emp.getSkTechnologies()) {
+                this.getSkTechnologies().add(new SkTechnologyDTO().skTechnologyToSkTechnologyDTO(skt));
+            }
+            this.setSkBusSkills(new ArrayList<SkBusSkillDTO>());
+            for(SkBusSkill skbs : emp.getSkBusSkills()) {
+                this.getSkBusSkills().add(new SkBusSkillDTO().skBusSkillToSkBusSkillDTO(skbs));
+            }
+
+            return this;
+    }
 }
