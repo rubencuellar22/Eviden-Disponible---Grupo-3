@@ -1,5 +1,17 @@
 package com.grupotres.back_personal_disponible.service;
 
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.grupotres.back_personal_disponible.model.Empleado;
+import com.grupotres.back_personal_disponible.model.SkLenguage;
+
+@Service
 public interface SkLenguageService {
 
+	public List<SkLenguage> findByEmpleadoGinAndSklenguage(Integer gin, String sklenguage);
+
+	public List<Empleado> findEmpleadosBySkLenguage(String sklenguage);
+	
 }

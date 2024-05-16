@@ -8,11 +8,15 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.grupotres.back_personal_disponible.model.Empleado;
+import com.grupotres.back_personal_disponible.model.SkLenguage;
 import com.grupotres.back_personal_disponible.repository.EmpleadoRepository;
+import com.grupotres.back_personal_disponible.repository.SkLenguageRepository;
 import com.grupotres.back_personal_disponible.service.EmpleadoService;
+import com.grupotres.back_personal_disponible.service.SkLenguageService;
 
 @RestController
 @RequestMapping("/empleado/")
@@ -22,7 +26,11 @@ public class EmpleadoRestController {
 	@Autowired
 	private EmpleadoRepository empleadoRepository;
 	
-
+	@Autowired
+	private SkLenguageRepository skLenguageRepository;
+	
+	@Autowired
+	private SkLenguageService skLenguageService;
 	
 	@GetMapping("todos")
 	public List<Empleado> findAll(){
@@ -33,8 +41,8 @@ public class EmpleadoRestController {
 	@GetMapping("status/{status}")
 	public List<Empleado> findbyStatus(@PathVariable String status){
 		return empleadoRepository.findbyStatus(status);
-		
-}
+	}
+	
 	@GetMapping("bench/{bench}")
 	public List<Empleado> findByBench(@PathVariable String bench) {
 	    return empleadoRepository.findByBench(bench);
@@ -71,6 +79,14 @@ public class EmpleadoRestController {
 	    return empleadoRepository.findbyScr(scr);
 	}
 	
-
+	/*@GetMapping("sklenguage/{sklenguage}")
+	public List<SkLenguage> findByEmpleadoGinAndSklenguage(@RequestParam("gin") Integer gin, @RequestParam("sklenguage") String sklenguage) {
+	    return skLenguageRepository.findByEmpleadoGinAndSklenguage(gin, sklenguage);
+	}*/
+	
+	@GetMapping("sklenguage/{sklenguage}")
+	public List<Empleado> getEmpleadosBySkLenguage(@PathVariable String sklenguage) {
+	    return skLenguageService.findEmpleadosBySkLenguage(sklenguage);
+	}
 
 }
