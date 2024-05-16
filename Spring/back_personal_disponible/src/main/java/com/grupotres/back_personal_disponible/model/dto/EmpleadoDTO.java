@@ -42,5 +42,8 @@ public class EmpleadoDTO implements Serializable {
 	private List<JobTechnologyProfileDTO> jobTechnologyProfiles = new ArrayList<JobTechnologyProfileDTO>();
 	private String skills;
 	private RoleDTO role;
+	private SkTechSkillDTO skTechSkill;
+	private SkTechnologyDTO sktechnology;
+	private SkMethodDTO Skmethod;
 
 }
