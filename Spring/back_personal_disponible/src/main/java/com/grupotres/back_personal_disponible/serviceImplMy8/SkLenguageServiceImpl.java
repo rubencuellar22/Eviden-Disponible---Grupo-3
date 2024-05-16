@@ -18,11 +18,6 @@ public class SkLenguageServiceImpl implements SkLenguageService {
 	private SkLenguageRepository skLenguageRepository;
 
 	@Override
-	public List<SkLenguage> findByEmpleadoGinAndSklenguage(Integer gin, String sklenguage) {
-		return skLenguageRepository.findByEmpleadoGinAndSklenguage(gin, sklenguage);
-	}
-
-	@Override
 	public List<Empleado> findEmpleadosBySkLenguage(String sklenguage) {
 		List<SkLenguage> skLenguages = skLenguageRepository.findBySkLenguage(sklenguage);
 		List<Empleado> empleados = new ArrayList<Empleado>();
@@ -32,10 +27,5 @@ public class SkLenguageServiceImpl implements SkLenguageService {
 		return empleados;
 	}
 
-	/*@Override
-	public List<Empleado> findEmpleadoByLenguage(String sklenguage) {
-		List<SkLenguage> skLenguages = skLenguageRepository.
-		return null;
-	}*/
 	
 }

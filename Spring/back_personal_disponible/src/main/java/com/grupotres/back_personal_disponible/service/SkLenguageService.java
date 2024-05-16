@@ -10,8 +10,6 @@ import com.grupotres.back_personal_disponible.model.SkLenguage;
 @Service
 public interface SkLenguageService {
 
-	public List<SkLenguage> findByEmpleadoGinAndSklenguage(Integer gin, String sklenguage);
-
 	public List<Empleado> findEmpleadosBySkLenguage(String sklenguage);
 	
 }
