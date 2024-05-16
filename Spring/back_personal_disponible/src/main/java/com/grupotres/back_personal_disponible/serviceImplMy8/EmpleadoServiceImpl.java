@@ -44,7 +44,7 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 	SkTechnologyRepository skTechnologyRepository;
 
 	@Autowired
-	SkBusSkillRepository skBusSkillRepository;
+	SkBussSkillRepository skBusSkillRepository;
 
 	@Override
 	public void createEmpleado(Empleado emp) {

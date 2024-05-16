@@ -5,6 +5,6 @@ import org.springframework.stereotype.Service;
 import com.grupotres.back_personal_disponible.model.Empleado;
 
 @Service
-public interface SkTechnologyService {
-	List<Empleado> findEmpleadosByTechnology(String nombreTechnology);
+public interface SkBussSkillService {
+	List<Empleado> findEmpleadosByBussSkill(String nombreBussSkill);
 }
