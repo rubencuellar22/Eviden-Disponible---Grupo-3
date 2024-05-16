@@ -9,21 +9,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.grupotres.back_personal_disponible.model.Empleado;
-import com.grupotres.back_personal_disponible.service.SkCertifService;
+import com.grupotres.back_personal_disponible.repository.SkTechnologyRepository;
+import com.grupotres.back_personal_disponible.service.SkTechnologyService;
 
 
 @RestController
-@RequestMapping("/empleado/sk_certif/certif")
-public class SkCertifRestController {
-	
-	
+@RequestMapping("/empleado/sk_technology/technology")
+public class SkTechnologyRestController {
 	@Autowired
-    private SkCertifService skCertifService;
+    private SkTechnologyService skTechnologyService;
 	
 	
 	 @GetMapping("/{nombre}")
 	    public List<Empleado> findEmpleadosByCertifNombre(@PathVariable String nombre) {
-	        return skCertifService.findEmpleadosByCertifNombre(nombre);
+	        return skTechnologyService.findEmpleadosByTechnology(nombre);
 	    }
-	
 }
