@@ -16,9 +16,10 @@ public class SkMethod implements Serializable {
 
 	@Id
 	@Column(name="id_skmethod")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idSkmethod;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="gin")
 	private Empleado empleado;
 

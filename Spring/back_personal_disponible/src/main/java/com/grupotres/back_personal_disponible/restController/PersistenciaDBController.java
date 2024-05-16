@@ -1,29 +1,32 @@
 package com.grupotres.back_personal_disponible.restController;
 
 import com.grupotres.back_personal_disponible.model.*;
+import com.grupotres.back_personal_disponible.service.EmpleadoService;
+import com.grupotres.back_personal_disponible.serviceImplMy8.EmpleadoServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.swing.text.DateFormatter;
-import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
-import java.util.Date;
 
 @RestController()
 @RequestMapping("/persistenciaDB/")
 public class PersistenciaDBController {
+
+    @Autowired
+    private EmpleadoServiceImpl empleadoService;
+
     @PostMapping("persistir")
     public Empleado persistir(@RequestBody String csv) throws ParseException {
         // CSV HEAD: GIN,NAME,SUBGROUP,STATUS,BENCH,DAS,CIUDAD,LINE_MANAGER,JORNADA,GCM,CATEGORIA,NIVELGCM,SCR,CC,CCNAME,GROUP1,GROUP2,GROUP3,GROUP4,N_4,AGRUPACION,Job Technology,JobTechnology Profile,SKILLs,ROLE,RLT,SKLANGUAGES,SKMETHODS,SKTECHSKILLS,SKCERTIF,SKTECHNOLOGIES,SKBUSSKILLS
         // EJ CSV: 2,Nombre_2,A2,AVAILABLE,4/1/2024,A000002,Sevilla,Manager_27,100,AD02,A3GEN2,2,18.45,ES755K0E41,AMS LDC SEV ATOS IT,DIGITAL,AMS,Practice AMS Direct,Practice AMS General,Nombre_N_4_03,,BAU,Java_EE,Java/J2EE,APPLICATION DEVELOPER [2 Junior],,English (B1/B2 Intermediate)|Spanish (C2 Mastery),SCRUM (2),Application Development (2)|Agile Processes & Methodologies (2)|Web Development (2)|Software Design (1)|Microservices/API (1)|Test Automation (1),Cambridge First English (FCE) (External),Angular (2)|JavaScript (2)|MS Office 365 (2)|MS Visual Studio Code (3)|MongoDB (2)|TypeScript (2)|Python (1)|Eclipse (3)|Java EE (J2EE) 8 (2)|MySQL (2)|Cypress (Testing Framework) (1)|Ionic Framework (2)|JPA (2)|NetBeans (3),Presentation Skills (1)
         String[] csvArray = csv.split(",");
         Empleado emp = new Empleado();
-        emp.setGin(Integer.parseInt(csvArray[0]));
+        emp.setGin(Long.parseLong(csvArray[0]));
         emp.setName(csvArray[1]);
         emp.setSubgroup(csvArray[2]);
         emp.setStatus(csvArray[3]);
@@ -125,20 +128,24 @@ public class PersistenciaDBController {
             emp.addSkTechSkill(skillTecnico);
         }
 
-        String[] skcertif = csvArray[29].split("\\|");
-        for (String skcertifString : skcertif) {
-            SkCertif certificacion = new SkCertif();
-            int lastParenthesisIndex = skcertifString.lastIndexOf("(");
-            if (lastParenthesisIndex != -1) {
-                String certName = skcertifString.substring(0, lastParenthesisIndex).trim();
-                String external = skcertifString.substring(lastParenthesisIndex).replaceAll("[()]", "").trim();
-                certificacion.setSkcertif(certName);
-                certificacion.setExternal(external.equals("External"));
-            } else {
-                certificacion.setSkcertif(skcertifString.trim());
-                certificacion.setExternal(false);
+        if (csvArray[29].isEmpty() || csvArray[29].isBlank()){
+
+        } else {
+            String[] skcertif = csvArray[29].split("\\|");
+            for (String skcertifString : skcertif) {
+                SkCertif certificacion = new SkCertif();
+                int lastParenthesisIndex = skcertifString.lastIndexOf("(");
+                if (lastParenthesisIndex != -1) {
+                    String certName = skcertifString.substring(0, lastParenthesisIndex).trim();
+                    String external = skcertifString.substring(lastParenthesisIndex).replaceAll("[()]", "").trim();
+                    certificacion.setSkcertif(certName);
+                    certificacion.setExternal(external.equals("External"));
+                } else {
+                    certificacion.setSkcertif(skcertifString.trim());
+                    certificacion.setExternal(false);
+                }
+                emp.addSkCertif(certificacion);
             }
-            emp.addSkCertif(certificacion);
         }
 
         String[] sktechnologies = csvArray[30].split("\\|");
@@ -181,6 +188,7 @@ public class PersistenciaDBController {
 
         }
         System.out.println(emp);
+        empleadoService.createEmpleado(emp);
         return emp;
     }
 }

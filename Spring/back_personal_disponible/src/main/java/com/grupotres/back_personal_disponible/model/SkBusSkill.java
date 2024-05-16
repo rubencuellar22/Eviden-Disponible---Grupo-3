@@ -16,9 +16,10 @@ public class SkBusSkill implements Serializable {
 
 	@Id
 	@Column(name="id_skbusskill")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idSkBusSkill;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="gin")
 	private Empleado empleado;
 

@@ -16,9 +16,10 @@ public class SkLenguage implements Serializable {
 
 	@Id
 	@Column(name="id_sklenguage")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idSklenguage;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="gin")
 	private Empleado empleado;
 

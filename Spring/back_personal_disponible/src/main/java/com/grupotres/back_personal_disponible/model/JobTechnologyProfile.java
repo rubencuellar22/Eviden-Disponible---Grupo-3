@@ -16,9 +16,10 @@ public class JobTechnologyProfile implements Serializable {
 
 	@Id
 	@Column(name="id_job_technology_profile")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idJobTechnologyProfile;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="gin")
 	private Empleado empleado;
 

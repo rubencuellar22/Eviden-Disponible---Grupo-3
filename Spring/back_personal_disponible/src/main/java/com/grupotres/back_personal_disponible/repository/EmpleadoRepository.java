@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.grupotres.back_personal_disponible.model.Empleado;
 
-public interface EmpleadoRepository extends JpaRepository<Empleado, Integer> {
+public interface EmpleadoRepository extends JpaRepository<Empleado, Long> {
 	
 	@Query
 	("SELECT e from Empleado e WHERE e.status=?1")

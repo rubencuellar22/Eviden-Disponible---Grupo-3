@@ -16,9 +16,10 @@ public class SkCertif implements Serializable {
 
 	@Id
 	@Column(name="id_skcertif")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idSkCertif;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="gin")
 	private Empleado empleado;
 
