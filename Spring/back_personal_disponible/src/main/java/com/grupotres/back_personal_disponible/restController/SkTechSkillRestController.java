@@ -27,4 +27,10 @@ public class SkTechSkillRestController {
     public List<SkTechSkill> findBySkill(@PathVariable("skill") String skill) {
         return skTechSkillService.findBySkTechSkill(skill);
     }
+    
+    // Nueva consulta por habilidad técnica y nivel
+    @GetMapping("/{skill}/{nivel}")
+    public List<SkTechSkill> findBySkillAndNivel(@PathVariable("skill") String skill, @PathVariable("nivel") int nivel) {
+        return skTechSkillService.findBySkTechSkillAndNivel(skill, nivel);
+    }
 }
