@@ -147,11 +147,7 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 		// TODO Auto-generated method stub
 		return empleadoRepository.findbyStatus(status);
 	}
-	@Override
-	public List<Empleado> findByBench(String bench) {
-		// TODO Auto-generated method stub
-		return empleadoRepository.findByBench(bench);
-	}
+	
 	@Override
 	public List<Empleado> findByCiudad(String ciudad) {
 		// TODO Auto-generated method stub
@@ -181,6 +177,12 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 		// TODO Auto-generated method stub
 		return empleadoRepository.findbyScr(scr);
 	}
+
+	/*@Override
+	public List<Empleado> findByBench(String bench) {
+		// TODO Auto-generated method stub
+		return empleadoRepository.findByBench(bench);
+	}*/
 	
 
 	
