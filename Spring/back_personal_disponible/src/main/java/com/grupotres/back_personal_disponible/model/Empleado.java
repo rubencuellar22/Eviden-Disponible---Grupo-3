@@ -2,6 +2,7 @@ package com.grupotres.back_personal_disponible.model;
 
 import java.io.Serializable;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class Empleado implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int gin;
+	private Long gin;
 	private String name;
 	private String subgroup;
 	private String status;
@@ -48,7 +49,7 @@ public class Empleado implements Serializable {
 
 	private String skills;
 
-	@OneToOne(mappedBy="empleado")
+	@OneToOne(mappedBy="empleado", cascade = CascadeType.ALL)
 	private Role role;
 
 	private boolean rlt;
@@ -74,11 +75,11 @@ public class Empleado implements Serializable {
 	public Empleado() {
 	}
 
-	public int getGin() {
+	public Long getGin() {
 		return gin;
 	}
 
-	public void setGin(int gin) {
+	public void setGin(Long gin) {
 		this.gin = gin;
 	}
 
@@ -251,7 +252,7 @@ public class Empleado implements Serializable {
 	}
 
 	public List<SkLenguage> getSkLenguages() {
-		return skLenguages;
+		return this.skLenguages;
 	}
 
 	public void setSkLenguages(List<SkLenguage> skLenguages) {

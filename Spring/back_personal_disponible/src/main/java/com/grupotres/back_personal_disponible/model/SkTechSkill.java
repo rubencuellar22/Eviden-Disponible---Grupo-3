@@ -9,16 +9,17 @@ import jakarta.persistence.*;
  * 
  */
 @Entity
-@Table(name="sktechskill")
+@Table(name="sk_techskill")
 @NamedQuery(name="SkTechSkill.findAll", query="SELECT t FROM SkTechSkill t")
 public class SkTechSkill implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name="id_sktechskill")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idSkTechSkill;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="gin")
 	private Empleado empleado;
 

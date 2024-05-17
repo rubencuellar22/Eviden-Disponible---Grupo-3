@@ -15,10 +15,11 @@ public class Role implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_role")
-	private int idRole;
+	private Long idRole;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="gin")
 	private Empleado empleado;
 
@@ -30,11 +31,11 @@ public class Role implements Serializable {
 	public Role() {
 	}
 
-	public int getIdRole() {
+	public Long getIdRole() {
 		return idRole;
 	}
 
-	public void setIdRole(int idRole) {
+	public void setIdRole(Long idRole) {
 		this.idRole = idRole;
 	}
 

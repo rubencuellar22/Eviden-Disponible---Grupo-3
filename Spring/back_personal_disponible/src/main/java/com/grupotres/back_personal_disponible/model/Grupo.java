@@ -15,16 +15,13 @@ public class Grupo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id_grupo;
 	private String grupos;
-
 	private String cc;
-
 	private String grupo1;
-
 	private String grupo2;
-
 	private String grupo3;
-
 	private String grupo4;
 
 	//bi-directional many-to-one association to Empleado
