@@ -1,4 +1,4 @@
-import { Empleado } from "./empleado";
+import { Empleado } from "../empleado";
 
 export class SkTechSkill {
     idSkTechSkill: number;

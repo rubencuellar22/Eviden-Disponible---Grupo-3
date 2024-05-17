@@ -1,12 +1,12 @@
-import { Grupo } from './grupo';
-import { JobTechnologyProfile } from './job-technology-profile';
-import { Role } from './role';
-import { SkBusSkill } from './sk-bus-skill';
-import { SkCertif } from './sk-certif';
-import { SkLanguages } from './sk-languages';
-import { SkMethod } from './sk-method';
-import { SkTechSkill } from './sk-tech-skill';
-import { SkTechnology } from './sk-technology';
+import { Grupo } from './Grupo/grupo';
+import { Role } from './role/role';
+import { SkBusSkill } from './SkBusSkill/sk-bus-skill';
+import { SkCertif } from './SkCertif/sk-certif';
+import { SkLanguages } from './SkLanguages/sk-languages';
+import { SkMethod } from './SkMethod/sk-method';
+import { SkTechSkill } from './SkTechSkill/sk-tech-skill';
+import { SkTechnology } from './SkTechnology/sk-technology';
+import { JobTechnologyProfile } from './JobTechnologyProfile/job-technology-profile';
 
 
 export class Empleado {
