@@ -22,4 +22,6 @@ public class RoleRestController {
 	public List<Empleado> getEmpleadosByRole(@PathVariable String role) {
 	    return roleService.findEmpleadosByRole(role);
 	}
+	
+	
 }
