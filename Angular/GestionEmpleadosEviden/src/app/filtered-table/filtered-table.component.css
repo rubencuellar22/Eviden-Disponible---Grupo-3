@@ -1,7 +1,9 @@
 .titulo {
-  color: #ff6d43;
+  /*color: #ff6d43;*/
+  color: #ececed;
 }
 .tabla {
+  background-color: #ececed;
   display: block;
   overflow-x: auto;
   white-space: nowrap;
@@ -20,8 +22,7 @@ div.wrapper {
     overflow-x: auto;
     white-space: nowrap;
 }*/
-th,
-td {
+th,td {
   border-bottom: 2px solid black;
   text-align: left;
 }
