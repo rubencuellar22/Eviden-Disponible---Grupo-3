@@ -18,4 +18,9 @@ public class TecnologiaServiceImpl implements SkTechnologyService {
 	public List<Empleado> findEmpleadosByTechnology(String nombreTechnology) {
 		return skTechnologyRepository.findEmpleadosByTechnology(nombreTechnology);
 	}
+
+	@Override
+	public List<Empleado> findEmpleadosByTechnologyAndNivel(String nombreTechnology, int nivel) {
+		return skTechnologyRepository.findEmpleadosByTechnologyAndNivel(nombreTechnology, nivel);
+	}
 }
