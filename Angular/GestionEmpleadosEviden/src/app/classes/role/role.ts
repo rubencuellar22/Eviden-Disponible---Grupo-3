@@ -1,5 +1,5 @@
 export class Role {
-    id_role: number;
+  id_role: number;
   ginEmpleado: number;
   role: string;
   nivel: number;
