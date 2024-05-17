@@ -33,9 +33,9 @@ public class SkTechSkillRestController {
 		return ResponseEntity.ok(empleadosDTO);
 	}
    
-    // Nueva consulta por habilidad técnica y nivel
-    /*@GetMapping("/{skill}/{nivel}")
-    public List<SkTechSkill> findBySkillAndNivel(@PathVariable("skill") String skill, @PathVariable("nivel") int nivel) {
+    //Nueva consulta por habilidad técnica y nivel
+    @GetMapping("/{skill}/{nivel}")
+    public List<Empleado> findBySkillAndNivel(@PathVariable("skill") String skill, @PathVariable("nivel") int nivel) {
         return skTechSkillService.findBySkTechSkillAndNivel(skill, nivel);
-    }*/
+    }
 }

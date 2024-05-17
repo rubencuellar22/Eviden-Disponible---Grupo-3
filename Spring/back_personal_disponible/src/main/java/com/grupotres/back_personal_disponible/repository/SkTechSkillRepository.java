@@ -16,7 +16,7 @@ public interface SkTechSkillRepository extends JpaRepository<SkTechSkill, Intege
     List<Empleado> findBySkTechSkill(String skTechSkill);
 
     // Nueva consulta para buscar por habilidad técnica y nivel
-    /*@Query("SELECT t.empleado FROM SkTechSkill t WHERE t.skTechSkill = :skTechSkill AND t.nivel = :nivel")
+    @Query("SELECT t.empleado FROM SkTechSkill t WHERE t.skTechSkill = :skTechSkill AND t.nivel = :nivel")
     List<Empleado> findBySkTechSkillAndNivel(@Param("skTechSkill") String skTechSkill, @Param("nivel") int nivel);
-*/
+
 }
