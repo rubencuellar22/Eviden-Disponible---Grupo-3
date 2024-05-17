@@ -1,6 +1,7 @@
 package com.grupotres.back_personal_disponible.repository;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,7 +16,7 @@ public interface EmpleadoRepository extends JpaRepository<Empleado, Long> {
 	List<Empleado> findbyStatus(String status);
 	
 	@Query("SELECT e FROM Empleado e WHERE e.bench = ?1")
-	List<Empleado> findByBench(String bench);
+	List<Empleado> findByBench(Date benchDate);
 	
 	@Query("SELECT e FROM Empleado e WHERE e.jornada = ?1")
 	List<Empleado> findByJornada(BigDecimal jornada);

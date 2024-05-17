@@ -14,7 +14,7 @@ public interface EmpleadoService {
 	
 	List<Empleado> findbyStatus(String status);
 
-	List<Empleado> findByBench(String bench);
+	// List<Empleado> findByBench(String bench);
 
 	List<Empleado> findByCiudad(String ciudad);
 

@@ -10,6 +10,7 @@ import com.grupotres.back_personal_disponible.model.Empleado;
 import com.grupotres.back_personal_disponible.model.SkTechnology;
 
 public interface SkTechnologyRepository extends JpaRepository<SkTechnology, Integer>{
+	
 	@Query("SELECT s.empleado FROM SkTechnology s WHERE s.sktechnology = :nombreTechnology")
 	List<Empleado> findEmpleadosByTechnology(@Param("nombreTechnology") String nombre);
 }

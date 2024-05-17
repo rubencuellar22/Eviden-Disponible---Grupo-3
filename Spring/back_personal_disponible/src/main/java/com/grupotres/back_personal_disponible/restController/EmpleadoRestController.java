@@ -1,13 +1,17 @@
 package com.grupotres.back_personal_disponible.restController;
 
 import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.grupotres.back_personal_disponible.model.dto.EmpleadoDTO;
 import com.grupotres.back_personal_disponible.model.dto.SkLenguageDTO;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,34 +50,75 @@ public class EmpleadoRestController {
 	}
 	
 	@GetMapping("status/{status}")
-	public List<Empleado> findbyStatus(@PathVariable String status){
-		return empleadoRepository.findbyStatus(status);
+	public ResponseEntity<?> findByStatus(@PathVariable String status) {
+	    List<Empleado> empleados = empleadoRepository.findbyStatus(status);
+	    List<EmpleadoDTO> empleadosDTO = new ArrayList<EmpleadoDTO>();
+	    for (Empleado emp : empleados) {
+	        empleadosDTO.add(new EmpleadoDTO().empleadoToEmpleadoDTO(emp));
+	    }
+	    return ResponseEntity.ok(empleadosDTO);
 	}
 	
 	@GetMapping("bench/{bench}")
-	public List<Empleado> findByBench(@PathVariable String bench) {
-	    return empleadoRepository.findByBench(bench);
-	}
+    public ResponseEntity<?> findByBench(@PathVariable String bench) {
+        try {
+            // Define the date format expected in the path variable
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            // Parse the string to a Date object
+            Date benchDate = dateFormat.parse(bench);
+
+            // Find employees by the bench date
+            List<Empleado> empleados = empleadoRepository.findByBench(benchDate);
+            List<EmpleadoDTO> empleadosDTO = new ArrayList<>();
+            for (Empleado emp : empleados) {
+                empleadosDTO.add(new EmpleadoDTO().empleadoToEmpleadoDTO(emp));
+            }
+            return ResponseEntity.ok(empleadosDTO);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body("Invalid date format. Please use yyyy-MM-dd.");
+        }
+    }
+
 
 	@GetMapping("ciudad/{ciudad}")
-	public List<Empleado> findByCiudad(@PathVariable String ciudad) {
-	    return empleadoRepository.findByCiudad(ciudad);
+	public ResponseEntity<?> findByCiudad(@PathVariable String ciudad) {
+	    List<Empleado> empleados = empleadoRepository.findByCiudad(ciudad);
+	    List<EmpleadoDTO> empleadosDTO = new ArrayList<>();
+	    for (Empleado emp : empleados) {
+	        empleadosDTO.add(new EmpleadoDTO().empleadoToEmpleadoDTO(emp));
+	    }
+	    return ResponseEntity.ok(empleadosDTO);
 	}
 
 	@GetMapping("jornada/{jornada}")
-	public List<Empleado> findByJornada(@PathVariable BigDecimal jornada) {
-	    return empleadoRepository.findByJornada(jornada);
+	public ResponseEntity<?> findByJornada(@PathVariable BigDecimal jornada) {
+	    List<Empleado> empleados = empleadoRepository.findByJornada(jornada);
+	    List<EmpleadoDTO> empleadosDTO = new ArrayList<>();
+	    for (Empleado emp : empleados) {
+	        empleadosDTO.add(new EmpleadoDTO().empleadoToEmpleadoDTO(emp));
+	    }
+	    return ResponseEntity.ok(empleadosDTO);
 	}
 	
 	@GetMapping("n4/{n4}")
-	public List<Empleado> findbyN4(@PathVariable String n4) {
-		return empleadoRepository.findbyN4(n4);
- 
+	public ResponseEntity<?> findByN4(@PathVariable String n4) {
+	    List<Empleado> empleados = empleadoRepository.findbyN4(n4);
+	    List<EmpleadoDTO> empleadosDTO = new ArrayList<>();
+	    for (Empleado emp : empleados) {
+	        empleadosDTO.add(new EmpleadoDTO().empleadoToEmpleadoDTO(emp));
+	    }
+	    return ResponseEntity.ok(empleadosDTO);
 	}
 	
 	@GetMapping("categoria/{categoria}")
-	public List<Empleado> findbyCategoria(@PathVariable String categoria){
-		return empleadoRepository.findbyCategoria(categoria);
+	public ResponseEntity<?> findByCategoria(@PathVariable String categoria) {
+	    List<Empleado> empleados = empleadoRepository.findbyCategoria(categoria);
+	    List<EmpleadoDTO> empleadosDTO = new ArrayList<>();
+	    for (Empleado emp : empleados) {
+	        empleadosDTO.add(new EmpleadoDTO().empleadoToEmpleadoDTO(emp));
+	    }
+	    return ResponseEntity.ok(empleadosDTO);
 	}
 	
 	/*@GetMapping("ccname/{ccname}")
