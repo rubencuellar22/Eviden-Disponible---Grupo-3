@@ -13,4 +13,7 @@ public interface SkMethodRepository extends JpaRepository<SkMethod, Integer> {
 
     @Query("SELECT m.empleado FROM SkMethod m WHERE m.Skmethod = :skMethod") // Corrección aquí
     List<Empleado> findBySkMethod(String skMethod);
+    
+    @Query("SELECT m.empleado FROM SkMethod m WHERE m.Skmethod = :skMethod AND m.nivel = :nivel") // Corrección aquí
+    List<Empleado> findBySkMethodAndNivel(String skMethod, int nivel);
 }

@@ -22,6 +22,9 @@ public class SkMethodServiceImpl implements SkMethodService {
 		return skMethodRepository.findBySkMethod(skMethod);
 	}
 
-   
+	@Override
+	public List<Empleado> findBySkMethodAndNivel(String skMethod, int nivel) {
+		return skMethodRepository.findBySkMethodAndNivel(skMethod, nivel);
+	}
 
 }

@@ -32,4 +32,14 @@ public class SkTechnologyRestController {
 		}
 		return ResponseEntity.ok(empleadosDTO);
 	}
+	 
+	 @GetMapping("/{nombre}/{nivel}")
+	 public ResponseEntity<?> findEmpleadosByTechnologyAndNivel(@PathVariable String nombre, @PathVariable Integer nivel){
+		List<Empleado> empleados = skTechnologyService.findEmpleadosByTechnologyAndNivel(nombre, nivel);
+		List<EmpleadoDTO> empleadosDTO = new ArrayList<EmpleadoDTO>();
+		for (Empleado emp : empleados) {
+			empleadosDTO.add(new EmpleadoDTO().empleadoToEmpleadoDTO(emp));
+		}
+		return ResponseEntity.ok(empleadosDTO);
+	}
 }

@@ -125,7 +125,7 @@ public class EmpleadoRestController {
 	public List<Empleado> findbyCcname(@PathVariable String ccname){
 		return empleadoRepository.findbyCcname(ccname);
 	}*/
-	
+
 	@GetMapping("scr/{scr}")
 	public ResponseEntity<?>findbyScr (@PathVariable BigDecimal scr) {
 		List<Empleado> empleados = empleadoRepository.findbyScr(scr);

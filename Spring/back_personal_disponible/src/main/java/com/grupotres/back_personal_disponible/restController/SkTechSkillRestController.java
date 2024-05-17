@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -33,9 +34,14 @@ public class SkTechSkillRestController {
 		return ResponseEntity.ok(empleadosDTO);
 	}
    
-    //Nueva consulta por habilidad técnica y nivel
-    @GetMapping("/{skill}/{nivel}")
-    public List<Empleado> findBySkillAndNivel(@PathVariable("skill") String skill, @PathVariable("nivel") int nivel) {
-        return skTechSkillService.findBySkTechSkillAndNivel(skill, nivel);
-    }
+    // Nueva consulta por habilidad técnica y nivel
+    @GetMapping("/{skTechSkill}/{nivel}")
+    public ResponseEntity<?> findBySkTechSkillAndNivel(@PathVariable String skTechSkill, @PathVariable Integer nivel){
+		List<Empleado> empleados = skTechSkillService.findBySkTechSkillAndNivel(skTechSkill, nivel);
+		List<EmpleadoDTO> empleadosDTO = new ArrayList<EmpleadoDTO>();
+		for (Empleado emp : empleados) {
+			empleadosDTO.add(new EmpleadoDTO().empleadoToEmpleadoDTO(emp));
+		}
+		return ResponseEntity.ok(empleadosDTO);
+	}
 }

@@ -36,4 +36,14 @@ public class SkMethodRestController {
 		return ResponseEntity.ok(empleadosDTO);
 	}
     
+    @GetMapping("/{skMethod}/{nivel}")
+    public ResponseEntity<?> findBySkMethodAndNivel(@PathVariable String skMethod, @PathVariable Integer nivel){
+		List<Empleado> empleados = skMethodService.findBySkMethodAndNivel(skMethod, nivel);
+		List<EmpleadoDTO> empleadosDTO = new ArrayList<EmpleadoDTO>();
+		for (Empleado emp : empleados) {
+			empleadosDTO.add(new EmpleadoDTO().empleadoToEmpleadoDTO(emp));
+		}
+		return ResponseEntity.ok(empleadosDTO);
+	}
+    
 }

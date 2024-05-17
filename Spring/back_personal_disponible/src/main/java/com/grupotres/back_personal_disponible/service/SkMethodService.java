@@ -8,4 +8,6 @@ public interface SkMethodService {
 	
     List<Empleado> findBySkMethod(String skMethod);
     
+    List<Empleado> findBySkMethodAndNivel(String skMethod, int nivel);
+    
 }

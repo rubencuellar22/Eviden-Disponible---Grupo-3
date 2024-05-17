@@ -21,12 +21,6 @@ public class SkTechSkillServiceImpl implements SkTechSkillService {
 	public List<Empleado> findBySkTechSkill(String skTechSkill) {
 		return skTechSkillRepository.findBySkTechSkill(skTechSkill);
 	}
-
-	/*@Override
-	public List<Empleado> findBySkTechSkillAndNivel(String skTechSkill, int nivel) {
-		// TODO Auto-generated method stub
-		return null;
-	}*/
     
     @Override
     public List<Empleado> findBySkTechSkillAndNivel(String skTechSkill, int nivel) {
