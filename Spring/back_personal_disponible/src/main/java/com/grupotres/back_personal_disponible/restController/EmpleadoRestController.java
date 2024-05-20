@@ -44,7 +44,7 @@ public class EmpleadoRestController {
 		List<Empleado> empleados = empleadoRepository.findAll();
 		List<EmpleadoDTO> empleadosDTO = new ArrayList<EmpleadoDTO>();
 		for (Empleado emp : empleados) {
-			empleadosDTO.add(new EmpleadoDTO().empleadoToEmpleadoDTO(emp));
+			empleadosDTO.add(new EmpleadoDTO(emp));
 		}
 		return ResponseEntity.ok(empleadosDTO);
 	}
@@ -54,7 +54,7 @@ public class EmpleadoRestController {
 	    List<Empleado> empleados = empleadoRepository.findbyStatus(status);
 	    List<EmpleadoDTO> empleadosDTO = new ArrayList<EmpleadoDTO>();
 	    for (Empleado emp : empleados) {
-	        empleadosDTO.add(new EmpleadoDTO().empleadoToEmpleadoDTO(emp));
+	        empleadosDTO.add(new EmpleadoDTO(emp));
 	    }
 	    return ResponseEntity.ok(empleadosDTO);
 	}
@@ -71,7 +71,7 @@ public class EmpleadoRestController {
             List<Empleado> empleados = empleadoRepository.findByBench(benchDate);
             List<EmpleadoDTO> empleadosDTO = new ArrayList<>();
             for (Empleado emp : empleados) {
-                empleadosDTO.add(new EmpleadoDTO().empleadoToEmpleadoDTO(emp));
+                empleadosDTO.add(new EmpleadoDTO(emp));
             }
             return ResponseEntity.ok(empleadosDTO);
         } catch (ParseException e) {
@@ -86,7 +86,7 @@ public class EmpleadoRestController {
 	    List<Empleado> empleados = empleadoRepository.findByCiudad(ciudad);
 	    List<EmpleadoDTO> empleadosDTO = new ArrayList<>();
 	    for (Empleado emp : empleados) {
-	        empleadosDTO.add(new EmpleadoDTO().empleadoToEmpleadoDTO(emp));
+	        empleadosDTO.add(new EmpleadoDTO(emp));
 	    }
 	    return ResponseEntity.ok(empleadosDTO);
 	}
@@ -96,7 +96,7 @@ public class EmpleadoRestController {
 	    List<Empleado> empleados = empleadoRepository.findByJornada(jornada);
 	    List<EmpleadoDTO> empleadosDTO = new ArrayList<>();
 	    for (Empleado emp : empleados) {
-	        empleadosDTO.add(new EmpleadoDTO().empleadoToEmpleadoDTO(emp));
+	        empleadosDTO.add(new EmpleadoDTO(emp));
 	    }
 	    return ResponseEntity.ok(empleadosDTO);
 	}
@@ -106,7 +106,7 @@ public class EmpleadoRestController {
 	    List<Empleado> empleados = empleadoRepository.findbyN4(n4);
 	    List<EmpleadoDTO> empleadosDTO = new ArrayList<>();
 	    for (Empleado emp : empleados) {
-	        empleadosDTO.add(new EmpleadoDTO().empleadoToEmpleadoDTO(emp));
+	        empleadosDTO.add(new EmpleadoDTO(emp));
 	    }
 	    return ResponseEntity.ok(empleadosDTO);
 	}
@@ -116,7 +116,7 @@ public class EmpleadoRestController {
 	    List<Empleado> empleados = empleadoRepository.findbyCategoria(categoria);
 	    List<EmpleadoDTO> empleadosDTO = new ArrayList<>();
 	    for (Empleado emp : empleados) {
-	        empleadosDTO.add(new EmpleadoDTO().empleadoToEmpleadoDTO(emp));
+	        empleadosDTO.add(new EmpleadoDTO(emp));
 	    }
 	    return ResponseEntity.ok(empleadosDTO);
 	}
@@ -131,7 +131,7 @@ public class EmpleadoRestController {
 		List<Empleado> empleados = empleadoRepository.findbyScr(scr);
 		List<EmpleadoDTO> empleadosDTO = new ArrayList<EmpleadoDTO>();
 		for (Empleado emp : empleados) {
-			empleadosDTO.add(new EmpleadoDTO().empleadoToEmpleadoDTO(emp));
+			empleadosDTO.add(new EmpleadoDTO(emp));
 		}
 		return ResponseEntity.ok(empleadosDTO);
 	}

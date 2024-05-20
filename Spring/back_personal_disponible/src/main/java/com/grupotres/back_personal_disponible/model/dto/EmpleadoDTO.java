@@ -48,7 +48,7 @@ public class EmpleadoDTO implements Serializable {
     private List<SkTechnologyDTO> skTechnologies;
     private List<SkBusSkillDTO> skBusSkills;
 
-    public EmpleadoDTO empleadoToEmpleadoDTO(Empleado emp) {
+	public EmpleadoDTO(Empleado emp) {
         	this.setGin(emp.getGin());
         	this.setName(emp.getName());
         	this.setSubgroup(emp.getSubgroup());
@@ -97,6 +97,5 @@ public class EmpleadoDTO implements Serializable {
                 this.getSkBusSkills().add(new SkBusSkillDTO().skBusSkillToSkBusSkillDTO(skbs));
             }
 
-            return this;
     }
 }
