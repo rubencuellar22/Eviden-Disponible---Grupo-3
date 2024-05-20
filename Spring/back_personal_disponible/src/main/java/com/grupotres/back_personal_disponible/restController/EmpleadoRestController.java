@@ -36,9 +36,6 @@ public class EmpleadoRestController {
 	@Autowired
 	private SkLenguageRepository skLenguageRepository;
 	
-	@Autowired
-	private SkLenguageService skLenguageService;
-	
 	@GetMapping()
 	public ResponseEntity<?> findAll(){
 		List<Empleado> empleados = empleadoRepository.findAll();
@@ -135,25 +132,5 @@ public class EmpleadoRestController {
 		}
 		return ResponseEntity.ok(empleadosDTO);
 	}
-	
-	
-	@GetMapping("sklenguage/{sklenguage}")
-	public ResponseEntity<?>getEmpleadosBySkLenguage(@PathVariable String sklenguage) {
-		List<SkLenguage> sklanguages = skLenguageRepository.findBySkLenguage(sklenguage);
-		List<SkLenguageDTO> lenguageDTO = new ArrayList<SkLenguageDTO>();
-		for (SkLenguage skl : sklanguages) {
-			lenguageDTO.add(new SkLenguageDTO().skLenguageToSkLenguageDTO(skl));
-		}
-		return ResponseEntity.ok(lenguageDTO);
-	}
-	
-	@GetMapping("sklenguage/{sklenguage}/{nivel}")
-	public ResponseEntity<?>getSkLenguagesByLenguageAndLvl(@PathVariable String sklenguage, @PathVariable String nivel) {
-		List<SkLenguage> sklanguages = skLenguageRepository.findBySkLenguageAndLvl(sklenguage, nivel);
-		List<SkLenguageDTO> lenguageDTO = new ArrayList<SkLenguageDTO>();
-		for (SkLenguage skl : sklanguages) {
-			lenguageDTO.add(new SkLenguageDTO().skLenguageToSkLenguageDTO(skl));
-		}
-		return ResponseEntity.ok(lenguageDTO);
-	}
+
 }
