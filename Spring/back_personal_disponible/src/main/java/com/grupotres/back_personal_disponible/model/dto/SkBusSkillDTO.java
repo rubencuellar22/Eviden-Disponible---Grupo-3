@@ -20,12 +20,10 @@ public class SkBusSkillDTO implements Serializable{
     private String skBusSkill;
     private int nivel;
 
-    public SkBusSkillDTO skBusSkillToSkBusSkillDTO(SkBusSkill skbs) {
-        SkBusSkillDTO skbsDTO = new SkBusSkillDTO();
-        skbsDTO.setIdSkBusSkill(skbs.getIdSkBusSkill());
-        skbsDTO.setSkBusSkill(skbs.getSkBusSkill());
-        skbsDTO.setNivel(skbs.getNivel());
-        return skbsDTO;
+    public SkBusSkillDTO (SkBusSkill skbs) {
+        this.setIdSkBusSkill(skbs.getIdSkBusSkill());
+        this.setSkBusSkill(skbs.getSkBusSkill());
+        this.setNivel(skbs.getNivel());
     }
 
     // Constructor, getters y setters

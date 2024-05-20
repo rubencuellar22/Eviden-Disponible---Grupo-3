@@ -19,11 +19,9 @@ public class RoleDTO implements Serializable {
 	private String role;
 	private int nivel;
 
-    public RoleDTO roleToRoleDTO(Role role) {
-		RoleDTO roleDTO = new RoleDTO();
-		roleDTO.setIdRole(role.getIdRole());
-		roleDTO.setRole(role.getRole());
-		roleDTO.setNivel(role.getNivel());
-		return roleDTO;
+    public RoleDTO(Role role) {
+		this.setIdRole(role.getIdRole());
+		this.setRole(role.getRole());
+		this.setNivel(role.getNivel());
     }
 }

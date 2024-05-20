@@ -20,12 +20,10 @@ public class JobTechnologyProfileDTO implements Serializable {
 	private int nivel;
 
 
-    public JobTechnologyProfileDTO jobTechnologyProfileToJobTechnologyProfileDTO(JobTechnologyProfile jtp) {
-		JobTechnologyProfileDTO jtpDTO = new JobTechnologyProfileDTO();
-		jtpDTO.setIdJobTechnologyProfile(jtp.getIdJobTechnologyProfile());
-		jtpDTO.setJobTechnologyProfile(jtp.getJobTechnologyProfile());
-		jtpDTO.setNivel(jtp.getNivel());
-		return jtpDTO;
+    public JobTechnologyProfileDTO(JobTechnologyProfile jtp) {
+		this.setIdJobTechnologyProfile(jtp.getIdJobTechnologyProfile());
+		this.setJobTechnologyProfile(jtp.getJobTechnologyProfile());
+		this.setNivel(jtp.getNivel());
     }
 }
 

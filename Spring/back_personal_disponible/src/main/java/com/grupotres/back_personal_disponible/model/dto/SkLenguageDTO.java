@@ -20,11 +20,9 @@ public class SkLenguageDTO implements Serializable{
 	private String sklenguage;
 	private String nivel;
 
-    public SkLenguageDTO skLenguageToSkLenguageDTO(SkLenguage skl) {
-		SkLenguageDTO sklDTO = new SkLenguageDTO();
-		sklDTO.setIdSklenguage(skl.getIdSklenguage());
-		sklDTO.setSklenguage(skl.getSklenguage());
-		sklDTO.setNivel(skl.getNivel());
-		return sklDTO;
+    public SkLenguageDTO (SkLenguage skl) {
+		this.setIdSklenguage(skl.getIdSklenguage());
+		this.setSklenguage(skl.getSklenguage());
+		this.setNivel(skl.getNivel());
     }
 }

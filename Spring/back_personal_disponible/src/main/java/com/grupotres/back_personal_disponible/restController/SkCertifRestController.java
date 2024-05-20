@@ -32,7 +32,7 @@ public class SkCertifRestController {
 		List<Empleado> empleados = skCertifService.findEmpleadosByCertifNombre(nombre);
 		List<EmpleadoDTO> empleadosDTO = new ArrayList<EmpleadoDTO>();
 		for (Empleado emp : empleados) {
-			empleadosDTO.add(new EmpleadoDTO().empleadoToEmpleadoDTO(emp));
+			empleadosDTO.add(new EmpleadoDTO(emp));
 		}
 		return ResponseEntity.ok(empleadosDTO);
 	}

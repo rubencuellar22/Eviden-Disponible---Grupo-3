@@ -28,7 +28,7 @@ public class SkTechnologyRestController {
 		List<Empleado> empleados = skTechnologyService.findEmpleadosByTechnology(nombre);
 		List<EmpleadoDTO> empleadosDTO = new ArrayList<EmpleadoDTO>();
 		for (Empleado emp : empleados) {
-			empleadosDTO.add(new EmpleadoDTO().empleadoToEmpleadoDTO(emp));
+			empleadosDTO.add(new EmpleadoDTO(emp));
 		}
 		return ResponseEntity.ok(empleadosDTO);
 	}
@@ -38,7 +38,7 @@ public class SkTechnologyRestController {
 		List<Empleado> empleados = skTechnologyService.findEmpleadosByTechnologyAndNivel(nombre, nivel);
 		List<EmpleadoDTO> empleadosDTO = new ArrayList<EmpleadoDTO>();
 		for (Empleado emp : empleados) {
-			empleadosDTO.add(new EmpleadoDTO().empleadoToEmpleadoDTO(emp));
+			empleadosDTO.add(new EmpleadoDTO(emp));
 		}
 		return ResponseEntity.ok(empleadosDTO);
 	}

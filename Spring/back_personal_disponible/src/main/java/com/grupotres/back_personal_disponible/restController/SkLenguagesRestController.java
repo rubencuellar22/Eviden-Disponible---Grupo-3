@@ -38,7 +38,7 @@ public class SkLenguagesRestController {
 		return ResponseEntity.ok(empleadosDTO);
 	}
 
-	@GetMapping("sklenguage/{sklenguage}/{nivel}")
+	/* @GetMapping("sklenguage/{sklenguage}/{nivel}")
 	public ResponseEntity<?>getSkLenguagesByLenguageAndLvl(@PathVariable String sklenguage, @PathVariable String nivel) {
 		List<SkLenguage> sklanguages = skLenguageRepository.findBySkLenguageAndLvl(sklenguage, nivel);
 		List<SkLenguageDTO> lenguageDTO = new ArrayList<SkLenguageDTO>();
@@ -46,6 +46,6 @@ public class SkLenguagesRestController {
 			lenguageDTO.add(new SkLenguageDTO().skLenguageToSkLenguageDTO(skl));
 		}
 		return ResponseEntity.ok(lenguageDTO);
-	}
+	}*/
 	
 }

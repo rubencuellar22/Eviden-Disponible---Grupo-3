@@ -20,11 +20,9 @@ public class SkCertifDTO implements Serializable{
 	    private String skCertif;
 	    private boolean external;
 
-    public SkCertifDTO skCertifToSkCertifDTO(SkCertif skc) {
-		SkCertifDTO skcDTO = new SkCertifDTO();
-		skcDTO.setIdSkCertif(skc.getIdSkCertif());
-		skcDTO.setSkCertif(skc.getSkcertif());
-		skcDTO.setExternal(skc.getExternal());
-		return skcDTO;
+    public SkCertifDTO (SkCertif skc) {
+		this.setIdSkCertif(skc.getIdSkCertif());
+		this.setSkCertif(skc.getSkcertif());
+		this.setExternal(skc.getExternal());
     }
 }

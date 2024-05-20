@@ -30,7 +30,7 @@ public class PersistenciaDBController {
         emp.setName(csvArray[1]);
         emp.setSubgroup(csvArray[2]);
         emp.setStatus(csvArray[3]);
-        emp.setBench(new SimpleDateFormat("M/d/yyyy").parse(csvArray[4]));
+        emp.setBench(((csvArray[4].isEmpty()) || (csvArray[4].isBlank()) ? null : new SimpleDateFormat("M/d/yyyy").parse(csvArray[4])));
         emp.setDas(csvArray[5]);
         emp.setCiudad(csvArray[6]);
         emp.setLineManager(csvArray[7]);

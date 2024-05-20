@@ -20,11 +20,9 @@ public class SkMethodDTO implements Serializable{
 	private String Skmethod;
 	private int nivel;
 
-    public SkMethodDTO skMethodToSkMethodDTO(SkMethod skm) {
-		SkMethodDTO skmDTO = new SkMethodDTO();
-		skmDTO.setIdSkmethod(skm.getIdSkmethod());
-		skmDTO.setSkmethod(skm.getSkmethod());
-		skmDTO.setNivel(skm.getNivel());
-		return skmDTO;
+    public SkMethodDTO (SkMethod skm) {
+		this.setIdSkmethod(skm.getIdSkmethod());
+		this.setSkmethod(skm.getSkmethod());
+		this.setNivel(skm.getNivel());
     }
 }
