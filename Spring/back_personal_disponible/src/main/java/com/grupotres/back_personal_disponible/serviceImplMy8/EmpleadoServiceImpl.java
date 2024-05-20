@@ -12,9 +12,8 @@ import org.springframework.stereotype.Service;
 import com.grupotres.back_personal_disponible.service.EmpleadoService;
 
 
-@Service
+@Service("empleadoServiceImpl")
 public class EmpleadoServiceImpl implements EmpleadoService {
-
 	
 	@Autowired
 	EmpleadoRepository empleadoRepository;
@@ -176,6 +175,11 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 	public List<Empleado> findbyScr(BigDecimal scr) {
 		// TODO Auto-generated method stub
 		return empleadoRepository.findbyScr(scr);
+	}
+
+	@Override
+	public List<Empleado> findbyGrupos(String groups) {
+		return empleadoRepository.findByGroups(groups);
 	}
 
 	/*@Override

@@ -87,6 +87,14 @@ public class Grupo implements Serializable {
 		this.empleados = empleados;
 	}
 
+	public Long getId_grupo() {
+		return id_grupo;
+	}
+
+	public void setId_grupo(Long id_grupo) {
+		this.id_grupo = id_grupo;
+	}
+
 	public Empleado addEmpleado(Empleado empleado) {
 		getEmpleados().add(empleado);
 		empleado.setGrupo(this);

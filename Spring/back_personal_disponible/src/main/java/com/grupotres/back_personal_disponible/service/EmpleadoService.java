@@ -28,4 +28,6 @@ public interface EmpleadoService {
 	// List<Empleado> findbyCcname(String ccname);
 
 	List<Empleado> findbyScr(BigDecimal scr);
+
+    List<Empleado> findbyGrupos(String groups);
 }

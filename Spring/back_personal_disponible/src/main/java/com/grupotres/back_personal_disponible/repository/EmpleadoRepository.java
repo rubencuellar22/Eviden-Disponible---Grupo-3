@@ -40,4 +40,8 @@ public interface EmpleadoRepository extends JpaRepository<Empleado, Long> {
 	("SELECT e FROM Empleado e WHERE e.scr BETWEEN 1 AND 100")
 	List<Empleado> findbyScr(BigDecimal scr);
 
+	@Query("SELECT e FROM Empleado e JOIN e.grupo g WHERE g.grupos LIKE %?1%")
+	List<Empleado> findByGroups(String groupName);
+
+
 }

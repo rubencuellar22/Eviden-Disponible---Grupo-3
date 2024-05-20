@@ -10,7 +10,11 @@ import java.util.List;
 import com.grupotres.back_personal_disponible.model.dto.EmpleadoDTO;
 import com.grupotres.back_personal_disponible.model.dto.SkLenguageDTO;
 
+import com.grupotres.back_personal_disponible.repository.GrupoRepository;
+import com.grupotres.back_personal_disponible.service.EmpleadoService;
+import com.grupotres.back_personal_disponible.service.GrupoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -32,10 +36,12 @@ public class EmpleadoRestController {
 	
 	@Autowired
 	private EmpleadoRepository empleadoRepository;
-	
-	@Autowired
-	private SkLenguageRepository skLenguageRepository;
-	
+
+    @Qualifier("empleadoServiceImpl")
+    @Autowired
+    private EmpleadoService empleadoService;
+
+
 	@GetMapping()
 	public ResponseEntity<?> findAll(){
 		List<Empleado> empleados = empleadoRepository.findAll();
@@ -96,6 +102,16 @@ public class EmpleadoRestController {
 	        empleadosDTO.add(new EmpleadoDTO(emp));
 	    }
 	    return ResponseEntity.ok(empleadosDTO);
+	}
+
+	@GetMapping("groups/{groups}")
+	public ResponseEntity<?> findByGroups(@PathVariable String groups) {
+		List<Empleado> empleados = empleadoService.findbyGrupos(groups);
+		List<EmpleadoDTO> empleadosDTO = new ArrayList<>();
+		for (Empleado emp : empleados) {
+			empleadosDTO.add(new EmpleadoDTO(emp));
+		}
+		return ResponseEntity.ok(empleadosDTO);
 	}
 	
 	@GetMapping("n4/{n4}")

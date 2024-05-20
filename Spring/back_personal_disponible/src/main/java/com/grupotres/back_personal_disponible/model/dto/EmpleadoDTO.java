@@ -35,6 +35,7 @@ public class EmpleadoDTO implements Serializable {
     private String categoria;
     private int nivelgcm;
     private Double scr;
+	private GrupoDTO grupo;
     private String n4;
     private String jobTechnology;
     private List<JobTechnologyProfileDTO> jobTechnologyProfiles;
@@ -63,6 +64,7 @@ public class EmpleadoDTO implements Serializable {
         	this.setCategoria(emp.getCategoria());
         	this.setNivelgcm(emp.getNivelgcm());
         	this.setScr(emp.getScr());
+			this.setGrupo(new GrupoDTO(emp.getGrupo()));
         	this.setN4(emp.getN4());
         	this.setJobTechnology(emp.getJobTechnology());
         	this.setSkills(emp.getSkills());
