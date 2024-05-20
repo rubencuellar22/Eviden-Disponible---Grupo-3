@@ -99,46 +99,50 @@
               </div>
             </div>
 
-          <div class="flex flex-auto gap-3 mt-4 border-l-orange-500  border-4 border-r-0 border-b-0 border-t-0">
-            <div *ngFor="let tag of tags" class=" ml-2">
-              <span
-                class="inline-flex items-center px-2 py-1 me-2 text-sm font-medium text-black bg-white border border-orange-500 rounded-md"
-              >
-                {{ tag }}
-                <button
-                  type="button"
-                  class="inline-flex items-center p-1 ms-2 box-border text-sm text-blue-400 bg-transparent rounded-sm hover:bg-blue-200 hover:text-blue-900 dark:hover:bg-blue-800 dark:hover:text-blue-300"
-                  (click)="removeTag(tag)"
-                  aria-label="Remove"
-                >
-                  <svg
-                    class="w-2 h-2"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 14 14"
-                  >
-                    <path
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-                    />
-                  </svg>
-                  <span class="sr-only">Remove badge</span>
-                </button>
-              </span>
-            </div>
-          </div>
+         
+            
         </div>
       </div>
     </div>
   </div>
 
-  <div class="grid place-content-end m-4 flex-auto">
+  <div class="grid m-1 flex-auto">
+    <div class="grid gap-1 mt-4 border-l-orange-500 border-4 border-r-0 border-b-0 border-t-0" style="grid-template-columns: repeat(4, 1fr);">
+      <div *ngFor="let tag of tags" class="ml-2">
+        <span
+          class="inline-flex items-center px-2 py-1 me-2 text-sm font-medium text-black bg-white border-tag rounded-md"
+        >
+          {{ tag }}
+          <button
+            type="button"
+            class="inline-flex items-center p-1 ms-2 box-border text-sm text-blue-400 bg-transparent rounded-sm  hover:text-white hover:bg-blue-700 "
+            (click)="removeTag(tag)"
+            aria-label="Remove"
+          >
+            <svg
+              class="w-2 h-2"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 14 14"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+              />
+            </svg>
+            <span class="sr-only">Remove badge</span>
+          </button>
+        </span>
+      </div>
+    </div>
+    
+    
     <div>
-      <button class="boton text-white font-bold py-2 px-4 rounded absolute bottom-4 right-4">
+      <button class="boton place-content-end  text-white font-bold py-2 px-4 rounded absolute bottom-4 right-4">
         Apply
       </button>
     </div>
