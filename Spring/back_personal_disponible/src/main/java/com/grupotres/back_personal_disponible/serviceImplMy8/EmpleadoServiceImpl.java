@@ -20,9 +20,6 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 	EmpleadoRepository empleadoRepository;
 
 	@Autowired
-	GrupoRepository grupoRepository;
-
-	@Autowired
 	JobTechnologyProfileRepository jobTechnologyProfileRepository;
 
 	@Autowired
@@ -49,7 +46,6 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 	@Override
 	public void createEmpleado(Empleado emp) {
 		Grupo grupo = emp.getGrupo();
-		grupoRepository.save(grupo);
 
 		empleadoRepository.save(emp);
 		Empleado newEmp = empleadoRepository.findById(emp.getGin()).orElse(null);

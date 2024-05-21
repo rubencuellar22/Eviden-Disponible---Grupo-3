@@ -10,9 +10,8 @@ import java.util.List;
 import com.grupotres.back_personal_disponible.model.dto.EmpleadoDTO;
 import com.grupotres.back_personal_disponible.model.dto.SkLenguageDTO;
 
-import com.grupotres.back_personal_disponible.repository.GrupoRepository;
+
 import com.grupotres.back_personal_disponible.service.EmpleadoService;
-import com.grupotres.back_personal_disponible.service.GrupoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatusCode;
@@ -64,26 +63,33 @@ public class EmpleadoRestController {
 		return ResponseEntity.ok(empleadosDTOFiltrados);
 	}
 	
-	@GetMapping("bench/{bench}")
-    public ResponseEntity<?> findByBench(@PathVariable String bench) {
-        try {
-            // Define the date format expected in the path variable
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            // Parse the string to a Date object
-            Date benchDate = dateFormat.parse(bench);
+	 @GetMapping("/bench/{bench}")
+	    public ResponseEntity<?> findByBench(@PathVariable String bench) {
+	        try {
+	            // Define the datetime format expected in the path variable, including microseconds
+	            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSSSS");
+	            // Parse the string to a Date object
+	            Date benchDate = dateFormat.parse(bench);
 
-            // Find employees by the bench date
-            List<Empleado> empleados = empleadoRepository.findByBench(benchDate);
-            List<EmpleadoDTO> empleadosDTO = new ArrayList<>();
-            for (Empleado emp : empleados) {
-                empleadosDTO.add(new EmpleadoDTO(emp));
-            }
-            return ResponseEntity.ok(empleadosDTO);
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return ResponseEntity.badRequest().body("Invalid date format. Please use yyyy-MM-dd.");
-        }
-    }
+	            // Debug: print the parsed date
+	            System.out.println("Parsed bench date: " + benchDate);
+
+	            // Find employees by the bench date and time
+	            List<Empleado> empleados = empleadoRepository.findByBench(benchDate);
+
+	            // Debug: print the size of the result
+	            System.out.println("Number of employees found: " + empleados.size());
+
+	            List<EmpleadoDTO> empleadosDTO = new ArrayList<>();
+	            for (Empleado emp : empleados) {
+	                empleadosDTO.add(new EmpleadoDTO(emp));
+	            }
+	            return ResponseEntity.ok(empleadosDTO);
+	        } catch (ParseException e) {
+	            e.printStackTrace();
+	            return ResponseEntity.badRequest().body("Invalid date format. Please use yyyy-MM-dd HH:mm:ss.SSSSSS.");
+	        }
+	    }
 
 
 	@GetMapping("ciudad/{ciudad}")
