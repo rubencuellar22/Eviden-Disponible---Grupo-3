@@ -17,11 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.grupotres.back_personal_disponible.model.Empleado;
 import com.grupotres.back_personal_disponible.model.SkLenguage;
@@ -60,6 +56,12 @@ public class EmpleadoRestController {
 	        empleadosDTO.add(new EmpleadoDTO(emp));
 	    }
 	    return ResponseEntity.ok(empleadosDTO);
+	}
+
+	@PostMapping("status/{status}")
+	public ResponseEntity<?> findByStatus(@PathVariable String status, @RequestBody List<EmpleadoDTO> empleadosFiltradosDTO) {
+		List<EmpleadoDTO> empleadosDTOFiltrados = empleadoService.getEmpleadosByStatusFromList(empleadosFiltradosDTO, status);
+		return ResponseEntity.ok(empleadosDTOFiltrados);
 	}
 	
 	@GetMapping("bench/{bench}")

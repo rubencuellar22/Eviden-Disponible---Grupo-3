@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.grupotres.back_personal_disponible.model.*;
+import com.grupotres.back_personal_disponible.model.dto.EmpleadoDTO;
 import com.grupotres.back_personal_disponible.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -180,6 +181,17 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 	@Override
 	public List<Empleado> findbyGrupos(String groups) {
 		return empleadoRepository.findByGroups(groups);
+	}
+
+	@Override
+	public List<EmpleadoDTO> getEmpleadosByStatusFromList(List<EmpleadoDTO> empleadosDTO, String status) {
+		List<EmpleadoDTO> empleadosDTOFiltered = new ArrayList<>();
+		for (EmpleadoDTO emp : empleadosDTO) {
+			if (emp.getStatus().equals(status)) {
+				empleadosDTOFiltered.add(emp);
+			}
+		}
+		return empleadosDTOFiltered;
 	}
 
 	/*@Override
