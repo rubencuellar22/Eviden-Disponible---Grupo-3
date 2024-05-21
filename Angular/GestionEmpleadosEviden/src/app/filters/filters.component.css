@@ -14,6 +14,13 @@ section{
     border-radius: 5px;
 }
 
+.tags{
+    color: #ff6d43;
+}
+.border-tag{
+    border: 1px solid #002D3C; /* Asegúrate de que el color y el grosor están definidos */
+}
+
 .boton{
     color: white;
     background-color: #ff6d43;

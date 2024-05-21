@@ -23,9 +23,12 @@
       overflow-x: auto;
       white-space: nowrap;
   }*/
-  th,td {
+
+  
+  th,td,tr {
     border-bottom: 2px solid black;
     text-align: left;
+    padding-right: 4em;
   }
   .cabecera {
     color: white;
