@@ -9,6 +9,8 @@ export class FiltersComponent {
   tags: string[] = [];
   newTag: string = '';
 
+  showChild1: boolean = true; 
+
   removeTag(tag: string) {
     this.tags = this.tags.filter(t => t !== tag);
   }

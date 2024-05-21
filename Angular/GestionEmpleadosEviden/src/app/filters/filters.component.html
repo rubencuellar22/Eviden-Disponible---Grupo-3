@@ -30,73 +30,17 @@
           </div>
           <div class="flex flex-col ml-3 ">
 
-          <h3 class="mb-2 mt-0 font-semibold  text-black">Level</h3>
-              <div class="flex">
-                <div class="w-56">
-                  <div class="p-1">
-                    <div class="flex items-center">
-                      <input
-                        id="novice-checkbox"
-                        type="checkbox"
-                        value=""
-                        class="w-4 h-4 text-sky-500 bg-sky-100 border-sky-300 rounded focus:ring-sky-500 dark:focus:ring-sky-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-sky-600 dark:border-sky-500"
-                      />
-                      <label for="novice-checkbox" class="ml-2 text-sm font-medium text-black dark:text-black">1 - Novice</label>
-                    </div>
-                  </div>
-                  <div class="p-1">
-                    <div class="flex items-center">
-                      <input
-                        id="junior-checkbox"
-                        type="checkbox"
-                        value=""
-                        class="w-4 h-4 text-sky-500 bg-sky-100 border-sky-300 rounded focus:ring-sky-500 dark:focus:ring-sky-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-sky-600 dark:border-sky-500"
-                      />
-                      <label for="junior-checkbox" class="ml-2 text-sm font-medium text-black dark:text-black">2 - Junior</label>
-                    </div>
-                  </div>
-                  <div class="p-1">
-                    <div class="flex items-center">
-                      <input
-                        id="proficient-checkbox"
-                        type="checkbox"
-                        value=""
-                        class="w-4 h-4 text-sky-500 bg-sky-100 border-sky-300 rounded focus:ring-sky-500 dark:focus:ring-sky-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-sky-600 dark:border-sky-500"
-                      />
-                      <label for="proficient-checkbox" class="ml-2 text-sm font-medium text-black dark:text-black">3 - Proficient</label>
-                    </div>
-                  </div>
-                </div>
-                <div class="w-1/2">
-                  <div class="p-1">
-                    <div class="flex items-center">
-                      <input
-                        id="senior-checkbox"
-                        type="checkbox"
-                        value=""
-                        class="w-4 h-4 text-sky-500 bg-sky-100 border-sky-300 rounded focus:ring-sky-500 dark:focus:ring-sky-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-sky-600 dark:border-sky-500"
-                      />
-                      <label for="senior-checkbox" class="ml-2 text-sm font-medium text-black dark:text-black">4 - Senior</label>
-                    </div>
-                  </div>
-                  <div class="p-1">
-                    <div class="flex items-center">
-                      <input
-                        id="expert-checkbox"
-                        type="checkbox"
-                        value=""
-                        class="w-4 h-4 text-sky-500 bg-sky-100 border-sky-300 rounded focus:ring-sky-500 dark:focus:ring-sky-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-sky-600 dark:border-sky-500"
-                      />
-                      <label for="expert-checkbox" class="ml-2 text-sm font-medium text-black dark:text-black">5 - Expert</label>
-                    </div>
-                  </div>
-                  <div class="p-1">
-                    <div class="flex items-center">
-                      <button class="boton text-white py-1 px-2 font-bold rounded bottom-4 right-4 m-3" (click)="addTag()">Add</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div *ngIf="showChild1">
+              <app-programming-levels></app-programming-levels>
+            </div>
+            <div *ngIf="!showChild1">
+              <app-language-levels></app-language-levels>
+            </div>
+            <div class="flex items-center">
+              <button class="boton text-white py-1 px-2 font-bold rounded bottom-4 right-4 m-3" (click)="addTag()">Add</button>
+            </div>
+
+        
             </div>
 
          
