@@ -15,16 +15,13 @@ public class Grupo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id_grupo;
 	private String grupos;
-
 	private String cc;
-
 	private String grupo1;
-
 	private String grupo2;
-
 	private String grupo3;
-
 	private String grupo4;
 
 	//bi-directional many-to-one association to Empleado
@@ -90,6 +87,14 @@ public class Grupo implements Serializable {
 		this.empleados = empleados;
 	}
 
+	public Long getId_grupo() {
+		return id_grupo;
+	}
+
+	public void setId_grupo(Long id_grupo) {
+		this.id_grupo = id_grupo;
+	}
+
 	public Empleado addEmpleado(Empleado empleado) {
 		getEmpleados().add(empleado);
 		empleado.setGrupo(this);
@@ -104,4 +109,16 @@ public class Grupo implements Serializable {
 		return empleado;
 	}
 
+	@Override
+	public String toString() {
+		return "Grupo{" +
+				"grupos='" + grupos + '\'' +
+				", cc='" + cc + '\'' +
+				", grupo1='" + grupo1 + '\'' +
+				", grupo2='" + grupo2 + '\'' +
+				", grupo3='" + grupo3 + '\'' +
+				", grupo4='" + grupo4 + '\'' +
+				", empleados=" + empleados +
+				'}';
+	}
 }

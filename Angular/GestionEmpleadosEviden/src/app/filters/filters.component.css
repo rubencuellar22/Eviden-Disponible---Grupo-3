@@ -1,3 +1,6 @@
+section{
+    background-color: #ececed;
+}
 .filters {
     color: #ff6d43;
     font-size: large;
@@ -5,12 +8,23 @@
 }
 
 #col {
-    background-color: #CEE8FA;
+    background-color: #ececed; /* #CEE8FA;*/
     color: #002D3C;
     font-size: medium;
     border-radius: 5px;
 }
 
+.tags{
+    color: #ff6d43;
+}
+.border-tag{
+    border: 1px solid #002D3C; /* Asegúrate de que el color y el grosor están definidos */
+}
+
+.boton{
+    color: white;
+    background-color: #ff6d43;
+}
 
 .search-container{
     width: 490px;
