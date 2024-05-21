@@ -12,6 +12,8 @@ import { DetailsComponent } from './details/details.component';
 import { FirstPageComponent } from './first-page/first-page.component';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { LanguageLevelsComponent } from './language-levels/language-levels.component';
+import { ProgrammingLevelsComponent } from './programming-levels/programming-levels.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { CommonModule } from '@angular/common';
     FiltersComponent,
     FilteredTableComponent,
     DetailsComponent,
-    FirstPageComponent
+    FirstPageComponent,
+    LanguageLevelsComponent,
+    ProgrammingLevelsComponent
   ],
   imports: [
     BrowserModule,
