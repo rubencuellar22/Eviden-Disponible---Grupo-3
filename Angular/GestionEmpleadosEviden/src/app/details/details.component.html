@@ -1,0 +1,92 @@
+<h2 class="titulo text-2xl mb-2 text-center font-bold">List of employees</h2>
+
+<section class="mainbox flex-1 ml-10 mr-10 scale-90 bg-white relative" style="overflow-y: auto;">
+  <div class="wrapper relative">
+    <table class="tabla w-full table-auto">
+      <thead class="cabecera">
+        <tr class="gap-5">
+          <td>Gin</td>
+          <td> Name</td>
+          <td>Subgroup</td>
+          <td>Status</td>
+          <td>Bench</td>
+          <td>Das</td>
+          <td>Ciudad</td>
+          <td>Agrupacion</td>
+          <td>Line Manager</td>
+          <td>Jornada</td>
+          <td>Gcm</td>
+          <td>Categoria</td>
+          <td>Nivel GCM</td>
+          <td>SCR</td>
+          <td>Grupo</td>
+          <td>N4</td>
+          <td>Job Technology</td>
+          <td>Skills</td>
+          <td>Role</td>
+          <td>RLT</td>
+          <td>Sk Languages</td>
+          <td>Sk Methods</td>
+          <td>Sk Tech Skills</td>
+          <td>Sk Certifs</td>
+          <td>Sk Technologies</td>
+          <td>Sk Bus Skills</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let empleado of empleados">
+          <td>{{ empleado.gin }}</td>
+          <td>{{ empleado.name }}</td>
+          <td>{{ empleado.subgroup }}</td>
+          <td>{{ empleado.status }}</td>
+          <td>{{ empleado.bench | date }}</td>
+          <td>{{ empleado.das }}</td>
+          <td>{{ empleado.ciudad }}</td>
+          <td>{{ empleado.agrupacion }}</td>
+          <td>{{ empleado.lineManager }}</td>
+          <td>{{ empleado.jornada }}</td>
+          <td>{{ empleado.gcm }}</td>
+          <td>{{ empleado.categoria }}</td>
+          <td>{{ empleado.nivelgcm }}</td>
+          <td>{{ empleado.scr }}</td>
+          <td>{{ empleado.grupo.name }}</td>
+          <td>{{ empleado.n4 }}</td>
+          <td>{{ empleado.jobTechnology }}</td>
+          <td>{{ empleado.skills }}</td>
+          <td>{{ empleado.role.name }}</td>
+          <td>{{ empleado.rlt }}</td>
+          <td>
+            <ul>
+              <li *ngFor="let skLenguage of empleado.skLenguages">{{ skLenguage.name }}</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li *ngFor="let skMethod of empleado.skMethods">{{ skMethod.name }}</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li *ngFor="let skTechSkill of empleado.skTechSkills">{{ skTechSkill.name }}</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li *ngFor="let skCertif of empleado.skCertifs">{{ skCertif.name }}</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li *ngFor="let skTechnology of empleado.skTechnologies">{{ skTechnology.name }}</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li *ngFor="let skBusSkill of empleado.skBusSkills">{{ skBusSkill.name }}</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
