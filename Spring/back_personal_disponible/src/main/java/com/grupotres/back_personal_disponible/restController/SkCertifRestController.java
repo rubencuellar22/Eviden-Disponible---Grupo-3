@@ -36,5 +36,15 @@ public class SkCertifRestController {
 		}
 		return ResponseEntity.ok(empleadosDTO);
 	}
+	 
+	 @GetMapping("/{nombre}/{external}")
+	 public ResponseEntity<?> findEmpleadosByCertifNombreAndNivel(@PathVariable String nombre, @PathVariable Integer external){
+		List<Empleado> empleados = skCertifService.findEmpleadosByCertifNombreAndNivel(nombre, external);
+		List<EmpleadoDTO> empleadosDTO = new ArrayList<EmpleadoDTO>();
+		for (Empleado emp : empleados) {
+			empleadosDTO.add(new EmpleadoDTO(emp));
+		}
+		return ResponseEntity.ok(empleadosDTO);
+	}
 	
 }

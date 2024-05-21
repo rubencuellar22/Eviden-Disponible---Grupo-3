@@ -18,4 +18,9 @@ public class SkBussSkillServiceImpl implements SkBussSkillService{
 	public List<Empleado> findEmpleadosByBussSkill(String nombreBussSkill) {
 		return skBussSkillRepository.findEmpleadosByBussSkill(nombreBussSkill);
 	}
+
+	@Override
+	public List<Empleado> findEmpleadosByBussSkillAndNivel(String nombreBussSkill, int nivel) {
+		return skBussSkillRepository.findEmpleadosByBussSkillAndNivel(nombreBussSkill, nivel);
+	}
 }

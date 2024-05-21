@@ -6,5 +6,8 @@ import com.grupotres.back_personal_disponible.model.Empleado;
 
 @Service
 public interface SkBussSkillService {
+	
 	List<Empleado> findEmpleadosByBussSkill(String nombreBussSkill);
+	
+	List<Empleado> findEmpleadosByBussSkillAndNivel(String nombreBussSkill, int nivel);
 }
