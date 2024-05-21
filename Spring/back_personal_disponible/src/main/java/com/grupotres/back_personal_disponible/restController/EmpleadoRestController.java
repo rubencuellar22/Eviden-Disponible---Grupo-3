@@ -190,5 +190,11 @@ public class EmpleadoRestController {
 		}
 		return ResponseEntity.ok(empleadosDTO);
 	}
+	
+	@PostMapping("scr/{scr}")
+		public ResponseEntity<?> findbyScr(@PathVariable String scr, @RequestBody List<EmpleadoDTO> empleadosFiltradosDTO) {
+			List<EmpleadoDTO> empleadosDTOFiltrados = empleadoService.getEmpleadosByScrFromList(empleadosFiltradosDTO, scr);
+			return ResponseEntity.ok(empleadosDTOFiltrados);
+		}
 
 }

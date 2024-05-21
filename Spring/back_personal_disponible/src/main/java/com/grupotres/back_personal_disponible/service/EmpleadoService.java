@@ -47,5 +47,7 @@ public interface EmpleadoService {
 	
 	List<EmpleadoDTO> getEmpleadosByN4FromList(List<EmpleadoDTO> empleadosDTO, String n4);
 	
+	List<EmpleadoDTO> getEmpleadosByScrFromList(List<EmpleadoDTO> empleadosDTO, String scr);
+	
 
 }

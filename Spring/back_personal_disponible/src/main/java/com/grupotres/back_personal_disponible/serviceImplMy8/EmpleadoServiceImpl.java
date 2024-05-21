@@ -250,6 +250,20 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 		}
 		return empleadosDTOFiltered;
 	}
+	
+	@Override
+	public List<EmpleadoDTO> getEmpleadosByScrFromList(List<EmpleadoDTO> empleadosDTO, String scr) {
+		List<EmpleadoDTO> empleadosDTOFiltered = new ArrayList<>();
+		double scrDouble = Double.parseDouble(scr);
+		for (EmpleadoDTO emp : empleadosDTO) {
+			if (emp.getScr() == scrDouble) {
+				empleadosDTOFiltered.add(emp);
+			}
+		}
+		return empleadosDTOFiltered;
+	}
+	
+	
 	/*@Override
 	public List<Empleado> findByBench(String bench) {
 		// TODO Auto-generated method stub
