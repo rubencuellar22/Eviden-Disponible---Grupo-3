@@ -32,5 +32,20 @@ public interface EmpleadoService {
 
     List<Empleado> findbyGrupos(String groups);
 
+    
+    
+    
 	List<EmpleadoDTO> getEmpleadosByStatusFromList(List<EmpleadoDTO> empleadosDTO, String status);
+	
+    List<EmpleadoDTO> getEmpleadosByCiudadFromList(List<EmpleadoDTO> empleadosDTO, String ciudad);
+    
+    List<EmpleadoDTO> getEmpleadosByJornadaFromList(List<EmpleadoDTO> empleadosDTO, String jornada);
+    
+	List<EmpleadoDTO> getEmpleadosByGroupsFromList(List<EmpleadoDTO> empleadosDTO, String groups);
+	
+	List<EmpleadoDTO> getEmpleadosByCategoriaFromList(List<EmpleadoDTO> empleadosDTO, String categoria);
+	
+	List<EmpleadoDTO> getEmpleadosByN4FromList(List<EmpleadoDTO> empleadosDTO, String n4);
+	
+
 }
