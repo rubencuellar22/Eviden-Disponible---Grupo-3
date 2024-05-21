@@ -8,4 +8,6 @@ public interface JobTechnologyProfileService {
 	
 	public List<Empleado> findEmpleadosByJobTechnologyProfile(String jobTechnologyProfile);
 
+	public List<Empleado> findEmpleadosByJobTechnologyProfileAndLvl(String jobTechnologyProfile, String nivel);
+
 }

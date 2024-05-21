@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface SkMethodService {
 	
-    List<Empleado> findBySkMethod(String skMethod);
+    List<Empleado> findEmpleadoBySkMethod(String skMethod);
     
-    List<Empleado> findBySkMethodAndNivel(String skMethod, int nivel);
+    List<Empleado> findEmpleadoBySkMethodAndLvl(String skMethod, int nivel);
     
 }

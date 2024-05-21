@@ -12,17 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.grupotres.back_personal_disponible.model.Empleado;
 import com.grupotres.back_personal_disponible.model.dto.EmpleadoDTO;
-import com.grupotres.back_personal_disponible.repository.EmpleadoRepository;
 import com.grupotres.back_personal_disponible.service.SkCertifService;
 
 
 @RestController
 @RequestMapping("/empleado/sk_certif/certif")
 public class SkCertifRestController {
-	
-	@Autowired
-    private EmpleadoRepository empleadoRepository;
-	
+
 	@Autowired
     private SkCertifService skCertifService;
 	
@@ -32,7 +28,7 @@ public class SkCertifRestController {
 		List<Empleado> empleados = skCertifService.findEmpleadosByCertifNombre(nombre);
 		List<EmpleadoDTO> empleadosDTO = new ArrayList<EmpleadoDTO>();
 		for (Empleado emp : empleados) {
-			empleadosDTO.add(new EmpleadoDTO().empleadoToEmpleadoDTO(emp));
+			empleadosDTO.add(new EmpleadoDTO(emp));
 		}
 		return ResponseEntity.ok(empleadosDTO);
 	}

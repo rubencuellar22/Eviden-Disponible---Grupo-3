@@ -28,8 +28,13 @@ public class SkLenguageServiceImpl implements SkLenguageService {
 	}
 
 	@Override
-	public List<SkLenguage> getSkLenguagesByLenguageAndLvl(String sklenguage, String nivel) {
-		return skLenguageRepository.findBySkLenguageAndLvl(sklenguage,nivel);
+	public List<Empleado> findEmpleadosBySkLenguageAndLvl(String sklenguage, String nivel) {
+		List<SkLenguage> skLenguages = skLenguageRepository.findBySkLenguageAndLvl(sklenguage,nivel);
+		List<Empleado> empleados = new ArrayList<Empleado>();
+		for(SkLenguage skLenguage : skLenguages) {
+			empleados.add(skLenguage.getEmpleado());
+		}
+		return empleados;
 	}
 
 	

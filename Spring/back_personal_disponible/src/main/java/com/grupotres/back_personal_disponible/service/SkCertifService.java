@@ -9,7 +9,7 @@ import com.grupotres.back_personal_disponible.model.Empleado;
 @Service
 public interface SkCertifService {
 	
-	List<Empleado> findEmpleadosByCertifNombre(String nombreCertif); 
+	List<Empleado> findEmpleadosByCertifNombre(String skcertif); 
 	
 } 
 

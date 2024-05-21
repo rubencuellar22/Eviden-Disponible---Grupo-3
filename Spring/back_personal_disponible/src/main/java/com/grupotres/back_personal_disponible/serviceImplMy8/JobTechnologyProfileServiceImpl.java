@@ -26,5 +26,15 @@ public class JobTechnologyProfileServiceImpl implements JobTechnologyProfileServ
 		}
 		return empleados;
 	}
+	
+	@Override
+	public List<Empleado> findEmpleadosByJobTechnologyProfileAndLvl(String jobTechnologyProfile, String nivel) {
+		List<JobTechnologyProfile> jobTechnologyProfiles = jobTechnologyProfileRepository.findByJobTechnologyProfileAndLvl(jobTechnologyProfile, nivel);
+		List<Empleado> empleados = new ArrayList<Empleado>();
+		for(JobTechnologyProfile jobTechnologyProfile2 : jobTechnologyProfiles) {
+			empleados.add(jobTechnologyProfile2.getEmpleado());
+		}
+		return empleados;
+	}
 
 }

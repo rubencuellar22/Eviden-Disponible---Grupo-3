@@ -8,10 +8,8 @@ import java.util.Date;
 import java.util.List;
 
 import com.grupotres.back_personal_disponible.model.dto.EmpleadoDTO;
-import com.grupotres.back_personal_disponible.model.dto.SkLenguageDTO;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,10 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.grupotres.back_personal_disponible.model.Empleado;
-import com.grupotres.back_personal_disponible.model.SkLenguage;
 import com.grupotres.back_personal_disponible.repository.EmpleadoRepository;
 import com.grupotres.back_personal_disponible.repository.SkLenguageRepository;
-import com.grupotres.back_personal_disponible.service.SkLenguageService;
 
 @RestController
 @RequestMapping("/empleado/")
@@ -32,9 +28,6 @@ public class EmpleadoRestController {
 	
 	@Autowired
 	private EmpleadoRepository empleadoRepository;
-	
-	@Autowired
-	private SkLenguageRepository skLenguageRepository;
 	
 	@GetMapping()
 	public ResponseEntity<?> findAll(){

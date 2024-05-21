@@ -12,33 +12,32 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.grupotres.back_personal_disponible.model.Empleado;
 import com.grupotres.back_personal_disponible.model.dto.EmpleadoDTO;
-import com.grupotres.back_personal_disponible.repository.SkTechnologyRepository;
 import com.grupotres.back_personal_disponible.service.SkTechnologyService;
 
 
 @RestController
-@RequestMapping("/empleado/sk_technology/technology")
+@RequestMapping("/empleado/skTechnology")
 public class SkTechnologyRestController {
+	
 	@Autowired
     private SkTechnologyService skTechnologyService;
 	
-	
-	 @GetMapping("/{nombre}")
-	 public ResponseEntity<?> findEmpleadosByTechnology(@PathVariable String nombre){
+	 @GetMapping("/{technology}")
+	 public ResponseEntity<?> getEmpleadosByTechnology(@PathVariable String nombre){
 		List<Empleado> empleados = skTechnologyService.findEmpleadosByTechnology(nombre);
 		List<EmpleadoDTO> empleadosDTO = new ArrayList<EmpleadoDTO>();
 		for (Empleado emp : empleados) {
-			empleadosDTO.add(new EmpleadoDTO().empleadoToEmpleadoDTO(emp));
+			empleadosDTO.add(new EmpleadoDTO(emp));
 		}
 		return ResponseEntity.ok(empleadosDTO);
 	}
 	 
-	 @GetMapping("/{nombre}/{nivel}")
-	 public ResponseEntity<?> findEmpleadosByTechnologyAndNivel(@PathVariable String nombre, @PathVariable Integer nivel){
-		List<Empleado> empleados = skTechnologyService.findEmpleadosByTechnologyAndNivel(nombre, nivel);
+	 @GetMapping("/{technology}/{nivel}")
+	 public ResponseEntity<?> getEmpleadosByTechnologyAndLvl(@PathVariable String sktechnology, @PathVariable Integer nivel){
+		List<Empleado> empleados = skTechnologyService.findEmpleadosByTechnologyAndLvl(sktechnology, nivel);
 		List<EmpleadoDTO> empleadosDTO = new ArrayList<EmpleadoDTO>();
 		for (Empleado emp : empleados) {
-			empleadosDTO.add(new EmpleadoDTO().empleadoToEmpleadoDTO(emp));
+			empleadosDTO.add(new EmpleadoDTO(emp));
 		}
 		return ResponseEntity.ok(empleadosDTO);
 	}
