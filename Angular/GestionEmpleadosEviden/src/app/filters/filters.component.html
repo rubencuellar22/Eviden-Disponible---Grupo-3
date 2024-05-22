@@ -1,10 +1,7 @@
-<section
-  class="flex flex-wrap mainbox ml-10 mr-10 mb-4 rounded-lg relative"
->
+<section class="flex flex-wrap mainbox ml-10 mr-10 mb-4 rounded-lg relative">
   <div class="flex flex-wrap">
     <div class="p-1 flex flex-wrap flex-auto flex-col gap-2">
       <div class="mt-2 ml-2 filters font-bold pb-2">Selection of filters</div>
-
       <div class="ml-2 flex flex-wrap gap-4">
         <div>
           <select class="filters" name="col" id="col">
@@ -48,25 +45,18 @@
                 class="block  p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs"
               />
             </div>
-
           </div>
           <div class="flex flex-col ml-3 ">
-
-            <div *ngIf="showChild1">
+            <!-- <div *ngIf="showChild1">
               <app-programming-levels></app-programming-levels>
             </div>
             <div *ngIf="!showChild1">
               <app-language-levels></app-language-levels>
-            </div>
+            </div> -->
             <div class="flex items-center">
               <button class="boton text-white py-1 px-2 font-bold rounded bottom-4 right-4 m-3" (click)="addTag()">Add</button>
             </div>
-
-        
-            </div>
-
-         
-            
+          </div>
         </div>
       </div>
     </div>
@@ -105,12 +95,30 @@
         </span>
       </div>
     </div>
-    
-    
     <div>
-      <button class="boton place-content-end  text-white font-bold py-2 px-4 rounded absolute bottom-4 right-4">
-        Apply
-      </button>
+      <button class="boton place-content-end text-white font-bold py-2 px-4 rounded absolute bottom-4 right-4" (click)="applyFilter()">Apply</button>
     </div>
+  </div>
+
+  <!-- Contenedor para la tabla de resultados -->
+  <div *ngIf="empleados.length > 0" class="mt-4">
+    <table class="min-w-full bg-white">
+      <thead>
+        <tr>
+          <th class="py-2">Nombre</th>
+          <th class="py-2">Ciudad</th>
+          <th class="py-2">Otro Campo</th>
+          <!-- Añade más cabeceras según tus necesidades -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let empleado of empleados">
+          <!-- <td class="border px-4 py-2">{{ empleado.nombre }}</td> -->
+          <td class="border px-4 py-2">{{ empleado.ciudad }}</td>
+          <!-- <td class="border px-4 py-2">{{ empleado.otroCampo }}</td> -->
+          <!-- Añade más celdas según tus necesidades -->
+        </tr>
+      </tbody>
+    </table>
   </div>
 </section>
