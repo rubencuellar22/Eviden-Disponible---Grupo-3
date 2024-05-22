@@ -1,7 +1,9 @@
 package com.grupotres.back_personal_disponible.config;
 
+import com.grupotres.back_personal_disponible.batch.steps.ItemEmpWriterStep;
 import com.grupotres.back_personal_disponible.batch.steps.ItemProcessorStep;
 import com.grupotres.back_personal_disponible.batch.steps.ItemReaderStep;
+import com.grupotres.back_personal_disponible.batch.steps.ItemWriterStep;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
@@ -33,6 +35,16 @@ public class BatchConfig {
         return new ItemProcessorStep();
     }
 
+    @Bean(name = "stepEmpWriter")
+    public ItemEmpWriterStep itemEmpWriterStep() {
+        return new ItemEmpWriterStep();
+    }
+
+    @Bean(name = "stepWriter")
+    public ItemWriterStep itemWriterStep() {
+        return new ItemWriterStep();
+    }
+
     @Bean(name = "reader")
     public Step stepReader() {
         return new StepBuilder("stepReader", jobRepository)
@@ -41,17 +53,33 @@ public class BatchConfig {
     }
 
     @Bean(name = "processor")
-        public Step stepProcessor() {
+    public Step stepProcessor() {
         return new StepBuilder("stepProcessor", jobRepository)
                 .tasklet(itemProcessorStep(), transactionManager)
+                .build();
+    }
+
+    @Bean(name = "empWriter")
+    public Step stepEmpWriter() {
+        return new StepBuilder("stepEmpWriter", jobRepository)
+                .tasklet(itemEmpWriterStep(), transactionManager)
+                .build();
+    }
+
+    @Bean(name = "writer")
+    public Step stepWriter() {
+        return new StepBuilder("stepWriter", jobRepository)
+                .tasklet(itemWriterStep(), transactionManager)
                 .build();
     }
 
     @Bean
     public Job job() {
         return new JobBuilder("job", jobRepository)
-                .start(stepReader()).
-                next(stepProcessor())
+                .start(stepReader())
+                .next(stepProcessor())
+                .next(stepEmpWriter())
+                .next(stepWriter())
                 .build();
     }
 }

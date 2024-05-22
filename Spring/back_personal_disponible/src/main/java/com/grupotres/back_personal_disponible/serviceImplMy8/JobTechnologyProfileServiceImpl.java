@@ -27,4 +27,9 @@ public class JobTechnologyProfileServiceImpl implements JobTechnologyProfileServ
 		return empleados;
 	}
 
+	@Override
+	public void saveAllJobTechnologyProfiles(List<JobTechnologyProfile> jobTechnologyProfiles) {
+		jobTechnologyProfileRepository.saveAll(jobTechnologyProfiles);
+	}
+
 }

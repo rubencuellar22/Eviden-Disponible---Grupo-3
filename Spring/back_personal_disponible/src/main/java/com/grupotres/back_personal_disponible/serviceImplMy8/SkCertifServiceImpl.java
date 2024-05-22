@@ -2,6 +2,7 @@ package com.grupotres.back_personal_disponible.serviceImplMy8;
 
 import java.util.List;
 
+import com.grupotres.back_personal_disponible.model.SkCertif;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,5 +19,10 @@ public class SkCertifServiceImpl implements SkCertifService {
     @Override
     public List<Empleado> findEmpleadosByCertifNombre(String nombreCertif) {
         return skCertifRepository.findEmpleadosByCertifNombre(nombreCertif);
+    }
+
+    @Override
+    public void saveAllSkCertifs(List<SkCertif> empSkCertifs) {
+        skCertifRepository.saveAll(empSkCertifs);
     }
 }

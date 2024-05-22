@@ -39,10 +39,19 @@ public class ItemEmpWriterStep implements Tasklet  {
 
         grupoService.saveAllGroups(uniqueGrupoList);
 
-        empleadoService.saveAllEmpleados((List<Empleado>) chunkContext
+        List<Empleado> empleadoList = (List<Empleado>) chunkContext
                 .getStepContext()
                 .getJobExecutionContext()
-                .get("empleadoList"));
+                .get("empleadoList");
+
+        for (Empleado empleado : empleadoList) {
+            empleado.setGrupo(uniqueGrupoList.stream()
+                    .filter(grupo -> grupo.getGrupos().equals(empleado.getGrupo().getGrupos()))
+                    .findFirst()
+                    .orElse(null));
+        }
+
+        empleadoService.saveAllEmpleados(empleadoList);
 
         List<Empleado> empleadoListFinal = empleadoService.getAllEmpleados();
         chunkContext

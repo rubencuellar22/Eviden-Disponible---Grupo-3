@@ -32,5 +32,10 @@ public class SkLenguageServiceImpl implements SkLenguageService {
 		return skLenguageRepository.findBySkLenguageAndLvl(sklenguage,nivel);
 	}
 
-	
+	@Override
+	public void saveAllSkLenguages(List<SkLenguage> empSkLenguages) {
+		skLenguageRepository.saveAll(empSkLenguages);
+	}
+
+
 }

@@ -2,6 +2,7 @@ package com.grupotres.back_personal_disponible.serviceImplMy8;
 
 import java.util.List;
 
+import com.grupotres.back_personal_disponible.model.SkBusSkill;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,5 +18,10 @@ public class SkBussSkillServiceImpl implements SkBussSkillService{
 	@Override
 	public List<Empleado> findEmpleadosByBussSkill(String nombreBussSkill) {
 		return skBussSkillRepository.findEmpleadosByBussSkill(nombreBussSkill);
+	}
+
+	@Override
+	public void saveAllSkBusSkills(List<SkBusSkill> empSkBussSkills) {
+		skBussSkillRepository.saveAll(empSkBussSkills);
 	}
 }
