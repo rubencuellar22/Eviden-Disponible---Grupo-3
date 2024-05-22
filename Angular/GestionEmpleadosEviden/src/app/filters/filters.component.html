@@ -1,38 +1,19 @@
-<!-- filters.component.html -->
 <section class="flex flex-wrap mainbox ml-10 mr-10 mb-4 rounded-lg relative">
   <div class="flex flex-wrap">
     <div class="p-1 flex flex-wrap flex-auto flex-col gap-2">
       <div class="mt-2 ml-2 filters font-bold pb-2">Selection of filters</div>
       <div class="ml-2 flex flex-wrap gap-4">
         <div>
-          <select class="filters" name="col" id="col">
-            <option value="" disabled selected>Name of columns</option>
-            <option value="1">Gin</option>
-            <option value="2">Name</option>
-            <option value="3">Subgroup</option>
-            <option value="4">Status</option>
-            <option value="5">Bench</option>
-            <option value="6">Das</option>
-            <option value="7">Ciudad</option>
-            <option value="8">Agrupacion</option>
-            <option value="9">Line Manager</option>
-            <option value="10">Jornada</option>
-            <option value="11">Gcm</option>
-            <option value="12">Categoria</option>
-            <option value="13">Nivel GCM</option>
-            <option value="14">SCR</option>
-            <option value="15">Grupo</option>
-            <option value="16">N4</option>
-            <option value="17">Job Technology</option>
-            <option value="18">Skills</option>
-            <option value="19">Role</option>
-            <option value="20">RLT</option>
-            <option value="21">Sk Languages</option>
-            <option value="22">Sk Methods</option>
-            <option value="23">Sk Tech Skills</option>
-            <option value="24">Sk Certifs</option>
-            <option value="25">Sk Technologies</option>
-            <option value="26">Sk Bus Skills</option>
+          <select class="filters" name="col" id="col" [(ngModel)]="selectedFilter">
+            <option value="" disabled selected>Select filter</option>
+            <option value="status">Status</option>
+            <option value="bench">Bench</option>
+            <option value="ciudad">Ciudad</option>
+            <option value="jornada">Jornada</option>
+            <option value="groups">Groups</option>
+            <option value="n4">N4</option>
+            <option value="categoria">Categoria</option>
+            <option value="scr">SCR</option>
           </select>
         </div>
 
@@ -77,8 +58,16 @@
       </div>
     </div>
     <div>
-      <button class="boton place-content-end text-white font-bold py-2 px-4 rounded absolute bottom-4 right-4" (click)="applyFilter()">Apply</button>
+      <button
+        class="boton place-content-end text-white font-bold py-2 px-4 rounded absolute bottom-4 right-4"
+        [disabled]="!selectedFilter || tags.length === 0"
+        (click)="applyFilter()"
+      >
+        Apply
+      </button>
+      <div *ngIf="errorMessage" class="text-red-500 mt-2">
+        {{ errorMessage }}
+      </div>
     </div>
   </div>
-
 </section>
