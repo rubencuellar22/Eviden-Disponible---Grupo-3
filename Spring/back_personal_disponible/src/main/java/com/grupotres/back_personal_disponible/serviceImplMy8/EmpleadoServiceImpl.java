@@ -143,6 +143,16 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 	}
 
 	@Override
+	public void saveAllEmpleados(List<Empleado> empleados) {
+		empleadoRepository.saveAll(empleados);
+	}
+
+	@Override
+	public List<Empleado> getAllEmpleados() {
+		return empleadoRepository.findAll();
+	}
+
+	@Override
 	public List<Empleado> findbyStatus(String status) {
 		// TODO Auto-generated method stub
 		return empleadoRepository.findbyStatus(status);

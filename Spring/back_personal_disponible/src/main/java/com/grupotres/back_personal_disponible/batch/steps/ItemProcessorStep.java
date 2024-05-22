@@ -4,6 +4,7 @@ import com.grupotres.back_personal_disponible.model.*;
 import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.batch.core.step.tasklet.Tasklet;
+import org.springframework.batch.item.ExecutionContext;
 import org.springframework.batch.repeat.RepeatStatus;
 
 import java.util.ArrayList;
@@ -31,50 +32,45 @@ public class ItemProcessorStep implements Tasklet {
             grupoList.add(emp.getGrupo());
 
             List<JobTechnologyProfile> jobTechnologyProfiles = emp.getJobTechnologyProfiles();
-            for (JobTechnologyProfile jobTechnologyProfile : jobTechnologyProfiles) {
-                jobTechnologyProfile.setEmpleado(emp);
-                jobTechnologyProfileList.add(jobTechnologyProfile);
-            }
+            jobTechnologyProfileList.addAll(jobTechnologyProfiles);
 
             roleList.add(emp.getRole());
 
             List<SkLenguage> skLenguages = emp.getSkLenguages();
-            for (SkLenguage skLenguage : skLenguages) {
-                skLenguage.setEmpleado(emp);
-                skLenguageList.add(skLenguage);
-            }
+            skLenguageList.addAll(skLenguages);
 
             List<SkMethod> skMethods = emp.getSkMethods();
-            for (SkMethod skMethod : skMethods) {
-                skMethod.setEmpleado(emp);
-                skMethodList.add(skMethod);
-            }
+            skMethodList.addAll(skMethods);
 
             List<SkTechSkill> skTechSkills = emp.getSkTechSkills();
-            for (SkTechSkill skTechSkill : skTechSkills) {
-                skTechSkill.setEmpleado(emp);
-                skTechSkillList.add(skTechSkill);
-            }
+            skTechSkillList.addAll(skTechSkills);
 
             List<SkCertif> skCertifs = emp.getSkCertifs();
-            for (SkCertif skCertif : skCertifs) {
-                skCertif.setEmpleado(emp);
-                skCertifList.add(skCertif);
-            }
+            skCertifList.addAll(skCertifs);
 
             List<SkTechnology> skTechnologies = emp.getSkTechnologies();
-            for (SkTechnology skTechnology : skTechnologies) {
-                skTechnology.setEmpleado(emp);
-                skTechnologyList.add(skTechnology);
-            }
+            skTechnologyList.addAll(skTechnologies);
 
             List<SkBusSkill> skBussSkills = emp.getSkBusSkills();
-            for (SkBusSkill skBussSkill : skBussSkills) {
-                skBussSkill.setEmpleado(emp);
-                skBussSkillList.add(skBussSkill);
-            }
+            skBussSkillList.addAll(skBussSkills);
 
         }
+
+        ExecutionContext executionContext = chunkContext
+                .getStepContext()
+                .getStepExecution()
+                .getJobExecution()
+                .getExecutionContext();
+
+        executionContext.put("grupoList", grupoList);
+        executionContext.put("jobTechnologyProfileList", jobTechnologyProfileList);
+        executionContext.put("roleList", roleList);
+        executionContext.put("skLenguageList", skLenguageList);
+        executionContext.put("skMethodList", skMethodList);
+        executionContext.put("skTechSkillList", skTechSkillList);
+        executionContext.put("skCertifList", skCertifList);
+        executionContext.put("skTechnologyList", skTechnologyList);
+        executionContext.put("skBussSkillList", skBussSkillList);
 
 
         return RepeatStatus.FINISHED;
