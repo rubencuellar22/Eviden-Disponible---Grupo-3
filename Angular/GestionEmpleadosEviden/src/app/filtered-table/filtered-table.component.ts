@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Empleado } from '../classes/empleado';
 
 @Component({
   selector: 'app-filtered-table',
@@ -7,5 +8,5 @@ import { Component } from '@angular/core';
 })
 
 export class FilteredTableComponent {
-
+  @Input() empleados: Empleado[] = [];
 }

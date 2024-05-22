@@ -1,21 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Empleado } from '../classes/empleado';
-
 
 @Component({
   selector: 'app-filters',
   templateUrl: './filters.component.html',
   styleUrls: ['./filters.component.css']
 })
-export class FiltersComponent implements OnInit {
+export class FiltersComponent {
   newTag: string = '';
   tags: string[] = [];
   empleados: Empleado[] = [];
 
-  constructor(private http: HttpClient) {}
+  @Output() empleadosFiltrados = new EventEmitter<Empleado[]>();
 
-  ngOnInit(): void {}
+  constructor(private http: HttpClient) {}
 
   addTag(): void {
     if (this.newTag && !this.tags.includes(this.newTag)) {
@@ -30,12 +29,11 @@ export class FiltersComponent implements OnInit {
 
   applyFilter(): void {
     const ciudadTag = this.tags.find(tag => tag.toLowerCase() === 'madrid');
-    console.log("hola");
     if (ciudadTag) {
-      console.log("Aqui llega");
       this.http.get<Empleado[]>(`http://localhost:8080/empleado/ciudad/${ciudadTag}`).subscribe(
         (data: Empleado[]) => {
           this.empleados = data;
+          this.empleadosFiltrados.emit(this.empleados); // Emitir los empleados filtrados al componente padre
         },
         error => {
           console.error('Error al buscar empleados:', error);
