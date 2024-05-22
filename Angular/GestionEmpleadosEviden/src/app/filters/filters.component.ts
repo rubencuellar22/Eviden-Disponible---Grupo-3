@@ -28,7 +28,8 @@ export class FiltersComponent {
   }
 
   applyFilter(): void {
-    const ciudadTag = this.tags.find(tag => tag.toLowerCase() === 'madrid');
+    // No hay necesidad de verificar si ciudadTag es igual a 'Madrid'
+    const ciudadTag = this.tags.length > 0 ? this.tags[0] : null;
     if (ciudadTag) {
       this.http.get<Empleado[]>(`http://localhost:8080/empleado/ciudad/${ciudadTag}`).subscribe(
         (data: Empleado[]) => {
@@ -41,4 +42,6 @@ export class FiltersComponent {
       );
     }
   }
-}
+  
+    }
+  
