@@ -26,4 +26,10 @@ public class SkCertifServiceImpl implements SkCertifService {
 		}
 		return empleados;
     }
+
+	@Override
+	public List<Empleado> findEmpleadosByCertifNombreAndNivel(String nombre, int external) {
+		 return skCertifRepository.findEmpleadosByCertifNombreAndNivel(nombre, external);
+		    
+	}
 }

@@ -4,10 +4,10 @@ import { DetailsComponent } from './details/details.component';
 import { FirstPageComponent } from './first-page/first-page.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/landing', pathMatch: 'full' },
   { path: 'landing', component: FirstPageComponent },
-  { path: 'details', component: DetailsComponent }
+  { path: 'details', component: DetailsComponent },
 ];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

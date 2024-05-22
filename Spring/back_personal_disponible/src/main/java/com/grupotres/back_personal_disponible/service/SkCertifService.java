@@ -9,8 +9,10 @@ import com.grupotres.back_personal_disponible.model.Empleado;
 @Service
 public interface SkCertifService {
 	
-	List<Empleado> findEmpleadosByCertifNombre(String skcertif); 
-	
+	List<Empleado> findEmpleadosBySkCertif(String skcertif);
+
+	List<Empleado> findEmpleadosBySkCertifAndExternal(String skcertif, boolean external); 
+
 } 
 
 	

@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class EmpleadoDTO implements Serializable {
 	/**
 	 * 
@@ -35,6 +36,7 @@ public class EmpleadoDTO implements Serializable {
     private String categoria;
     private int nivelgcm;
     private Double scr;
+	private GrupoDTO grupo;
     private String n4;
     private String jobTechnology;
     private List<JobTechnologyProfileDTO> jobTechnologyProfiles;
@@ -63,38 +65,39 @@ public class EmpleadoDTO implements Serializable {
         	this.setCategoria(emp.getCategoria());
         	this.setNivelgcm(emp.getNivelgcm());
         	this.setScr(emp.getScr());
+			this.setGrupo(new GrupoDTO(emp.getGrupo()));
         	this.setN4(emp.getN4());
         	this.setJobTechnology(emp.getJobTechnology());
         	this.setSkills(emp.getSkills());
-        	this.setRole(new RoleDTO().roleToRoleDTO(emp.getRole()));
+        	this.setRole(new RoleDTO(emp.getRole()));
         	this.setRlt(emp.isRlt());
         	this.setJobTechnologyProfiles(new ArrayList<JobTechnologyProfileDTO>());
         	for(JobTechnologyProfile jtp : emp.getJobTechnologyProfiles()) {
-        		this.getJobTechnologyProfiles().add(new JobTechnologyProfileDTO().jobTechnologyProfileToJobTechnologyProfileDTO(jtp));
+        		this.getJobTechnologyProfiles().add(new JobTechnologyProfileDTO(jtp));
         	}
         	this.setSkLenguages(new ArrayList<SkLenguageDTO>());
         	for(SkLenguage skl : emp.getSkLenguages()) {
-        		this.getSkLenguages().add(new SkLenguageDTO().skLenguageToSkLenguageDTO(skl));
+        		this.getSkLenguages().add(new SkLenguageDTO(skl));
         	}
         	this.setSkMethods(new ArrayList<SkMethodDTO>());
         	for(SkMethod skm : emp.getSkMethods()) {
-        		this.getSkMethods().add(new SkMethodDTO().skMethodToSkMethodDTO(skm));
+        		this.getSkMethods().add(new SkMethodDTO(skm));
         	}
         	this.setSkTechSkills(new ArrayList<SkTechSkillDTO>());
         	for(SkTechSkill skts : emp.getSkTechSkills()) {
-        		this.getSkTechSkills().add(new SkTechSkillDTO().skTechSkillToSkTechSkillDTO(skts));
+        		this.getSkTechSkills().add(new SkTechSkillDTO(skts));
         	}
         	this.setSkCertifs(new ArrayList<SkCertifDTO>());
             for(SkCertif skc : emp.getSkCertifs()) {
-                this.getSkCertifs().add(new SkCertifDTO().skCertifToSkCertifDTO(skc));
+                this.getSkCertifs().add(new SkCertifDTO(skc));
             }
             this.setSkTechnologies(new ArrayList<SkTechnologyDTO>());
             for(SkTechnology skt : emp.getSkTechnologies()) {
-                this.getSkTechnologies().add(new SkTechnologyDTO().skTechnologyToSkTechnologyDTO(skt));
+                this.getSkTechnologies().add(new SkTechnologyDTO(skt));
             }
             this.setSkBusSkills(new ArrayList<SkBusSkillDTO>());
             for(SkBusSkill skbs : emp.getSkBusSkills()) {
-                this.getSkBusSkills().add(new SkBusSkillDTO().skBusSkillToSkBusSkillDTO(skbs));
+                this.getSkBusSkills().add(new SkBusSkillDTO(skbs));
             }
 
     }

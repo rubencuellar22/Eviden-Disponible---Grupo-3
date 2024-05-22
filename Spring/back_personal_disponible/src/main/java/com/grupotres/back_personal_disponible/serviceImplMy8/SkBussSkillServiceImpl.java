@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.grupotres.back_personal_disponible.model.Empleado;
 import com.grupotres.back_personal_disponible.model.SkBusSkill;
-import com.grupotres.back_personal_disponible.model.SkLenguage;
 import com.grupotres.back_personal_disponible.repository.SkBussSkillRepository;
 import com.grupotres.back_personal_disponible.service.SkBussSkillService;
 
@@ -18,11 +17,23 @@ public class SkBussSkillServiceImpl implements SkBussSkillService{
 	private SkBussSkillRepository skBussSkillRepository;
 
 	@Override
-	public List<Empleado> findEmpleadosByBussSkill(String skBusSkill) {
-		List<SkBusSkill> skBussSkills = skBussSkillRepository.findEmpleadosByBussSkill(skBusSkill);
+	public List<Empleado> findEmpleadosBySkBussSkill(String skbussskill) {
+		List<SkBusSkill> skBussSkills = skBussSkillRepository.findBySkBussSkill(skbussskill);
 		List<Empleado> empleados = new ArrayList<Empleado>();
 		for(SkBusSkill skBussSkill : skBussSkills) {
 			empleados.add(skBussSkill.getEmpleado());
 		}
-		return empleados;	}
+		return empleados;	
+	}
+
+	@Override
+	public List<Empleado> findEmpleadosBySkBussSkillAndLvl(String skbussskill, int nivel) {
+		List<SkBusSkill> skBussSkills = skBussSkillRepository.findBySkBussSkillAndLvl(skbussskill,nivel);
+		List<Empleado> empleados = new ArrayList<Empleado>();
+		for(SkBusSkill skBussSkill : skBussSkills) {
+			empleados.add(skBussSkill.getEmpleado());
+		}
+		return empleados;	
+	}
+
 }

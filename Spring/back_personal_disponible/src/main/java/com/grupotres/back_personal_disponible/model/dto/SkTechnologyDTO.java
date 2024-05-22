@@ -20,11 +20,9 @@ public class SkTechnologyDTO implements Serializable{
 	private String sktechnology;
 	private int nivel;
 
-    public SkTechnologyDTO skTechnologyToSkTechnologyDTO(SkTechnology skt) {
-		SkTechnologyDTO sktDTO = new SkTechnologyDTO();
-		sktDTO.setIdSkTechnology(skt.getIdSkTechnology());
-		sktDTO.setSktechnology(skt.getSktechnology());
-		sktDTO.setNivel(skt.getNivel());
-		return sktDTO;
+    public SkTechnologyDTO (SkTechnology skt) {
+		this.setIdSkTechnology(skt.getIdSkTechnology());
+		this.setSktechnology(skt.getSktechnology());
+		this.setNivel(skt.getNivel());
     }
 }

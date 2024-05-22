@@ -19,9 +19,9 @@ public class SkBussSkillRestController {
 	@Autowired
 	private SkBussSkillService skBussSkillService;
 
-	@GetMapping("/{skBussSkill}")
-	public ResponseEntity<?>getEmpleadosByBussSkill(@PathVariable String skBussSkill) {
-		List<Empleado> empleados = skBussSkillService.findEmpleadosByBussSkill(skBussSkill);
+	@GetMapping("/{skbussskill}")
+	public ResponseEntity<?>getEmpleadosByBussSkill(@PathVariable String skbussskill) {
+		List<Empleado> empleados = skBussSkillService.findEmpleadosBySkBussSkill(skbussskill);
 		List<EmpleadoDTO> empleadosDTO = new ArrayList<EmpleadoDTO>();
 		for (Empleado emp : empleados) {
 			empleadosDTO.add(new EmpleadoDTO(emp));
@@ -29,6 +29,14 @@ public class SkBussSkillRestController {
 		return ResponseEntity.ok(empleadosDTO);
 	}
 	
-	
-	
+	 @GetMapping("/{skbussskill}/{nivel}")
+	 public ResponseEntity<?> getEmpleadosByBussSkillAndNivel(@PathVariable String skbussskill,@PathVariable Integer nivel) {
+	 List<Empleado> empleados = skBussSkillService.findEmpleadosBySkBussSkillAndLvl(skbussskill, nivel);
+		List<EmpleadoDTO> empleadosDTO = new ArrayList<EmpleadoDTO>();
+		for (Empleado emp : empleados) {
+			empleadosDTO.add(new EmpleadoDTO(emp));
+		}
+		return ResponseEntity.ok(empleadosDTO);
+    }
+
 }

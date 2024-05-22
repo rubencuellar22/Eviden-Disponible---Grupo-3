@@ -3,6 +3,7 @@ package com.grupotres.back_personal_disponible.service;
 import java.math.BigDecimal;
 import java.util.List;
 
+import com.grupotres.back_personal_disponible.model.dto.EmpleadoDTO;
 import org.springframework.stereotype.Service;
 
 import com.grupotres.back_personal_disponible.model.Empleado;
@@ -28,4 +29,8 @@ public interface EmpleadoService {
 	// List<Empleado> findbyCcname(String ccname);
 
 	List<Empleado> findbyScr(BigDecimal scr);
+
+    List<Empleado> findbyGrupos(String groups);
+
+	List<EmpleadoDTO> getEmpleadosByStatusFromList(List<EmpleadoDTO> empleadosDTO, String status);
 }

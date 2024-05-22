@@ -16,16 +16,26 @@ import com.grupotres.back_personal_disponible.service.SkCertifService;
 
 
 @RestController
-@RequestMapping("/empleado/sk_certif/certif")
+@RequestMapping("/empleado/skcertif")
 public class SkCertifRestController {
 
 	@Autowired
     private SkCertifService skCertifService;
 	
 	
-	 @GetMapping("/{nombre}")
-	 public ResponseEntity<?> findEmpleadosByCertifNombre(@PathVariable String nombre){
-		List<Empleado> empleados = skCertifService.findEmpleadosByCertifNombre(nombre);
+	 @GetMapping("/{skcertif}")
+	 public ResponseEntity<?> getEmpleadosByCertifNombre(@PathVariable String skcertif){
+		List<Empleado> empleados = skCertifService.findEmpleadosBySkCertif(skcertif);
+		List<EmpleadoDTO> empleadosDTO = new ArrayList<EmpleadoDTO>();
+		for (Empleado emp : empleados) {
+			empleadosDTO.add(new EmpleadoDTO(emp));
+		}
+		return ResponseEntity.ok(empleadosDTO);
+	}
+	 
+	 @GetMapping("/{skcertif}/{external}")
+	 public ResponseEntity<?> getEmpleadosByCertifNombreAndNivel(@PathVariable String skcertif, @PathVariable boolean external){
+		List<Empleado> empleados = skCertifService.findEmpleadosBySkCertifAndExternal(skcertif, external);
 		List<EmpleadoDTO> empleadosDTO = new ArrayList<EmpleadoDTO>();
 		for (Empleado emp : empleados) {
 			empleadosDTO.add(new EmpleadoDTO(emp));

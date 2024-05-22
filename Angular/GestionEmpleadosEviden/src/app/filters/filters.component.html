@@ -3,7 +3,7 @@
 >
   <div class="flex flex-wrap">
     <div class="p-1 flex flex-wrap flex-auto flex-col gap-2">
-      <div class="mt-2 ml-2 filters pb-2">Selection of filters</div>
+      <div class="mt-2 ml-2 filters font-bold pb-2">Selection of filters</div>
 
       <div class="ml-2 flex flex-wrap gap-4">
         <div>
@@ -15,161 +15,134 @@
           </select>
         </div>
 
-        <div class="flex flew-wrap flex-col">
-          <div>
-            <input
-              type="text"
-              id="search-bar"
-              placeholder=" Filter here your fields"
-              class="end"
-            />
-          </div>
+        <div class="flex flex-wrap flex-row ">
+          <div class="flex flex-wrap flex-col ">
+            <div>
+              <input
+                type="text"
+                [(ngModel)]="newTag"
+                id="small-input"
+                class="block  p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs"
+              />
+            </div>
 
-          <div>
-            <h3 class="mb-2 font-semibold mt-2 text-black">Level</h3>
-            <div class="flex">
-              <div class="w-56">
-                <div class="p-1">
-                  <div class="flex items-center">
-                    <input
-                      id="novice-checkbox"
-                      type="checkbox"
-                      value=""
-                      class="w-4 h-4 text-sky-500 bg-sky-100 border-sky-300 rounded focus:ring-sky-500 dark:focus:ring-sky-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-sky-600 dark:border-sky-500"
-                    />
-                    <label for="novice-checkbox" class="ml-2 text-sm font-medium text-black dark:text-black">1 - Novice</label>
+     
+          </div>
+          <div class="flex flex-col ml-3 ">
+
+          <h3 class="mb-2 mt-0 font-semibold  text-black">Level</h3>
+              <div class="flex">
+                <div class="w-56">
+                  <div class="p-1">
+                    <div class="flex items-center">
+                      <input
+                        id="novice-checkbox"
+                        type="checkbox"
+                        value=""
+                        class="w-4 h-4 text-sky-500 bg-sky-100 border-sky-300 rounded focus:ring-sky-500 dark:focus:ring-sky-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-sky-600 dark:border-sky-500"
+                      />
+                      <label for="novice-checkbox" class="ml-2 text-sm font-medium text-black dark:text-black">1 - Novice</label>
+                    </div>
+                  </div>
+                  <div class="p-1">
+                    <div class="flex items-center">
+                      <input
+                        id="junior-checkbox"
+                        type="checkbox"
+                        value=""
+                        class="w-4 h-4 text-sky-500 bg-sky-100 border-sky-300 rounded focus:ring-sky-500 dark:focus:ring-sky-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-sky-600 dark:border-sky-500"
+                      />
+                      <label for="junior-checkbox" class="ml-2 text-sm font-medium text-black dark:text-black">2 - Junior</label>
+                    </div>
+                  </div>
+                  <div class="p-1">
+                    <div class="flex items-center">
+                      <input
+                        id="proficient-checkbox"
+                        type="checkbox"
+                        value=""
+                        class="w-4 h-4 text-sky-500 bg-sky-100 border-sky-300 rounded focus:ring-sky-500 dark:focus:ring-sky-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-sky-600 dark:border-sky-500"
+                      />
+                      <label for="proficient-checkbox" class="ml-2 text-sm font-medium text-black dark:text-black">3 - Proficient</label>
+                    </div>
                   </div>
                 </div>
-                <div class="p-1">
-                  <div class="flex items-center">
-                    <input
-                      id="junior-checkbox"
-                      type="checkbox"
-                      value=""
-                      class="w-4 h-4 text-sky-500 bg-sky-100 border-sky-300 rounded focus:ring-sky-500 dark:focus:ring-sky-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-sky-600 dark:border-sky-500"
-                    />
-                    <label for="junior-checkbox" class="ml-2 text-sm font-medium text-black dark:text-black">2 - Junior</label>
+                <div class="w-1/2">
+                  <div class="p-1">
+                    <div class="flex items-center">
+                      <input
+                        id="senior-checkbox"
+                        type="checkbox"
+                        value=""
+                        class="w-4 h-4 text-sky-500 bg-sky-100 border-sky-300 rounded focus:ring-sky-500 dark:focus:ring-sky-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-sky-600 dark:border-sky-500"
+                      />
+                      <label for="senior-checkbox" class="ml-2 text-sm font-medium text-black dark:text-black">4 - Senior</label>
+                    </div>
                   </div>
-                </div>
-                <div class="p-1">
-                  <div class="flex items-center">
-                    <input
-                      id="proficient-checkbox"
-                      type="checkbox"
-                      value=""
-                      class="w-4 h-4 text-sky-500 bg-sky-100 border-sky-300 rounded focus:ring-sky-500 dark:focus:ring-sky-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-sky-600 dark:border-sky-500"
-                    />
-                    <label for="proficient-checkbox" class="ml-2 text-sm font-medium text-black dark:text-black">3 - Proficient</label>
+                  <div class="p-1">
+                    <div class="flex items-center">
+                      <input
+                        id="expert-checkbox"
+                        type="checkbox"
+                        value=""
+                        class="w-4 h-4 text-sky-500 bg-sky-100 border-sky-300 rounded focus:ring-sky-500 dark:focus:ring-sky-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-sky-600 dark:border-sky-500"
+                      />
+                      <label for="expert-checkbox" class="ml-2 text-sm font-medium text-black dark:text-black">5 - Expert</label>
+                    </div>
                   </div>
-                </div>
-              </div>
-              <div class="w-1/2">
-                <div class="p-1">
-                  <div class="flex items-center">
-                    <input
-                      id="senior-checkbox"
-                      type="checkbox"
-                      value=""
-                      class="w-4 h-4 text-sky-500 bg-sky-100 border-sky-300 rounded focus:ring-sky-500 dark:focus:ring-sky-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-sky-600 dark:border-sky-500"
-                    />
-                    <label for="senior-checkbox" class="ml-2 text-sm font-medium text-black dark:text-black">4 - Senior</label>
-                  </div>
-                </div>
-                <div class="p-1">
-                  <div class="flex items-center">
-                    <input
-                      id="expert-checkbox"
-                      type="checkbox"
-                      value=""
-                      class="w-4 h-4 text-sky-500 bg-sky-100 border-sky-300 rounded focus:ring-sky-500 dark:focus:ring-sky-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-sky-600 dark:border-sky-500"
-                    />
-                    <label for="expert-checkbox" class="ml-2 text-sm font-medium text-black dark:text-black">5 - Expert</label>
-                  </div>
-                </div>
-                <div class="p-1">
-                  <div class="flex items-center">
-                   <button class="boton text-white py-1 px-2 font-bold rounded  bottom-4 right-4 m-3">Add</button>
+                  <div class="p-1">
+                    <div class="flex items-center">
+                      <button class="boton text-white py-1 px-2 font-bold rounded bottom-4 right-4 m-3" (click)="addTag()">Add</button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+
+         
+            
         </div>
-      </div>
-    </div>
-          
-          
-
-    <div class="flex flex-auto gap-3 mt-4">
-      <div>
-        <span
-          id="badge-dismiss-default"
-          class="inline-flex items-center px-2 py-1 me-2 text-sm font-medium text-blue-800 bg-blue-100 rounded dark:bg-blue-900 dark:text-blue-300"
-        >
-          Java
-          <button
-            type="button"
-            class="inline-flex items-center p-1 ms-2 box-border text-sm text-blue-400 bg-transparent rounded-sm hover:bg-blue-200 hover:text-blue-900 dark:hover:bg-blue-800 dark:hover:text-blue-300"
-            data-dismiss-target="#badge-dismiss-default"
-            aria-label="Remove"
-          >
-            <svg
-              class="w-2 h-2"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 14 14"
-            >
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-              />
-            </svg>
-            <span class="sr-only">Remove badge</span>
-          </button>
-        </span>
-      </div>
-
-      <div class="">
-        <span
-          id="badge-dismiss-default"
-          class="inline-flex items-center px-2 py-1 me-2 text-sm font-medium text-blue-800 bg-blue-100 rounded dark:bg-blue-900 dark:text-blue-300"
-        >
-          PHP
-          <button
-            type="button"
-            class="inline-flex items-center p-1 ms-2 box-border text-sm text-blue-400 bg-transparent rounded-sm hover:bg-blue-200 hover:text-blue-900 dark:hover:bg-blue-800 dark:hover:text-blue-300"
-            data-dismiss-target="#badge-dismiss-default"
-            aria-label="Remove"
-          >
-            <svg
-              class="w-2 h-2"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 14 14"
-            >
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-              />
-            </svg>
-            <span class="sr-only">Remove badge</span>
-          </button>
-        </span>
       </div>
     </div>
   </div>
 
-  <div class="grid place-content-end m-4 flex-auto">
+  <div class="grid m-1 flex-auto">
+    <div class="grid gap-1 mt-4 border-l-orange-500 border-4 border-r-0 border-b-0 border-t-0" style="grid-template-columns: repeat(4, 1fr);">
+      <div *ngFor="let tag of tags" class="ml-2">
+        <span
+          class="inline-flex items-center px-2 py-1 me-2 text-sm font-medium text-black bg-white border-tag rounded-md"
+        >
+          {{ tag }}
+          <button
+            type="button"
+            class="inline-flex items-center p-1 ms-2 box-border text-sm text-blue-400 bg-transparent rounded-sm  hover:text-white hover:bg-blue-700 "
+            (click)="removeTag(tag)"
+            aria-label="Remove"
+          >
+            <svg
+              class="w-2 h-2"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 14 14"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+              />
+            </svg>
+            <span class="sr-only">Remove badge</span>
+          </button>
+        </span>
+      </div>
+    </div>
+    
+    
     <div>
-      <button class="boton text-white font-bold py-2 px-4 rounded absolute bottom-4 right-4">
+      <button class="boton place-content-end  text-white font-bold py-2 px-4 rounded absolute bottom-4 right-4">
         Apply
       </button>
     </div>
