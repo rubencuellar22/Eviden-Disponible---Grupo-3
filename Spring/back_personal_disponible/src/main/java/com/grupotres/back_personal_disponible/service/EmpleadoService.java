@@ -49,5 +49,14 @@ public interface EmpleadoService {
 	
 	List<EmpleadoDTO> getEmpleadosByScrFromList(List<EmpleadoDTO> empleadosDTO, String scr);
 	
+	List<EmpleadoDTO> getEmpleadosBySkCertifFromList(List<EmpleadoDTO> empleadosDTO, String nombre);
+
+	List<EmpleadoDTO> getEmpleadosBySkLenguageFromList(List<EmpleadoDTO> empleadosDTO, String sklenguage);
+	
+	List<EmpleadoDTO> getEmpleadosBySkMethodFromList(List<EmpleadoDTO> empleadosDTO, String skMethods);
+	
+	List<EmpleadoDTO> getEmpleadosBySkTechnologyFromList(List<EmpleadoDTO> empleadosDTO, String nombre);
+	
+	List<EmpleadoDTO> getEmpleadosBySkTechSkillFromList(List<EmpleadoDTO> empleadosDTO, String skTechSkill);
 
 }

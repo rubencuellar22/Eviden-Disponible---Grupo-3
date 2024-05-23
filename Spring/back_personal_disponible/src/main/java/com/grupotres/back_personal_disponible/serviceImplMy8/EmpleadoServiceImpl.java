@@ -262,6 +262,61 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 		}
 		return empleadosDTOFiltered;
 	}
+
+	@Override
+	public List<EmpleadoDTO> getEmpleadosBySkCertifFromList(List<EmpleadoDTO> empleadosDTO, String nombre) {
+		List<EmpleadoDTO> empleadosDTOFiltered = new ArrayList<>();
+		for (EmpleadoDTO emp : empleadosDTO) {
+			if (emp.getSkCertifs().equals(nombre)) {
+				empleadosDTOFiltered.add(emp);
+			}
+		}
+		return empleadosDTOFiltered;
+	}
+
+	@Override
+	public List<EmpleadoDTO> getEmpleadosBySkLenguageFromList(List<EmpleadoDTO> empleadosDTO, String sklenguage) {
+		List<EmpleadoDTO> empleadosDTOFiltered = new ArrayList<>();
+		for (EmpleadoDTO emp : empleadosDTO) {
+			if (emp.getSkLenguages().equals(sklenguage)) {
+				empleadosDTOFiltered.add(emp);
+			}
+		}
+		return empleadosDTOFiltered;
+	}
+
+	@Override
+	public List<EmpleadoDTO> getEmpleadosBySkMethodFromList(List<EmpleadoDTO> empleadosDTO, String skMethods) {
+		List<EmpleadoDTO> empleadosDTOFiltered = new ArrayList<>();
+		for (EmpleadoDTO emp : empleadosDTO) {
+			if (emp.getSkMethods().equals(skMethods)) {
+				empleadosDTOFiltered.add(emp);
+			}
+		}
+		return empleadosDTOFiltered;
+	}
+
+	@Override
+	public List<EmpleadoDTO> getEmpleadosBySkTechnologyFromList(List<EmpleadoDTO> empleadosDTO, String nombre) {
+		List<EmpleadoDTO> empleadosDTOFiltered = new ArrayList<>();
+		for (EmpleadoDTO emp : empleadosDTO) {
+			if (emp.getSkTechnologies().equals(nombre)) {
+				empleadosDTOFiltered.add(emp);
+			}
+		}
+		return empleadosDTOFiltered;
+	}
+
+	@Override
+	public List<EmpleadoDTO> getEmpleadosBySkTechSkillFromList(List<EmpleadoDTO> empleadosDTO, String skTechSkill) {
+		List<EmpleadoDTO> empleadosDTOFiltered = new ArrayList<>();
+		for (EmpleadoDTO emp : empleadosDTO) {
+			if (emp.getSkTechSkills().equals(skTechSkill)) {
+				empleadosDTOFiltered.add(emp);
+			}
+		}
+		return empleadosDTOFiltered;
+	}
 	
 	
 	/*@Override

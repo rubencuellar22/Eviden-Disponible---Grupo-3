@@ -5,11 +5,14 @@ import java.util.List;
  
 import com.grupotres.back_personal_disponible.model.Empleado;
 import com.grupotres.back_personal_disponible.model.dto.EmpleadoDTO;
+import com.grupotres.back_personal_disponible.service.EmpleadoService;
 import com.grupotres.back_personal_disponible.service.SkLenguageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
  
@@ -17,6 +20,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/empleado/skLenguage")
 public class SkLenguagesRestController {
  
+	@Autowired
+	private EmpleadoService empleadoService;
+	
 	@Autowired
 	private SkLenguageService skLenguageService;
  
@@ -29,7 +35,12 @@ public class SkLenguagesRestController {
 		}
 		return ResponseEntity.ok(empleadosDTO);
 	}
- 
+	
+	@PostMapping("/{sklenguage}")
+	public ResponseEntity<?> findEmpleadosByCertifNombre(@PathVariable String sklenguage, @RequestBody List<EmpleadoDTO> empleadosFiltradosDTO) {
+	    List<EmpleadoDTO> empleadosDTOFiltrados = empleadoService.getEmpleadosBySkLenguageFromList(empleadosFiltradosDTO, sklenguage);
+	    return ResponseEntity.ok(empleadosDTOFiltrados);
+	}
  
 	@GetMapping("/{sklenguage}/{nivel}")
 	public ResponseEntity<?>getSkLenguagesByLenguageAndLvl(@PathVariable String sklenguage, @PathVariable String nivel) {
