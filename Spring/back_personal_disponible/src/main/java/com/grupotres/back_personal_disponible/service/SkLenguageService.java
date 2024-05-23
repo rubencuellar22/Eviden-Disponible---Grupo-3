@@ -16,4 +16,6 @@ public interface SkLenguageService {
 	public List<SkLenguage> getSkLenguagesByLenguageAndLvl(String sklenguage,String nivel);
 
     void saveAllSkLenguages(List<SkLenguage> empSkLenguages);
+
+    void deleteAllSkLenguages();
 }

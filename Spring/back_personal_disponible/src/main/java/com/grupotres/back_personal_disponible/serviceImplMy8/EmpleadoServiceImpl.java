@@ -204,6 +204,11 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 		return empleadosDTOFiltered;
 	}
 
+	@Override
+	public void deleteAllEmpleados() {
+		empleadoRepository.deleteAllInBatch();
+	}
+
 	/*@Override
 	public List<Empleado> findByBench(String bench) {
 		// TODO Auto-generated method stub

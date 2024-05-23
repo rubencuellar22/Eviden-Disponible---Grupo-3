@@ -32,4 +32,9 @@ public class SkMethodServiceImpl implements SkMethodService {
 		skMethodRepository.saveAll(empSkMethods);
 	}
 
+	@Override
+	public void deleteAllSkMethods() {
+		skMethodRepository.deleteAllInBatch();
+	}
+
 }

@@ -24,4 +24,9 @@ public class SkBussSkillServiceImpl implements SkBussSkillService{
 	public void saveAllSkBusSkills(List<SkBusSkill> empSkBussSkills) {
 		skBussSkillRepository.saveAll(empSkBussSkills);
 	}
+
+	@Override
+	public void deleteAllSkBussSkills() {
+		skBussSkillRepository.deleteAllInBatch();
+	}
 }

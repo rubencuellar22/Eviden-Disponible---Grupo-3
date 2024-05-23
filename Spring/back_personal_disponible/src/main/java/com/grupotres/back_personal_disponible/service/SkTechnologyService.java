@@ -14,4 +14,6 @@ public interface SkTechnologyService {
 	List<Empleado> findEmpleadosByTechnologyAndNivel(String nombreTechnology, int nivel);
 
     void saveAllSkTechnologies(List<SkTechnology> empSkTechnologies);
+
+    void deleteAllSkTechnologies();
 }

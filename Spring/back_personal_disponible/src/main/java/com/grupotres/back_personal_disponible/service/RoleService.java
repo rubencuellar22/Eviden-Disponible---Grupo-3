@@ -12,4 +12,10 @@ public interface RoleService {
     void saveRole(Role role);
 
     public Role getRoleById(Long id);
+
+    boolean existsRoleForEmp(Long gin);
+
+    void deleteRole(Role empRole);
+
+    void deleteAllRoles();
 }

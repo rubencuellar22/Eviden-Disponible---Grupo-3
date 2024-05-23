@@ -13,6 +13,8 @@ public interface SkCertifService {
 	List<Empleado> findEmpleadosByCertifNombre(String nombreCertif);
 
     void saveAllSkCertifs(List<SkCertif> empSkCertifs);
+
+    void deleteAllSkCertifs();
 }
 
 	

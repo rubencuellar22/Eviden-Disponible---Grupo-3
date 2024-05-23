@@ -18,4 +18,14 @@ public class GrupoServiceImpl implements GrupoService {
     public void saveAllGroups(List<Grupo> grupoList) {
         grupoRepository.saveAll(grupoList);
     }
+
+    @Override
+    public List<Grupo> getAllGrupos() {
+        return grupoRepository.findAll();
+    }
+
+    @Override
+    public void deleteAllGrupos() {
+        grupoRepository.deleteAllInBatch();
+    }
 }

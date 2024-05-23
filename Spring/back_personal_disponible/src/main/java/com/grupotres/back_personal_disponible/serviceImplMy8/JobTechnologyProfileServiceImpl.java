@@ -32,4 +32,9 @@ public class JobTechnologyProfileServiceImpl implements JobTechnologyProfileServ
 		jobTechnologyProfileRepository.saveAll(jobTechnologyProfiles);
 	}
 
+	@Override
+	public void deleteAllJobTechnologyProfiles() {
+		jobTechnologyProfileRepository.deleteAllInBatch();
+	}
+
 }

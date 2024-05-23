@@ -6,4 +6,8 @@ import java.util.List;
 
 public interface GrupoService {
     void saveAllGroups(List<Grupo> grupoList);
+
+    List<Grupo> getAllGrupos();
+
+    void deleteAllGrupos();
 }

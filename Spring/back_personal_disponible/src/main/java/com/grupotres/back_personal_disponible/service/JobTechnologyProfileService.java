@@ -11,4 +11,5 @@ public interface JobTechnologyProfileService {
 
 	public void saveAllJobTechnologyProfiles(List<JobTechnologyProfile> jobTechnologyProfiles);
 
+    void deleteAllJobTechnologyProfiles();
 }

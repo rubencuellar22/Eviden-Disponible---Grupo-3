@@ -29,4 +29,9 @@ public class TecnologiaServiceImpl implements SkTechnologyService {
 	public void saveAllSkTechnologies(List<SkTechnology> empSkTechnologies) {
 		skTechnologyRepository.saveAll(empSkTechnologies);
 	}
+
+	@Override
+	public void deleteAllSkTechnologies() {
+		skTechnologyRepository.deleteAllInBatch();
+	}
 }

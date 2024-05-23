@@ -36,4 +36,6 @@ public interface EmpleadoService {
     List<Empleado> findbyGrupos(String groups);
 
 	List<EmpleadoDTO> getEmpleadosByStatusFromList(List<EmpleadoDTO> empleadosDTO, String status);
+
+    void deleteAllEmpleados();
 }

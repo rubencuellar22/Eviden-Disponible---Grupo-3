@@ -37,4 +37,19 @@ public class RolServiceImpl implements RoleService{
 		return roleRepository.findById(id).orElse(null);
 	}
 
+	@Override
+	public boolean existsRoleForEmp(Long gin) {
+        return roleRepository.findByEmpleadoGin(gin) != null;
+    }
+
+	@Override
+	public void deleteRole(Role empRole) {
+		roleRepository.deleteById(empRole.getIdRole());
+	}
+
+	@Override
+	public void deleteAllRoles() {
+		roleRepository.deleteAllInBatch();
+	}
+
 }

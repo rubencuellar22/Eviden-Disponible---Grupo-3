@@ -32,4 +32,9 @@ public class SkTechSkillServiceImpl implements SkTechSkillService {
         skTechSkillRepository.saveAll(empSkTechSkills);
     }
 
+    @Override
+    public void deleteAllSkTechSkills() {
+        skTechSkillRepository.deleteAllInBatch();
+    }
+
 }

@@ -11,4 +11,6 @@ public interface SkBussSkillService {
 	List<Empleado> findEmpleadosByBussSkill(String nombreBussSkill);
 
     void saveAllSkBusSkills(List<SkBusSkill> empSkBussSkills);
+
+    void deleteAllSkBussSkills();
 }

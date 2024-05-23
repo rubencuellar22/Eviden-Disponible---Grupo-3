@@ -1,6 +1,7 @@
 package com.grupotres.back_personal_disponible.batch.steps;
 
 import com.grupotres.back_personal_disponible.model.*;
+import com.grupotres.back_personal_disponible.service.*;
 import com.opencsv.CSVParser;
 import com.opencsv.CSVParserBuilder;
 import com.opencsv.CSVReader;
@@ -18,11 +19,44 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
-public class ItemReaderStep implements Tasklet {
+public class AllInOneTasklet implements Tasklet {
 
     @Autowired
     private ResourceLoader resourceLoader;
+
+    @Autowired
+    private GrupoService grupoService;
+
+    @Autowired
+    private EmpleadoService empleadoService;
+
+    @Autowired
+    private JobTechnologyProfileService jobTechnologyProfileService;
+
+    @Autowired
+    private RoleService roleService;
+
+    @Autowired
+    private SkLenguageService skLenguageService;
+
+    @Autowired
+    private SkMethodService skMethodService;
+
+    @Autowired
+    private SkTechSkillService skTechSkillService;
+
+    @Autowired
+    private SkCertifService skCertifService;
+
+    @Autowired
+    private SkTechnologyService skTechnologyService;
+
+    @Autowired
+    private SkBussSkillService skBusSkillService;
+
 
     @Override
     public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
@@ -136,16 +170,19 @@ public class ItemReaderStep implements Tasklet {
 
             String[] sktechskills = actualLine[28].split("\\|");
             for (String sktechskillString : sktechskills) {
-                String[] parts = sktechskillString.split("\\(");
-                SkTechSkill skillTecnico = new SkTechSkill();
-                skillTecnico.setSkTechSkill(parts[0].trim());
-                if (parts.length > 1) {
-                    String level = parts[1].replaceAll("\\)", "");
+                SkTechSkill skTechSkill = new SkTechSkill();
+                int lastParenthesisIndex = sktechskillString.lastIndexOf("(");
+                if (lastParenthesisIndex != -1) {
+                    String techSkillName = sktechskillString.substring(0, lastParenthesisIndex).trim();
+                    String level = sktechskillString.substring(lastParenthesisIndex).replaceAll("[()]", "").trim();
+                    skTechSkill.setSkTechSkill(techSkillName);
                     if (!level.isEmpty()) {
-                        skillTecnico.setNivel(Integer.parseInt(level.trim()));
+                        skTechSkill.setNivel(Integer.parseInt(level));
                     }
+                } else {
+                    skTechSkill.setSkTechSkill(sktechskillString.trim());
                 }
-                emp.addSkTechSkill(skillTecnico);
+                emp.addSkTechSkill(skTechSkill);
             }
 
             if (actualLine[29].isEmpty() || actualLine[29].isBlank()){
@@ -211,12 +248,98 @@ public class ItemReaderStep implements Tasklet {
         csvReader.close();
         reader.close();
 
-        chunkContext
-                .getStepContext()
-                .getStepExecution()
-                .getJobExecution()
-                .getExecutionContext()
-                .put("empleadoList", empleadoList);
+        List<Grupo> grupoList = new ArrayList<>();
+
+        for (Empleado emp : empleadoList) {
+            grupoList.add(emp.getGrupo());
+        }
+
+        for (Grupo grupo : grupoList) {
+            if (grupoList.stream()
+                    .noneMatch(grupoExistente -> grupoExistente.getGrupos().equals(grupo.getGrupos()))) {
+                grupoList.add(grupo);
+            }
+        }
+
+        Set<String> uniqueGrupos = grupoList.stream()
+                .map(Grupo::getGrupos)
+                .collect(Collectors.toSet());
+
+        List<Grupo> uniqueGrupoList = grupoList.stream()
+                .filter(grupo -> uniqueGrupos.remove(grupo.getGrupos()))
+                .toList();
+
+        grupoService.saveAllGroups(uniqueGrupoList);
+
+        for (Empleado empleado : empleadoList) {
+            empleado.setGrupo(uniqueGrupoList.stream()
+                    .filter(grupo -> grupo.getGrupos().equals(empleado.getGrupo().getGrupos()))
+                    .findFirst()
+                    .orElse(null));
+        }
+
+        empleadoService.saveAllEmpleados(empleadoList);
+
+        List<Empleado> empleadoListFinal = empleadoService.getAllEmpleados();
+
+        for (Empleado empleado : empleadoList) {
+            Empleado empleadoFinal = empleadoListFinal.stream()
+                    .filter(emp -> emp.getGin().equals(empleado.getGin()))
+                    .findFirst()
+                    .orElse(null);
+
+            List<JobTechnologyProfile> empJobTechnologyProfiles = empleado.getJobTechnologyProfiles();
+            for (JobTechnologyProfile jobTechnologyProfile : empJobTechnologyProfiles) {
+                jobTechnologyProfile.setEmpleado(empleadoFinal);
+            }
+            jobTechnologyProfileService.saveAllJobTechnologyProfiles(empJobTechnologyProfiles);
+
+            assert empleadoFinal != null;
+            Role empRole = roleService.getRoleById(empleadoFinal.getRole().getIdRole());
+            if (!roleService.existsRoleForEmp(empleadoFinal.getGin())) {
+                empRole.setEmpleado(empleadoFinal);
+                roleService.saveRole(empRole);
+            } else {
+                roleService.deleteRole(empRole);
+            }
+
+
+            List<SkLenguage> empSkLenguages = empleado.getSkLenguages();
+            for (SkLenguage skLenguage : empSkLenguages) {
+                skLenguage.setEmpleado(empleadoFinal);
+            }
+            skLenguageService.saveAllSkLenguages(empSkLenguages);
+
+            List<SkMethod> empSkMethods = empleado.getSkMethods();
+            for (SkMethod skMethod : empSkMethods) {
+                skMethod.setEmpleado(empleadoFinal);
+            }
+            skMethodService.saveAllSkMethods(empSkMethods);
+
+            List<SkTechSkill> empSkTechSkills = empleado.getSkTechSkills();
+            for (SkTechSkill skTechSkill : empSkTechSkills) {
+                skTechSkill.setEmpleado(empleadoFinal);
+            }
+            skTechSkillService.saveAllSkTechSkills(empSkTechSkills);
+
+            List<SkCertif> empSkCertifs = empleado.getSkCertifs();
+            for (SkCertif skCertif : empSkCertifs) {
+                skCertif.setEmpleado(empleadoFinal);
+            }
+            skCertifService.saveAllSkCertifs(empSkCertifs);
+
+            List<SkTechnology> empSkTechnologies = empleado.getSkTechnologies();
+            for (SkTechnology skTechnology : empSkTechnologies) {
+                skTechnology.setEmpleado(empleadoFinal);
+            }
+            skTechnologyService.saveAllSkTechnologies(empSkTechnologies);
+
+            List<SkBusSkill> empSkBussSkills = empleado.getSkBusSkills();
+            for (SkBusSkill skBusSkill : empSkBussSkills) {
+                skBusSkill.setEmpleado(empleadoFinal);
+            }
+            skBusSkillService.saveAllSkBusSkills(empSkBussSkills);
+        }
 
         return RepeatStatus.FINISHED;
     }

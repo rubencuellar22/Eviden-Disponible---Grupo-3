@@ -25,4 +25,9 @@ public class SkCertifServiceImpl implements SkCertifService {
     public void saveAllSkCertifs(List<SkCertif> empSkCertifs) {
         skCertifRepository.saveAll(empSkCertifs);
     }
+
+    @Override
+    public void deleteAllSkCertifs() {
+        skCertifRepository.deleteAllInBatch();
+    }
 }

@@ -37,5 +37,10 @@ public class SkLenguageServiceImpl implements SkLenguageService {
 		skLenguageRepository.saveAll(empSkLenguages);
 	}
 
+	@Override
+	public void deleteAllSkLenguages() {
+		skLenguageRepository.deleteAllInBatch();
+	}
+
 
 }
