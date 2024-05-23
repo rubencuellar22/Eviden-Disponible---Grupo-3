@@ -17,7 +17,7 @@ public interface EmpleadoRepository extends JpaRepository<Empleado, Long> {
 	List<Empleado> findbyStatus(String status);
 	
 	 @Query("SELECT e FROM Empleado e WHERE e.bench = :benchDate")
-	 List<Empleado> findByBench(@Param("benchDate") Date benchDate);
+	    List<Empleado> findByBench(@Param("benchDate") Date benchDate);
 	
 	@Query("SELECT e FROM Empleado e WHERE e.jornada = ?1")
 	List<Empleado> findByJornada(BigDecimal jornada);
