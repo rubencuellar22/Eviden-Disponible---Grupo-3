@@ -66,8 +66,8 @@ public class BatchConfig {
     public Job job() {
         return new JobBuilder("job", jobRepository)
                 .start(stepDelete())
-                .next(stepAIO())
                 .next(excelToCsvStep())
+                .next(stepAIO())
                 .build();
     }
 }

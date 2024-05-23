@@ -84,7 +84,7 @@ public class AllInOneTasklet implements Tasklet {
             emp.setName(actualLine[1]);
             emp.setSubgroup(actualLine[2]);
             emp.setStatus(actualLine[3]);
-            emp.setBench(((actualLine[4].isEmpty()) || (actualLine[4].isBlank()) ? null : new SimpleDateFormat("M/d/yyyy").parse(actualLine[4])));
+            // emp.setBench(((actualLine[4].isEmpty()) || (actualLine[4].isBlank()) ? null : new SimpleDateFormat("M/d/yyyy").parse(actualLine[4])));
             emp.setDas(actualLine[5]);
             emp.setCiudad(actualLine[6]);
             emp.setLineManager(actualLine[7]);

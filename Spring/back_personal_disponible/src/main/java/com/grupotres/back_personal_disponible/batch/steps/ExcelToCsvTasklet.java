@@ -11,6 +11,7 @@ import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.stereotype.Component;
 
 import java.io.*;
+import java.text.SimpleDateFormat;
 
 @Component
 public class ExcelToCsvTasklet implements Tasklet {
@@ -48,8 +49,13 @@ public class ExcelToCsvTasklet implements Tasklet {
                 return cell.getStringCellValue();
             case NUMERIC:
                 if (DateUtil.isCellDateFormatted(cell)) {
-                    return cell.getDateCellValue().toString();
+                      return cell.getDateCellValue().toString();
                 } else {
+                	String numberString = String.valueOf(cell.getNumericCellValue());
+                	System.out.println("NumberStirng: " + numberString);
+                	if (numberString.split("\\.")[1].equals("0")) {
+                		return numberString.split("\\.")[0];
+                	}
                     return String.valueOf(cell.getNumericCellValue());
                 }
             case BOOLEAN:
