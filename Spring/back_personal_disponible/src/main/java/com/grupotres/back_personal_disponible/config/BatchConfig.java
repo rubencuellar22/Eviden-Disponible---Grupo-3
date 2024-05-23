@@ -7,7 +7,6 @@ import org.springframework.batch.core.configuration.annotation.EnableBatchProces
 import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
-import org.springframework.batch.support.transaction.ResourcelessTransactionManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -48,6 +47,17 @@ public class BatchConfig {
     }
 
 
+    @Bean
+    public ExcelToCsvTasklet excelToCsvTasklet() {
+        return new ExcelToCsvTasklet();
+    }
+
+    @Bean(name = "excelToCsvStep")
+    public Step excelToCsvStep() {
+        return new StepBuilder("excelToCsvStep", jobRepository)
+                .tasklet(excelToCsvTasklet(), transactionManager)
+                .build();
+    }
 
 
 
@@ -57,6 +67,7 @@ public class BatchConfig {
         return new JobBuilder("job", jobRepository)
                 .start(stepDelete())
                 .next(stepAIO())
+                .next(excelToCsvStep())
                 .build();
     }
 }
