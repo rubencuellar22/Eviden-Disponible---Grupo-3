@@ -4,6 +4,13 @@ export class Grupo {
   grupo2: string;
   grupo3: string;
   grupo4: string;
-  grupo5: string;
+  grupos: string;
   C: string;
+
+  
+  toString(): string {
+    return `${this.grupo1}, ${this.grupo2}, ${this.grupo3}, ${this.grupo4}, ${this.grupos}, ${this.C}`;
+  }
+  
 }
+

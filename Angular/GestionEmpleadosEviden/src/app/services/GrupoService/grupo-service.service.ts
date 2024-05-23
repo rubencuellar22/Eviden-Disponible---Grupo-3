@@ -8,7 +8,7 @@ import { Grupo } from '../../classes/Grupo/grupo';
   providedIn: 'root'
 })
 export class GrupoService {
-  private apiUrl = 'http://your-api-url/grupos'; // Reemplaza con tu URL real de la API
+  private apiUrl = 'http://localhost:8080/empleado/groups/{groups}'; // Reemplaza con tu URL real de la API
 
   constructor(private http: HttpClient) {}
 

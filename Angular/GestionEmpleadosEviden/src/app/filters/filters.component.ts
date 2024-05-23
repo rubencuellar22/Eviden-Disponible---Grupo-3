@@ -14,9 +14,11 @@ export class FiltersComponent {
   selectedFilter: string = '';
   errorMessage: string = '';
 
-  @Output() empleadosFiltrados = new EventEmitter<Empleado[]>();
+  @Output() empleadosFiltrados = new EventEmitter<{ empleados: Empleado[], filter: string }>();
 
   constructor(private http: HttpClient) {}
+
+  
 
   addTag(): void {
     if (this.newTag && !this.tags.includes(this.newTag)) {
@@ -56,7 +58,7 @@ export class FiltersComponent {
       case 'jornada':
         endpoint = `http://localhost:8080/empleado/jornada/${filterValue}`;
         break;
-      case 'groups':
+      case 'grupo':
         endpoint = `http://localhost:8080/empleado/groups/${filterValue}`;
         break;
       case 'n4':
@@ -76,13 +78,17 @@ export class FiltersComponent {
 
     this.http.get<Empleado[]>(endpoint).subscribe(
       (data: Empleado[]) => {
+        console.log(data); // Agrega console.log aquí
         this.empleados = data;
-        this.empleadosFiltrados.emit(this.empleados);
+        this.empleadosFiltrados.emit({ empleados: this.empleados, filter: this.selectedFilter });
       },
       error => {
         console.error('Error al buscar empleados:', error);
         this.errorMessage = 'Error fetching data.';
       }
     );
+
+    
+    
   }
 }

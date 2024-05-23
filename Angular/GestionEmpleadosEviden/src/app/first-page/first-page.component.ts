@@ -9,6 +9,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class FirstPageComponent {
   empleados: Empleado[] = [];
+  selectedFilter: string = '';
+
 
   constructor(private http: HttpClient) {}
 
@@ -23,7 +25,8 @@ export class FirstPageComponent {
     );
   }
 
-  onEmpleadosFiltrados(empleadosFiltrados: Empleado[]) {
-    this.empleados = empleadosFiltrados; // Actualizar los empleados con los filtrados
+  onEmpleadosFiltrados(event: { empleados: Empleado[], filter: string }): void {
+    this.empleados = event.empleados;
+    this.selectedFilter = event.filter;
   }
 }
