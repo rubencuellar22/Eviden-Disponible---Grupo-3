@@ -193,7 +193,77 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 		}
 		return empleadosDTOFiltered;
 	}
+	
+	 @Override
+	    public List<EmpleadoDTO> getEmpleadosByCiudadFromList(List<EmpleadoDTO> empleadosDTO, String ciudad) {
+	        List<EmpleadoDTO> empleadosDTOFiltered = new ArrayList<>();
+	        for (EmpleadoDTO emp : empleadosDTO) {
+	            if (emp.getCiudad().equalsIgnoreCase(ciudad)) {
+	                empleadosDTOFiltered.add(emp);
+	            }
+	        }
+	        return empleadosDTOFiltered;
+	    }
+	 
+	 @Override
+		public List<EmpleadoDTO> getEmpleadosByJornadaFromList(List<EmpleadoDTO> empleadosDTO, String jornada) {
+			List<EmpleadoDTO> empleadosDTOFiltered = new ArrayList<>();
+			double jornadaDouble = Double.parseDouble(jornada);
+			for (EmpleadoDTO emp : empleadosDTO) {
+				if (emp.getJornada() == jornadaDouble) {
+					empleadosDTOFiltered.add(emp);
+				}
+			}
+			return empleadosDTOFiltered;
+		}
 
+	@Override
+		public List<EmpleadoDTO> getEmpleadosByGroupsFromList(List<EmpleadoDTO> empleadosDTO, String groups) {
+			List<EmpleadoDTO> empleadosDTOFiltered = new ArrayList<>();
+			for (EmpleadoDTO emp : empleadosDTO) {
+				if (emp.getGrupo().getGrupos().contains(groups)) {
+					empleadosDTOFiltered.add(emp);
+				}
+			}
+			return empleadosDTOFiltered;
+		}
+	
+	@Override
+	public List<EmpleadoDTO> getEmpleadosByCategoriaFromList(List<EmpleadoDTO> empleadosDTO, String categoria) {
+		List<EmpleadoDTO> empleadosDTOFiltered = new ArrayList<>();
+		for (EmpleadoDTO emp : empleadosDTO) {
+			if (emp.getCategoria().equals(categoria)) {
+				empleadosDTOFiltered.add(emp);
+			}
+		}
+		return empleadosDTOFiltered;
+	}
+	
+	
+	@Override
+	public List<EmpleadoDTO> getEmpleadosByN4FromList(List<EmpleadoDTO> empleadosDTO, String n4) {
+		List<EmpleadoDTO> empleadosDTOFiltered = new ArrayList<>();
+		for (EmpleadoDTO emp : empleadosDTO) {
+			if (emp.getN4().equals(n4)) {
+				empleadosDTOFiltered.add(emp);
+			}
+		}
+		return empleadosDTOFiltered;
+	}
+	
+	@Override
+	public List<EmpleadoDTO> getEmpleadosByScrFromList(List<EmpleadoDTO> empleadosDTO, String scr) {
+		List<EmpleadoDTO> empleadosDTOFiltered = new ArrayList<>();
+		double scrDouble = Double.parseDouble(scr);
+		for (EmpleadoDTO emp : empleadosDTO) {
+			if (emp.getScr() == scrDouble) {
+				empleadosDTOFiltered.add(emp);
+			}
+		}
+		return empleadosDTOFiltered;
+	}
+	
+	
 	/*@Override
 	public List<Empleado> findByBench(String bench) {
 		// TODO Auto-generated method stub

@@ -9,7 +9,6 @@ import com.grupotres.back_personal_disponible.service.SkMethodService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,23 +18,13 @@ public class SkMethodServiceImpl implements SkMethodService {
     private SkMethodRepository skMethodRepository;
 
 	@Override
-	public List<Empleado> findEmpleadoBySkMethod(String skmethod) {
-		List<SkMethod> skMethods = skMethodRepository.findBySkMethod(skmethod);
-		List<Empleado> empleados = new ArrayList<Empleado>();
-		for(SkMethod skMethod : skMethods) {
-			empleados.add(skMethod.getEmpleado());
-		}
-		return empleados;
+	public List<Empleado> findBySkMethod(String skMethod) {
+		return skMethodRepository.findBySkMethod(skMethod);
 	}
 
 	@Override
-	public List<Empleado> findEmpleadoBySkMethodAndLvl(String skmethod, int nivel) {
-		List<SkMethod> skMethods = skMethodRepository.findBySkMethodAndLvl(skmethod, nivel);
-		List<Empleado> empleados = new ArrayList<Empleado>();
-		for(SkMethod skMethod : skMethods) {
-			empleados.add(skMethod.getEmpleado());
-		}
-		return empleados;	
+	public List<Empleado> findBySkMethodAndNivel(String skMethod, int nivel) {
+		return skMethodRepository.findBySkMethodAndNivel(skMethod, nivel);
 	}
 
 }

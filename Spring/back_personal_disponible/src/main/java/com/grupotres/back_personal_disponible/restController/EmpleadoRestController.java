@@ -8,16 +8,21 @@ import java.util.Date;
 import java.util.List;
 
 import com.grupotres.back_personal_disponible.model.dto.EmpleadoDTO;
+import com.grupotres.back_personal_disponible.model.dto.SkLenguageDTO;
 
 
 import com.grupotres.back_personal_disponible.service.EmpleadoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.grupotres.back_personal_disponible.model.Empleado;
+import com.grupotres.back_personal_disponible.model.SkLenguage;
 import com.grupotres.back_personal_disponible.repository.EmpleadoRepository;
+import com.grupotres.back_personal_disponible.repository.SkLenguageRepository;
+import com.grupotres.back_personal_disponible.service.SkLenguageService;
 
 @RestController
 @RequestMapping("/empleado/")
@@ -30,6 +35,7 @@ public class EmpleadoRestController {
     @Qualifier("empleadoServiceImpl")
     @Autowired
     private EmpleadoService empleadoService;
+
 
 	@GetMapping()
 	public ResponseEntity<?> findAll(){
@@ -95,7 +101,14 @@ public class EmpleadoRestController {
 	    }
 	    return ResponseEntity.ok(empleadosDTO);
 	}
+	
+	@PostMapping("ciudad/{ciudad}")
+	public ResponseEntity<?> findByCiudad(@PathVariable String ciudad, @RequestBody List<EmpleadoDTO> empleadosFiltradosDTO) {
+	    List<EmpleadoDTO> empleadosDTOFiltrados = empleadoService.getEmpleadosByCiudadFromList(empleadosFiltradosDTO, ciudad);
+	    return ResponseEntity.ok(empleadosDTOFiltrados);
+	}
 
+	
 	@GetMapping("jornada/{jornada}")
 	public ResponseEntity<?> findByJornada(@PathVariable BigDecimal jornada) {
 	    List<Empleado> empleados = empleadoRepository.findByJornada(jornada);
@@ -105,7 +118,15 @@ public class EmpleadoRestController {
 	    }
 	    return ResponseEntity.ok(empleadosDTO);
 	}
+	
+	@PostMapping("jornada/{jornada}")
+	public ResponseEntity<?> findByJornada(@PathVariable String jornada, @RequestBody List<EmpleadoDTO> empleadosFiltradosDTO) {
+		List<EmpleadoDTO> empleadosDTOFiltrados = empleadoService.getEmpleadosByJornadaFromList(empleadosFiltradosDTO, jornada);
+		return ResponseEntity.ok(empleadosDTOFiltrados);
+	}
 
+	
+	
 	@GetMapping("groups/{groups}")
 	public ResponseEntity<?> findByGroups(@PathVariable String groups) {
 		List<Empleado> empleados = empleadoService.findbyGrupos(groups);
@@ -115,6 +136,13 @@ public class EmpleadoRestController {
 		}
 		return ResponseEntity.ok(empleadosDTO);
 	}
+	
+	@PostMapping("groups/{groups}")
+	public ResponseEntity<?> findByGroups(@PathVariable String groups, @RequestBody List<EmpleadoDTO> empleadosFiltradosDTO) {
+		List<EmpleadoDTO> empleadosDTOFiltrados = empleadoService.getEmpleadosByGroupsFromList(empleadosFiltradosDTO, groups);
+		return ResponseEntity.ok(empleadosDTOFiltrados);
+	}
+	
 	
 	@GetMapping("n4/{n4}")
 	public ResponseEntity<?> findByN4(@PathVariable String n4) {
@@ -126,6 +154,12 @@ public class EmpleadoRestController {
 	    return ResponseEntity.ok(empleadosDTO);
 	}
 	
+	@PostMapping("n4/{n4}")
+	public ResponseEntity<?> findByN4(@PathVariable String n4, @RequestBody List<EmpleadoDTO> empleadosFiltradosDTO) {
+		List<EmpleadoDTO> empleadosDTOFiltrados = empleadoService.getEmpleadosByN4FromList(empleadosFiltradosDTO, n4);
+		return ResponseEntity.ok(empleadosDTOFiltrados);
+	}
+	
 	@GetMapping("categoria/{categoria}")
 	public ResponseEntity<?> findByCategoria(@PathVariable String categoria) {
 	    List<Empleado> empleados = empleadoRepository.findbyCategoria(categoria);
@@ -135,6 +169,12 @@ public class EmpleadoRestController {
 	    }
 	    return ResponseEntity.ok(empleadosDTO);
 	}
+	
+	@PostMapping("categoria/{categoria}")
+	public ResponseEntity<?> findByCategoria(@PathVariable String categoria, @RequestBody List<EmpleadoDTO> empleadosFiltradosDTO) {
+		List<EmpleadoDTO> empleadosDTOFiltrados = empleadoService.getEmpleadosByCategoriaFromList(empleadosFiltradosDTO, categoria);
+		return ResponseEntity.ok(empleadosDTOFiltrados);
+		}
 	
 	/*@GetMapping("ccname/{ccname}")
 	public List<Empleado> findbyCcname(@PathVariable String ccname){
@@ -150,5 +190,11 @@ public class EmpleadoRestController {
 		}
 		return ResponseEntity.ok(empleadosDTO);
 	}
+	
+	@PostMapping("scr/{scr}")
+		public ResponseEntity<?> findbyScr(@PathVariable String scr, @RequestBody List<EmpleadoDTO> empleadosFiltradosDTO) {
+			List<EmpleadoDTO> empleadosDTOFiltrados = empleadoService.getEmpleadosByScrFromList(empleadosFiltradosDTO, scr);
+			return ResponseEntity.ok(empleadosDTOFiltrados);
+		}
 
 }

@@ -11,10 +11,10 @@ import com.grupotres.back_personal_disponible.model.SkTechnology;
 
 public interface SkTechnologyRepository extends JpaRepository<SkTechnology, Integer>{
 	
-	@Query("SELECT skt FROM SkTechnology skt WHERE skt.sktechnology = ?1")
-	List<SkTechnology> findEmpleadosByTechnology(String sktechnology);
+	@Query("SELECT s.empleado FROM SkTechnology s WHERE s.sktechnology = :nombreTechnology")
+	List<Empleado> findEmpleadosByTechnology(@Param("nombreTechnology") String nombre);
 	
-	@Query("SELECT skt FROM SkTechnology skt WHERE skt.sktechnology = ?1 and skt.nivel = ?2")
-	List<SkTechnology> findEmpleadosByTechnologyAndLvl(String sktechnology, int nivel);
+	@Query("SELECT s.empleado FROM SkTechnology s WHERE s.sktechnology = :nombre AND s.nivel = :nivel")
+	List<Empleado> findEmpleadosByTechnologyAndNivel(String nombre, int nivel);
 	
 }

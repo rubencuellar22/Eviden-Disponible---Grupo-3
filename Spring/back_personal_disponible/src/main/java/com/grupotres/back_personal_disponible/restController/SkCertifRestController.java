@@ -12,20 +12,24 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.grupotres.back_personal_disponible.model.Empleado;
 import com.grupotres.back_personal_disponible.model.dto.EmpleadoDTO;
+import com.grupotres.back_personal_disponible.repository.EmpleadoRepository;
 import com.grupotres.back_personal_disponible.service.SkCertifService;
 
 
 @RestController
-@RequestMapping("/empleado/skcertif")
+@RequestMapping("/empleado/sk_certif/certif")
 public class SkCertifRestController {
-
+	
+	@Autowired
+    private EmpleadoRepository empleadoRepository;
+	
 	@Autowired
     private SkCertifService skCertifService;
 	
 	
-	 @GetMapping("/{skcertif}")
-	 public ResponseEntity<?> getEmpleadosByCertifNombre(@PathVariable String skcertif){
-		List<Empleado> empleados = skCertifService.findEmpleadosBySkCertif(skcertif);
+	 @GetMapping("/{nombre}")
+	 public ResponseEntity<?> findEmpleadosByCertifNombre(@PathVariable String nombre){
+		List<Empleado> empleados = skCertifService.findEmpleadosByCertifNombre(nombre);
 		List<EmpleadoDTO> empleadosDTO = new ArrayList<EmpleadoDTO>();
 		for (Empleado emp : empleados) {
 			empleadosDTO.add(new EmpleadoDTO(emp));
@@ -33,9 +37,9 @@ public class SkCertifRestController {
 		return ResponseEntity.ok(empleadosDTO);
 	}
 	 
-	 @GetMapping("/{skcertif}/{external}")
-	 public ResponseEntity<?> getEmpleadosByCertifNombreAndNivel(@PathVariable String skcertif, @PathVariable boolean external){
-		List<Empleado> empleados = skCertifService.findEmpleadosBySkCertifAndExternal(skcertif, external);
+	 @GetMapping("/{nombre}/{external}")
+	 public ResponseEntity<?> findEmpleadosByCertifNombreAndNivel(@PathVariable String nombre, @PathVariable Integer external){
+		List<Empleado> empleados = skCertifService.findEmpleadosByCertifNombreAndNivel(nombre, external);
 		List<EmpleadoDTO> empleadosDTO = new ArrayList<EmpleadoDTO>();
 		for (Empleado emp : empleados) {
 			empleadosDTO.add(new EmpleadoDTO(emp));

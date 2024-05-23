@@ -12,31 +12,33 @@ import com.grupotres.back_personal_disponible.model.Empleado;
 import com.grupotres.back_personal_disponible.model.dto.EmpleadoDTO;
 import com.grupotres.back_personal_disponible.service.SkBussSkillService;
 
+
 @RestController
-@RequestMapping("/empleado/skBussSkill")
+@RequestMapping("/empleado/sk_bussskill/bussskill")
 public class SkBussSkillRestController {
-
-	@Autowired
-	private SkBussSkillService skBussSkillService;
-
-	@GetMapping("/{skbussskill}")
-	public ResponseEntity<?>getEmpleadosByBussSkill(@PathVariable String skbussskill) {
-		List<Empleado> empleados = skBussSkillService.findEmpleadosBySkBussSkill(skbussskill);
-		List<EmpleadoDTO> empleadosDTO = new ArrayList<EmpleadoDTO>();
-		for (Empleado emp : empleados) {
-			empleadosDTO.add(new EmpleadoDTO(emp));
-		}
-		return ResponseEntity.ok(empleadosDTO);
-	}
 	
-	 @GetMapping("/{skbussskill}/{nivel}")
-	 public ResponseEntity<?> getEmpleadosByBussSkillAndNivel(@PathVariable String skbussskill,@PathVariable Integer nivel) {
-	 List<Empleado> empleados = skBussSkillService.findEmpleadosBySkBussSkillAndLvl(skbussskill, nivel);
+	@Autowired
+    private SkBussSkillService skBussSkillService;
+	
+	
+	 @GetMapping("/{nombre}")
+	 public ResponseEntity<?> findEmpleadosByBussSkill(@PathVariable String nombre) {
+	 List<Empleado> empleados = skBussSkillService.findEmpleadosByBussSkill(nombre);
 		List<EmpleadoDTO> empleadosDTO = new ArrayList<EmpleadoDTO>();
 		for (Empleado emp : empleados) {
 			empleadosDTO.add(new EmpleadoDTO(emp));
 		}
 		return ResponseEntity.ok(empleadosDTO);
     }
-
+	 
+	 @GetMapping("/{nombre}/{nivel}")
+	 public ResponseEntity<?> findEmpleadosByBussSkillAndNivel(@PathVariable String nombre,@PathVariable Integer nivel) {
+	 List<Empleado> empleados = skBussSkillService.findEmpleadosByBussSkillAndNivel(nombre, nivel);
+		List<EmpleadoDTO> empleadosDTO = new ArrayList<EmpleadoDTO>();
+		for (Empleado emp : empleados) {
+			empleadosDTO.add(new EmpleadoDTO(emp));
+		}
+		return ResponseEntity.ok(empleadosDTO);
+    }
+	 
 }

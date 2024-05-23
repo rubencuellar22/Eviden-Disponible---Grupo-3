@@ -7,7 +7,7 @@ import com.grupotres.back_personal_disponible.model.Empleado;
 @Service
 public interface SkTechnologyService {
 	
-	List<Empleado> findEmpleadosByTechnology(String sktechnology);
+	List<Empleado> findEmpleadosByTechnology(String nombreTechnology);
 	
-	List<Empleado> findEmpleadosByTechnologyAndLvl(String sktechnology, int nivel);
+	List<Empleado> findEmpleadosByTechnologyAndNivel(String nombreTechnology, int nivel);
 }
