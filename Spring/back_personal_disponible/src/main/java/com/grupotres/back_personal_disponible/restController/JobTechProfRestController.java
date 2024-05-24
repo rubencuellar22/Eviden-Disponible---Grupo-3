@@ -37,6 +37,17 @@ public class JobTechProfRestController {
 		}
 		return ResponseEntity.ok(empleadosDTO);
 	}
+	
+	@PostMapping("/{jobTechnologyProfile}")
+	public ResponseEntity<?> findByJobTechnologyProfile(@PathVariable String jobTechnologyProfile, @RequestBody EmpleadoDTO empleadoDTO) {
+	    List<Empleado> empleados = jobTechnologyProfileService.findByJobTechnologyProfile(jobTechnologyProfile);
+	    List<EmpleadoDTO> empleadosDTO = new ArrayList<>();
+	    for (Empleado emp : empleados) {
+	        empleadosDTO.add(new EmpleadoDTO(emp));
+	    }
+	    return ResponseEntity.ok(empleadosDTO);
+	}
+
 
 	@GetMapping("/{jobTechnologyProfile}/{nivel}")
 	public ResponseEntity<?>findByJobTechnologyProfileAndLvl(@PathVariable String jobTechnologyProfile, @PathVariable Integer nivel) {
@@ -47,5 +58,16 @@ public class JobTechProfRestController {
 		}
 		return ResponseEntity.ok(empleadosDTO);
 	}
+	
+	@PostMapping("/{jobTechnologyProfile}/{nivel}")
+	public ResponseEntity<?> findByJobTechnologyProfileAndLvl(@PathVariable String jobTechnologyProfile, @PathVariable Integer nivel, @RequestBody EmpleadoDTO empleadoDTO) {
+	    List<Empleado> empleados = jobTechnologyProfileService.findByJobTechnologyProfileAndLvl(jobTechnologyProfile, nivel);
+	    List<EmpleadoDTO> empleadosDTO = new ArrayList<>();
+	    for (Empleado emp : empleados) {
+	        empleadosDTO.add(new EmpleadoDTO(emp));
+	    }
+	    return ResponseEntity.ok(empleadosDTO);
+	}
+
 	
 }
