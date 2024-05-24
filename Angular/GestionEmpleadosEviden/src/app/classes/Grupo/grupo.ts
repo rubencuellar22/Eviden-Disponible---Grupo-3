@@ -5,11 +5,11 @@ export class Grupo {
   grupo3: string;
   grupo4: string;
   grupos: string;
-  C: string;
+  cc: string;
 
   
   toString(): string {
-    return `${this.grupo1}, ${this.grupo2}, ${this.grupo3}, ${this.grupo4}, ${this.grupos}, ${this.C}`;
+    return `${this.grupo1}, ${this.grupo2}, ${this.grupo3}, ${this.grupo4}, ${this.grupos}, ${this.cc}`;
   }
   
 }
