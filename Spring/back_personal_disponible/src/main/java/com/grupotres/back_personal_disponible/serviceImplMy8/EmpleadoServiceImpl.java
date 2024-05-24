@@ -362,7 +362,7 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 		List<EmpleadoDTO> empleadosDTOFiltered = new ArrayList<>();
 		for (EmpleadoDTO emp : empleadosDTO) {
 			for (SkLenguageDTO skleng : emp.getSkLenguages()) {
-				if (skleng.getSklenguage().contains(sklenguage + nivel)) {
+				if (skleng.getSklenguage().contains(sklenguage) && (skleng.getNivel().contains(nivel))){
 					empleadosDTOFiltered.add(emp);
 					break;
 				}
@@ -377,7 +377,7 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 		List<EmpleadoDTO> empleadosDTOFiltered = new ArrayList<>();
 		for (EmpleadoDTO emp : empleadosDTO) {
 			for (SkMethodDTO skmeth : emp.getSkMethods()) {
-				if (skmeth.getSkmethod().contains(skMethods + nivel)) {
+				if (skmeth.getSkmethod().contains(skMethods) && (skmeth.getNivel() == nivel)) {
 					empleadosDTOFiltered.add(emp);
 					break;
 				}
@@ -392,7 +392,7 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 		List<EmpleadoDTO> empleadosDTOFiltered = new ArrayList<>();
 		for (EmpleadoDTO emp : empleadosDTO) {
 			for (SkTechnologyDTO sktech : emp.getSkTechnologies()) {
-				if (sktech.getSktechnology().contains(nombre + nivel)) {
+				if (sktech.getSktechnology().contains(nombre) && (sktech.getNivel() == nivel)) {
 					empleadosDTOFiltered.add(emp);
 					break;
 				}
@@ -407,7 +407,7 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 		List<EmpleadoDTO> empleadosDTOFiltered = new ArrayList<>();
 		for (EmpleadoDTO emp : empleadosDTO) {
 			for (SkTechSkillDTO sktechSkill : emp.getSkTechSkills()) {
-				if (sktechSkill.getSkTechSkill().contains(skTechSkill + nivel)) {
+				if (sktechSkill.getSkTechSkill().contains(skTechSkill ) && (sktechSkill.getNivel() == nivel)) {
 					empleadosDTOFiltered.add(emp);
 					break;
 				}
