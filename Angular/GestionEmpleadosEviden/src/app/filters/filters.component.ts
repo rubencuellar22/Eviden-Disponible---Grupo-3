@@ -73,7 +73,10 @@ export class FiltersComponent {
       case 'scr':
         endpoint = `http://localhost:8080/empleado/scr/${filterValue}`;
         break;
-        case 'sk_bus_skill':
+      case 'job_technology':
+        endpoint = `http://localhost:8080/empleado/job_technology_profile/${filterValue}`;
+        break;
+      case 'sk_bus_skill':
         endpoint = `http://localhost:8080/empleado/sk_bussskill/bussskill/${filterValue}`;
         break;
       case 'sk_tecnology':

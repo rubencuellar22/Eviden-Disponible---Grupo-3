@@ -6,13 +6,39 @@
       <thead class="cabecera">
         <tr>
           <th class="py-2">Nombre</th>
-          <th class="py-2">{{ selectedFilter | titlecase }}</th>
+          <th class="py-2">Subgroup</th>
+          <th class="py-2">Status</th>
+          <th class="py-2">Bench</th>
+          <th class="py-2">Das</th>
+          <th class="py-2">Ciudad</th>
+          <th class="py-2">Agrupación</th>
+          <th class="py-2">Line Manager</th>
+          <th class="py-2">Jornada</th>
+          <th class="py-2">GCM</th>
+          <th class="py-2">Categoria</th>
+          <th class="py-2">Nivel GCM</th>
+          <th class="py-2">SCR</th>
+          <th class="py-2">Grupo</th>
+          <th class="py-2">N4</th>
+          <th class="py-2">Job Technology</th>
+          <th class="py-2">Skills</th>
+          <th class="py-2">Role</th>
+          <th class="py-2">RLT</th>
+          <th class="py-2">Sk Languages</th>
+          <th class="py-2">Sk Methods</th>
+          <th class="py-2">Sk Tech Skills</th>
+          <th class="py-2">Sk Certifs</th>
+          <th class="py-2">Sk Technologies</th>
+          <th class="py-2">Sk Bus Skills</th>
+          
+          <!-- <th class="py-2">{{ selectedFilter | titlecase }}</th> -->
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let empleado of empleados">
           <td class="border px-4 py-2">{{ empleado.name }}</td>
-          <td class="border px-4 py-2">{{ empleado[selectedFilter]?.toString() }}</td>
+          <td class="border px-4 py-2">{{ empleado.grupo.grupos }}</td>
+          <!-- <td class="border px-4 py-2">{{ empleado[selectedFilter]?.toString() }}</td> -->
         </tr>
       </tbody>
     </table>
