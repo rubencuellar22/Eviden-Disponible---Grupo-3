@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/empleado/skTechskills")
+@RequestMapping("/empleado/skTechskill")
 public class SkTechSkillRestController {
 
 	@Autowired
@@ -55,4 +55,10 @@ public class SkTechSkillRestController {
 		}
 		return ResponseEntity.ok(empleadosDTO);
 	}
+    
+    @PostMapping("/{skTechSkill}/{nivel}")
+	public ResponseEntity<?> findBySkTechSkillAndNivel(@PathVariable String skTechSkill, @PathVariable Integer nivel, @RequestBody List<EmpleadoDTO> empleadosFiltradosDTO) {
+	    List<EmpleadoDTO> empleadosDTOFiltrados = empleadoService.getEmpleadosBySkTechSkillAndNivelFromList(empleadosFiltradosDTO, skTechSkill, nivel);
+	    return ResponseEntity.ok(empleadosDTOFiltrados);
+    }
 }

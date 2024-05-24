@@ -41,7 +41,7 @@ public class SkCertifRestController {
 			empleadosDTO.add(new EmpleadoDTO(emp));
 		}
 		return ResponseEntity.ok(empleadosDTO);
-	}
+	 }
 	 
 	 @PostMapping("/{nombre}")
 		public ResponseEntity<?> findEmpleadosByCertifNombre(@PathVariable String nombre, @RequestBody List<EmpleadoDTO> empleadosFiltradosDTO) {
@@ -57,13 +57,13 @@ public class SkCertifRestController {
 			empleadosDTO.add(new EmpleadoDTO(emp));
 		}
 		return ResponseEntity.ok(empleadosDTO);
-	}
+	 }
 	 
-	 /*@PostMapping("/{nombre}/{external}")
-		public ResponseEntity<?> findEmpleadosByCertifNombreAndNivel(@PathVariable String nombre, @PathVariable Integer external,@RequestBody List<EmpleadoDTO> empleadosFiltradosDTO) {
+	 @PostMapping("/{nombre}/{external}")
+		public ResponseEntity<?> findEmpleadosByCertifNombreAndNivel(@PathVariable String nombre, @PathVariable Integer external, @RequestBody List<EmpleadoDTO> empleadosFiltradosDTO) {
 		    List<EmpleadoDTO> empleadosDTOFiltrados = empleadoService.getEmpleadosBySkCertifAndNivelFromList(empleadosFiltradosDTO, nombre, external);
-		    return ResponseEntity.ok(empleadosDTOFiltrados);	    
-	 }*/
+		    return ResponseEntity.ok(empleadosDTOFiltrados);
+	 }
 	
 	 
 }

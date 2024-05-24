@@ -6,6 +6,11 @@ import java.util.List;
 
 import com.grupotres.back_personal_disponible.model.*;
 import com.grupotres.back_personal_disponible.model.dto.EmpleadoDTO;
+import com.grupotres.back_personal_disponible.model.dto.SkCertifDTO;
+import com.grupotres.back_personal_disponible.model.dto.SkLenguageDTO;
+import com.grupotres.back_personal_disponible.model.dto.SkMethodDTO;
+import com.grupotres.back_personal_disponible.model.dto.SkTechSkillDTO;
+import com.grupotres.back_personal_disponible.model.dto.SkTechnologyDTO;
 import com.grupotres.back_personal_disponible.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -267,9 +272,13 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 	public List<EmpleadoDTO> getEmpleadosBySkCertifFromList(List<EmpleadoDTO> empleadosDTO, String nombre) {
 		List<EmpleadoDTO> empleadosDTOFiltered = new ArrayList<>();
 		for (EmpleadoDTO emp : empleadosDTO) {
-			if (emp.getSkCertifs().equals(nombre)) {
-				empleadosDTOFiltered.add(emp);
+			for (SkCertifDTO skcert : emp.getSkCertifs()) {
+				if (skcert.getSkCertif().contains(nombre)) {
+					empleadosDTOFiltered.add(emp);
+					break;
+				}
 			}
+			
 		}
 		return empleadosDTOFiltered;
 	}
@@ -278,8 +287,11 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 	public List<EmpleadoDTO> getEmpleadosBySkLenguageFromList(List<EmpleadoDTO> empleadosDTO, String sklenguage) {
 		List<EmpleadoDTO> empleadosDTOFiltered = new ArrayList<>();
 		for (EmpleadoDTO emp : empleadosDTO) {
-			if (emp.getSkLenguages().equals(sklenguage)) {
-				empleadosDTOFiltered.add(emp);
+			for (SkLenguageDTO skleng : emp.getSkLenguages()) {
+				if (skleng.getSklenguage().contains(sklenguage)) {
+					empleadosDTOFiltered.add(emp);
+					break;
+				}
 			}
 		}
 		return empleadosDTOFiltered;
@@ -289,8 +301,11 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 	public List<EmpleadoDTO> getEmpleadosBySkMethodFromList(List<EmpleadoDTO> empleadosDTO, String skMethods) {
 		List<EmpleadoDTO> empleadosDTOFiltered = new ArrayList<>();
 		for (EmpleadoDTO emp : empleadosDTO) {
-			if (emp.getSkMethods().equals(skMethods)) {
-				empleadosDTOFiltered.add(emp);
+			for (SkMethodDTO skmeth : emp.getSkMethods()) {
+				if (skmeth.getSkmethod().contains(skMethods)) {
+					empleadosDTOFiltered.add(emp);
+					break;
+				}
 			}
 		}
 		return empleadosDTOFiltered;
@@ -300,8 +315,11 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 	public List<EmpleadoDTO> getEmpleadosBySkTechnologyFromList(List<EmpleadoDTO> empleadosDTO, String nombre) {
 		List<EmpleadoDTO> empleadosDTOFiltered = new ArrayList<>();
 		for (EmpleadoDTO emp : empleadosDTO) {
-			if (emp.getSkTechnologies().equals(nombre)) {
-				empleadosDTOFiltered.add(emp);
+			for (SkTechnologyDTO sktech : emp.getSkTechnologies()) {
+				if (sktech.getSktechnology().contains(nombre)) {
+					empleadosDTOFiltered.add(emp);
+					break;
+				}
 			}
 		}
 		return empleadosDTOFiltered;
@@ -311,13 +329,94 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 	public List<EmpleadoDTO> getEmpleadosBySkTechSkillFromList(List<EmpleadoDTO> empleadosDTO, String skTechSkill) {
 		List<EmpleadoDTO> empleadosDTOFiltered = new ArrayList<>();
 		for (EmpleadoDTO emp : empleadosDTO) {
-			if (emp.getSkTechSkills().equals(skTechSkill)) {
-				empleadosDTOFiltered.add(emp);
+			for (SkTechSkillDTO sktechSkill : emp.getSkTechSkills()) {
+				if (sktechSkill.getSkTechSkill().contains(skTechSkill)) {
+					empleadosDTOFiltered.add(emp);
+					break;
+				}
 			}
 		}
 		return empleadosDTOFiltered;
 	}
-	
+
+	@Override
+	public List<EmpleadoDTO> getEmpleadosBySkCertifAndNivelFromList(List<EmpleadoDTO> empleadosDTO, String nombre,
+			Integer external) {
+		boolean isExternal = (external == 1);
+		List<EmpleadoDTO> empleadosDTOFiltered = new ArrayList<>();
+		for (EmpleadoDTO emp : empleadosDTO) {
+			for (SkCertifDTO skcert : emp.getSkCertifs()) {
+				if (skcert.getSkCertif().contains(nombre) && (skcert.isExternal() == isExternal)) {
+					empleadosDTOFiltered.add(emp);
+					break;
+				}
+			}
+			
+		}
+		return empleadosDTOFiltered;
+	}
+
+	@Override
+	public List<EmpleadoDTO> getEmpleadosBySkLenguageAndNivelFromList(List<EmpleadoDTO> empleadosDTO, String sklenguage,
+			String nivel) {
+		List<EmpleadoDTO> empleadosDTOFiltered = new ArrayList<>();
+		for (EmpleadoDTO emp : empleadosDTO) {
+			for (SkLenguageDTO skleng : emp.getSkLenguages()) {
+				if (skleng.getSklenguage().contains(sklenguage + nivel)) {
+					empleadosDTOFiltered.add(emp);
+					break;
+				}
+			}
+		}
+		return empleadosDTOFiltered;
+	}
+
+	@Override
+	public List<EmpleadoDTO> getEmpleadosBySkMethodAndNivelFromList(List<EmpleadoDTO> empleadosDTO, String skMethods,
+			Integer nivel) {
+		List<EmpleadoDTO> empleadosDTOFiltered = new ArrayList<>();
+		for (EmpleadoDTO emp : empleadosDTO) {
+			for (SkMethodDTO skmeth : emp.getSkMethods()) {
+				if (skmeth.getSkmethod().contains(skMethods + nivel)) {
+					empleadosDTOFiltered.add(emp);
+					break;
+				}
+			}
+		}
+		return empleadosDTOFiltered;
+	}
+
+	@Override
+	public List<EmpleadoDTO> getEmpleadosBySkTechnologyAndNivelFromList(List<EmpleadoDTO> empleadosDTO, String nombre,
+			Integer nivel) {
+		List<EmpleadoDTO> empleadosDTOFiltered = new ArrayList<>();
+		for (EmpleadoDTO emp : empleadosDTO) {
+			for (SkTechnologyDTO sktech : emp.getSkTechnologies()) {
+				if (sktech.getSktechnology().contains(nombre + nivel)) {
+					empleadosDTOFiltered.add(emp);
+					break;
+				}
+			}
+		}
+		return empleadosDTOFiltered;
+	}
+
+	@Override
+	public List<EmpleadoDTO> getEmpleadosBySkTechSkillAndNivelFromList(List<EmpleadoDTO> empleadosDTO,
+			String skTechSkill, Integer nivel) {
+		List<EmpleadoDTO> empleadosDTOFiltered = new ArrayList<>();
+		for (EmpleadoDTO emp : empleadosDTO) {
+			for (SkTechSkillDTO sktechSkill : emp.getSkTechSkills()) {
+				if (sktechSkill.getSkTechSkill().contains(skTechSkill + nivel)) {
+					empleadosDTOFiltered.add(emp);
+					break;
+				}
+			}
+		}
+		return empleadosDTOFiltered;
+	}
+
+
 	
 	/*@Override
 	public List<Empleado> findByBench(String bench) {

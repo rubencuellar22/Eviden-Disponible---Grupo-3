@@ -54,5 +54,11 @@ public class SkTechnologyRestController {
 			empleadosDTO.add(new EmpleadoDTO(emp));
 		}
 		return ResponseEntity.ok(empleadosDTO);
-	}
+	 }
+	 
+	 @PostMapping("/{nombre}/{nivel}")
+		public ResponseEntity<?> findEmpleadosByTechnologyAndNivel(@PathVariable String nombre, @PathVariable Integer nivel, @RequestBody List<EmpleadoDTO> empleadosFiltradosDTO) {
+		    List<EmpleadoDTO> empleadosDTOFiltrados = empleadoService.getEmpleadosBySkTechnologyAndNivelFromList(empleadosFiltradosDTO, nombre, nivel);
+		    return ResponseEntity.ok(empleadosDTOFiltrados);
+	 }
 }

@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/empleado/skMethods")
+@RequestMapping("/empleado/skMethod")
 public class SkMethodRestController {
 
 	@Autowired
@@ -56,6 +56,12 @@ public class SkMethodRestController {
 			empleadosDTO.add(new EmpleadoDTO(emp));
 		}
 		return ResponseEntity.ok(empleadosDTO);
+	}
+    
+    @PostMapping("/{skMethod}/{nivel}")
+	public ResponseEntity<?> findBySkMethodAndNivel(@PathVariable String skMethod, @PathVariable Integer nivel, @RequestBody List<EmpleadoDTO> empleadosFiltradosDTO) {
+	    List<EmpleadoDTO> empleadosDTOFiltrados = empleadoService.getEmpleadosBySkMethodAndNivelFromList(empleadosFiltradosDTO, skMethod, nivel);
+	    return ResponseEntity.ok(empleadosDTOFiltrados);
 	}
     
 }

@@ -51,5 +51,11 @@ public class SkLenguagesRestController {
 		}
 		return ResponseEntity.ok(empleadosDTO);
 	}
+	
+	@PostMapping("/{sklenguage}/{nivel}")
+	public ResponseEntity<?> getSkLenguagesByLenguageAndLvl(@PathVariable String sklenguage, @PathVariable String nivel, @RequestBody List<EmpleadoDTO> empleadosFiltradosDTO) {
+	    List<EmpleadoDTO> empleadosDTOFiltrados = empleadoService.getEmpleadosBySkLenguageAndNivelFromList(empleadosFiltradosDTO, sklenguage, nivel);
+	    return ResponseEntity.ok(empleadosDTOFiltrados);
+	}
  
 }
