@@ -9,6 +9,7 @@ import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,12 +33,18 @@ public class PersistenciaDBController {
 
     @GetMapping("persistirCSV")
     public ResponseEntity<?> persistirCSV() {
+        // Crear parámetros para el Job
         JobParameters jobParameters = new JobParametersBuilder()
-                .addDate("date", new Date())
+                .addDate("fecha", new Date())
                 .toJobParameters();
 
+
+
         try {
+            // Ejecutar el Job
+            System.out.println("Iniciando el proceso batch...");
             jobLauncher.run(job, jobParameters);
+            System.out.println("Proceso batch completado.");
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.badRequest().body("Error al persistir CSV");

@@ -13,6 +13,7 @@ import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.Reader;
 import java.text.SimpleDateFormat;
@@ -61,14 +62,23 @@ public class AllInOneTasklet implements Tasklet {
 
     @Override
     public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
-        Reader reader = new FileReader(
-                resourceLoader
-                        .getResource("classpath:files/personal_disponible.csv")
-                        .getFile()
-        );
+        Reader reader = null;
+        while (true) {
+            try {
+                reader = new FileReader("src/main/resources/files/personal_disponible.csv");
+                if (reader != null) {
+                    break;
+                }
+            }catch (Exception e){
+                System.out.println("Error al leer el archivo");
+            }
+
+        }
+
+
 
         CSVParser parser = new CSVParserBuilder()
-                .withSeparator('Æ')
+                .withSeparator('§')
                 .build();
 
         CSVReader csvReader = new CSVReaderBuilder(reader)
@@ -80,6 +90,7 @@ public class AllInOneTasklet implements Tasklet {
         String[] actualLine;
 
         while ((actualLine = csvReader.readNext()) != null) {
+            System.out.println(Arrays.toString(actualLine));
             Empleado emp = new Empleado();
             emp.setGin(Long.parseLong(actualLine[0]));
             emp.setName(actualLine[1]);

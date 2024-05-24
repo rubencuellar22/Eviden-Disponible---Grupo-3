@@ -1,11 +1,18 @@
 package com.grupotres.back_personal_disponible.restController;
 
+import com.grupotres.back_personal_disponible.model.Empleado;
+import com.grupotres.back_personal_disponible.model.dto.EmpleadoDTO;
+import com.grupotres.back_personal_disponible.service.EmpleadoService;
 import org.apache.poi.openxml4j.util.ZipSecureFile;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.launch.JobLauncher;
+import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,9 +20,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 import java.nio.file.*;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @RestController
 public class BatchRestController {
@@ -25,6 +31,9 @@ public class BatchRestController {
 
     @Autowired
     private Job job;
+
+    @Autowired
+    private EmpleadoService empleadoService;
 
     @PostMapping("/uploadFile")
     public ResponseEntity<?> receiveFile(@RequestParam(name = "file") MultipartFile multipartFile) {
@@ -46,28 +55,36 @@ public class BatchRestController {
             // Nombre del archivo de salida
             String outputFileName = "personal_disponible.csv";
 
-            // Crear parámetros para el Job
+
+
+
+
+
+
             JobParameters jobParameters = new JobParametersBuilder()
                     .addDate("fecha", new Date())
                     .addString("inputFilePath", excelPath.toString())
                     .addString("outputFilePath", excelPath.getParent().resolve(outputFileName).toString())
                     .toJobParameters();
 
-            // Ejecutar el Job
+
             System.out.println("Iniciando el proceso batch...");
             jobLauncher.run(job, jobParameters);
             System.out.println("Proceso batch completado.");
 
-            // Preparar la respuesta con la ubicación del archivo CSV
-            Map<String, Object> response = new HashMap<>();
-            response.put("archivo", fileName);
-            response.put("estado", "recibido");
-            response.put("csvPath", excelPath.getParent().resolve(outputFileName).toString());
 
-            return ResponseEntity.ok(response);
+            List<Empleado> emps = empleadoService.getAllEmpleados();
+            List<EmpleadoDTO> empleadosDTO = new ArrayList<>();
+            for (Empleado emp : emps) {
+                empleadosDTO.add(new EmpleadoDTO(emp));
+            }
+
+            return ResponseEntity.ok(empleadosDTO);
         } catch (Exception e) {
             System.err.printf("Error al iniciar el proceso batch: %s%n", e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al iniciar el proceso batch: " + e.getMessage());
         }
     }
+
+
 }
