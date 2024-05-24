@@ -471,6 +471,38 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 		}
 		return empleadosDTOFiltered;
 	}
+
+	@Override
+	public List<EmpleadoDTO> getEmpleadosByJobTechProfileFromList(List<EmpleadoDTO> empleadosDTO,
+			String jobTechnologyProfile) {
+		List<EmpleadoDTO> empleadosDTOFiltered = new ArrayList<>();
+		for (EmpleadoDTO emp : empleadosDTO) {
+			for (JobTechnologyProfileDTO jobtech : emp.getJobTechnologyProfiles()) {
+				if (jobtech.getJobTechnologyProfile().contains(jobTechnologyProfile)) {
+					empleadosDTOFiltered.add(emp);
+					break;
+				}
+			}
+		}
+		return empleadosDTOFiltered;
+	}
+	
+
+	@Override
+	public List<EmpleadoDTO> getEmpleadosByJobTechProfileAndLvlFromList(List<EmpleadoDTO> empleadosDTO,
+			String jobTechnologyProfile, Integer nivel) {
+		List<EmpleadoDTO> empleadosDTOFiltered = new ArrayList<>();
+		for (EmpleadoDTO emp : empleadosDTO) {
+			for (JobTechnologyProfileDTO jobtech : emp.getJobTechnologyProfiles()) {
+				if (jobtech.getJobTechnologyProfile().contains(jobTechnologyProfile) && (jobtech.getNivel() == nivel)) {
+					empleadosDTOFiltered.add(emp);
+					break;
+				}
+			}
+		}
+		return empleadosDTOFiltered;
+	}
+	
 	
 	/*@Override
 	public List<Empleado> findByBench(String bench) {

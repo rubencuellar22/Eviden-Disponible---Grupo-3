@@ -56,5 +56,12 @@ public interface EmpleadoService {
 	List<EmpleadoDTO> getEmpleadosBySkMethodAndNivelFromList(List<EmpleadoDTO> empleadosDTO, String skMethods, Integer nivel);
 	List<EmpleadoDTO> getEmpleadosBySkTechnologyAndNivelFromList(List<EmpleadoDTO> empleadosDTO, String nombre, Integer nivel);
 	List<EmpleadoDTO> getEmpleadosBySkTechSkillAndNivelFromList(List<EmpleadoDTO> empleadosDTO, String skTechSkill, Integer nivel);
+
+	List<EmpleadoDTO> getEmpleadosByJobTechProfileFromList(List<EmpleadoDTO> empleadosDTO,
+			String jobTechnologyProfile);
+
+	List<EmpleadoDTO> getEmpleadosByJobTechProfileAndLvlFromList(List<EmpleadoDTO> empleadosDTO,
+			String jobTechnologyProfile, Integer nivel);
+	
 	
 }
