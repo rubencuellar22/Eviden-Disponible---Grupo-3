@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { SkTechnologyServiceService } from './sk-technology-service.service';
+import { SkTechnologyService } from './sk-technology-service.service';
 
-describe('SkTechnologyServiceService', () => {
-  let service: SkTechnologyServiceService;
+describe('SkTechnologyService', () => {
+  let service: SkTechnologyService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(SkTechnologyServiceService);
+    service = TestBed.inject(SkTechnologyService);
   });
 
   it('should be created', () => {
