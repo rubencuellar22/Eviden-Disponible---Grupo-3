@@ -28,13 +28,26 @@ public class ExcelToCsvTasklet implements Tasklet {
             try (PrintWriter writer = new PrintWriter(new FileWriter(outputFilePath))) {
                 for (Row row : sheet) {
                     boolean firstCell = true;
+                    int cellNum = 0;
+                    // cell == 22
                     for (Cell cell : row) {
+                        String cellValue = "";
                         if (!firstCell) {
                             writer.print(',');
                         }
-                        String cellValue = getCellValue(cell);
+                        if (cellNum == 22) {
+                            cellValue = getCellValue(cell);
+                            cellValue = cellValue.replace(",", "/");
+                        }
+                        else if (cellNum == 30) {
+                            cellValue = getCellValue(cell);
+                            cellValue = cellValue.replace(",", "/");
+                        } else {
+                            cellValue = getCellValue(cell);
+                        }
                         writer.print(cellValue);
                         firstCell = false;
+                        cellNum++;
                     }
                     writer.println();
                 }
@@ -48,11 +61,11 @@ public class ExcelToCsvTasklet implements Tasklet {
             case STRING:
                 return cell.getStringCellValue();
             case NUMERIC:
+                System.out.println("NUMERIC: " + cell.getNumericCellValue());
                 if (DateUtil.isCellDateFormatted(cell)) {
                       return cell.getDateCellValue().toString();
                 } else {
                 	String numberString = String.valueOf(cell.getNumericCellValue());
-                	System.out.println("NumberStirng: " + numberString);
                 	if (numberString.split("\\.")[1].equals("0")) {
                 		return numberString.split("\\.")[0];
                 	}

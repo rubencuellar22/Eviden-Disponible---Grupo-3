@@ -62,7 +62,7 @@ public class AllInOneTasklet implements Tasklet {
     public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
         Reader reader = new FileReader(
                 resourceLoader
-                        .getResource("classpath:files/personal_disponible.csv")
+                        .getResource("classpath:files/personal_disponibleFuncional.csv")
                         .getFile()
         );
 
@@ -125,7 +125,6 @@ public class AllInOneTasklet implements Tasklet {
 
             Role rol = new Role();
             String[] rolArray = actualLine[24].split("\\[");
-            System.out.println(Arrays.toString(rolArray));
             rol.setRole(rolArray[0].trim());
             if (rolArray.length > 1) {
                 String level = rolArray[1].replaceAll("\\D+", "");
