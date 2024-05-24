@@ -3,15 +3,20 @@ package com.grupotres.back_personal_disponible.restController;
 import com.grupotres.back_personal_disponible.model.*;
 import com.grupotres.back_personal_disponible.service.EmpleadoService;
 import com.grupotres.back_personal_disponible.serviceImplMy8.EmpleadoServiceImpl;
+import org.springframework.batch.core.Job;
+import org.springframework.batch.core.JobParameter;
+import org.springframework.batch.core.JobParameters;
+import org.springframework.batch.core.JobParametersBuilder;
+import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.repository.query.Param;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 
 @RestController()
 @RequestMapping("/persistenciaDB/")
@@ -19,6 +24,33 @@ public class PersistenciaDBController {
 
     @Autowired
     private EmpleadoServiceImpl empleadoService;
+
+    @Autowired
+    private JobLauncher jobLauncher;
+
+    @Autowired
+    private Job job;
+
+    @GetMapping("persistirCSV")
+    public ResponseEntity<?> persistirCSV() {
+        // Crear parámetros para el Job
+        JobParameters jobParameters = new JobParametersBuilder()
+                .addDate("fecha", new Date())
+                .toJobParameters();
+
+
+
+        try {
+            // Ejecutar el Job
+            System.out.println("Iniciando el proceso batch...");
+            jobLauncher.run(job, jobParameters);
+            System.out.println("Proceso batch completado.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body("Error al persistir CSV");
+        }
+        return ResponseEntity.ok("Persistir CSV");
+    }
 
     @PostMapping("persistir")
     public Empleado persistir(@RequestBody String csv) throws ParseException {

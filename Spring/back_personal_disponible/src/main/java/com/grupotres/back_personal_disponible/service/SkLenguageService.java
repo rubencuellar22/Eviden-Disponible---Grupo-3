@@ -10,5 +10,11 @@ public interface SkLenguageService {
 	public List<Empleado> findEmpleadosBySkLenguage(String sklenguage);
 	
 	public List<Empleado> findEmpleadosBySkLenguageAndLvl(String sklenguage,String nivel);
+	
+	public List<SkLenguage> getSkLenguagesByLenguageAndLvl(String sklenguage,String nivel);
+
+    void saveAllSkLenguages(List<SkLenguage> empSkLenguages);
+
+    void deleteAllSkLenguages();
 }
  

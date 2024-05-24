@@ -26,3 +26,13 @@ public class JobTechnologyProfileServiceImpl implements JobTechnologyProfileServ
 	}
  
 }
+	public void saveAllJobTechnologyProfiles(List<JobTechnologyProfile> jobTechnologyProfiles) {
+		jobTechnologyProfileRepository.saveAll(jobTechnologyProfiles);
+	}
+
+	@Override
+	public void deleteAllJobTechnologyProfiles() {
+		jobTechnologyProfileRepository.deleteAllInBatch();
+	}
+
+}

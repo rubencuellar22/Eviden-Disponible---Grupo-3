@@ -36,6 +36,16 @@ public class SkLenguageServiceImpl implements SkLenguageService {
 		}
 		return empleados;
 	}
- 
-	
+
+	@Override
+	public void saveAllSkLenguages(List<SkLenguage> empSkLenguages) {
+		skLenguageRepository.saveAll(empSkLenguages);
+	}
+
+	@Override
+	public void deleteAllSkLenguages() {
+		skLenguageRepository.deleteAllInBatch();
+	}
+
+
 }
