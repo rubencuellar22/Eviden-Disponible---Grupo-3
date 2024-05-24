@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { SkMethodServiceService } from './sk-method-service.service';
+import { SkMethodService } from './sk-method-service.service';
 
 describe('SkMethodServiceService', () => {
-  let service: SkMethodServiceService;
+  let service: SkMethodService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(SkMethodServiceService);
+    service = TestBed.inject(SkMethodService);
   });
 
   it('should be created', () => {

@@ -71,9 +71,26 @@ export class FiltersComponent {
       case 'scr':
         endpoint = `http://localhost:8080/empleado/scr/${filterValue}`;
         break;
-      case 'sk_busskill':
+        case 'sk_bus_skill':
         endpoint = `http://localhost:8080/empleado/sk_bussskill/bussskill/${filterValue}`;
         break;
+      case 'sk_tecnology':
+        endpoint = `http://localhost:8080/empleado/sk_technology/technology/${filterValue}`;
+        break;
+      case 'sk_certif':
+        endpoint = `http://localhost:8080/empleado/sk_certif/certif/${filterValue}`;
+        break;
+      case 'sk_lenguage':
+        endpoint = `http://localhost:8080/empleado/skLenguage/${filterValue}`;
+        break;
+      case 'sk_method':
+        endpoint = `http://localhost:8080/empleado/sk_methods/${filterValue}`;
+        break;
+      case 'sk_tecskill':
+        endpoint = `http://localhost:8080/empleado/sk_techskills/${filterValue}`;
+        break;  
+       
+
       default:
         console.error('Filtro no reconocido:', this.selectedFilter);
         this.errorMessage = 'Unrecognized filter selected.';

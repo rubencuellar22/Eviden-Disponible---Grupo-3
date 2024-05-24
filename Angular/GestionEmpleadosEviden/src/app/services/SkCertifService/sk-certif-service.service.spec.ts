@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { SkCertifServiceService } from './sk-certif-service.service';
+import { SkCertifService } from './sk-certif-service.service';
 
-describe('SkCertifServiceService', () => {
-  let service: SkCertifServiceService;
+describe('SkCertifService', () => {
+  let service: SkCertifService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(SkCertifServiceService);
+    service = TestBed.inject(SkCertifService);
   });
 
   it('should be created', () => {
