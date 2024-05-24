@@ -18,6 +18,7 @@ import java.io.Reader;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -62,12 +63,12 @@ public class AllInOneTasklet implements Tasklet {
     public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
         Reader reader = new FileReader(
                 resourceLoader
-                        .getResource("classpath:files/personal_disponibleFuncional.csv")
+                        .getResource("classpath:files/personal_disponible.csv")
                         .getFile()
         );
 
         CSVParser parser = new CSVParserBuilder()
-                .withSeparator(',')
+                .withSeparator('Æ')
                 .build();
 
         CSVReader csvReader = new CSVReaderBuilder(reader)
@@ -84,7 +85,9 @@ public class AllInOneTasklet implements Tasklet {
             emp.setName(actualLine[1]);
             emp.setSubgroup(actualLine[2]);
             emp.setStatus(actualLine[3]);
-            // emp.setBench(((actualLine[4].isEmpty()) || (actualLine[4].isBlank()) ? null : new SimpleDateFormat("M/d/yyyy").parse(actualLine[4])));
+           
+
+            emp.setBench(((actualLine[4].isEmpty()) || (actualLine[4].isBlank()) ? null : new SimpleDateFormat("M/d/yyyy").parse(actualLine[4])));
             emp.setDas(actualLine[5]);
             emp.setCiudad(actualLine[6]);
             emp.setLineManager(actualLine[7]);

@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
-
 @Component
 public class ExcelToCsvTasklet implements Tasklet {
 
@@ -61,22 +60,26 @@ public class ExcelToCsvTasklet implements Tasklet {
             case STRING:
                 return cell.getStringCellValue();
             case NUMERIC:
-                System.out.println("NUMERIC: " + cell.getNumericCellValue());
+                // Si no deseas convertir fechas en este punto, simplemente devuelve el valor numérico como string.
+                String numberString = String.valueOf(cell.getNumericCellValue());
                 if (DateUtil.isCellDateFormatted(cell)) {
-                      return cell.getDateCellValue().toString();
+                    // En lugar de convertir la fecha, devuélvela como string en el formato original.
+                    // Puedes formatear la fecha como tú prefieras o dejarla como está.
+                    return new SimpleDateFormat("M/d/yyyy").format(cell.getDateCellValue());
                 } else {
-                	String numberString = String.valueOf(cell.getNumericCellValue());
-                	if (numberString.split("\\.")[1].equals("0")) {
-                		return numberString.split("\\.")[0];
-                	}
-                    return String.valueOf(cell.getNumericCellValue());
+                    if (numberString.split("\\.")[1].equals("0")) {
+                        return numberString.split("\\.")[0];
+                    }
+                    return numberString;
                 }
             case BOOLEAN:
                 return String.valueOf(cell.getBooleanCellValue());
             case FORMULA:
+                // Evalúa la fórmula y devuelve el resultado como string
                 return cell.getCellFormula();
             default:
                 return "";
         }
     }
+
 }
