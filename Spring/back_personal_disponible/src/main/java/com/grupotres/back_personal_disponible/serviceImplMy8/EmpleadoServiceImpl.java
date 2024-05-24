@@ -6,6 +6,9 @@ import java.util.List;
 
 import com.grupotres.back_personal_disponible.model.*;
 import com.grupotres.back_personal_disponible.model.dto.EmpleadoDTO;
+import com.grupotres.back_personal_disponible.model.dto.JobTechnologyProfileDTO;
+import com.grupotres.back_personal_disponible.model.dto.RoleDTO;
+import com.grupotres.back_personal_disponible.model.dto.SkBusSkillDTO;
 import com.grupotres.back_personal_disponible.model.dto.SkCertifDTO;
 import com.grupotres.back_personal_disponible.model.dto.SkLenguageDTO;
 import com.grupotres.back_personal_disponible.model.dto.SkMethodDTO;
@@ -267,6 +270,32 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 		}
 		return empleadosDTOFiltered;
 	}
+	
+	@Override
+	public List<EmpleadoDTO> getEmpleadosByRoleFromList(List<EmpleadoDTO> empleadosDTO, String role) {
+		List<EmpleadoDTO> empleadosDTOFiltered = new ArrayList<>();
+		for (EmpleadoDTO emp : empleadosDTO) {
+			if (emp.getRole().getRole().equals(role)) {
+				empleadosDTOFiltered.add(emp);
+			}
+		}
+		return empleadosDTOFiltered;
+	}
+
+	@Override
+	public List<EmpleadoDTO> getEmpleadosBySkBussSkillFromList(List<EmpleadoDTO> empleadosDTO, String nombre) {
+		List<EmpleadoDTO> empleadosDTOFiltered = new ArrayList<>();
+		for (EmpleadoDTO emp : empleadosDTO) {
+			for (SkBusSkillDTO skbuss : emp.getSkBusSkills()) {
+				if (skbuss.getSkBusSkill().contains(nombre)) {
+					empleadosDTOFiltered.add(emp);
+					break;
+				}
+			}
+			
+		}
+		return empleadosDTOFiltered;
+	}
 
 	@Override
 	public List<EmpleadoDTO> getEmpleadosBySkCertifFromList(List<EmpleadoDTO> empleadosDTO, String nombre) {
@@ -331,6 +360,33 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 		for (EmpleadoDTO emp : empleadosDTO) {
 			for (SkTechSkillDTO sktechSkill : emp.getSkTechSkills()) {
 				if (sktechSkill.getSkTechSkill().contains(skTechSkill)) {
+					empleadosDTOFiltered.add(emp);
+					break;
+				}
+			}
+		}
+		return empleadosDTOFiltered;
+	}
+	
+	@Override
+	public List<EmpleadoDTO> getEmpleadosByRoleAndNivelFromList(List<EmpleadoDTO> empleadosDTO, String role,
+			Integer nivel) {
+		List<EmpleadoDTO> empleadosDTOFiltered = new ArrayList<>();
+		for (EmpleadoDTO emp : empleadosDTO) {
+			if (emp.getRole().getRole().equals(role) && (emp.getRole().getNivel() == nivel)) {
+				empleadosDTOFiltered.add(emp);
+			}
+		}
+		return empleadosDTOFiltered;
+	}
+
+	@Override
+	public List<EmpleadoDTO> getEmpleadosBySkBussSkillAndNivelFromList(List<EmpleadoDTO> empleadosDTO, String nombre,
+			Integer nivel) {
+		List<EmpleadoDTO> empleadosDTOFiltered = new ArrayList<>();
+		for (EmpleadoDTO emp : empleadosDTO) {
+			for (SkBusSkillDTO skbuss : emp.getSkBusSkills()) {
+				if (skbuss.getSkBusSkill().contains(nombre) && (skbuss.getNivel() == nivel)) {
 					empleadosDTOFiltered.add(emp);
 					break;
 				}
@@ -415,8 +471,6 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 		}
 		return empleadosDTOFiltered;
 	}
-
-
 	
 	/*@Override
 	public List<Empleado> findByBench(String bench) {

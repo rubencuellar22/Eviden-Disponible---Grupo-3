@@ -11,6 +11,7 @@ import com.grupotres.back_personal_disponible.service.SkBussSkillService;
 
 @Service
 public class SkBussSkillServiceImpl implements SkBussSkillService{
+	
 	@Autowired
 	private SkBussSkillRepository skBussSkillRepository;
 

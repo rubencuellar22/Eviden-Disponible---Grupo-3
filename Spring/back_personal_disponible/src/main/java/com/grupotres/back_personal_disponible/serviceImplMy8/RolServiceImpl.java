@@ -13,17 +13,20 @@ import com.grupotres.back_personal_disponible.service.RoleService;
  
 @Service
 public class RolServiceImpl implements RoleService{
- 
+	
 	@Autowired
 	private RoleRepository roleRepository;
+
 	@Override
 	public List<Empleado> findEmpleadosByRole(String role) {
-		List<Role> roles = roleRepository.findByRole(role);
-		List<Empleado> empleados = new ArrayList<Empleado>();
-		for(Role role2 : roles) {
-			empleados.add(role2.getEmpleado());
-		}
-		return empleados;
+		return roleRepository.findEmpleadosByRole(role);
 	}
+
+	@Override
+	public List<Empleado> findEmpleadosByRoleAndNivel(String role, Integer nivel) {
+		return roleRepository.findEmpleadosByRoleAndNivel(role, nivel);
+	}
+ 
+	
  
 }
