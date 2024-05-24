@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { JobTechnologyProfileService } from './job-technology-profile-service.service';
 
-describe('JobTechnologyProfileServiceService', () => {
+describe('JobTechnologyProfileService', () => {
   let service: JobTechnologyProfileService;
 
   beforeEach(() => {

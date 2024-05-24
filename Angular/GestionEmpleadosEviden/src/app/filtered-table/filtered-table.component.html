@@ -1,33 +1,100 @@
+<!-- En tu plantilla HTML -->
 <h2 class="titulo text-2xl mb-2 text-center font-bold">List of employees</h2>
-<section class="mainbox flex-1 ml-10 mr-10 bg-white relative" style=" overflow-y: auto;">
-<div *ngIf="empleados.length > 0" class="wrapper relative">
-    
+<section
+  class="mainbox flex-1 ml-10 mr-10 bg-white relative"
+  style="overflow-y: auto"
+>
+  <div *ngIf="empleados.length > 0" class="wrapper relative">
     <table class="tabla w-full table-auto">
-        <thead class="cabecera">
+      <thead class="cabecera">
         <tr>
+          <th class="py-2">Gin</th>
           <th class="py-2">Nombre</th>
+          <th class="py-2">Subgroup</th>
+          <th class="py-2">Status</th>
+          <th class="py-2">Bench</th>
+          <th class="py-2">Das</th>
           <th class="py-2">Ciudad</th>
-          <th class="py-2">Otro Campo</th>
+          <th class="py-2">Agrupación</th>
+          <th class="py-2">Line Manager</th>
+          <th class="py-2">Jornada</th>
+          <th class="py-2">GCM</th>
+          <th class="py-2">Categoria</th>
+          <th class="py-2">Nivel GCM</th>
+          <th class="py-2">SCR</th>
+          <th class="py-2">Grupo</th>
+          <th class="py-2">N4</th>
+          <th class="py-2">Job Technology</th>
+          <th class="py-2">Skills</th>
+          <th class="py-2">Role</th>
+          <th class="py-2">RLT</th>
+          <th class="py-2">Sk Languages</th>
+          <th class="py-2">Sk Methods</th>
+          <th class="py-2">Sk Tech Skills</th>
+          <th class="py-2">Sk Certifs</th>
+          <th class="py-2">Sk Technologies</th>
+          <th class="py-2">Sk Bus Skills</th>
+
+          <!-- <th class="py-2">{{ selectedFilter | titlecase }}</th> -->
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let empleado of empleados">
-           <td class="border px-4 py-2">{{ empleado.name }}</td> 
+          <td class="border px-4 py-2">{{ empleado.gin }}</td>
+          <td class="border px-4 py-2">{{ empleado.name }}</td>
+          <td class="border px-4 py-2">{{ empleado.subgroup }}</td>
+          <td class="border px-4 py-2">{{ empleado.status }}</td>
+          <td class="border px-4 py-2">{{ empleado.bench }}</td>
+          <td class="border px-4 py-2">{{ empleado.das }}</td>
           <td class="border px-4 py-2">{{ empleado.ciudad }}</td>
-          <!-- <td class="border px-4 py-2">{{ empleado.otroCampo }}</td> -->
+          <td class="border px-4 py-2">{{ empleado.agrupacion }}</td>
+          <td class="border px-4 py-2">{{ empleado.lineManager }}</td>
+          <td class="border px-4 py-2">{{ empleado.jornada }}</td>
+          <td class="border px-4 py-2">{{ empleado.gcm }}</td>
+          <td class="border px-4 py-2">{{ empleado.categoria }}</td>
+          <td class="border px-4 py-2">{{ empleado.nivelgcm }}</td>
+          <td class="border px-4 py-2">{{ empleado.scr }}</td>
+          <td class="border px-4 py-2">{{ empleado.grupo.grupos }}</td>
+          <td class="border px-4 py-2">{{ empleado.n4 }}</td>
+          <td class="border px-4 py-2">{{ empleado.jobTechnology }}</td>
+          <td class="border px-4 py-2">{{ empleado.skills }}</td>
+          <td class="border px-4 py-2">
+            {{ empleado.role.role }} - {{ empleado.role.nivel }}
+          </td>
+          <td class="border px-4 py-2">{{ empleado.rlt }}</td>
+          <td class="border px-4 py-2">
+            <ul *ngFor="let skLenguages of empleado.skLenguages">
+              <li>{{ skLenguages.sklanguage }}</li>
+            </ul>
+          </td>
+          <td class="border px-4 py-2">
+            <ul *ngFor="let skMethods of empleado.skMethods">
+              <li>{{ skMethods.skmethod }}</li>
+            </ul>
+          </td>
+          <td class="border px-4 py-2">
+            <ul *ngFor="let skTechSkills of empleado.skTechSkills">
+              <li>{{ skTechSkills.skTechSkill }}</li>
+            </ul>
+          </td>
+          <td class="border px-4 py-2">
+            <ul *ngFor="let skCertifs of empleado.skCertifs">
+              <li>{{ skCertifs.skcertif }}</li>
+            </ul>
+          </td>
+          <td class="border px-4 py-2">
+            <ul *ngFor="let skTechnologies of empleado.skTechnologies">
+              <li>{{ skTechnologies.sktechnology }}</li>
+            </ul>
+          </td>
+          <td class="border px-4 py-2">
+            <ul *ngFor="let skBusSkills of empleado.skBusSkills">
+              <li>{{ skBusSkills.skbusskill }}</li>
+            </ul>
+          </td>
+          <!-- <td class="border px-4 py-2">{{ empleado[selectedFilter]?.toString() }}</td> -->
         </tr>
       </tbody>
     </table>
   </div>
 </section>
-
-
-
- 
-
-
-            
-           
-          
-     
-

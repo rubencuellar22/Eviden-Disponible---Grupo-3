@@ -37,4 +37,5 @@ export class Empleado {
   skCertifs: SkCertif[];
   skTechnologies: SkTechnology[];
   skBusSkills: SkBusSkill[];
+  [key: string]: any;
 }

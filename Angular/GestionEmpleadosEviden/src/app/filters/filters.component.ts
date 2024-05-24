@@ -1,20 +1,25 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Empleado } from '../classes/empleado';
+import { Grupo } from '../classes/Grupo/grupo';
 
 @Component({
   selector: 'app-filters',
   templateUrl: './filters.component.html',
-  styleUrls: ['./filters.component.css']
+  styleUrls: ['./filters.component.css'],
 })
 export class FiltersComponent {
   newTag: string = '';
   tags: string[] = [];
   empleados: Empleado[] = [];
+  arrayGrupo: Grupo[] = [];
   selectedFilter: string = '';
   errorMessage: string = '';
 
-  @Output() empleadosFiltrados = new EventEmitter<Empleado[]>();
+  @Output() empleadosFiltrados = new EventEmitter<{
+    empleados: Empleado[];
+    filter: string;
+  }>();
 
   constructor(private http: HttpClient) {}
 
@@ -26,7 +31,7 @@ export class FiltersComponent {
   }
 
   removeTag(tag: string): void {
-    this.tags = this.tags.filter(t => t !== tag);
+    this.tags = this.tags.filter((t) => t !== tag);
   }
 
   applyFilter(): void {
@@ -56,7 +61,7 @@ export class FiltersComponent {
       case 'jornada':
         endpoint = `http://localhost:8080/empleado/jornada/${filterValue}`;
         break;
-      case 'groups':
+      case 'grupo':
         endpoint = `http://localhost:8080/empleado/groups/${filterValue}`;
         break;
       case 'n4':
@@ -68,6 +73,29 @@ export class FiltersComponent {
       case 'scr':
         endpoint = `http://localhost:8080/empleado/scr/${filterValue}`;
         break;
+      case 'job_technology':
+        endpoint = `http://localhost:8080/empleado/job_technology_profile/${filterValue}`;
+        break;
+      case 'sk_bus_skill':
+        endpoint = `http://localhost:8080/empleado/sk_bussskill/bussskill/${filterValue}`;
+        break;
+      case 'sk_tecnology':
+        endpoint = `http://localhost:8080/empleado/sk_technology/technology/${filterValue}`;
+        break;
+      case 'sk_certif':
+        endpoint = `http://localhost:8080/empleado/sk_certif/certif/${filterValue}`;
+        break;
+      case 'sk_lenguage':
+        endpoint = `http://localhost:8080/empleado/skLenguage/${filterValue}`;
+        break;
+      case 'sk_method':
+        endpoint = `http://localhost:8080/empleado/sk_methods/${filterValue}`;
+        break;
+      case 'sk_tecskill':
+        endpoint = `http://localhost:8080/empleado/sk_techskills/${filterValue}`;
+        break;  
+       
+
       default:
         console.error('Filtro no reconocido:', this.selectedFilter);
         this.errorMessage = 'Unrecognized filter selected.';
@@ -76,13 +104,29 @@ export class FiltersComponent {
 
     this.http.get<Empleado[]>(endpoint).subscribe(
       (data: Empleado[]) => {
+        console.log(data); // Agrega console.log aquí
         this.empleados = data;
-        this.empleadosFiltrados.emit(this.empleados);
+        this.recogerGrupo();
+        this.empleadosFiltrados.emit({
+          empleados: this.empleados,
+          filter: this.selectedFilter,
+        });
       },
-      error => {
+      (error) => {
         console.error('Error al buscar empleados:', error);
         this.errorMessage = 'Error fetching data.';
       }
     );
+  }
+
+  recogerGrupo(): Grupo[] {
+    let data: Grupo = new Grupo;
+    for(let empleado of this.empleados) {
+        data = empleado.grupo; 
+        this.arrayGrupo.push(data);
+    }
+    console.log(this.arrayGrupo);
+
+    return this.arrayGrupo;
   }
 }

@@ -6,7 +6,7 @@ import { Empleado } from '../classes/empleado';
   templateUrl: './filtered-table.component.html',
   styleUrls: ['./filtered-table.component.css']
 })
-
 export class FilteredTableComponent {
   @Input() empleados: Empleado[] = [];
+  @Input() selectedFilter: string = '';
 }
