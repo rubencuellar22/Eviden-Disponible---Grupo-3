@@ -5,7 +5,7 @@ import { Empleado } from '../classes/empleado';
 @Component({
   selector: 'app-filters',
   templateUrl: './filters.component.html',
-  styleUrls: ['./filters.component.css']
+  styleUrls: ['./filters.component.css'],
 })
 export class FiltersComponent {
   newTag: string = '';
@@ -14,11 +14,12 @@ export class FiltersComponent {
   selectedFilter: string = '';
   errorMessage: string = '';
 
-  @Output() empleadosFiltrados = new EventEmitter<{ empleados: Empleado[], filter: string }>();
+  @Output() empleadosFiltrados = new EventEmitter<{
+    empleados: Empleado[];
+    filter: string;
+  }>();
 
   constructor(private http: HttpClient) {}
-
-  
 
   addTag(): void {
     if (this.newTag && !this.tags.includes(this.newTag)) {
@@ -28,7 +29,7 @@ export class FiltersComponent {
   }
 
   removeTag(tag: string): void {
-    this.tags = this.tags.filter(t => t !== tag);
+    this.tags = this.tags.filter((t) => t !== tag);
   }
 
   applyFilter(): void {
@@ -70,6 +71,9 @@ export class FiltersComponent {
       case 'scr':
         endpoint = `http://localhost:8080/empleado/scr/${filterValue}`;
         break;
+      case 'sk_busskill':
+        endpoint = `http://localhost:8080/empleado/sk_bussskill/bussskill/${filterValue}`;
+        break;
       default:
         console.error('Filtro no reconocido:', this.selectedFilter);
         this.errorMessage = 'Unrecognized filter selected.';
@@ -80,15 +84,15 @@ export class FiltersComponent {
       (data: Empleado[]) => {
         console.log(data); // Agrega console.log aquí
         this.empleados = data;
-        this.empleadosFiltrados.emit({ empleados: this.empleados, filter: this.selectedFilter });
+        this.empleadosFiltrados.emit({
+          empleados: this.empleados,
+          filter: this.selectedFilter,
+        });
       },
-      error => {
+      (error) => {
         console.error('Error al buscar empleados:', error);
         this.errorMessage = 'Error fetching data.';
       }
     );
-
-    
-    
   }
 }
