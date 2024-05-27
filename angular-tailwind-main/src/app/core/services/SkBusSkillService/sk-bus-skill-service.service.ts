@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { SkBusSkill } from '../../classes/SkBusSkill/sk-bus-skill';
+import { SkBusSkill } from '../../models/SkBusSkill/sk-bus-skill';
 
 @Injectable({
   providedIn: 'root'

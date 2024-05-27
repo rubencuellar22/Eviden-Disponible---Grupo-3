@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs'; 
-import { SkTechnology } from '../../classes/SkTechnology/sk-technology';
+import { SkTechnology } from '../../models/SkTechnology/sk-technology';
 
 @Injectable({
   providedIn: 'root'

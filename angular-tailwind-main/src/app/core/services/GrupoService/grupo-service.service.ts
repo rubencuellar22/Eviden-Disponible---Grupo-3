@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Grupo } from '../../classes/Grupo/grupo';
+import { Grupo } from '../../models/Grupo/grupo';
 
 @Injectable({
   providedIn: 'root'
