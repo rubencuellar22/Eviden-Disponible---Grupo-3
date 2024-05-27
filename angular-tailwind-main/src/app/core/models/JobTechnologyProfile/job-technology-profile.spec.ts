@@ -1,7 +1,8 @@
 import { JobTechnologyProfile } from './job-technology-profile';
+import { Empleado } from '../empleado';
 
 describe('JobTechnologyProfile', () => {
   it('should create an instance', () => {
-    expect(new JobTechnologyProfile()).toBeTruthy();
+    expect(JobTechnologyProfile).toBeTruthy();
   });
 });

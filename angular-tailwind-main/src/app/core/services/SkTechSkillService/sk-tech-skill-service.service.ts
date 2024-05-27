@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { SkTechSkill } from '../../classes/SkTechSkill/sk-tech-skill';
+import { SkTechSkill } from '../../models/SkTechSkill/sk-tech-skill';
 
 
 @Injectable({

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs'; 
-import { SkCertif } from '../../classes/SkCertif/sk-certif';
+import { SkCertif } from '../../models/SkCertif/sk-certif';
 
 @Injectable({
   providedIn: 'root'

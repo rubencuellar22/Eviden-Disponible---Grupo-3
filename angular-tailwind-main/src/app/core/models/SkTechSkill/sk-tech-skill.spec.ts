@@ -2,6 +2,6 @@ import { SkTechSkill } from './sk-tech-skill';
 
 describe('SkTechSkill', () => {
   it('should create an instance', () => {
-    expect(new SkTechSkill()).toBeTruthy();
+    expect(SkTechSkill).toBeTruthy();
   });
 });

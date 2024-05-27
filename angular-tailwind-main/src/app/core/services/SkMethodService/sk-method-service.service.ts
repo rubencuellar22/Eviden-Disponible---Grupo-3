@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { SkMethod } from '../../classes/SkMethod/sk-method';
+import { SkMethod } from '../../models/SkMethod/sk-method';
 
 @Injectable({
   providedIn: 'root'

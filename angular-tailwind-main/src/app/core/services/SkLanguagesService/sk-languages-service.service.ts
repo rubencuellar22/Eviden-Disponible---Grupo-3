@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { SkLanguages } from '../../classes/SkLanguages/sk-languages';
+import { SkLanguages } from '../../models/SkLanguages/sk-languages';
 
 @Injectable({
   providedIn: 'root'
