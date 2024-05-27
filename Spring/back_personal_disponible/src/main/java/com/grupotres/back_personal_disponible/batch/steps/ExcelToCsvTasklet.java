@@ -46,9 +46,9 @@ public class ExcelToCsvTasklet implements Tasklet {
                         // esto es una chapuza paro es que en este row y en esta celda no me imprime el §.
                         // Y no se que casústica es.
                         // entra en el else pero no imprime el §.
-                        if (row.getRowNum() == 35 && cellNum == 22) {
+                        /* if (row.getRowNum() == 35 && cellNum == 22) {
                             writer.print('§');
-                        }
+                        } */
                         firstCell = false;
                         cellNum++;
                     }
