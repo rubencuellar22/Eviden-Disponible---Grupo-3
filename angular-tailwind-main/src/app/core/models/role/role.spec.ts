@@ -1,7 +1,10 @@
-import { Role } from './role';
+import { Role } from "./role";
 
-describe('Role', () => {
+
+describe('Empleado', () => {
   it('should create an instance', () => {
+
+    // Ahora puedes utilizar roleInstance en tus pruebas
     expect(Role).toBeTruthy();
   });
 });
