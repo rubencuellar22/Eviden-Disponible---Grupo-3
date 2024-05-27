@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
  
 import com.grupotres.back_personal_disponible.model.Empleado;
+import com.grupotres.back_personal_disponible.model.SkLenguage;
 import com.grupotres.back_personal_disponible.model.dto.EmpleadoDTO;
+import com.grupotres.back_personal_disponible.model.dto.SkLenguageDTO;
 import com.grupotres.back_personal_disponible.service.EmpleadoService;
 import com.grupotres.back_personal_disponible.service.SkLenguageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,17 @@ public class SkLenguagesRestController {
 	@Autowired
 	private SkLenguageService skLenguageService;
  
+	@GetMapping("/todos")
+    public ResponseEntity<List<SkLenguageDTO>> selectAllSkLenguages() {
+        List<SkLenguage> skLenguages = skLenguageService.selectAllSkLenguages();
+        List<SkLenguageDTO> skLenguagesDTO = new ArrayList<>();
+        for (SkLenguage skLenguage : skLenguages) {
+        	
+            skLenguagesDTO.add(new SkLenguageDTO(skLenguage));
+        }
+        return ResponseEntity.ok(skLenguagesDTO);
+    }
+	
 	@GetMapping("/{sklenguage}")
 	public ResponseEntity<?>getEmpleadosBySkLenguage(@PathVariable String sklenguage) {
 		List<Empleado> empleados = skLenguageService.findEmpleadosBySkLenguage(sklenguage);

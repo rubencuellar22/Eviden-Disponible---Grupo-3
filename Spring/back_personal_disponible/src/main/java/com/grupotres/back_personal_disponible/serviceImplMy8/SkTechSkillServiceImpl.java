@@ -27,4 +27,9 @@ public class SkTechSkillServiceImpl implements SkTechSkillService {
         return skTechSkillRepository.findBySkTechSkillAndNivel(skTechSkill, nivel);
     }
 
+	@Override
+	public List<SkTechSkill> selectAllSkTechSkills() {
+		return skTechSkillRepository.selectAllSkTechSkills();
+	}
+
 }

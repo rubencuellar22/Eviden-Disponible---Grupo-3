@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.grupotres.back_personal_disponible.model.Empleado;
+import com.grupotres.back_personal_disponible.model.SkTechnology;
 import com.grupotres.back_personal_disponible.model.dto.EmpleadoDTO;
+import com.grupotres.back_personal_disponible.model.dto.SkTechnologyDTO;
 import com.grupotres.back_personal_disponible.repository.SkTechnologyRepository;
 import com.grupotres.back_personal_disponible.service.EmpleadoService;
 import com.grupotres.back_personal_disponible.service.SkTechnologyService;
@@ -29,7 +31,16 @@ public class SkTechnologyRestController {
 	@Autowired
     private SkTechnologyService skTechnologyService;
 	
-	
+	@GetMapping("/todos")
+    public ResponseEntity<List<SkTechnologyDTO>> selectAllSkTechnologies() {
+        List<SkTechnology> skTechnologies = skTechnologyService.selectAllSkTechnologies();
+        List<SkTechnologyDTO> skTechnologiesDTO = new ArrayList<>();
+        for (SkTechnology skTechnology : skTechnologies) {
+            skTechnologiesDTO.add(new SkTechnologyDTO(skTechnology));
+        }
+        return ResponseEntity.ok(skTechnologiesDTO);
+    }
+
 	 @GetMapping("/{nombre}")
 	 public ResponseEntity<?> findEmpleadosByTechnology(@PathVariable String nombre){
 		List<Empleado> empleados = skTechnologyService.findEmpleadosByTechnology(nombre);

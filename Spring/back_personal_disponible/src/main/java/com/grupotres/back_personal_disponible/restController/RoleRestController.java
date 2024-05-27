@@ -13,7 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
  
 import com.grupotres.back_personal_disponible.model.Empleado;
+import com.grupotres.back_personal_disponible.model.Role;
+import com.grupotres.back_personal_disponible.model.SkBusSkill;
 import com.grupotres.back_personal_disponible.model.dto.EmpleadoDTO;
+import com.grupotres.back_personal_disponible.model.dto.RoleDTO;
+import com.grupotres.back_personal_disponible.model.dto.SkBusSkillDTO;
 import com.grupotres.back_personal_disponible.service.EmpleadoService;
 import com.grupotres.back_personal_disponible.service.RoleService;
  
@@ -26,6 +30,16 @@ public class RoleRestController {
 	
 	@Autowired
 	private EmpleadoService empleadoService;
+	
+	@GetMapping("/todos")
+	public ResponseEntity<List<RoleDTO>> selectAllRoles() {
+        List<Role> roles = roleService.selectAllRoles();
+        List<RoleDTO> rolesDTO = new ArrayList<>();
+        for (Role role : roles) {
+            rolesDTO.add(new RoleDTO(role));
+        }
+        return ResponseEntity.ok(rolesDTO);
+    }
 	
 	@GetMapping("/{role}")
 	public ResponseEntity<?> findEmpleadosByRole(@PathVariable String role) {

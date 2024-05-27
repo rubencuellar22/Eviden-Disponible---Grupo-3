@@ -27,4 +27,9 @@ public class SkMethodServiceImpl implements SkMethodService {
 		return skMethodRepository.findBySkMethodAndNivel(skMethod, nivel);
 	}
 
+	@Override
+	public List<SkMethod> selectAllSkMethods() {
+		return skMethodRepository.selectAllSkMethod();
+	}
+
 }

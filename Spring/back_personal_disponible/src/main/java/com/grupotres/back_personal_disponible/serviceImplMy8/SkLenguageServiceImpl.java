@@ -36,6 +36,11 @@ public class SkLenguageServiceImpl implements SkLenguageService {
 		}
 		return empleados;
 	}
+
+	@Override
+	public List<SkLenguage> selectAllSkLenguages() {
+		return skLenguageRepository.selectAllSkLenguages();
+	}
  
 	
 }

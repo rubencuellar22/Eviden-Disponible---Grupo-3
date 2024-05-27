@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.grupotres.back_personal_disponible.model.Empleado;
+import com.grupotres.back_personal_disponible.model.SkCertif;
 import com.grupotres.back_personal_disponible.repository.SkCertifRepository;
 import com.grupotres.back_personal_disponible.service.SkCertifService;
 
@@ -24,5 +25,10 @@ public class SkCertifServiceImpl implements SkCertifService {
 	public List<Empleado> findEmpleadosByCertifNombreAndNivel(String nombre, int external) {
 		 return skCertifRepository.findEmpleadosByCertifNombreAndNivel(nombre, external);
 		    
+	}
+
+	@Override
+	public List<SkCertif> selectAllSkCertifs() {
+		return skCertifRepository.selectAllSkCertifs();
 	}
 }

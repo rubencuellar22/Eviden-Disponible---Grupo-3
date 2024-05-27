@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import com.grupotres.back_personal_disponible.model.SkCertif;
 import com.grupotres.back_personal_disponible.model.SkLenguage;
 
 @Repository
@@ -19,4 +20,7 @@ public interface SkLenguageRepository extends JpaRepository<SkLenguage, Integer>
 	("SELECT sk FROM SkLenguage sk Where sk.sklenguage = ?1 and sk.nivel = ?2")
 	public List<SkLenguage> findBySkLenguageAndLvl(String sklenguage, String nivel);
 
+	@Query
+	("SELECT sk FROM SkLenguage sk")
+    List<SkLenguage> selectAllSkLenguages();
 }
