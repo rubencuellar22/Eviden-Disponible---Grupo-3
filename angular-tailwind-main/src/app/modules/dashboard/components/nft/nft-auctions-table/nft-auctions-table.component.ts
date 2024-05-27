@@ -5,6 +5,7 @@ import { Nft } from '../../../models/nft';
 @Component({
     selector: '[nft-auctions-table]',
     templateUrl: './nft-auctions-table.component.html',
+    styleUrls: ['./nft-auctions-table.component.css'],
     standalone: true,
     imports: [CommonModule], // Agrega CommonModule a la lista de imports
     providers: [DatePipe] // Agrega DatePipe a la lista de providers
