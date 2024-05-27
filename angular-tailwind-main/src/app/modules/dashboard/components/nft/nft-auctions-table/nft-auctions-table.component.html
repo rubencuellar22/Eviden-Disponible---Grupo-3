@@ -66,8 +66,8 @@
           <td>{{ empleado.role.name }}</td>
           <td>{{ empleado.rlt }}</td>
           <td>
-            <ul>
-              <li *ngFor="let skLenguage of empleado.skLenguages">{{ skLenguage.name }}</li>
+            <ul *ngFor="let skLenguage of empleado.skLenguages">
+              <li > {{ skLenguage.name }} </li>
             </ul>
           </td>
           <td>

@@ -1,18 +1,18 @@
-export class SkBusSkill {
+export class SkBusSkills {
   id_skbusskill: number;
   ginEmpleado: number;
-  skbusskill: string;
+  skBusSkill: string;
   nivel: number;
 
   constructor(
     id_skbusskill: number,
     ginEmpleado: number,
-    skbusskill: string,
+    skBusSkill: string,
     nivel: number
   ) {
     this.id_skbusskill = id_skbusskill;
     this.ginEmpleado = ginEmpleado;
-    this.skbusskill = skbusskill;
+    this.skBusSkill = skBusSkill;
     this.nivel = nivel;
   }
 }

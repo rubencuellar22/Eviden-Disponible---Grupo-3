@@ -64,12 +64,12 @@
           <td class="border px-4 py-2">{{ empleado.rlt }}</td>
           <td class="border px-4 py-2">
             <ul *ngFor="let skLenguages of empleado.skLenguages">
-              <li>{{ skLenguages.sklanguage }}</li>
+              <li>{{ skLenguages.sklenguage }}</li>
             </ul>
           </td>
           <td class="border px-4 py-2">
             <ul *ngFor="let skMethods of empleado.skMethods">
-              <li>{{ skMethods.skmethod }}</li>
+              <li>{{ skMethods.skmethod }} - {{ skMethods.nivel }}</li>
             </ul>
           </td>
           <td class="border px-4 py-2">
@@ -79,7 +79,7 @@
           </td>
           <td class="border px-4 py-2">
             <ul *ngFor="let skCertifs of empleado.skCertifs">
-              <li>{{ skCertifs.skcertif }}</li>
+              <li>{{ skCertifs.skCertif }}</li>
             </ul>
           </td>
           <td class="border px-4 py-2">
@@ -89,7 +89,7 @@
           </td>
           <td class="border px-4 py-2">
             <ul *ngFor="let skBusSkills of empleado.skBusSkills">
-              <li>{{ skBusSkills.skbusskill }}</li>
+              <li>{{ skBusSkills.skBusSkill }}</li>
             </ul>
           </td>
           <!-- <td class="border px-4 py-2">{{ empleado[selectedFilter]?.toString() }}</td> -->
