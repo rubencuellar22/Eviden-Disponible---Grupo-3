@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
  
 import com.grupotres.back_personal_disponible.model.Empleado;
+import com.grupotres.back_personal_disponible.model.JobTechnologyProfile;
 import com.grupotres.back_personal_disponible.repository.JobTechnologyProfileRepository;
 import com.grupotres.back_personal_disponible.service.JobTechnologyProfileService;
  
@@ -24,8 +25,8 @@ public class JobTechnologyProfileServiceImpl implements JobTechnologyProfileServ
 	public List<Empleado> findByJobTechnologyProfileAndLvl(String jobTechnologyProfile, int nivel) {
 		return jobTechnologyProfileRepository.findByJobTechnologyProfileAndLvl(jobTechnologyProfile, nivel);
 	}
- 
-}
+	
+	@Override
 	public void saveAllJobTechnologyProfiles(List<JobTechnologyProfile> jobTechnologyProfiles) {
 		jobTechnologyProfileRepository.saveAll(jobTechnologyProfiles);
 	}

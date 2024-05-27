@@ -27,9 +27,7 @@ public class RolServiceImpl implements RoleService{
 		return roleRepository.findEmpleadosByRoleAndNivel(role, nivel);
 	}
  
-	
- 
-}
+	@Override
 	public void saveRole(Role role) {
 		roleRepository.save(role);
 	}

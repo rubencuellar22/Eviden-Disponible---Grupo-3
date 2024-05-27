@@ -21,6 +21,7 @@ public interface RoleRepository extends JpaRepository<Role, Long>{
 	("SELECT r.empleado FROM Role r WHERE r.role = ?1 AND r.nivel = ?2")
 	List<Empleado> findEmpleadosByRoleAndNivel(String role, int nivel);
 	
+	@Query
 	("SELECT r FROM Role r WHERE r.role = ?1")
 	public List<Role> findByRole(String role);
 

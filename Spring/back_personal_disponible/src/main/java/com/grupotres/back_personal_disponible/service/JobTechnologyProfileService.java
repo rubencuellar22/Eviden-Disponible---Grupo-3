@@ -14,8 +14,6 @@ public interface JobTechnologyProfileService {
 	List<Empleado> findByJobTechnologyProfile(String jobTechnologyProfile);
  
 	List<Empleado> findByJobTechnologyProfileAndLvl(String jobTechnologyProfile, int nivel);
- 
-	public List<Empleado> findEmpleadosByJobTechnologyProfile(String jobTechnologyProfile);
 
 	public void saveAllJobTechnologyProfiles(List<JobTechnologyProfile> jobTechnologyProfiles);
 

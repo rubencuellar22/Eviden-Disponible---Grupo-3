@@ -14,8 +14,6 @@ public interface RoleService {
 	List<Empleado> findEmpleadosByRole(String role);
 
 	List<Empleado> findEmpleadosByRoleAndNivel(String role, Integer nivel);
-	
-	public List<Empleado> findEmpleadosByRole(String role);
 
     void saveRole(Role role);
 
