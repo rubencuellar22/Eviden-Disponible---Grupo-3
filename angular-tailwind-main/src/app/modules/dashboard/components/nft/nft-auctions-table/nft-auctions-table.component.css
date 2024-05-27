@@ -16,7 +16,7 @@
   /* width */
 ::-webkit-scrollbar {
     width: 4px;
-    height: 4px; /* Altura más pequeña para la barra */
+    height: 5px; /* Altura más pequeña para la barra */
 }
 
 /* Track */
@@ -26,11 +26,11 @@
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #FF6D43;
+    background: #acacac;
     border-radius: 5px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #FF6D43;
+    background: #acacac;
 }
