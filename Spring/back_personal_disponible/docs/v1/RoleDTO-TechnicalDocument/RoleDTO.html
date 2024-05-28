@@ -1,0 +1,31 @@
+<html><head><title> Technical Documentation - C:\LocalDesktop\Eviden-Disponible---Grupo-3\Spring\back_personal_disponible\src\main\java\com\grupotres\back_personal_disponible\model\dto\RoleDTO.java </title>  <!-- Include CSS for styling the header -->
+    <style>
+        /* Style the header */
+body {background-color: whitesmoke; padding:10px;}a { text-decoration: none; color: black; }header   { background:gray; color:whitesmoke; border-radius: 5px;}h1   { padding: 10px;}h2   { padding: 10px; background:#413a31; color:whitesmoke; border-radius: 5px;}p	{ padding: 10px; line-height: 1.25rem; letter-spacing: 0.02rem;}li	{ list-style-type: circle; line-height: 1.25rem; }footer { background-color: #333;color: #fff;text-align: center;padding-left: 10px;padding-right: 10px;height:5%;display:flex;justify-content:center;align-items:center;}    </style></head><body> <!-- Header Section -->
+    <header>
+        <h2> Technical Document - RoleDTO.java </h2>
+        <p>Version 1.0</p>
+    </header> <!-- Table of Contents -->
+    <nav>
+        <h2>Table of Contents</h2>
+        <ul>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#summary">Class Summary</a></li>
+            <li><a href="#review-comment">Review Comment</a></li>
+        </ul>
+    </nav> <!-- Introduction Section -->
+    <section id="introduction">
+        <h2>Introduction</h2>
+        <p>Provide an technical overview of the class, its purpose, and its features.</p>
+    </section>  <!-- Summary Section -->
+    <section id="summary">
+        <h2>Class Summary</h2>
+ 
+ <h3>Field Summary -</h3><table border="1"><tr><th>Modifier and Type</th><th>Field</th></tr><tr><td>[private , static , final ] long</td><td>serialVersionUID</td></tr><tr><td>[private ] Long</td><td>idRole</td></tr><tr><td>[private ] String</td><td>role</td></tr><tr><td>[private ] int</td><td>nivel</td></tr></table>
+ <h3>Explanation -</h3>
+ <p>**Code Summary for Documentation:**<br><br>The `RoleDTO` class is a data transfer object (DTO) that represents a `Role` object. It implements the `Serializable` interface, which allows instances of this class to be serialized and deserialized. The class has three properties: `idRole`, `role`, and `nivel`. <br><br>The class also includes Lombok annotations `@Data`, `@NoArgsConstructor`, and `@AllArgsConstructor`. The `@Data` annotation generates getter and setter methods for all properties, `@NoArgsConstructor` generates a no-argument constructor, and `@AllArgsConstructor` generates a constructor that accepts values for all properties.<br><br>Additionally, the class includes a constructor that takes a `Role` object as a parameter and initializes the `RoleDTO` properties with the corresponding values from the `Role` object.<br><br>The `RoleDTO` class is used to transfer role data between different layers of the application or between different systems.</p>
+ </section>  <!-- Review-comment< -->
+    <section id="review-comment">
+        <h2> Review </h2>
+        <p>**Code Review summary** - The code snippet appears to be a DTO (Data Transfer Object) for the Role entity. The code follows the Lombok library conventions and uses annotations such as `@Data`, `@NoArgsConstructor`, and `@AllArgsConstructor` to generate boilerplate code. The implementation is straightforward and functional. However, there are a few areas for improvement. The `RoleDTO` constructor that takes a `Role` object as a parameter can be simplified by using Lombok's `@Builder` annotation. Additionally, it would be beneficial to add some validation or error handling for null values. Overall, the code quality is good, and the functionality meets the requirements. I would rate it a 7 out of 10.</p>
+    </section><footer><div><div style="float:left;padding-top:3px;">27-05-2024 16:59:38</div><img src="logo_icon.png" alt="logo" style="width: 6%;float:right;"></div></footer></body></html>

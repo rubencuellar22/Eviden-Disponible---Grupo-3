@@ -1,0 +1,69 @@
+<html><head><title> Technical Documentation - C:\LocalDesktop\Eviden-Disponible---Grupo-3\Spring\back_personal_disponible\src\main\java\com\grupotres\back_personal_disponible\model\Role.java </title>  <!-- Include CSS for styling the header -->
+    <style>
+        /* Style the header */
+body {background-color: whitesmoke; padding:10px;}a { text-decoration: none; color: black; }header   { background:gray; color:whitesmoke; border-radius: 5px;}h1   { padding: 10px;}h2   { padding: 10px; background:#413a31; color:whitesmoke; border-radius: 5px;}p	{ padding: 10px; line-height: 1.25rem; letter-spacing: 0.02rem;}li	{ list-style-type: circle; line-height: 1.25rem; }footer { background-color: #333;color: #fff;text-align: center;padding-left: 10px;padding-right: 10px;height:5%;display:flex;justify-content:center;align-items:center;}    </style></head><body> <!-- Header Section -->
+    <header>
+        <h2> Technical Document - Role.java </h2>
+        <p>Version 1.0</p>
+    </header> <!-- Table of Contents -->
+    <nav>
+        <h2>Table of Contents</h2>
+        <ul>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#summary">Class Summary</a></li>
+            <li><a href="#explainmethod">Explain Method</a></li>
+            <li><a href="#review-comment">Review Comment</a></li>
+        </ul>
+    </nav> <!-- Introduction Section -->
+    <section id="introduction">
+        <h2>Introduction</h2>
+        <p>Provide an technical overview of the class, its purpose, and its features.</p>
+    </section>  <!-- Summary Section -->
+    <section id="summary">
+        <h2>Class Summary</h2>
+ 
+ <h3>Field Summary -</h3><table border="1"><tr><th>Modifier and Type</th><th>Field</th></tr><tr><td>[private , static , final ] long</td><td>serialVersionUID</td></tr><tr><td>[private ] Long</td><td>idRole</td></tr><tr><td>[private ] Empleado</td><td>empleado</td></tr><tr><td>[private ] String</td><td>role</td></tr><tr><td>[private ] int</td><td>nivel</td></tr></table> 
+ <h3>Method Summary -</h3><table border="1"><tr><th>Modifier and Type</th><th>Method and Args</th></tr><tr><td>[public ] Long</td><td>getIdRole []</td></tr><tr><td>[public ] void</td><td>setIdRole [Long idRole]</td></tr><tr><td>[public ] String</td><td>getRole []</td></tr><tr><td>[public ] void</td><td>setRole [String role]</td></tr><tr><td>[public ] int</td><td>getNivel []</td></tr><tr><td>[public ] void</td><td>setNivel [int nivel]</td></tr><tr><td>[public ] Empleado</td><td>getEmpleado []</td></tr><tr><td>[public ] void</td><td>setEmpleado [Empleado empleado]</td></tr><tr><td>[public ] String</td><td>toString []</td></tr></table>
+ <h3>Explanation -</h3>
+ <p>**Code Summary for Documentation:**<br><br>This code defines a model class called "Role" that represents a database table called "role". The class is annotated with the "@Entity" annotation, indicating that it is an entity class that maps to a database table. The table name is specified using the "@Table" annotation.<br><br>The class has several attributes, including "idRole", "role", "nivel", and "empleado". The "@Id" annotation marks the "idRole" attribute as the primary key of the table, and the "@GeneratedValue" annotation specifies that the value for this attribute will be generated automatically.<br><br>The class also has a one-to-one relationship with the "Empleado" entity, which is represented by the "empleado" attribute. This relationship is defined using the "@OneToOne" annotation and the "@JoinColumn" annotation specifies the column name for the foreign key.<br><br>The class provides getter and setter methods for all attributes, as well as an overridden "toString()" method for easy debugging and logging.</p>
+ </section>  <!-- Method Summary Section -->
+    <section id="explainmethod"getIdRole>
+        <h2>Explain Method - getIdRole</h2>
+        <p>**Code Summary for Documentation:**<br><br>This code snippet is a method called `getIdRole()` that returns a `Long` value. The method does not accept any parameters. <br><br>The purpose of this method is to retrieve the value of the `idRole` property. <br><br>The `idRole` property is a variable of type `Long`, which is a wrapper class for the `long` primitive type. It is likely used to store the unique identifier of a role in a system or application.<br><br>By calling this method, the value of the `idRole` property can be accessed and used in other parts of the code. This method provides encapsulation and abstraction by hiding the implementation details of how the `idRole` value is stored and retrieved.</p>
+    </section>  <!-- Method Summary Section -->
+    <section id="explainmethod"setIdRole>
+        <h2>Explain Method - setIdRole</h2>
+        <p>**Code Summary for Documentation:** <br><br>This code is a setter method for the `idRole` property of an object. The method takes a `Long` parameter `idRole` and assigns its value to the `idRole` property of the object using the `this` keyword. <br><br>Setter methods are commonly used in object-oriented programming to set the values of private properties of an object. By using a setter method like this, we can ensure that the value of `idRole` is set in a controlled manner. <br><br>In this case, the `setIdRole` method allows us to set the value of the `idRole` property for an object of a specific class. This can be useful when we need to update or modify the `idRole` value for an object. <br><br>By encapsulating the property and providing a setter method, we can enforce any necessary validation or business logic before setting the value.</p>
+    </section>  <!-- Method Summary Section -->
+    <section id="explainmethod"getRole>
+        <h2>Explain Method - getRole</h2>
+        <p>**Code Summary for Documentation:**<br><br>This code defines a method called `getRole` that returns a string value. The method is defined within a class, and it is assumed that the class has a member variable called `role`. <br><br>The purpose of this method is to provide access to the value of the `role` member variable. It is a simple getter method that does not take any parameters and returns the value of `role`.<br><br>By using this method, other parts of the code can retrieve the value of `role` without directly accessing the member variable. This encapsulation helps maintain data integrity and allows for easier modifications to the implementation of the `role` member variable in the future.<br><br>Overall, this method provides a convenient way to retrieve the value of the `role` member variable from other parts of the code.</p>
+    </section>  <!-- Method Summary Section -->
+    <section id="explainmethod"setRole>
+        <h2>Explain Method - setRole</h2>
+        <p>**Code Summary for Documentation:**<br><br>This code snippet is a setter method for a variable called "role". The method takes in a parameter of type String, which represents the value to be assigned to the "role" variable. The "this" keyword refers to the current instance of the object that the method belongs to.<br><br>By calling this setter method and passing a String value as an argument, the "role" variable of the object will be updated with the new value.<br><br>This code is a simple setter method that allows for the modification of the "role" variable within an object. It is commonly used in object-oriented programming to encapsulate the internal state of an object and provide controlled access to its properties.</p>
+    </section>  <!-- Method Summary Section -->
+    <section id="explainmethod"getNivel>
+        <h2>Explain Method - getNivel</h2>
+        <p>**Code Summary for Documentation:**<br><br>This code snippet is a getter method for the `nivel` variable. The method returns the value of the `nivel` variable.<br><br>The `nivel` variable is likely a property of a class or an object, and this getter method provides access to its value. By calling this method, the value of `nivel` can be retrieved and used in other parts of the code.<br><br>This getter method is public, which means it can be accessed from other classes or objects. It does not take any parameters and returns an integer value.<br><br>Overall, this code snippet provides a way to retrieve the value of the `nivel` variable, allowing other parts of the code to access and use this value as needed.</p>
+    </section>  <!-- Method Summary Section -->
+    <section id="explainmethod"setNivel>
+        <h2>Explain Method - setNivel</h2>
+        <p>### Code Summary for Documentation:<br><br>This code snippet defines a public method named `setNivel` that takes an integer parameter called `nivel`. The purpose of this method is to set the value of the instance variable `nivel` in the current object. <br><br>The method assigns the value of the `nivel` parameter to the `nivel` instance variable using the `this` keyword to refer to the current object. By doing this, the method allows external code to update the value of the `nivel` variable.<br><br>This method does not return any value and is not intended to perform any additional operations or validations. It simply sets the value of the `nivel` variable based on the provided parameter.<br><br>This method can be used in a class to provide a way to update the value of the `nivel` variable from outside the class. It is commonly used in object-oriented programming to encapsulate and control access to instance variables.</p>
+    </section>  <!-- Method Summary Section -->
+    <section id="explainmethod"getEmpleado>
+        <h2>Explain Method - getEmpleado</h2>
+        <p>**Code Summary for Documentation:**<br><br>This code snippet defines a method called `getEmpleado()` that belongs to a class. The method returns an object of type `Empleado`. <br><br>The `getEmpleado()` method is a getter method, which is commonly used in object-oriented programming to retrieve the value of a private instance variable. In this case, the `empleado` instance variable is being returned by the method. <br><br>The `Empleado` class is assumed to be defined elsewhere in the code, and it represents an employee object. By using the getter method, other parts of the code can access and retrieve the `empleado` object stored within the class. <br><br>This getter method provides a way to encapsulate the private instance variable and control how it is accessed by other parts of the code. It allows for better code organization and maintainability.</p>
+    </section>  <!-- Method Summary Section -->
+    <section id="explainmethod"setEmpleado>
+        <h2>Explain Method - setEmpleado</h2>
+        <p>**Code Summary for Documentation:** <br>This code is a method called `setEmpleado` which sets the value of the `empleado` property. The `empleado` property is of type `Empleado`, which is an object representing an employee. <br><br>The method takes in a parameter of type `Empleado` named `empleado`, which represents the new value to be set for the `empleado` property. <br><br>Inside the method, the `empleado` property is set to the value of the `empleado` parameter using the `this` keyword, which refers to the current instance of the class. <br><br>This method can be used to update the value of the `empleado` property of an object of this class. It is typically used when there is a need to change the employee associated with an object.</p>
+    </section>  <!-- Method Summary Section -->
+    <section id="explainmethod"toString>
+        <h2>Explain Method - toString</h2>
+        <p>**Code Summary for Documentation:**<br><br>This code snippet is a method override of the `toString()` method. The `toString()` method is a built-in method in Java that is used to represent the object as a string. <br><br>In this code, it returns a string representation of the `Role` object. The returned string is a concatenation of the object's `idRole`, `empleado`, `role`, and `nivel` properties. The properties are enclosed in curly braces and separated by commas. <br><br>The `idRole` property represents the unique identifier of the role, the `empleado` property represents the employee associated with the role, the `role` property represents the name of the role, and the `nivel` property represents the level of the role. <br><br>This method is useful when we want to display the object's details as a string, for example, when debugging or logging information. It provides a clear and concise representation of the `Role` object.</p>
+    </section>  <!-- Review-comment< -->
+    <section id="review-comment">
+        <h2> Review </h2>
+        <p>**Code Review summary** - The code appears to be well-structured and follows the Java naming conventions. However, there are a few areas that could be improved. <br><br>1. The `Role` class has a `toString()` method that includes the `Empleado` object. This may cause a potential performance issue if the `Empleado` object has a large number of properties or if it has a circular reference. It is recommended to remove the `Empleado` object from the `toString()` method or only include relevant information.<br><br>2. The `Role` class does not have any validation or error handling for the `role` and `nivel` properties. It is recommended to add appropriate validation logic to ensure that these properties have valid values.<br><br>Overall, the code quality is good with room for improvement. I would rate it a 7 out of 10.</p>
+    </section><footer><div><div style="float:left;padding-top:3px;">27-05-2024 17:16:21</div><img src="logo_icon.png" alt="logo" style="width: 6%;float:right;"></div></footer></body></html>

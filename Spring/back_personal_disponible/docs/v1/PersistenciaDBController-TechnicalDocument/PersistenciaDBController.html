@@ -1,0 +1,29 @@
+<html><head><title> Technical Documentation - C:\LocalDesktop\Eviden-Disponible---Grupo-3\Spring\back_personal_disponible\src\main\java\com\grupotres\back_personal_disponible\restController\PersistenciaDBController.java </title>  <!-- Include CSS for styling the header -->
+    <style>
+        /* Style the header */
+body {background-color: whitesmoke; padding:10px;}a { text-decoration: none; color: black; }header   { background:gray; color:whitesmoke; border-radius: 5px;}h1   { padding: 10px;}h2   { padding: 10px; background:#413a31; color:whitesmoke; border-radius: 5px;}p	{ padding: 10px; line-height: 1.25rem; letter-spacing: 0.02rem;}li	{ list-style-type: circle; line-height: 1.25rem; }footer { background-color: #333;color: #fff;text-align: center;padding-left: 10px;padding-right: 10px;height:5%;display:flex;justify-content:center;align-items:center;}    </style></head><body> <!-- Header Section -->
+    <header>
+        <h2> Technical Document - PersistenciaDBController.java </h2>
+        <p>Version 1.0</p>
+    </header> <!-- Table of Contents -->
+    <nav>
+        <h2>Table of Contents</h2>
+        <ul>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#summary">Class Summary</a></li>
+            <li><a href="#explainmethod">Explain Method</a></li>
+        </ul>
+    </nav> <!-- Introduction Section -->
+    <section id="introduction">
+        <h2>Introduction</h2>
+        <p>Provide an technical overview of the class, its purpose, and its features.</p>
+    </section>  <!-- Summary Section -->
+    <section id="summary">
+        <h2>Class Summary</h2>
+ 
+ <h3>Field Summary -</h3><table border="1"><tr><th>Modifier and Type</th><th>Field</th></tr><tr><td>[private ] EmpleadoServiceImpl</td><td>empleadoService</td></tr><tr><td>[private ] JobLauncher</td><td>jobLauncher</td></tr><tr><td>[private ] Job</td><td>job</td></tr></table> 
+ <h3>Method Summary -</h3><table border="1"><tr><th>Modifier and Type</th><th>Method and Args</th></tr><tr><td>[public ] ResponseEntity<?></td><td>persistirCSV []</td></tr><tr><td>[public ] Empleado</td><td>persistir [@RequestBody String csv]</td></tr></table> </section>  <!-- Method Summary Section -->
+    <section id="explainmethod"persistir>
+        <h2>Explain Method - persistir</h2>
+        <p>**Code Summary for Documentation:**<br><br>This code is a POST method that receives a CSV string as a request body and converts it into an Empleado (Employee) object. The CSV string is split into an array using the comma as the delimiter. The array elements are then used to set the properties of the Empleado object.<br><br>The code parses the CSV array and assigns each value to the corresponding property of the Empleado object. It handles some special cases, such as checking for empty or blank values and converting them to null or appropriate data types. It also handles parsing nested objects like Grupo, JobTechnologyProfile, Role, SkLenguage, SkMethod, SkTechSkill, SkCertif, SkTechnology, and SkBusSkill.<br><br>Finally, the Empleado object is printed and persisted using the empleadoService.createEmpleado() method. The method returns the persisted Empleado object.<br><br>Overall, this code takes a CSV string, converts it into an Empleado object, and persists it. It handles various parsing and data type conversion scenarios to ensure data integrity.</p>
+    </section><footer><div><div style="float:left;padding-top:3px;">27-05-2024 17:29:27</div><img src="logo_icon.png" alt="logo" style="width: 6%;float:right;"></div></footer></body></html>

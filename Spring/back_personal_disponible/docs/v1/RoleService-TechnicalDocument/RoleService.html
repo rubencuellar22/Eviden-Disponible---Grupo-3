@@ -1,0 +1,31 @@
+<html><head><title> Technical Documentation - C:\LocalDesktop\Eviden-Disponible---Grupo-3\Spring\back_personal_disponible\src\main\java\com\grupotres\back_personal_disponible\service\RoleService.java </title>  <!-- Include CSS for styling the header -->
+    <style>
+        /* Style the header */
+body {background-color: whitesmoke; padding:10px;}a { text-decoration: none; color: black; }header   { background:gray; color:whitesmoke; border-radius: 5px;}h1   { padding: 10px;}h2   { padding: 10px; background:#413a31; color:whitesmoke; border-radius: 5px;}p	{ padding: 10px; line-height: 1.25rem; letter-spacing: 0.02rem;}li	{ list-style-type: circle; line-height: 1.25rem; }footer { background-color: #333;color: #fff;text-align: center;padding-left: 10px;padding-right: 10px;height:5%;display:flex;justify-content:center;align-items:center;}    </style></head><body> <!-- Header Section -->
+    <header>
+        <h2> Technical Document - RoleService.java </h2>
+        <p>Version 1.0</p>
+    </header> <!-- Table of Contents -->
+    <nav>
+        <h2>Table of Contents</h2>
+        <ul>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#summary">Class Summary</a></li>
+            <li><a href="#review-comment">Review Comment</a></li>
+        </ul>
+    </nav> <!-- Introduction Section -->
+    <section id="introduction">
+        <h2>Introduction</h2>
+        <p>Provide an technical overview of the class, its purpose, and its features.</p>
+    </section>  <!-- Summary Section -->
+    <section id="summary">
+        <h2>Class Summary</h2>
+ 
+ <h3>Method Summary -</h3><table border="1"><tr><th>Modifier and Type</th><th>Method and Args</th></tr><tr><td>[public ] List<Empleado></td><td>findEmpleadosByRole [String role]</td></tr><tr><td>[] void</td><td>saveRole [Role role]</td></tr><tr><td>[public ] Role</td><td>getRoleById [Long id]</td></tr><tr><td>[] boolean</td><td>existsRoleForEmp [Long gin]</td></tr><tr><td>[] void</td><td>deleteRole [Role empRole]</td></tr><tr><td>[] void</td><td>deleteAllRoles []</td></tr></table>
+ <h3>Explanation -</h3>
+ <p>**Code Summary for Documentation:**<br><br>The code above represents the interface for the RoleService in the back_personal_disponible service package. This interface defines the methods that can be used to interact with the Role entity in the system.<br><br>The methods defined in the RoleService interface include:<br>1. `findEmpleadosByRole(String role)`: This method is used to retrieve a list of employees based on their role.<br>2. `saveRole(Role role)`: This method is used to save a new role in the system.<br>3. `getRoleById(Long id)`: This method is used to retrieve a role by its unique identifier.<br>4. `existsRoleForEmp(Long gin)`: This method is used to check if a role exists for a given employee.<br>5. `deleteRole(Role empRole)`: This method is used to delete a role from the system.<br>6. `deleteAllRoles()`: This method is used to delete all roles from the system.<br><br>These methods provide the necessary functionality to manage roles in the system.</p>
+ </section>  <!-- Review-comment< -->
+    <section id="review-comment">
+        <h2> Review </h2>
+        <p>**Code Review summary** - The code snippet provided is an interface for a RoleService. Overall, the code looks clean and follows standard Java naming conventions. However, there are a few improvements that can be made.<br><br>1. The method `findEmpleadosByRole` should return a list of `Role` instead of `Empleado` since it is searching for employees based on a role.<br>2. The method `existsRoleForEmp` should take a `Long gin` parameter instead of `Long id` to maintain consistency with the naming convention used in other methods.<br>3. The method `getRoleById` should be renamed to `getRoleByGin` to maintain consistency with the parameter name used in other methods.<br><br>Overall, the code snippet seems to be of good quality and doesn't have any obvious bugs or security vulnerabilities. I would rate the code quality as 8 out of 10.</p>
+    </section><footer><div><div style="float:left;padding-top:3px;">27-05-2024 17:33:26</div><img src="logo_icon.png" alt="logo" style="width: 6%;float:right;"></div></footer></body></html>

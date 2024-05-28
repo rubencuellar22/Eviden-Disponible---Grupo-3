@@ -1,0 +1,41 @@
+<html><head><title> Technical Documentation - C:\LocalDesktop\Eviden-Disponible---Grupo-3\Spring\back_personal_disponible\src\main\java\com\grupotres\back_personal_disponible\restController\SkMethodRestController.java </title>  <!-- Include CSS for styling the header -->
+    <style>
+        /* Style the header */
+body {background-color: whitesmoke; padding:10px;}a { text-decoration: none; color: black; }header   { background:gray; color:whitesmoke; border-radius: 5px;}h1   { padding: 10px;}h2   { padding: 10px; background:#413a31; color:whitesmoke; border-radius: 5px;}p	{ padding: 10px; line-height: 1.25rem; letter-spacing: 0.02rem;}li	{ list-style-type: circle; line-height: 1.25rem; }footer { background-color: #333;color: #fff;text-align: center;padding-left: 10px;padding-right: 10px;height:5%;display:flex;justify-content:center;align-items:center;}    </style></head><body> <!-- Header Section -->
+    <header>
+        <h2> Technical Document - SkMethodRestController.java </h2>
+        <p>Version 1.0</p>
+    </header> <!-- Table of Contents -->
+    <nav>
+        <h2>Table of Contents</h2>
+        <ul>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#summary">Class Summary</a></li>
+            <li><a href="#explainmethod">Explain Method</a></li>
+            <li><a href="#review-comment">Review Comment</a></li>
+        </ul>
+    </nav> <!-- Introduction Section -->
+    <section id="introduction">
+        <h2>Introduction</h2>
+        <p>Provide an technical overview of the class, its purpose, and its features.</p>
+    </section>  <!-- Summary Section -->
+    <section id="summary">
+        <h2>Class Summary</h2>
+ 
+ <h3>Field Summary -</h3><table border="1"><tr><th>Modifier and Type</th><th>Field</th></tr><tr><td>[private ] EmpleadoRepository</td><td>empleadoRepository</td></tr><tr><td>[private ] SkMethodService</td><td>skMethodService</td></tr></table> 
+ <h3>Method Summary -</h3><table border="1"><tr><th>Modifier and Type</th><th>Method and Args</th></tr><tr><td>[public ] ResponseEntity<?></td><td>findBySkMethod [@PathVariable String skMethod]</td></tr><tr><td>[public ] ResponseEntity<?></td><td>findBySkMethodAndNivel [@PathVariable String skMethod, @PathVariable Integer nivel]</td></tr></table>
+ <h3>Explanation -</h3>
+ <p>**Code Summary for Documentation:**<br><br>This code is a RestController class that handles requests related to employees and their skills methods. The class is responsible for retrieving employees based on their skill method and level.<br><br>The class is annotated with `@RestController` and maps the requests to the "/empleado/sk_methods" endpoint. It has two GET mapping methods:<br><br>1. `findBySkMethod`: This method retrieves employees based on a given skill method. It takes a path variable "skMethod" and calls the `findBySkMethod` method of the `skMethodService` to get a list of employees. It then converts each employee to an EmployeeDTO object and adds it to a list of EmployeeDTOs. Finally, it returns a ResponseEntity with the list of EmployeeDTOs.<br><br>2. `findBySkMethodAndNivel`: This method retrieves employees based on a given skill method and level. It takes two path variables "skMethod" and "nivel" and calls the `findBySkMethodAndNivel` method of the `skMethodService` to get a list of employees. It then converts each employee to an EmployeeDTO object and adds it to a list of EmployeeDTOs. Finally, it returns a ResponseEntity with the list of EmployeeDTOs.<br><br>Both methods use the `skMethodService` and `empleadoRepository` to interact with the data.</p>
+ </section>  <!-- Method Summary Section -->
+    <section id="explainmethod"findBySkMethod>
+        <h2>Explain Method - findBySkMethod</h2>
+        <p>**Code Summary for Documentation:**<br><br>This code is a GET request mapping method that retrieves a list of employees based on a specific search method. The method takes a path variable "skMethod" which represents the search method to be used. <br><br>Inside the method, it calls a service method "findBySkMethod" from the "skMethodService" class to retrieve a list of employees that match the search method. <br><br>Then, it creates an empty list called "empleadosDTO" to store the employee data transfer objects (DTOs). It iterates through each employee in the "empleados" list and creates a new "EmpleadoDTO" object using the employee data. The "EmpleadoDTO" class is responsible for transforming the employee entity into a DTO.<br><br>Finally, it returns a ResponseEntity with the "empleadosDTO" list as the response body. The ResponseEntity is used to customize the HTTP response status and headers. In this case, it returns a successful response (HTTP 200 OK) with the list of employee DTOs as the response body.</p>
+    </section>  <!-- Method Summary Section -->
+    <section id="explainmethod"findBySkMethodAndNivel>
+        <h2>Explain Method - findBySkMethodAndNivel</h2>
+        <p>**Code Summary for Documentation:**<br><br>This code snippet is a method annotated with `@GetMapping` which is an annotation used in Spring Boot to handle HTTP GET requests. The method takes two path variables: `skMethod` of type String and `nivel` of type Integer.<br><br>Inside the method, it calls a service method `findBySkMethodAndNivel` from a `skMethodService` instance to retrieve a list of `Empleado` objects. The `Empleado` class is a domain model or entity class.<br><br>Then, it creates a new list `empleadosDTO` of type `EmpleadoDTO` which is a Data Transfer Object (DTO) for the `Empleado` class. It iterates over each `Empleado` object in the `empleados` list and creates a new `EmpleadoDTO` object using the `Empleado` object as a parameter. The `EmpleadoDTO` class might be used to transfer specific data from the `Empleado` objects to the client in a simplified format.<br><br>Finally, it returns a `ResponseEntity` object wrapping the `empleadosDTO` list as the response body with HTTP status code 200 (OK). This response will be sent back to the client who made the GET request.</p>
+    </section>  <!-- Review-comment< -->
+    <section id="review-comment">
+        <h2> Review </h2>
+        <p>**Code Review summary** - The code appears to be well-structured and follows standard naming conventions. The use of dependency injection is commendable. However, there are a few areas for improvement. <br><br>1. Naming: The name of the `SkMethodRestController` class could be more descriptive.<br>2. Error handling: There is no error handling in case the `skMethodService` returns null or throws an exception. Consider adding appropriate error handling and returning meaningful error messages.<br>3. Code duplication: The code for converting `Empleado` objects to `EmpleadoDTO` objects is duplicated in both `findBySkMethod` and `findBySkMethodAndNivel` methods. Consider refactoring this code into a separate method to avoid duplication.<br>4. Request mapping: The request mapping for both methods is the same. Consider using different request mappings or different HTTP methods to differentiate between the two methods.<br><br>Overall, the code is of good quality and meets the basic requirements. With the suggested improvements, the code quality assessment would be 8/10.</p>
+    </section><footer><div><div style="float:left;padding-top:3px;">27-05-2024 17:31:44</div><img src="logo_icon.png" alt="logo" style="width: 6%;float:right;"></div></footer></body></html>

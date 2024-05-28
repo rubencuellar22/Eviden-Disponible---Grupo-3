@@ -1,0 +1,37 @@
+<html><head><title> Technical Documentation - C:\LocalDesktop\Eviden-Disponible---Grupo-3\Spring\back_personal_disponible\src\main\java\com\grupotres\back_personal_disponible\restController\SkBussSkillRestController.java </title>  <!-- Include CSS for styling the header -->
+    <style>
+        /* Style the header */
+body {background-color: whitesmoke; padding:10px;}a { text-decoration: none; color: black; }header   { background:gray; color:whitesmoke; border-radius: 5px;}h1   { padding: 10px;}h2   { padding: 10px; background:#413a31; color:whitesmoke; border-radius: 5px;}p	{ padding: 10px; line-height: 1.25rem; letter-spacing: 0.02rem;}li	{ list-style-type: circle; line-height: 1.25rem; }footer { background-color: #333;color: #fff;text-align: center;padding-left: 10px;padding-right: 10px;height:5%;display:flex;justify-content:center;align-items:center;}    </style></head><body> <!-- Header Section -->
+    <header>
+        <h2> Technical Document - SkBussSkillRestController.java </h2>
+        <p>Version 1.0</p>
+    </header> <!-- Table of Contents -->
+    <nav>
+        <h2>Table of Contents</h2>
+        <ul>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#summary">Class Summary</a></li>
+            <li><a href="#explainmethod">Explain Method</a></li>
+            <li><a href="#review-comment">Review Comment</a></li>
+        </ul>
+    </nav> <!-- Introduction Section -->
+    <section id="introduction">
+        <h2>Introduction</h2>
+        <p>Provide an technical overview of the class, its purpose, and its features.</p>
+    </section>  <!-- Summary Section -->
+    <section id="summary">
+        <h2>Class Summary</h2>
+ 
+ <h3>Field Summary -</h3><table border="1"><tr><th>Modifier and Type</th><th>Field</th></tr><tr><td>[private ] SkBussSkillService</td><td>skBussSkillService</td></tr></table> 
+ <h3>Method Summary -</h3><table border="1"><tr><th>Modifier and Type</th><th>Method and Args</th></tr><tr><td>[public ] List<Empleado></td><td>findEmpleadosByBussSkill [@PathVariable String nombre]</td></tr></table>
+ <h3>Explanation -</h3>
+ <p>**Code Summary for Documentation:**<br><br>This code is a RestController class that handles requests related to employee skills. It is responsible for retrieving a list of employees based on a specific business skill. <br><br>The class is annotated with `@RestController`, which indicates that it is a RESTful controller that handles HTTP requests and returns responses in JSON format. The `@RequestMapping` annotation is used to specify the base URL for all the mappings in the class.<br><br>The class has a dependency on the `SkBussSkillService` class, which is autowired using the `@Autowired` annotation. This service class provides the logic for retrieving the list of employees.<br><br>The class has a single method, `findEmpleadosByBussSkill`, which is annotated with `@GetMapping`. This method handles GET requests with a path variable `{nombre}`. It calls the `findEmpleadosByBussSkill` method of the `SkBussSkillService` and returns the list of employees with the specified business skill.</p>
+ </section>  <!-- Method Summary Section -->
+    <section id="explainmethod"findEmpleadosByBussSkill>
+        <h2>Explain Method - findEmpleadosByBussSkill</h2>
+        <p>**Code Summary for Documentation:**<br><br>This code is a part of a RESTful API endpoint that handles a GET request to retrieve a list of employees based on a business skill. The endpoint is mapped to the URL path "/{nombre}" where "nombre" is a dynamic parameter representing the business skill name.<br><br>The code uses the `@GetMapping` annotation from the Spring Framework, which maps the URL path to the method `findEmpleadosByBussSkill()`. The method takes the dynamic parameter `nombre` from the URL path and passes it to the `skBussSkillService.findEmpleadosByBussSkill()` method.<br><br>The `findEmpleadosByBussSkill()` method is responsible for retrieving a list of employees that possess the specified business skill. It utilizes the `skBussSkillService` object, which is a service class responsible for querying the database or any other data source to fetch the required data.<br><br>The method returns a list of `Empleado` objects, which represents the employees with the specified business skill.</p>
+    </section>  <!-- Review-comment< -->
+    <section id="review-comment">
+        <h2> Review </h2>
+        <p>**Code Review summary** - The code snippet represents a REST controller class that handles requests related to employees' business skills. The code structure is simple and easy to understand. The use of annotations like `@RestController` and `@RequestMapping` is appropriate. The `SkBussSkillService` dependency is correctly autowired. The `findEmpleadosByBussSkill` method handles a GET request and returns a list of employees based on the given business skill name. However, there are no error handling mechanisms in place. The code quality is good, with no obvious bugs or performance issues. Overall, the code is well-structured and functional.<br><br>Code quality assessment: 8/10</p>
+    </section><footer><div><div style="float:left;padding-top:3px;">27-05-2024 17:30:11</div><img src="logo_icon.png" alt="logo" style="width: 6%;float:right;"></div></footer></body></html>

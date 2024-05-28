@@ -1,0 +1,31 @@
+<html><head><title> Technical Documentation - C:\LocalDesktop\Eviden-Disponible---Grupo-3\Spring\back_personal_disponible\src\main\java\com\grupotres\back_personal_disponible\repository\SkTechnologyRepository.java </title>  <!-- Include CSS for styling the header -->
+    <style>
+        /* Style the header */
+body {background-color: whitesmoke; padding:10px;}a { text-decoration: none; color: black; }header   { background:gray; color:whitesmoke; border-radius: 5px;}h1   { padding: 10px;}h2   { padding: 10px; background:#413a31; color:whitesmoke; border-radius: 5px;}p	{ padding: 10px; line-height: 1.25rem; letter-spacing: 0.02rem;}li	{ list-style-type: circle; line-height: 1.25rem; }footer { background-color: #333;color: #fff;text-align: center;padding-left: 10px;padding-right: 10px;height:5%;display:flex;justify-content:center;align-items:center;}    </style></head><body> <!-- Header Section -->
+    <header>
+        <h2> Technical Document - SkTechnologyRepository.java </h2>
+        <p>Version 1.0</p>
+    </header> <!-- Table of Contents -->
+    <nav>
+        <h2>Table of Contents</h2>
+        <ul>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#summary">Class Summary</a></li>
+            <li><a href="#review-comment">Review Comment</a></li>
+        </ul>
+    </nav> <!-- Introduction Section -->
+    <section id="introduction">
+        <h2>Introduction</h2>
+        <p>Provide an technical overview of the class, its purpose, and its features.</p>
+    </section>  <!-- Summary Section -->
+    <section id="summary">
+        <h2>Class Summary</h2>
+ 
+ <h3>Method Summary -</h3><table border="1"><tr><th>Modifier and Type</th><th>Method and Args</th></tr><tr><td>[] List<Empleado></td><td>findEmpleadosByTechnology [@Param("nombreTechnology") String nombre]</td></tr><tr><td>[] List<Empleado></td><td>findEmpleadosByTechnologyAndNivel [String nombre, int nivel]</td></tr></table>
+ <h3>Explanation -</h3>
+ <p>**Code Summary for Documentation:**<br><br>This code is a repository interface for the SkTechnology model class. It extends the JpaRepository interface, which provides basic CRUD operations for the SkTechnology entity.<br><br>The repository interface includes two custom query methods:<br><br>1. `findEmpleadosByTechnology`: This method retrieves a list of Empleado objects (employees) who have the specified technology. It uses a JPQL query with a named parameter `nombreTechnology` to filter the results.<br><br>2. `findEmpleadosByTechnologyAndNivel`: This method retrieves a list of Empleado objects (employees) who have the specified technology and level. It uses a JPQL query with two named parameters `nombre` and `nivel` to filter the results.<br><br>These query methods provide convenient ways to retrieve specific data from the SkTechnology entity based on technology and level. The JpaRepository interface takes care of the underlying database operations, making it easy to interact with the SkTechnology table in the database.</p>
+ </section>  <!-- Review-comment< -->
+    <section id="review-comment">
+        <h2> Review </h2>
+        <p>**Code Review summary** - The code snippet is a repository interface for the SkTechnology entity. The code follows the recommended naming conventions and uses the JpaRepository interface provided by Spring Data JPA. The code defines two custom query methods to retrieve employees based on technology and technology with a specific level. The code is overall well-written and follows best practices. No major issues or bugs were found in the code. However, it would be beneficial to add more comments to improve code readability and maintainability. The code quality is good. Overall, I would rate the code quality as 8 out of 10.</p>
+    </section><footer><div><div style="float:left;padding-top:3px;">27-05-2024 17:26:45</div><img src="logo_icon.png" alt="logo" style="width: 6%;float:right;"></div></footer></body></html>

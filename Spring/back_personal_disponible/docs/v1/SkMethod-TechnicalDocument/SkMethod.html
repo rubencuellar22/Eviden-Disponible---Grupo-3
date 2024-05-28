@@ -1,0 +1,69 @@
+<html><head><title> Technical Documentation - C:\LocalDesktop\Eviden-Disponible---Grupo-3\Spring\back_personal_disponible\src\main\java\com\grupotres\back_personal_disponible\model\SkMethod.java </title>  <!-- Include CSS for styling the header -->
+    <style>
+        /* Style the header */
+body {background-color: whitesmoke; padding:10px;}a { text-decoration: none; color: black; }header   { background:gray; color:whitesmoke; border-radius: 5px;}h1   { padding: 10px;}h2   { padding: 10px; background:#413a31; color:whitesmoke; border-radius: 5px;}p	{ padding: 10px; line-height: 1.25rem; letter-spacing: 0.02rem;}li	{ list-style-type: circle; line-height: 1.25rem; }footer { background-color: #333;color: #fff;text-align: center;padding-left: 10px;padding-right: 10px;height:5%;display:flex;justify-content:center;align-items:center;}    </style></head><body> <!-- Header Section -->
+    <header>
+        <h2> Technical Document - SkMethod.java </h2>
+        <p>Version 1.0</p>
+    </header> <!-- Table of Contents -->
+    <nav>
+        <h2>Table of Contents</h2>
+        <ul>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#summary">Class Summary</a></li>
+            <li><a href="#explainmethod">Explain Method</a></li>
+            <li><a href="#review-comment">Review Comment</a></li>
+        </ul>
+    </nav> <!-- Introduction Section -->
+    <section id="introduction">
+        <h2>Introduction</h2>
+        <p>Provide an technical overview of the class, its purpose, and its features.</p>
+    </section>  <!-- Summary Section -->
+    <section id="summary">
+        <h2>Class Summary</h2>
+ 
+ <h3>Field Summary -</h3><table border="1"><tr><th>Modifier and Type</th><th>Field</th></tr><tr><td>[private , static , final ] long</td><td>serialVersionUID</td></tr><tr><td>[private ] int</td><td>idSkmethod</td></tr><tr><td>[private ] Empleado</td><td>empleado</td></tr><tr><td>[private ] String</td><td>Skmethod</td></tr><tr><td>[private ] int</td><td>nivel</td></tr></table> 
+ <h3>Method Summary -</h3><table border="1"><tr><th>Modifier and Type</th><th>Method and Args</th></tr><tr><td>[public ] int</td><td>getIdSkmethod []</td></tr><tr><td>[public ] void</td><td>setIdSkmethod [int idSkmethod]</td></tr><tr><td>[public ] String</td><td>getSkmethod []</td></tr><tr><td>[public ] void</td><td>setSkmethod [String skmethod]</td></tr><tr><td>[public ] int</td><td>getNivel []</td></tr><tr><td>[public ] void</td><td>setNivel [int nivel]</td></tr><tr><td>[public ] Empleado</td><td>getEmpleado []</td></tr><tr><td>[public ] void</td><td>setEmpleado [Empleado empleado]</td></tr><tr><td>[public ] String</td><td>toString []</td></tr></table>
+ <h3>Explanation -</h3>
+ <p>**Code Summary for Documentation:**<br><br>The code defines a Java class called `SkMethod` which represents a persistent entity in a database. The class is annotated with `@Entity` and `@Table` annotations to map it to a specific database table. <br><br>The class has several attributes including `idSkmethod`, `empleado`, `Skmethod`, and `nivel`. These attributes represent the columns in the corresponding database table. The `idSkmethod` attribute is annotated with `@Id` to indicate it as the primary key. <br><br>The class also has getter and setter methods for each attribute to allow access and modification of the data. <br><br>The class overrides the `toString()` method to provide a string representation of the object. <br><br>Overall, the `SkMethod` class represents a database table named "SkMethod" and provides methods to access and manipulate the data stored in the table.</p>
+ </section>  <!-- Method Summary Section -->
+    <section id="explainmethod"getIdSkmethod>
+        <h2>Explain Method - getIdSkmethod</h2>
+        <p>**Code Summary for Documentation:**<br><br>This code defines a method called `getIdSkmethod` that returns an integer value. The method does not take any parameters. <br><br>The method simply returns the value of a variable called `idSkmethod`. The variable `idSkmethod` is most likely a class member variable or an instance variable that holds some unique identifier. <br><br>This method can be used to retrieve the value of the `idSkmethod` variable from other parts of the code. It provides a getter method for accessing the value of `idSkmethod` in a controlled manner, without allowing direct access to the variable itself. This encapsulation can help in maintaining the integrity of the variable and controlling its access within the class or object.</p>
+    </section>  <!-- Method Summary Section -->
+    <section id="explainmethod"setIdSkmethod>
+        <h2>Explain Method - setIdSkmethod</h2>
+        <p>**Code Summary for Documentation:**<br><br>This code snippet is a setter method for the `idSkmethod` variable. It takes an integer value as a parameter and assigns it to the `idSkmethod` variable of the current object.<br><br>The `setIdSkmethod` method is a public method, meaning it can be accessed from outside the class. It does not return any value (void).<br><br>By using this method, we can set the value of the `idSkmethod` variable for an object of the class that contains this method. This can be useful when we want to update or modify the value of `idSkmethod` for a specific object.<br><br>Overall, this method provides a way to set the value of the `idSkmethod` variable, allowing for flexibility and customization in the object's behavior.</p>
+    </section>  <!-- Method Summary Section -->
+    <section id="explainmethod"getSkmethod>
+        <h2>Explain Method - getSkmethod</h2>
+        <p>**Code Summary for Documentation:**<br><br>This code snippet defines a method called `getSkmethod` that returns a string value. The method does not take any parameters. <br><br>The method uses a variable `Skmethod` to store the string value that needs to be returned. The value of `Skmethod` is not defined in this code snippet, so it is assumed that it is defined somewhere else in the code.<br><br>The purpose of this method is to provide access to the value of `Skmethod` from other parts of the code. By calling this method, other parts of the code can retrieve the value stored in `Skmethod` and use it as needed.<br><br>It is important to note that this code does not contain any logic or operations to modify the value of `Skmethod`. Its sole purpose is to retrieve the value and return it.</p>
+    </section>  <!-- Method Summary Section -->
+    <section id="explainmethod"setSkmethod>
+        <h2>Explain Method - setSkmethod</h2>
+        <p>**Code Summary for Documentation:**<br><br>This code defines a public method called `setSkmethod` that takes a parameter `skmethod` of type String. The purpose of this method is to set the value of a variable called `Skmethod`. <br><br>The method does not return any value (void). It simply assigns the value of the `skmethod` parameter to the `Skmethod` variable. <br><br>The `Skmethod` variable is likely an instance variable or a class variable declared elsewhere in the code. By calling this method and passing a string value, we can update the value of the `Skmethod` variable. <br><br>This code is part of a larger codebase and can be used to update the value of `Skmethod` dynamically during the execution of the program.</p>
+    </section>  <!-- Method Summary Section -->
+    <section id="explainmethod"getNivel>
+        <h2>Explain Method - getNivel</h2>
+        <p>**Code Summary for Documentation:**<br><br>This code snippet is a method called `getNivel()`. It is part of a class and returns an integer value. The method does not take any parameters.<br><br>The purpose of this method is to retrieve the value of the `nivel` variable. The `nivel` variable is a member variable of the class, and its value can be accessed using this method.<br><br>The `return` keyword is used to return the value of the `nivel` variable. The `this` keyword is used to refer to the current instance of the class. It is used here to access the `nivel` variable of the current instance.<br><br>This method can be used by other parts of the code to retrieve the value of the `nivel` variable and use it for further processing or display.</p>
+    </section>  <!-- Method Summary Section -->
+    <section id="explainmethod"setNivel>
+        <h2>Explain Method - setNivel</h2>
+        <p>**Code Summary for Documentation:**<br><br>This code defines a public method called `setNivel` which takes an integer parameter called `nivel`. This method is used to set the value of the instance variable `nivel` in the current object.<br><br>The method does not return any value (`void`), but it modifies the state of the object by assigning the value of `nivel` to the instance variable `nivel` using the `this` keyword.<br><br>This method can be used to update the value of `nivel` in an object of the class where this method is defined. It can be called by using the object's reference followed by the method name, passing the new value for `nivel` as an argument.<br><br>For example:<br><br>```java<br>MyObject obj = new MyObject();<br>obj.setNivel(5);<br>```<br><br>In the above example, the `setNivel` method is called on the `obj` object with the argument `5`, which will set the value of `nivel` in the `obj` object to `5`.</p>
+    </section>  <!-- Method Summary Section -->
+    <section id="explainmethod"getEmpleado>
+        <h2>Explain Method - getEmpleado</h2>
+        <p>**Code Summary for Documentation:**<br><br>This code snippet defines a method named `getEmpleado()` which returns an object of type `Empleado`. The `Empleado` object is a member variable of the current class.<br><br>The method is declared as `public`, which means it can be accessed from any other class. It does not take any parameters.<br><br>The `return` statement is used to return the value of the `empleado` member variable. The `this` keyword is used to refer to the current object instance.<br><br>This method can be used to retrieve the `Empleado` object from an instance of the current class. It provides public access to the `Empleado` object, allowing other classes to retrieve and use its properties and methods.</p>
+    </section>  <!-- Method Summary Section -->
+    <section id="explainmethod"setEmpleado>
+        <h2>Explain Method - setEmpleado</h2>
+        <p>**Code Summary for Documentation:**<br><br>This code snippet defines a public method named `setEmpleado` that takes an object of type `Empleado` as a parameter. The method is responsible for setting the value of the `empleado` instance variable to the provided `Empleado` object.<br><br>The `this` keyword refers to the current object instance. By using `this.empleado`, we are referring to the instance variable `empleado` of the current object.<br><br>The method does not have a return type (`void`), indicating that it does not return any value. It simply performs the task of assigning the provided `Empleado` object to the `empleado` instance variable.<br><br>This method is typically used to set the value of the `empleado` instance variable from outside the class, allowing external code to modify the value of the `empleado` property of an object of this class. It encapsulates the logic of setting the `empleado` property, providing a clean and controlled way to modify it.</p>
+    </section>  <!-- Method Summary Section -->
+    <section id="explainmethod"toString>
+        <h2>Explain Method - toString</h2>
+        <p>**Code Summary for Documentation:** <br><br>This code snippet overrides the `toString()` method for a class called `SkMethod`. The `toString()` method is a built-in method in Java that is used to convert an object into a String representation. <br><br>In this code, the `toString()` method is used to create a String representation of the `SkMethod` object. It includes the values of several instance variables of the object, such as `idSkmethod`, `empleado`, `Skmethod`, and `nivel`. <br><br>The `+` operator is used to concatenate the different parts of the String representation. The `\'` character is used to escape the single quote character within the String. <br><br>By overriding the `toString()` method, when an object of the `SkMethod` class is printed or concatenated with a String, the returned value will be the custom String representation defined in this code. This can be useful for debugging purposes or for displaying the object's values in a user-friendly way.</p>
+    </section>  <!-- Review-comment< -->
+    <section id="review-comment">
+        <h2> Review </h2>
+        <p>**Code Review Summary** - The code snippet represents a model class for the SkMethod entity. Overall, the code structure and naming conventions are good. However, there are a few areas that can be improved. <br><br>1. The class name "SkMethod" should follow the standard Java naming conventions and be named "SKMethod" instead. <br>2. The variable "Skmethod" should be renamed to "skMethod" to follow the camel case naming convention. <br>3. The "empleado" field should be marked as nullable in the @JoinColumn annotation to avoid any potential database constraint violations.<br>4. The "toString" method can be improved by using a StringBuilder for concatenation.<br><br>The code quality assessment for this code snippet is 8 out of 10.</p>
+    </section><footer><div><div style="float:left;padding-top:3px;">27-05-2024 17:21:57</div><img src="logo_icon.png" alt="logo" style="width: 6%;float:right;"></div></footer></body></html>

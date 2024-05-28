@@ -1,0 +1,37 @@
+<html><head><title> Technical Documentation - C:\LocalDesktop\Eviden-Disponible---Grupo-3\Spring\back_personal_disponible\src\main\java\com\grupotres\back_personal_disponible\restController\SkCertifRestController.java </title>  <!-- Include CSS for styling the header -->
+    <style>
+        /* Style the header */
+body {background-color: whitesmoke; padding:10px;}a { text-decoration: none; color: black; }header   { background:gray; color:whitesmoke; border-radius: 5px;}h1   { padding: 10px;}h2   { padding: 10px; background:#413a31; color:whitesmoke; border-radius: 5px;}p	{ padding: 10px; line-height: 1.25rem; letter-spacing: 0.02rem;}li	{ list-style-type: circle; line-height: 1.25rem; }footer { background-color: #333;color: #fff;text-align: center;padding-left: 10px;padding-right: 10px;height:5%;display:flex;justify-content:center;align-items:center;}    </style></head><body> <!-- Header Section -->
+    <header>
+        <h2> Technical Document - SkCertifRestController.java </h2>
+        <p>Version 1.0</p>
+    </header> <!-- Table of Contents -->
+    <nav>
+        <h2>Table of Contents</h2>
+        <ul>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#summary">Class Summary</a></li>
+            <li><a href="#explainmethod">Explain Method</a></li>
+            <li><a href="#review-comment">Review Comment</a></li>
+        </ul>
+    </nav> <!-- Introduction Section -->
+    <section id="introduction">
+        <h2>Introduction</h2>
+        <p>Provide an technical overview of the class, its purpose, and its features.</p>
+    </section>  <!-- Summary Section -->
+    <section id="summary">
+        <h2>Class Summary</h2>
+ 
+ <h3>Field Summary -</h3><table border="1"><tr><th>Modifier and Type</th><th>Field</th></tr><tr><td>[private ] EmpleadoRepository</td><td>empleadoRepository</td></tr><tr><td>[private ] SkCertifService</td><td>skCertifService</td></tr></table> 
+ <h3>Method Summary -</h3><table border="1"><tr><th>Modifier and Type</th><th>Method and Args</th></tr><tr><td>[public ] ResponseEntity<?></td><td>findEmpleadosByCertifNombre [@PathVariable String nombre]</td></tr></table>
+ <h3>Explanation -</h3>
+ <p>**Code Summary for Documentation:**<br><br>The code above is a REST controller class called `SkCertifRestController` that handles HTTP requests related to employees with certifications. It is responsible for finding and returning a list of employees who have a specific certification.<br><br>The class is annotated with `@RestController` to indicate that it is a REST controller and handles HTTP requests. It is also annotated with `@RequestMapping("/empleado/sk_certif/certif")` to specify the base URL for all the request mappings in this class.<br><br>The class has two autowired fields: `EmpleadoRepository` and `SkCertifService`. These dependencies are automatically injected by the Spring framework.<br><br>The class has a GET mapping method `findEmpleadosByCertifNombre` which takes a path variable `nombre` representing the certification name. It calls the `findEmpleadosByCertifNombre` method of `SkCertifService` to retrieve a list of employees with the given certification. Then, it converts each employee object to an `EmpleadoDTO` object and adds it to a list of `EmpleadoDTO` objects. Finally, it returns a ResponseEntity object with the list of `EmpleadoDTO` objects as the response body.</p>
+ </section>  <!-- Method Summary Section -->
+    <section id="explainmethod"findEmpleadosByCertifNombre>
+        <h2>Explain Method - findEmpleadosByCertifNombre</h2>
+        <p>**Code Summary for Documentation:**<br><br>This code snippet is a part of a Spring Boot application. It defines a GET mapping endpoint that takes a path variable `nombre` representing a name. The endpoint is responsible for finding employees by their certification name.<br><br>The code first calls a method `findEmpleadosByCertifNombre` from the `skCertifService` object, which returns a list of employees based on the certification name provided. <br><br>Then, it creates an empty list `empleadosDTO` of type `EmpleadoDTO`. It iterates over the list of employees returned and creates a new `EmpleadoDTO` object for each employee, adding it to the `empleadosDTO` list.<br><br>Finally, it returns a `ResponseEntity` object with the HTTP status code 200 (OK) and the list of `empleadosDTO` as the response body.<br><br>This code allows clients to retrieve a list of employees based on their certification name.</p>
+    </section>  <!-- Review-comment< -->
+    <section id="review-comment">
+        <h2> Review </h2>
+        <p>**Code Review Summary** - The code appears to be a Spring Boot REST controller for handling requests related to employees with a specific certification. Overall, the code follows the standard Spring MVC structure and seems to be logically correct. However, there are a few areas that could be improved to enhance code quality and maintainability.<br><br>**Issues:**<br>1. The package name "com.grupotres.back_personal_disponible" does not follow the recommended Java naming convention. It should be in lowercase and use the reverse domain name convention.<br>2. The code lacks proper exception handling and error responses. It would be beneficial to add try-catch blocks and appropriate response codes and messages for any potential errors during the execution of the API.<br>3. The code does not have any input validation for the "nombre" path variable. It is important to validate user input to prevent potential security vulnerabilities and unexpected behavior.<br><br>**Recommendations:**<br>1. Rename the package to follow the Java naming convention: "com.grupotres.back_personal_disponible".<br>2. Implement proper exception handling and error response handling using try-catch blocks and ResponseEntity with appropriate response codes and messages.<br>3. Add input validation for the "nombre" path variable to ensure it is not null and meets any required constraints.<br><br>**Areas of Strength:**<br>1. The code follows the standard Spring MVC structure, making it easier to understand and maintain.<br>2. The code uses ResponseEntity to return the response, allowing for flexibility in returning different types of responses.<br>3. The code utilizes the EmployeeRepository and SkCertifService classes through dependency injection, promoting loose coupling and modularity.<br><br>**Potential Bugs:**<br>There are no apparent bugs in the code snippet provided.<br><br>**Performance Bottlenecks:**<br>There are no performance bottlenecks in the code snippet provided.<br><br>**Security Vulnerabilities:**<br>The code lacks input validation for the "nombre" path variable, which could potentially lead to security vulnerabilities such as SQL injection or path traversal attacks. It is important to validate and sanitize user input to prevent these vulnerabilities.<br><br>**Code Quality Assessment:**<br>I would rate the code quality as 7 out of 10. The code follows the standard Spring MVC structure and makes use of dependency injection. However, there are areas for improvement such as package naming convention, exception handling, input validation, and security considerations.</p>
+    </section><footer><div><div style="float:left;padding-top:3px;">27-05-2024 17:30:43</div><img src="logo_icon.png" alt="logo" style="width: 6%;float:right;"></div></footer></body></html>

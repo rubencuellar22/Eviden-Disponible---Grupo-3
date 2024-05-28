@@ -1,0 +1,37 @@
+<html><head><title> Technical Documentation - C:\LocalDesktop\Eviden-Disponible---Grupo-3\Spring\back_personal_disponible\src\main\java\com\grupotres\back_personal_disponible\restController\RoleRestController.java </title>  <!-- Include CSS for styling the header -->
+    <style>
+        /* Style the header */
+body {background-color: whitesmoke; padding:10px;}a { text-decoration: none; color: black; }header   { background:gray; color:whitesmoke; border-radius: 5px;}h1   { padding: 10px;}h2   { padding: 10px; background:#413a31; color:whitesmoke; border-radius: 5px;}p	{ padding: 10px; line-height: 1.25rem; letter-spacing: 0.02rem;}li	{ list-style-type: circle; line-height: 1.25rem; }footer { background-color: #333;color: #fff;text-align: center;padding-left: 10px;padding-right: 10px;height:5%;display:flex;justify-content:center;align-items:center;}    </style></head><body> <!-- Header Section -->
+    <header>
+        <h2> Technical Document - RoleRestController.java </h2>
+        <p>Version 1.0</p>
+    </header> <!-- Table of Contents -->
+    <nav>
+        <h2>Table of Contents</h2>
+        <ul>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#summary">Class Summary</a></li>
+            <li><a href="#explainmethod">Explain Method</a></li>
+            <li><a href="#review-comment">Review Comment</a></li>
+        </ul>
+    </nav> <!-- Introduction Section -->
+    <section id="introduction">
+        <h2>Introduction</h2>
+        <p>Provide an technical overview of the class, its purpose, and its features.</p>
+    </section>  <!-- Summary Section -->
+    <section id="summary">
+        <h2>Class Summary</h2>
+ 
+ <h3>Field Summary -</h3><table border="1"><tr><th>Modifier and Type</th><th>Field</th></tr><tr><td>[private ] RoleService</td><td>roleService</td></tr></table> 
+ <h3>Method Summary -</h3><table border="1"><tr><th>Modifier and Type</th><th>Method and Args</th></tr><tr><td>[public ] List<Empleado></td><td>getEmpleadosByRole [@PathVariable String role]</td></tr></table>
+ <h3>Explanation -</h3>
+ <p>**Code Summary for Documentation:**<br><br>This code is a Spring Boot REST controller class that handles requests related to employee roles. It maps the requests to the "/empleado/role" endpoint. <br><br>The class is annotated with `@RestController`, which indicates that it is a REST controller and that the return values of its methods should be automatically serialized into JSON format.<br><br>The `RoleRestController` class has a dependency on the `RoleService` class, which is autowired using the `@Autowired` annotation. This allows the controller to access the methods provided by the `RoleService` class.<br><br>There is a single GET mapping method, `getEmpleadosByRole`, which handles GET requests to the "/empleado/role/{role}" endpoint. The `@GetMapping("/{role}")` annotation maps the URL path variable "role" to the method parameter with the same name.<br><br>The method calls the `findEmpleadosByRole` method of the `RoleService` class, passing the "role" parameter. It returns a list of `Empleado` objects, which will be automatically serialized into JSON and sent back as the response.</p>
+ </section>  <!-- Method Summary Section -->
+    <section id="explainmethod"getEmpleadosByRole>
+        <h2>Explain Method - getEmpleadosByRole</h2>
+        <p>**Code Summary for Documentation:**<br><br>This code snippet is a GET request mapping method that retrieves a list of `Empleado` objects based on the provided `role` parameter. The method takes in a path variable `role` of type `String` and returns a list of `Empleado` objects.<br><br>The method calls a service method `findEmpleadosByRole()` from the `roleService` object, passing the `role` parameter. This service method is responsible for retrieving the list of `Empleado` objects based on the provided role.<br><br>The `@GetMapping("/{role}")` annotation specifies that this method will be invoked when a GET request is made to a specific endpoint with a `role` path variable. The path variable is then passed to the `getEmpleadosByRole()` method as an argument.<br><br>The returned list of `Empleado` objects is then sent back as the response to the client.</p>
+    </section>  <!-- Review-comment< -->
+    <section id="review-comment">
+        <h2> Review </h2>
+        <p>**Code Review summary** - The code is a REST controller that handles requests related to employee roles. The code is well-structured and follows the recommended Spring framework conventions. The use of annotations is appropriate. However, there are a few improvements that can be made. The code lacks error handling for cases where the role parameter is not found. It would be beneficial to add appropriate exception handling and return appropriate error responses. Additionally, it would be helpful to add input validation for the role parameter to prevent potential security vulnerabilities. Overall, the code is of good quality and can be improved with these suggestions.<br><br>Code quality assessment: 8/10</p>
+    </section><footer><div><div style="float:left;padding-top:3px;">27-05-2024 17:29:49</div><img src="logo_icon.png" alt="logo" style="width: 6%;float:right;"></div></footer></body></html>

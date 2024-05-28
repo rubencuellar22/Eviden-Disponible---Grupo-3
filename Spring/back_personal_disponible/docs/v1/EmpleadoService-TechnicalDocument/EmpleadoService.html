@@ -1,0 +1,31 @@
+<html><head><title> Technical Documentation - C:\LocalDesktop\Eviden-Disponible---Grupo-3\Spring\back_personal_disponible\src\main\java\com\grupotres\back_personal_disponible\service\EmpleadoService.java </title>  <!-- Include CSS for styling the header -->
+    <style>
+        /* Style the header */
+body {background-color: whitesmoke; padding:10px;}a { text-decoration: none; color: black; }header   { background:gray; color:whitesmoke; border-radius: 5px;}h1   { padding: 10px;}h2   { padding: 10px; background:#413a31; color:whitesmoke; border-radius: 5px;}p	{ padding: 10px; line-height: 1.25rem; letter-spacing: 0.02rem;}li	{ list-style-type: circle; line-height: 1.25rem; }footer { background-color: #333;color: #fff;text-align: center;padding-left: 10px;padding-right: 10px;height:5%;display:flex;justify-content:center;align-items:center;}    </style></head><body> <!-- Header Section -->
+    <header>
+        <h2> Technical Document - EmpleadoService.java </h2>
+        <p>Version 1.0</p>
+    </header> <!-- Table of Contents -->
+    <nav>
+        <h2>Table of Contents</h2>
+        <ul>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#summary">Class Summary</a></li>
+            <li><a href="#review-comment">Review Comment</a></li>
+        </ul>
+    </nav> <!-- Introduction Section -->
+    <section id="introduction">
+        <h2>Introduction</h2>
+        <p>Provide an technical overview of the class, its purpose, and its features.</p>
+    </section>  <!-- Summary Section -->
+    <section id="summary">
+        <h2>Class Summary</h2>
+ 
+ <h3>Method Summary -</h3><table border="1"><tr><th>Modifier and Type</th><th>Method and Args</th></tr><tr><td>[] void</td><td>createEmpleado [Empleado emp]</td></tr><tr><td>[] void</td><td>saveAllEmpleados [List<Empleado> empleados]</td></tr><tr><td>[] List<Empleado></td><td>getAllEmpleados []</td></tr><tr><td>[] List<Empleado></td><td>findbyStatus [String status]</td></tr><tr><td>[] List<Empleado></td><td>findByCiudad [String ciudad]</td></tr><tr><td>[] List<Empleado></td><td>findByJornada [BigDecimal jornada]</td></tr><tr><td>[] List<Empleado></td><td>findbyN4 [String n4]</td></tr><tr><td>[] List<Empleado></td><td>findbyCategoria [String categoria]</td></tr><tr><td>[] List<Empleado></td><td>findbyScr [BigDecimal scr]</td></tr><tr><td>[] List<Empleado></td><td>findbyGrupos [String groups]</td></tr><tr><td>[] List<EmpleadoDTO></td><td>getEmpleadosByStatusFromList [List<EmpleadoDTO> empleadosDTO, String status]</td></tr><tr><td>[] void</td><td>deleteAllEmpleados []</td></tr></table>
+ <h3>Explanation -</h3>
+ <p>**Code Summary for Documentation:**<br><br>This code represents the service interface for handling employee-related operations in a system. It contains several methods for creating, saving, retrieving, and deleting employees.<br><br>The methods in this interface include:<br>- `createEmpleado`: This method is used to create a new employee by passing an `Empleado` object.<br>- `saveAllEmpleados`: This method is used to save a list of employees by passing a list of `Empleado` objects.<br>- `getAllEmpleados`: This method is used to retrieve all employees in the system.<br>- `findbyStatus`: This method is used to find employees by their status.<br>- `findByCiudad`: This method is used to find employees by their city.<br>- `findByJornada`: This method is used to find employees by their working hours.<br>- `findbyN4`: This method is used to find employees by their N4 value.<br>- `findbyCategoria`: This method is used to find employees by their category.<br>- `findbyScr`: This method is used to find employees by their SCR value.<br>- `findbyGrupos`: This method is used to find employees by their groups.<br>- `getEmpleadosByStatusFromList`: This method is used to retrieve a list of employees by their status from a list of `EmpleadoDTO` objects.<br>- `deleteAllEmpleados`: This method is used to delete all employees in the system.</p>
+ </section>  <!-- Review-comment< -->
+    <section id="review-comment">
+        <h2> Review </h2>
+        <p>**Code Review Summary:**<br>The code seems to be a service interface for managing employees. <br><br>However, there are several issues and areas for improvement:<br><br>1. The code lacks proper documentation. It is important to provide clear and concise comments explaining the purpose and functionality of each method.<br><br>2. Some method names are not following the standard Java naming conventions. It is recommended to use camelCase for method names.<br><br>3. There are some commented-out code sections. It is best practice to remove such code to improve readability and maintainability.<br><br>4. The code does not handle any exceptions. It is recommended to add exception handling mechanisms to handle any potential errors or exceptions that may occur during runtime.<br><br>5. The code does not have any unit tests. It is important to write unit tests to ensure the correctness and reliability of the code.<br><br>6. The code could benefit from better organization and structure. Consider grouping related methods together and organizing imports.<br><br>Overall, the code quality is average. It lacks documentation, exception handling, and unit tests. With some improvements, the code can be more robust and maintainable.<br><br>Code quality assessment: 6/10</p>
+    </section><footer><div><div style="float:left;padding-top:3px;">27-05-2024 17:32:45</div><img src="logo_icon.png" alt="logo" style="width: 6%;float:right;"></div></footer></body></html>

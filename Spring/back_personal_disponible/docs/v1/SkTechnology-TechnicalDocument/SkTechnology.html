@@ -1,0 +1,69 @@
+<html><head><title> Technical Documentation - C:\LocalDesktop\Eviden-Disponible---Grupo-3\Spring\back_personal_disponible\src\main\java\com\grupotres\back_personal_disponible\model\SkTechnology.java </title>  <!-- Include CSS for styling the header -->
+    <style>
+        /* Style the header */
+body {background-color: whitesmoke; padding:10px;}a { text-decoration: none; color: black; }header   { background:gray; color:whitesmoke; border-radius: 5px;}h1   { padding: 10px;}h2   { padding: 10px; background:#413a31; color:whitesmoke; border-radius: 5px;}p	{ padding: 10px; line-height: 1.25rem; letter-spacing: 0.02rem;}li	{ list-style-type: circle; line-height: 1.25rem; }footer { background-color: #333;color: #fff;text-align: center;padding-left: 10px;padding-right: 10px;height:5%;display:flex;justify-content:center;align-items:center;}    </style></head><body> <!-- Header Section -->
+    <header>
+        <h2> Technical Document - SkTechnology.java </h2>
+        <p>Version 1.0</p>
+    </header> <!-- Table of Contents -->
+    <nav>
+        <h2>Table of Contents</h2>
+        <ul>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#summary">Class Summary</a></li>
+            <li><a href="#explainmethod">Explain Method</a></li>
+            <li><a href="#review-comment">Review Comment</a></li>
+        </ul>
+    </nav> <!-- Introduction Section -->
+    <section id="introduction">
+        <h2>Introduction</h2>
+        <p>Provide an technical overview of the class, its purpose, and its features.</p>
+    </section>  <!-- Summary Section -->
+    <section id="summary">
+        <h2>Class Summary</h2>
+ 
+ <h3>Field Summary -</h3><table border="1"><tr><th>Modifier and Type</th><th>Field</th></tr><tr><td>[private , static , final ] long</td><td>serialVersionUID</td></tr><tr><td>[private ] int</td><td>idSkTechnology</td></tr><tr><td>[private ] Empleado</td><td>empleado</td></tr><tr><td>[private ] String</td><td>sktechnology</td></tr><tr><td>[private ] int</td><td>nivel</td></tr></table> 
+ <h3>Method Summary -</h3><table border="1"><tr><th>Modifier and Type</th><th>Method and Args</th></tr><tr><td>[public ] int</td><td>getIdSkTechnology []</td></tr><tr><td>[public ] void</td><td>setIdSkTechnology [int idSkTechnology]</td></tr><tr><td>[public ] String</td><td>getSktechnology []</td></tr><tr><td>[public ] void</td><td>setSktechnology [String sktechnology]</td></tr><tr><td>[public ] int</td><td>getNivel []</td></tr><tr><td>[public ] void</td><td>setNivel [int nivel]</td></tr><tr><td>[public ] Empleado</td><td>getEmpleado []</td></tr><tr><td>[public ] void</td><td>setEmpleado [Empleado empleado]</td></tr><tr><td>[public ] String</td><td>toString []</td></tr></table>
+ <h3>Explanation -</h3>
+ <p>**Code Summary for Documentation:**<br><br>The code defines a Java class `SkTechnology` that represents a technology skill of an employee. The class is annotated with `@Entity` to indicate that it is a persistent entity and `@Table` to specify the corresponding database table name. <br><br>The class has the following attributes:<br>- `idSkTechnology`: an integer field that represents the unique identifier for the technology skill.<br>- `empleado`: a reference to the `Empleado` class (employee) using a many-to-one relationship.<br>- `sktechnology`: a string field that represents the technology skill name.<br>- `nivel`: an integer field that represents the proficiency level of the technology skill.<br><br>The class also defines getter and setter methods for each attribute. The `toString()` method is overridden to provide a string representation of the `SkTechnology` object.<br><br>Overall, the `SkTechnology` class is used to store information about an employee's technology skills and their proficiency level.</p>
+ </section>  <!-- Method Summary Section -->
+    <section id="explainmethod"getIdSkTechnology>
+        <h2>Explain Method - getIdSkTechnology</h2>
+        <p>**Code Summary for Documentation:**<br><br>This code snippet defines a method called `getIdSkTechnology()` that returns an integer value. The method does not take any input parameters. <br><br>The method is used to retrieve the value of the variable `idSkTechnology`, which is a private variable defined elsewhere in the code. By calling this method, other parts of the code can access the value of `idSkTechnology` without directly accessing the variable itself.<br><br>This method can be useful when other parts of the code need to retrieve the value of `idSkTechnology` for further processing or calculations. It provides encapsulation by hiding the implementation details of the variable and only exposing the value through this method.</p>
+    </section>  <!-- Method Summary Section -->
+    <section id="explainmethod"setIdSkTechnology>
+        <h2>Explain Method - setIdSkTechnology</h2>
+        <p>**Code Summary for Documentation:**<br><br>This code snippet is a method that sets the value of the `idSkTechnology` property. It takes an integer parameter `idSkTechnology` and assigns its value to the `idSkTechnology` property of the current object.<br><br>The method is declared as `public`, which means it can be accessed from any other class. The return type is `void`, indicating that the method does not return any value.<br><br>The purpose of this method is to provide a way to set the value of the `idSkTechnology` property externally. By using this method, other parts of the code can change the value of `idSkTechnology` without directly accessing the property itself. This encapsulation helps in maintaining the integrity and consistency of the object's state.</p>
+    </section>  <!-- Method Summary Section -->
+    <section id="explainmethod"getSktechnology>
+        <h2>Explain Method - getSktechnology</h2>
+        <p>**Code Summary for Documentation:**<br><br>This code is a getter method that returns the value of a variable called `sktechnology`. The method is declared as `public`, which means it can be accessed from any other class. The return type of the method is `String`, indicating that it will return a string value.<br><br>The purpose of this getter method is to provide access to the value of the `sktechnology` variable, which is likely a property or attribute of an object or class. By calling this method, other parts of the code can retrieve the value of `sktechnology` without directly accessing the variable itself.<br><br>This code snippet is a basic implementation of a getter method, which is a common practice in object-oriented programming to encapsulate the internal state of an object and provide controlled access to its properties.</p>
+    </section>  <!-- Method Summary Section -->
+    <section id="explainmethod"setSktechnology>
+        <h2>Explain Method - setSktechnology</h2>
+        <p>**Code Summary for Documentation:**<br><br>This code snippet defines a public method called `setSktechnology` that takes a parameter `sktechnology` of type `String`. <br><br>The purpose of this method is to set the value of the `sktechnology` variable, which is a member variable of the class. The keyword `this` is used to refer to the current instance of the class.<br><br>By calling this method and passing a `String` value, the value of `sktechnology` is updated with the new value passed as the parameter.<br><br>This method does not return any value (`void`), and its access modifier is set to public, meaning it can be accessed from outside the class.<br><br>This method can be used to update the value of the `sktechnology` variable, allowing for dynamic changes to this specific property of an object of the class.</p>
+    </section>  <!-- Method Summary Section -->
+    <section id="explainmethod"getNivel>
+        <h2>Explain Method - getNivel</h2>
+        <p>**Code Summary for Documentation:**<br><br>This code defines a method called `getNivel()` which returns an integer value representing the `nivel` of an object. The `nivel` is an attribute of the class or object that this method belongs to.<br><br>The `getNivel()` method does not take any parameters and simply returns the value of `nivel` using the `this` keyword to refer to the current instance of the object. The `this` keyword is used to differentiate between the class attribute `nivel` and any local variables that may have the same name.<br><br>This method can be useful when we want to access the value of the `nivel` attribute from outside the class or object. It provides encapsulation and allows us to control the access and modification of the `nivel` attribute by providing only a getter method.</p>
+    </section>  <!-- Method Summary Section -->
+    <section id="explainmethod"setNivel>
+        <h2>Explain Method - setNivel</h2>
+        <p>**Code Summary for Documentation:**<br><br>This code snippet represents a setter method for the "nivel" variable. The "nivel" variable is an integer that represents the level of something. The purpose of this method is to set the value of the "nivel" variable with the provided input value.<br><br>The method takes an integer parameter called "nivel" and assigns it to the instance variable with the same name using the "this" keyword. The "this" keyword refers to the current instance of the class.<br><br>This method does not return any value, as it is a void method. It simply updates the value of the "nivel" variable to the provided input value.<br><br>This setter method can be used to update or modify the value of the "nivel" variable from outside the class. It provides a way to encapsulate the variable and control its access and modification.</p>
+    </section>  <!-- Method Summary Section -->
+    <section id="explainmethod"getEmpleado>
+        <h2>Explain Method - getEmpleado</h2>
+        <p>**Code Summary for Documentation:**<br><br>This code snippet defines a method called `getEmpleado()` which returns an object of type `Empleado`. The method does not take any parameters. <br><br>The `Empleado` object is an instance variable of the class where this method is defined. The `return` keyword is used to return the value of the `empleado` instance variable. <br><br>By calling this method, other parts of the code can access the `Empleado` object stored in the instance variable. <br><br>This method can be used in scenarios where the `Empleado` object needs to be retrieved or accessed from outside the class. It provides a way to encapsulate the instance variable and control the access to it.</p>
+    </section>  <!-- Method Summary Section -->
+    <section id="explainmethod"setEmpleado>
+        <h2>Explain Method - setEmpleado</h2>
+        <p>**Code Summary for Documentation:**<br><br>This code snippet is a method called `setEmpleado` that sets the value of an instance variable called `empleado`. The method takes an input parameter of type `Empleado`, which is a class or data type representing an employee.<br><br>The purpose of this method is to assign a value to the `empleado` variable. It is commonly used in object-oriented programming to encapsulate the internal state of an object and provide controlled access to it. By using a setter method like this, we can ensure that the value of `empleado` is properly validated or manipulated before being assigned.<br><br>This method does not return any value (`void`), indicating that it only performs the assignment and does not provide any feedback or result. The assignment is done using the `this` keyword, which refers to the current object instance, and the input parameter `empleado`.</p>
+    </section>  <!-- Method Summary Section -->
+    <section id="explainmethod"toString>
+        <h2>Explain Method - toString</h2>
+        <p>**Code Summary for Documentation:**<br><br>The `toString()` method is an overridden method in Java that is used to convert an object into a string representation. In this code snippet, the `toString()` method is overridden for the `SkTechnology` class.<br><br>The `toString()` method returns a string representation of the `SkTechnology` object, which includes the values of its instance variables. The returned string is constructed by concatenating various strings and variables using the `+` operator.<br><br>The returned string has the following format:<br>"SkTechnology{idSkTechnology=<idSkTechnology>, empleado=<empleado>, sktechnology='<sktechnology>', nivel=<nivel>}"<br><br>Here, `<idSkTechnology>`, `<empleado>`, `<sktechnology>`, and `<nivel>` are placeholders for the actual values of the corresponding instance variables.<br><br>This overridden `toString()` method can be useful for debugging purposes or when we need to convert a `SkTechnology` object into a string representation for display or logging.</p>
+    </section>  <!-- Review-comment< -->
+    <section id="review-comment">
+        <h2> Review </h2>
+        <p>**Code Review Summary** - The code snippet appears to be a model class for a technology entity. <br><br>Strengths:<br>- The code follows the Java naming conventions.<br>- The annotations for JPA are correctly used.<br>- The code includes the necessary getters and setters.<br><br>Recommendations:<br>- The class name "SkTechnology" should follow the standard Java naming convention of using camel case, such as "SkTechnology".<br>- The table name in the @Table annotation should match the actual table name in the database, which seems to be "tecnologias" based on the comments.<br>- The code could benefit from adding more comments to explain the purpose of each attribute and method.<br>- The "@NamedQuery" annotation is not necessary unless there is a specific named query to be defined.<br><br>Overall, the code quality is good, but there are some minor improvements that can be made. I would rate the code quality as 7 out of 10.</p>
+    </section><footer><div><div style="float:left;padding-top:3px;">27-05-2024 17:23:19</div><img src="logo_icon.png" alt="logo" style="width: 6%;float:right;"></div></footer></body></html>

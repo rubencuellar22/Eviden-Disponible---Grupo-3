@@ -1,0 +1,29 @@
+<html><head><title> Technical Documentation - C:\LocalDesktop\Eviden-Disponible---Grupo-3\Spring\back_personal_disponible\src\main\java\com\grupotres\back_personal_disponible\restController\SkTechSkillRestController.java </title>  <!-- Include CSS for styling the header -->
+    <style>
+        /* Style the header */
+body {background-color: whitesmoke; padding:10px;}a { text-decoration: none; color: black; }header   { background:gray; color:whitesmoke; border-radius: 5px;}h1   { padding: 10px;}h2   { padding: 10px; background:#413a31; color:whitesmoke; border-radius: 5px;}p	{ padding: 10px; line-height: 1.25rem; letter-spacing: 0.02rem;}li	{ list-style-type: circle; line-height: 1.25rem; }footer { background-color: #333;color: #fff;text-align: center;padding-left: 10px;padding-right: 10px;height:5%;display:flex;justify-content:center;align-items:center;}    </style></head><body> <!-- Header Section -->
+    <header>
+        <h2> Technical Document - SkTechSkillRestController.java </h2>
+        <p>Version 1.0</p>
+    </header> <!-- Table of Contents -->
+    <nav>
+        <h2>Table of Contents</h2>
+        <ul>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#summary">Class Summary</a></li>
+            <li><a href="#explainmethod">Explain Method</a></li>
+        </ul>
+    </nav> <!-- Introduction Section -->
+    <section id="introduction">
+        <h2>Introduction</h2>
+        <p>Provide an technical overview of the class, its purpose, and its features.</p>
+    </section>  <!-- Summary Section -->
+    <section id="summary">
+        <h2>Class Summary</h2>
+ 
+ <h3>Field Summary -</h3><table border="1"><tr><th>Modifier and Type</th><th>Field</th></tr><tr><td>[private ] SkTechSkillService</td><td>skTechSkillService</td></tr></table> 
+ <h3>Method Summary -</h3><table border="1"><tr><th>Modifier and Type</th><th>Method and Args</th></tr><tr><td>[public ] ResponseEntity<?></td><td>findBySkTechSkill [@PathVariable String skTechSkill]</td></tr><tr><td>[public ] ResponseEntity<?></td><td>findBySkTechSkillAndNivel [@PathVariable String skTechSkill, @PathVariable Integer nivel]</td></tr></table> </section>  <!-- Method Summary Section -->
+    <section id="explainmethod"findBySkTechSkill>
+        <h2>Explain Method - findBySkTechSkill</h2>
+        <p>**Code Summary for Documentation:**<br><br>This code snippet is a method with a `@GetMapping` annotation, which is used in a Spring MVC controller to handle HTTP GET requests. The method takes a path variable `skTechSkill` and returns a `ResponseEntity` object.<br><br>Inside the method, it calls the `findBySkTechSkill` method of a `skTechSkillService` object, which returns a list of `Empleado` objects. Then, it creates an empty list `empleadosDTO` to store the converted `Empleado` objects.<br><br>Next, it iterates over the `empleados` list using a for-each loop and creates a new `EmpleadoDTO` object for each `Empleado` object. The `EmpleadoDTO` constructor takes an `Empleado` object as a parameter.<br><br>Finally, it returns a `ResponseEntity` object with the `empleadosDTO` list as the response body. The `ResponseEntity.ok()` method is used to create a successful HTTP response with a 200 status code.<br><br>This code essentially retrieves a list of `Empleado` objects based on the `skTechSkill` path variable, converts them to `EmpleadoDTO` objects, and returns them as the response.</p>
+    </section><footer><div><div style="float:left;padding-top:3px;">27-05-2024 17:32:23</div><img src="logo_icon.png" alt="logo" style="width: 6%;float:right;"></div></footer></body></html>

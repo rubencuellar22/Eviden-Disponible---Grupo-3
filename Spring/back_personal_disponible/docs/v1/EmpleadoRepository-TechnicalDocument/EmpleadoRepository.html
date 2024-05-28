@@ -1,0 +1,31 @@
+<html><head><title> Technical Documentation - C:\LocalDesktop\Eviden-Disponible---Grupo-3\Spring\back_personal_disponible\src\main\java\com\grupotres\back_personal_disponible\repository\EmpleadoRepository.java </title>  <!-- Include CSS for styling the header -->
+    <style>
+        /* Style the header */
+body {background-color: whitesmoke; padding:10px;}a { text-decoration: none; color: black; }header   { background:gray; color:whitesmoke; border-radius: 5px;}h1   { padding: 10px;}h2   { padding: 10px; background:#413a31; color:whitesmoke; border-radius: 5px;}p	{ padding: 10px; line-height: 1.25rem; letter-spacing: 0.02rem;}li	{ list-style-type: circle; line-height: 1.25rem; }footer { background-color: #333;color: #fff;text-align: center;padding-left: 10px;padding-right: 10px;height:5%;display:flex;justify-content:center;align-items:center;}    </style></head><body> <!-- Header Section -->
+    <header>
+        <h2> Technical Document - EmpleadoRepository.java </h2>
+        <p>Version 1.0</p>
+    </header> <!-- Table of Contents -->
+    <nav>
+        <h2>Table of Contents</h2>
+        <ul>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#summary">Class Summary</a></li>
+            <li><a href="#review-comment">Review Comment</a></li>
+        </ul>
+    </nav> <!-- Introduction Section -->
+    <section id="introduction">
+        <h2>Introduction</h2>
+        <p>Provide an technical overview of the class, its purpose, and its features.</p>
+    </section>  <!-- Summary Section -->
+    <section id="summary">
+        <h2>Class Summary</h2>
+ 
+ <h3>Method Summary -</h3><table border="1"><tr><th>Modifier and Type</th><th>Method and Args</th></tr><tr><td>[] List<Empleado></td><td>findbyStatus [String status]</td></tr><tr><td>[] List<Empleado></td><td>findByBench [Date benchDate]</td></tr><tr><td>[] List<Empleado></td><td>findByJornada [BigDecimal jornada]</td></tr><tr><td>[] List<Empleado></td><td>findByCiudad [String ciudad]</td></tr><tr><td>[] List<Empleado></td><td>findbyN4 [String n4]</td></tr><tr><td>[public ] List<Empleado></td><td>findbyCategoria [String categoria]</td></tr><tr><td>[] List<Empleado></td><td>findbyScr [BigDecimal scr]</td></tr><tr><td>[] List<Empleado></td><td>findByGroups [String groupName]</td></tr></table>
+ <h3>Explanation -</h3>
+ <p>**Code Summary for Documentation:**<br><br>This code is a repository interface that extends the JpaRepository interface. It provides methods to perform CRUD operations on the Empleado entity.<br><br>The EmpleadoRepository interface contains several custom query methods. These methods use the @Query annotation to define JPQL (Java Persistence Query Language) queries to retrieve specific data from the Empleado entity.<br><br>The methods include:<br>- findbyStatus: Finds employees by their status.<br>- findByBench: Finds employees by their bench date.<br>- findByJornada: Finds employees by their working hours.<br>- findByCiudad: Finds employees by their city.<br>- findbyN4: Finds employees by their N4.<br>- findbyCategoria: Finds employees by their category.<br>- findbyScr: Finds employees by their SCR (Score) between 1 and 100.<br>- findByGroups: Finds employees by their group name.<br><br>These methods return a list of employees that match the specified criteria.<br><br>There is also a commented out method, findbyCcname, which is not currently in use.<br><br>Overall, this repository provides convenient methods to query and retrieve specific data from the Empleado entity.</p>
+ </section>  <!-- Review-comment< -->
+    <section id="review-comment">
+        <h2> Review </h2>
+        <p>### Code Review Summary:<br>The code appears to be a repository interface for the Empleado entity in a Spring Boot application. The code contains several methods annotated with the @Query annotation to perform custom queries on the Empleado entity. <br><br>Overall, the code seems to be well-structured and follows the Spring Data JPA conventions. However, there are a few areas of improvement and potential issues that should be addressed:<br><br>1. **Improvement**: Add more specific method names - The method names in the repository interface are not very descriptive. It would be beneficial to provide more specific names that reflect the purpose of the query.<br><br>2. **Issue**: Unused method - The method `findbyCcname` is commented out and is not used anywhere in the code. It should be removed to avoid confusion.<br><br>3. **Issue**: Inconsistent naming convention - The method `findbyStatus` uses lowercase "b" in "by" instead of uppercase "B" like other methods. It is recommended to follow a consistent naming convention throughout the codebase.<br><br>4. **Issue**: Potential SQL injection vulnerability - The method `findByGroups` uses string concatenation in the query, which can lead to SQL injection vulnerabilities. It is recommended to use parameterized queries or sanitization techniques to prevent this.<br><br>5. **Potential Bug**: The method `findByBench` takes a `Date` parameter, but the name suggests that it is for finding employees on the bench. It is unclear what the purpose of this method is and whether the parameter is used correctly.<br><br>Overall, the code quality is good with some minor improvements needed. The code follows the Spring Data JPA conventions and is readable. <br><br>Code quality assessment: 8/10</p>
+    </section><footer><div><div style="float:left;padding-top:3px;">27-05-2024 17:24:59</div><img src="logo_icon.png" alt="logo" style="width: 6%;float:right;"></div></footer></body></html>
