@@ -11,7 +11,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.grupotres.back_personal_disponible.model.Empleado;
+import com.grupotres.back_personal_disponible.model.JobTechnologyProfile;
+import com.grupotres.back_personal_disponible.model.SkBusSkill;
 import com.grupotres.back_personal_disponible.model.dto.EmpleadoDTO;
+import com.grupotres.back_personal_disponible.model.dto.JobTechnologyProfileDTO;
+import com.grupotres.back_personal_disponible.model.dto.SkBusSkillDTO;
 import com.grupotres.back_personal_disponible.service.EmpleadoService;
 import com.grupotres.back_personal_disponible.service.SkBussSkillService;
 
@@ -26,6 +30,15 @@ public class SkBussSkillRestController {
 	@Autowired
     private SkBussSkillService skBussSkillService;
 	
+	@GetMapping("/todos")
+	public ResponseEntity<List<SkBusSkillDTO>> selectAllSkBusSkills() {
+        List<SkBusSkill> skBusSkills = skBussSkillService.selectAllSkBusSkills();
+        List<SkBusSkillDTO> skBusSkillsDTO = new ArrayList<>();
+        for (SkBusSkill skBusSkill : skBusSkills) {
+            skBusSkillsDTO.add(new SkBusSkillDTO(skBusSkill));
+        }
+        return ResponseEntity.ok(skBusSkillsDTO);
+    }
 	
 	 @GetMapping("/{nombre}")
 	 public ResponseEntity<?> findEmpleadosByBussSkill(@PathVariable String nombre) {

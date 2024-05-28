@@ -14,4 +14,6 @@ public interface SkTechSkillService {
     void saveAllSkTechSkills(List<SkTechSkill> empSkTechSkills);
 
     void deleteAllSkTechSkills();
+    
+	List<SkTechSkill> selectAllSkTechSkills();
 }

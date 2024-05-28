@@ -35,6 +35,10 @@ public class SkMethodServiceImpl implements SkMethodService {
 	@Override
 	public void deleteAllSkMethods() {
 		skMethodRepository.deleteAllInBatch();
+
+	@Override
+	public List<SkMethod> selectAllSkMethods() {
+		return skMethodRepository.selectAllSkMethod();
 	}
 
 }

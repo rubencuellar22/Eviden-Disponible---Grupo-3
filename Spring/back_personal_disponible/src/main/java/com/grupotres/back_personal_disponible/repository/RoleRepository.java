@@ -32,4 +32,9 @@ public interface RoleRepository extends JpaRepository<Role, Long>{
 	@Modifying
 	@Query("DELETE FROM Role r WHERE r.idRole = ?1")
 	public void deleteById(Long idRole);
+	
+	@Query
+	("SELECT r FROM Role r")
+	List<Role> selectAllRoles();
+
 }

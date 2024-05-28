@@ -26,6 +26,11 @@ public class RolServiceImpl implements RoleService{
 	public List<Empleado> findEmpleadosByRoleAndNivel(String role, Integer nivel) {
 		return roleRepository.findEmpleadosByRoleAndNivel(role, nivel);
 	}
+
+	@Override
+	public List<Role> selectAllRoles() {
+		return roleRepository.selectAllRoles();
+	}
  
 	@Override
 	public void saveRole(Role role) {

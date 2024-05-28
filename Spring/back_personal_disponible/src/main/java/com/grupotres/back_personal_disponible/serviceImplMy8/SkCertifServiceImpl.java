@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.grupotres.back_personal_disponible.model.Empleado;
+import com.grupotres.back_personal_disponible.model.SkCertif;
 import com.grupotres.back_personal_disponible.repository.SkCertifRepository;
 import com.grupotres.back_personal_disponible.service.SkCertifService;
 
@@ -36,4 +37,9 @@ public class SkCertifServiceImpl implements SkCertifService {
     public void deleteAllSkCertifs() {
         skCertifRepository.deleteAllInBatch();
     }
+
+	@Override
+	public List<SkCertif> selectAllSkCertifs() {
+		return skCertifRepository.selectAllSkCertifs();
+	}
 }

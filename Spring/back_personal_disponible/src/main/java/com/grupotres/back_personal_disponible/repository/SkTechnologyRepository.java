@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.grupotres.back_personal_disponible.model.Empleado;
+import com.grupotres.back_personal_disponible.model.SkLenguage;
 import com.grupotres.back_personal_disponible.model.SkTechnology;
 
 public interface SkTechnologyRepository extends JpaRepository<SkTechnology, Integer>{
@@ -17,4 +18,7 @@ public interface SkTechnologyRepository extends JpaRepository<SkTechnology, Inte
 	@Query("SELECT s.empleado FROM SkTechnology s WHERE s.sktechnology = :nombre AND s.nivel = :nivel")
 	List<Empleado> findEmpleadosByTechnologyAndNivel(String nombre, int nivel);
 	
+	@Query
+	("SELECT s FROM SkTechnology s")
+    List<SkTechnology> selectAllSkTechnologys();
 }

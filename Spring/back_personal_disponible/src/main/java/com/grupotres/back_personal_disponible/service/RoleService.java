@@ -7,6 +7,7 @@ import com.grupotres.back_personal_disponible.model.Empleado;
 import com.grupotres.back_personal_disponible.model.Role;
 
 import com.grupotres.back_personal_disponible.model.Empleado;
+import com.grupotres.back_personal_disponible.model.Role;
  
 @Service
 public interface RoleService {
@@ -24,4 +25,7 @@ public interface RoleService {
     void deleteRole(Role empRole);
 
     void deleteAllRoles();
+    
+	List<Role> selectAllRoles();
+	
 }

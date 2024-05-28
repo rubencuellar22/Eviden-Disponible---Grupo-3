@@ -44,5 +44,24 @@ public interface EmpleadoRepository extends JpaRepository<Empleado, Long> {
 	@Query("SELECT e FROM Empleado e JOIN e.grupo g WHERE g.grupos LIKE %?1%")
 	List<Empleado> findByGroups(String groupName);
 
+	 @Query("SELECT DISTINCT e.status FROM Empleado e")
+	  List<String> findAllDistinctStatuses();
 
+	  @Query("SELECT DISTINCT e.ciudad FROM Empleado e")
+	    List<String> findAllDistinctCiudades();
+	  
+	  @Query("SELECT DISTINCT e.jornada FROM Empleado e")
+	    List<BigDecimal> findAllDistinctJornadas();
+
+	  @Query("SELECT DISTINCT g.grupos FROM Empleado e JOIN e.grupo g")
+	  List<String> findAllDistinctGroups();
+
+	  @Query("SELECT DISTINCT e.n4 FROM Empleado e")
+	    List<String> findAllDistinctN4s();
+	  
+	  @Query("SELECT DISTINCT e.categoria FROM Empleado e")
+	    List<String> findAllDistinctCategorias();
+	    
+	    @Query("SELECT DISTINCT e.scr FROM Empleado e")
+	    List<BigDecimal> findAllDistinctScrs();
 }

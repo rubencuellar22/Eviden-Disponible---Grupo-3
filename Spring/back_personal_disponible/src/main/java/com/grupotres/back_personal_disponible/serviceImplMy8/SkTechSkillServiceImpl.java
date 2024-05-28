@@ -36,5 +36,10 @@ public class SkTechSkillServiceImpl implements SkTechSkillService {
     public void deleteAllSkTechSkills() {
         skTechSkillRepository.deleteAllInBatch();
     }
+    
+	@Override
+	public List<SkTechSkill> selectAllSkTechSkills() {
+		return skTechSkillRepository.selectAllSkTechSkills();
+	}
 
 }

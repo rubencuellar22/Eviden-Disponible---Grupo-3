@@ -47,5 +47,10 @@ public class SkLenguageServiceImpl implements SkLenguageService {
 		skLenguageRepository.deleteAllInBatch();
 	}
 
-
+	@Override
+	public List<SkLenguage> selectAllSkLenguages() {
+		return skLenguageRepository.selectAllSkLenguages();
+	}
+ 
+	
 }

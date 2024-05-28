@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.grupotres.back_personal_disponible.model.Empleado;
+import com.grupotres.back_personal_disponible.model.SkBusSkill;
 import com.grupotres.back_personal_disponible.model.SkCertif;
 
 
@@ -21,5 +22,9 @@ public interface SkCertifRepository extends JpaRepository<SkCertif, Integer> {
 	@Query("SELECT s.empleado FROM SkCertif s WHERE s.skcertif = :nombre AND " +
 	           "s.external = CASE WHEN :external = 1 THEN true ELSE false END")
 	    List<Empleado> findEmpleadosByCertifNombreAndNivel(@Param("nombre") String nombre, @Param("external") int external);
-	}
+
+	@Query
+	("SELECT s FROM SkCertif s")
+    List<SkCertif> selectAllSkCertifs();
+}
 

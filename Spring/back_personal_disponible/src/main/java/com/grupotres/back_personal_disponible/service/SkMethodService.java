@@ -14,4 +14,7 @@ public interface SkMethodService {
     void saveAllSkMethods(List<SkMethod> empSkMethods);
 
     void deleteAllSkMethods();
+    
+	List<SkMethod> selectAllSkMethods();
+    
 }

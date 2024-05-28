@@ -36,4 +36,9 @@ public class JobTechnologyProfileServiceImpl implements JobTechnologyProfileServ
 		jobTechnologyProfileRepository.deleteAllInBatch();
 	}
 
+	@Override
+	public List<JobTechnologyProfile> selectAllJobTechnologyProfile() {
+        return jobTechnologyProfileRepository.selectAllJobTechnologyProfile();
+    }
+ 
 }

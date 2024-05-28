@@ -15,5 +15,7 @@ public interface SkLenguageService {
     void saveAllSkLenguages(List<SkLenguage> empSkLenguages);
 
     void deleteAllSkLenguages();
+
+	public List<SkLenguage> selectAllSkLenguages();
 }
  

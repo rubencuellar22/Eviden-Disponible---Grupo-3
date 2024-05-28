@@ -7,6 +7,7 @@ import com.grupotres.back_personal_disponible.model.Empleado;
 import com.grupotres.back_personal_disponible.model.JobTechnologyProfile;
 
 import com.grupotres.back_personal_disponible.model.Empleado;
+import com.grupotres.back_personal_disponible.model.JobTechnologyProfile;
  
 @Service
 public interface JobTechnologyProfileService {
@@ -18,4 +19,7 @@ public interface JobTechnologyProfileService {
 	public void saveAllJobTechnologyProfiles(List<JobTechnologyProfile> jobTechnologyProfiles);
 
     void deleteAllJobTechnologyProfiles();
+	
+	List<JobTechnologyProfile> selectAllJobTechnologyProfile();
+ 
 }
