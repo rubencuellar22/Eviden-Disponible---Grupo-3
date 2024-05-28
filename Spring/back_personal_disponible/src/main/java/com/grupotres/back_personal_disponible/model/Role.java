@@ -19,7 +19,7 @@ public class Role implements Serializable {
 	@Column(name = "id_role")
 	private Long idRole;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne()
 	@JoinColumn(name="gin")
 	private Empleado empleado;
 

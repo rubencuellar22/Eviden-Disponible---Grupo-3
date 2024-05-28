@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.grupotres.back_personal_disponible.model.Empleado;
+import com.grupotres.back_personal_disponible.model.JobTechnologyProfile;
 import com.grupotres.back_personal_disponible.model.dto.EmpleadoDTO;
+import com.grupotres.back_personal_disponible.model.dto.JobTechnologyProfileDTO;
 import com.grupotres.back_personal_disponible.service.EmpleadoService;
 import com.grupotres.back_personal_disponible.service.JobTechnologyProfileService;
 
@@ -24,6 +26,16 @@ public class JobTechProfRestController {
     
     @Autowired
     private JobTechnologyProfileService jobTechnologyProfileService;
+    
+    @GetMapping("/todos")
+    public ResponseEntity<List<JobTechnologyProfileDTO>> selectAllJobTechnologyProfile() {
+        List<JobTechnologyProfile> jobProfiles = jobTechnologyProfileService.selectAllJobTechnologyProfile();
+        List<JobTechnologyProfileDTO> jobProfilesDTO = new ArrayList<>();
+        for (JobTechnologyProfile jobProfile : jobProfiles) {
+            jobProfilesDTO.add(new JobTechnologyProfileDTO(jobProfile));
+        }
+        return ResponseEntity.ok(jobProfilesDTO);
+    }
     
     @GetMapping("/{jobTechnologyProfile}")
     public ResponseEntity<?> findByJobTechnologyProfile(@PathVariable String jobTechnologyProfile) {

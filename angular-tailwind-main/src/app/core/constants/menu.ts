@@ -27,7 +27,7 @@ export class Menu {
         },
         {
           icon: 'assets/icons/heroicons/outline/gift.svg',
-          label: 'Estátus',
+          label: 'Status',
           route: '/gift',
         },
         {
@@ -88,40 +88,102 @@ export class Menu {
         }, 
         {
           icon: 'assets/icons/heroicons/outline/gift.svg',
-          label: 'CCName',
+          label: 'Grupo',
           route: '/gift',
-        },   
-          
+        },  
+        {
+          icon: 'assets/icons/heroicons/outline/gift.svg',
+          label: 'N_4',
+          route: '/gift',
+        },  
+        {
+          icon: 'assets/icons/heroicons/outline/gift.svg',
+          label: 'Agrupacion',
+          route: '/gift',
+        },  
+        {
+          icon: 'assets/icons/heroicons/outline/gift.svg',
+          label: 'Job Technology',
+          route: '/gift',
+        },  
+        {
+          icon: 'assets/icons/heroicons/outline/gift.svg',
+          label: 'Job Technology Profile',
+          route: '/gift',
+        },  
+        {
+          icon: 'assets/icons/heroicons/outline/gift.svg',
+          label: 'Skills',
+          route: '/gift',
+        },  
+        {
+          icon: 'assets/icons/heroicons/outline/gift.svg',
+          label: 'Role',
+          route: '/gift',
+        },  
+        {
+          icon: 'assets/icons/heroicons/outline/gift.svg',
+          label: 'RLT',
+          route: '/gift',
+        },  
         {
           icon: 'assets/icons/heroicons/outline/chart-pie.svg',
-          label: 'Nombre',
+          label: 'SkLanguage',
           route: '/dashboard',
           children: [
-            { label: 'Nombre', route: '/dashboard/nfts' },
-            // { label: 'Podcast', route: '/dashboard/podcast' },
+            { label: 'A1', route: '/dashboard/nfts' },
+            { label: 'A2', route: '/dashboard/nfts' },
+            { label: 'B1', route: '/dashboard/nfts' },
+            { label: 'B2', route: '/dashboard/nfts' },
+            { label: 'C1', route: '/dashboard/nfts' },
+            { label: 'C2', route: '/dashboard/nfts' },
           ],
         },
         {
-          icon: 'assets/icons/heroicons/outline/lock-closed.svg',
-          label: 'Auth',
-          route: '/auth',
+          icon: 'assets/icons/heroicons/outline/gift.svg',
+          label: 'SkMethods',
+          route: '/gift',
+        },  
+        {
+          icon: 'assets/icons/heroicons/outline/gift.svg',
+          label: 'SkTechSkills',
+          route: '/gift',
+        },  
+        {
+          icon: 'assets/icons/heroicons/outline/gift.svg',
+          label: 'SkCertif',
+          route: '/gift',
+        },  
+        {
+          icon: 'assets/icons/heroicons/outline/chart-pie.svg',
+          label: 'SkTechnologies',
+          route: '/dashboard',
           children: [
-            { label: 'Sign up', route: '/auth/sign-up' },
-            { label: 'Sign in', route: '/auth/sign-in' },
-            { label: 'Forgot Password', route: '/auth/forgot-password' },
-            { label: 'New Password', route: '/auth/new-password' },
-            { label: 'Two Steps', route: '/auth/two-steps' },
+            { label: 'Novice (1)', route: '/dashboard/nfts' },
+            { label: 'Junior (2)', route: '/dashboard/nfts' },
+            { label: 'Proficient (3)', route: '/dashboard/nfts' },
+            { label: 'Senior (4)', route: '/dashboard/nfts' },
+            { label: 'Expert (5)', route: '/dashboard/nfts' },
           ],
         },
         {
-          icon: 'assets/icons/heroicons/outline/shield-exclamation.svg',
-          label: 'Erros',
-          route: '/errors',
-          children: [
-            { label: '404', route: '/errors/404' },
-            { label: '500', route: '/errors/500' },
-          ],
-        },
+          icon: 'assets/icons/heroicons/outline/gift.svg',
+          label: 'SkBusSkills',
+          route: '/gift',
+        },  
+        
+        // {
+        //   icon: 'assets/icons/heroicons/outline/lock-closed.svg',
+        //   label: 'Auth',
+        //   route: '/auth',
+        //   children: [
+        //     { label: 'Sign up', route: '/auth/sign-up' },
+        //     { label: 'Sign in', route: '/auth/sign-in' },
+        //     { label: 'Forgot Password', route: '/auth/forgot-password' },
+        //     { label: 'New Password', route: '/auth/new-password' },
+        //     { label: 'Two Steps', route: '/auth/two-steps' },
+        //   ],
+        // },
       ],
     },
     // {
