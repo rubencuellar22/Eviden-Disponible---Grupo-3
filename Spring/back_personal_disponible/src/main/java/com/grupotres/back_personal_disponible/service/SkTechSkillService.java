@@ -10,4 +10,10 @@ public interface SkTechSkillService {
     List<Empleado> findBySkTechSkill(String skTechSkill);
     
     List<Empleado> findBySkTechSkillAndNivel(String skTechSkill, int nivel);
+
+    void saveAllSkTechSkills(List<SkTechSkill> empSkTechSkills);
+
+    void deleteAllSkTechSkills();
+    
+	List<SkTechSkill> selectAllSkTechSkills();
 }

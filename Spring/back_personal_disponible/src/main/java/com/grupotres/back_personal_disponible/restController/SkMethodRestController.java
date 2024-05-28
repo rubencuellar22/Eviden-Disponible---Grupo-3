@@ -4,6 +4,7 @@ package com.grupotres.back_personal_disponible.restController;
 import com.grupotres.back_personal_disponible.model.Empleado;
 import com.grupotres.back_personal_disponible.model.SkMethod;
 import com.grupotres.back_personal_disponible.model.dto.EmpleadoDTO;
+import com.grupotres.back_personal_disponible.model.dto.SkMethodDTO;
 import com.grupotres.back_personal_disponible.repository.EmpleadoRepository;
 import com.grupotres.back_personal_disponible.service.EmpleadoService;
 import com.grupotres.back_personal_disponible.service.SkMethodService;
@@ -32,6 +33,16 @@ public class SkMethodRestController {
 	@Autowired
     private SkMethodService skMethodService;
 
+	@GetMapping("/todos")
+    public ResponseEntity<List<SkMethodDTO>> selectAllSkMethods() {
+        List<SkMethod> skMethods = skMethodService.selectAllSkMethods();
+        List<SkMethodDTO> skMethodsDTO = new ArrayList<>();
+        for (SkMethod skMethod : skMethods) {
+            skMethodsDTO.add(new SkMethodDTO(skMethod));
+        }
+        return ResponseEntity.ok(skMethodsDTO);
+    }
+	
     @GetMapping("/{skMethod}")
     public ResponseEntity<?> findBySkMethod(@PathVariable String skMethod){
 		List<Empleado> empleados = skMethodService.findBySkMethod(skMethod);

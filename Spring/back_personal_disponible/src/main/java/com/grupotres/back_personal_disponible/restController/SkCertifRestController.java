@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.grupotres.back_personal_disponible.model.Empleado;
+import com.grupotres.back_personal_disponible.model.SkCertif;
 import com.grupotres.back_personal_disponible.model.dto.EmpleadoDTO;
+import com.grupotres.back_personal_disponible.model.dto.SkCertifDTO;
 import com.grupotres.back_personal_disponible.repository.EmpleadoRepository;
 import com.grupotres.back_personal_disponible.service.EmpleadoService;
 import com.grupotres.back_personal_disponible.service.SkCertifService;
@@ -32,6 +34,15 @@ public class SkCertifRestController {
 	@Autowired
     private SkCertifService skCertifService;
 	
+	@GetMapping("/todos")
+    public ResponseEntity<List<SkCertifDTO>> selectAllSkCertifs() {
+        List<SkCertif> skCertifs = skCertifService.selectAllSkCertifs();
+        List<SkCertifDTO> skCertifsDTO = new ArrayList<>();
+        for (SkCertif skCertif : skCertifs) {
+            skCertifsDTO.add(new SkCertifDTO(skCertif));
+        }
+        return ResponseEntity.ok(skCertifsDTO);
+    }
 	
 	 @GetMapping("/{nombre}")
 	 public ResponseEntity<?> findEmpleadosByCertifNombre(@PathVariable String nombre){
@@ -64,6 +75,5 @@ public class SkCertifRestController {
 		    List<EmpleadoDTO> empleadosDTOFiltrados = empleadoService.getEmpleadosBySkCertifAndNivelFromList(empleadosFiltradosDTO, nombre, external);
 		    return ResponseEntity.ok(empleadosDTOFiltrados);
 	 }
-	
 	 
 }

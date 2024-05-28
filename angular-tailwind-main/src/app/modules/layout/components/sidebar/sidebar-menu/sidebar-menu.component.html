@@ -22,27 +22,21 @@
           [ngTemplateOutletContext]="{ item: item }">
         </ng-container>
 
-        <!-- Workaround:: Enable routerLink -->
-        
+        <!-- Parent Menu -->
         <ng-template #parentMenu let-item="item">
-          <div
-            
-            class="flex h-9 cursor-pointer items-center justify-start rounded text-muted-foreground hover:bg-card hover:text-foreground">
-            <a
-              routerLinkActive="text-primary"
-              class="ml-10 truncate text-xs font-semibold tracking-wide focus:outline-none">
+          <div class="flex h-9 cursor-pointer items-center justify-start rounded text-muted-foreground hover:bg-card hover:text-foreground">
+            <span class="ml-10 truncate text-xs font-semibold tracking-wide focus:outline-none">
               {{ item.label }}
-            </a>
+            </span>
           </div>
         </ng-template>
 
-        <!-- Workaround:: Disable routerLink -->
+        <!-- Child Menu -->
         <ng-template #childMenu let-item="item">
           <div class="flex h-9 cursor-pointer items-center justify-start rounded hover:bg-card">
-            <a
-              class="ml-10 truncate text-xs font-semibold tracking-wide text-muted-foreground focus:outline-none group-hover:text-foreground">
+            <span class="ml-10 truncate text-xs font-semibold tracking-wide text-muted-foreground focus:outline-none group-hover:text-foreground">
               {{ item.label }}
-            </a>
+            </span>
           </div>
         </ng-template>
 
@@ -56,8 +50,7 @@
 
         <!-- Tooltip -->
         <div class="fixed w-full" *ngIf="!menuService.showSideBar">
-          <span
-            class="z-1 absolute left-14 -top-[34px] w-auto min-w-max origin-left scale-0 rounded-md bg-foreground p-2 text-xs font-bold text-background shadow-md transition-all duration-200 group-hover:scale-100">
+          <span class="z-1 absolute left-14 -top-[34px] w-auto min-w-max origin-left scale-0 rounded-md bg-foreground p-2 text-xs font-bold text-background shadow-md transition-all duration-200 group-hover:scale-100">
             {{ item.label }}
           </span>
         </div>

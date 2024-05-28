@@ -43,13 +43,13 @@
         </tr>
       </thead>
       <!-- Table body -->
-      <tbody>
-        <tr *ngFor="let empleado of empleados" class="gap-5">
+      <tbody *ngFor="let empleado of empleados">
+        <tr *ngIf="empleado.gin != 0"  class="gap-5 text-foreground">
           <td>{{ empleado.gin }}</td>
           <td>{{ empleado.name }}</td>
           <td>{{ empleado.subgroup }}</td>
           <td>{{ empleado.status }}</td>
-          <td>{{ empleado.bench | date }}</td>
+          <td>{{ empleado.bench.toString().split("T")[0] }}</td>
           <td>{{ empleado.das }}</td>
           <td>{{ empleado.ciudad }}</td>
           <td>{{ empleado.agrupacion }}</td>
@@ -59,40 +59,42 @@
           <td>{{ empleado.categoria }}</td>
           <td>{{ empleado.nivelgcm }}</td>
           <td>{{ empleado.scr }}</td>
-          <td>{{ empleado.grupo.name }}</td>
+          <td>{{ empleado.grupo.grupos }}</td>
           <td>{{ empleado.n4 }}</td>
           <td>{{ empleado.jobTechnology }}</td>
           <td>{{ empleado.skills }}</td>
-          <td>{{ empleado.role.name }}</td>
+          <td *ngIf="empleado.role.role != ''">
+            {{ empleado.role.role }} - {{ empleado.role.nivel }}
+          </td>
           <td>{{ empleado.rlt }}</td>
           <td>
-            <ul *ngFor="let skLenguage of empleado.skLenguages">
-              <li > {{ skLenguage.name }} </li>
+            <ul *ngFor="let skLenguages of empleado.skLenguages">
+              <li *ngIf="skLenguages.sklenguage != ''">{{ skLenguages.sklenguage }} - {{ skLenguages.nivel }}</li>
             </ul>
           </td>
           <td>
-            <ul>
-              <li *ngFor="let skMethod of empleado.skMethods">{{ skMethod.name }}</li>
+            <ul *ngFor="let skMethods of empleado.skMethods">
+              <li *ngIf="skMethods.skmethod != ''">{{ skMethods.skmethod }} - {{ skMethods.nivel }}</li>
             </ul>
           </td>
           <td>
-            <ul>
-              <li *ngFor="let skTechSkill of empleado.skTechSkills">{{ skTechSkill.name }}</li>
+            <ul *ngFor="let skTechSkills of empleado.skTechSkills">
+              <li *ngIf="skTechSkills.skTechSkill != ''">{{ skTechSkills.skTechSkill }} - {{ skTechSkills.nivel }}</li>
             </ul>
           </td>
           <td>
-            <ul>
-              <li *ngFor="let skCertif of empleado.skCertifs">{{ skCertif.name }}</li>
+            <ul *ngFor="let skCertifs of empleado.skCertifs">
+              <li *ngIf="skCertifs.skCertif != ''">{{ skCertifs.skCertif }} - {{ skCertifs.external }}</li>
             </ul>
           </td>
           <td>
-            <ul>
-              <li *ngFor="let skTechnology of empleado.skTechnologies">{{ skTechnology.name }}</li>
+            <ul *ngFor="let skTechnologies of empleado.skTechnologies">
+              <li *ngIf="skTechnologies.sktechnology != ''">{{ skTechnologies.sktechnology }} - {{ skTechnologies.nivel }}</li>
             </ul>
           </td>
           <td>
-            <ul>
-              <li *ngFor="let skBusSkill of empleado.skBusSkills">{{ skBusSkill.name }}</li>
+            <ul *ngFor="let skBusSkills of empleado.skBusSkills">
+              <li *ngIf="skBusSkills.skBusSkill != ''">{{ skBusSkills.skBusSkill }} - {{ skBusSkills.nivel }}</li>
             </ul>
           </td>
         </tr>
