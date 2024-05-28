@@ -38,13 +38,13 @@
           <!-- <th class="py-2">{{ selectedFilter | titlecase }}</th> -->
         </tr>
       </thead>
-      <tbody>
-        <tr *ngFor="let empleado of empleados">
+      <tbody *ngFor="let empleado of empleados">
+        <tr *ngIf="empleado.gin != 0">
           <td class="border px-4 py-2">{{ empleado.gin }}</td>
           <td class="border px-4 py-2">{{ empleado.name }}</td>
           <td class="border px-4 py-2">{{ empleado.subgroup }}</td>
           <td class="border px-4 py-2">{{ empleado.status }}</td>
-          <td class="border px-4 py-2">{{ empleado.bench }}</td>
+          <td class="border px-4 py-2">{{ empleado.bench.toString().split("T")[0] }}</td>
           <td class="border px-4 py-2">{{ empleado.das }}</td>
           <td class="border px-4 py-2">{{ empleado.ciudad }}</td>
           <td class="border px-4 py-2">{{ empleado.agrupacion }}</td>
@@ -58,38 +58,38 @@
           <td class="border px-4 py-2">{{ empleado.n4 }}</td>
           <td class="border px-4 py-2">{{ empleado.jobTechnology }}</td>
           <td class="border px-4 py-2">{{ empleado.skills }}</td>
-          <td class="border px-4 py-2">
+          <td class="border px-4 py-2" *ngIf="empleado.role.role != ''">
             {{ empleado.role.role }} - {{ empleado.role.nivel }}
           </td>
           <td class="border px-4 py-2">{{ empleado.rlt }}</td>
           <td class="border px-4 py-2">
             <ul *ngFor="let skLenguages of empleado.skLenguages">
-              <li>{{ skLenguages.sklenguage }}</li>
+              <li *ngIf="skLenguages.sklenguage != ''">{{ skLenguages.sklenguage }} - {{ skLenguages.nivel }}</li>
             </ul>
           </td>
           <td class="border px-4 py-2">
             <ul *ngFor="let skMethods of empleado.skMethods">
-              <li>{{ skMethods.skmethod }} - {{ skMethods.nivel }}</li>
+              <li *ngIf="skMethods.skmethod != ''">{{ skMethods.skmethod }} - {{ skMethods.nivel }}</li>
             </ul>
           </td>
           <td class="border px-4 py-2">
             <ul *ngFor="let skTechSkills of empleado.skTechSkills">
-              <li>{{ skTechSkills.skTechSkill }}</li>
+              <li *ngIf="skTechSkills.skTechSkill != ''">{{ skTechSkills.skTechSkill }} - {{ skTechSkills.nivel }}</li>
             </ul>
           </td>
           <td class="border px-4 py-2">
             <ul *ngFor="let skCertifs of empleado.skCertifs">
-              <li>{{ skCertifs.skCertif }}</li>
+              <li *ngIf="skCertifs.skCertif != ''">{{ skCertifs.skCertif }} - {{ skCertifs.external }}</li>
             </ul>
           </td>
           <td class="border px-4 py-2">
             <ul *ngFor="let skTechnologies of empleado.skTechnologies">
-              <li>{{ skTechnologies.sktechnology }}</li>
+              <li *ngIf="skTechnologies.sktechnology != ''">{{ skTechnologies.sktechnology }} - {{ skTechnologies.nivel }}</li>
             </ul>
           </td>
           <td class="border px-4 py-2">
             <ul *ngFor="let skBusSkills of empleado.skBusSkills">
-              <li>{{ skBusSkills.skBusSkill }}</li>
+              <li *ngIf="skBusSkills.skBusSkill != ''">{{ skBusSkills.skBusSkill }} - {{ skBusSkills.nivel }}</li>
             </ul>
           </td>
           <!-- <td class="border px-4 py-2">{{ empleado[selectedFilter]?.toString() }}</td> -->
