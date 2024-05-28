@@ -17,4 +17,8 @@ public interface JobTechnologyProfileRepository extends JpaRepository<JobTechnol
 	("SELECT jobp.empleado FROM JobTechnologyProfile jobp WHERE jobp.jobTechnologyProfile = ?1 and jobp.nivel = ?2")
 	List<Empleado> findByJobTechnologyProfileAndLvl(String jobTechnologyProfile, int nivel);
 
+	@Query
+	("SELECT jobp FROM JobTechnologyProfile jobp")
+    List<JobTechnologyProfile> selectAllJobTechnologyProfile();
+	
 }

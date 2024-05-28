@@ -12,6 +12,10 @@ import com.grupotres.back_personal_disponible.model.Empleado;
 public interface EmpleadoService {
 
 	void createEmpleado(Empleado emp);
+
+	void saveAllEmpleados(List<Empleado> empleados);
+
+	List<Empleado> getAllEmpleados();
 	
 	List<Empleado> findbyStatus(String status);
 
@@ -22,7 +26,6 @@ public interface EmpleadoService {
 	List<Empleado> findByJornada(BigDecimal jornada);
 	
 	List<Empleado> findbyN4(String n4);
-
 
 	List<Empleado> findbyCategoria(String categoria);
 
@@ -64,4 +67,6 @@ public interface EmpleadoService {
 			String jobTechnologyProfile, Integer nivel);
 	
 	
+
+    void deleteAllEmpleados();
 }

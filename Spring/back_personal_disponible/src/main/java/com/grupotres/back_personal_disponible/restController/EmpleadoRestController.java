@@ -63,33 +63,41 @@ public class EmpleadoRestController {
 		return ResponseEntity.ok(empleadosDTOFiltrados);
 	}
 	
-	 @GetMapping("/bench/{bench}")
-	    public ResponseEntity<?> findByBench(@PathVariable String bench) {
-	        try {
-	            // Define the datetime format expected in the path variable, including microseconds
-	            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSSSS");
-	            // Parse the string to a Date object
-	            Date benchDate = dateFormat.parse(bench);
-
-	            // Debug: print the parsed date
-	            System.out.println("Parsed bench date: " + benchDate);
-
-	            // Find employees by the bench date and time
-	            List<Empleado> empleados = empleadoRepository.findByBench(benchDate);
-
-	            // Debug: print the size of the result
-	            System.out.println("Number of employees found: " + empleados.size());
-
-	            List<EmpleadoDTO> empleadosDTO = new ArrayList<>();
-	            for (Empleado emp : empleados) {
-	                empleadosDTO.add(new EmpleadoDTO(emp));
-	            }
-	            return ResponseEntity.ok(empleadosDTO);
-	        } catch (ParseException e) {
-	            e.printStackTrace();
-	            return ResponseEntity.badRequest().body("Invalid date format. Please use yyyy-MM-dd HH:mm:ss.SSSSSS.");
-	        }
+	 @GetMapping("/status/todos")
+	    public ResponseEntity<List<String>> findAllStatuses() {
+	        List<String> statuses = empleadoRepository.findAllDistinctStatuses();
+	        return ResponseEntity.ok(statuses);
 	    }
+	
+	 @GetMapping("/bench/{bench}")
+	 public ResponseEntity<?> findByBench(@PathVariable String bench) {
+	     try {
+	         // Define el formato de fecha y hora esperado en la variable de la URL, incluyendo microsegundos
+	         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSSSS");
+	         // Parsea la cadena a un objeto Date
+	         Date benchDate = dateFormat.parse(bench);
+
+	         // Depuración: imprime la fecha parseada
+	         System.out.println("Fecha bench parseada: " + benchDate);
+
+	         // Encuentra empleados por la fecha bench
+	         List<Empleado> empleados = empleadoRepository.findByBench(benchDate);
+
+	         // Depuración: imprime el tamaño del resultado
+	         System.out.println("Número de empleados encontrados: " + empleados.size());
+
+	         List<EmpleadoDTO> empleadosDTO = new ArrayList<>();
+	         for (Empleado emp : empleados) {
+	             empleadosDTO.add(new EmpleadoDTO(emp));
+	         }
+	         return ResponseEntity.ok(empleadosDTO);
+	     } catch (ParseException e) {
+	         e.printStackTrace();
+	         return ResponseEntity.badRequest().body("Formato de fecha no válido. Por favor, utiliza yyyy-MM-dd HH:mm:ss.SSSSSS.");
+	     }
+	 }
+
+
 
 
 	@GetMapping("ciudad/{ciudad}")
@@ -107,6 +115,12 @@ public class EmpleadoRestController {
 	    List<EmpleadoDTO> empleadosDTOFiltrados = empleadoService.getEmpleadosByCiudadFromList(empleadosFiltradosDTO, ciudad);
 	    return ResponseEntity.ok(empleadosDTOFiltrados);
 	}
+	
+	 @GetMapping("/ciudad/todos")
+	    public ResponseEntity<List<String>> findAllCiudades() {
+	        List<String> ciudades = empleadoRepository.findAllDistinctCiudades();
+	        return ResponseEntity.ok(ciudades);
+	    }
 
 	
 	@GetMapping("jornada/{jornada}")
@@ -124,6 +138,12 @@ public class EmpleadoRestController {
 		List<EmpleadoDTO> empleadosDTOFiltrados = empleadoService.getEmpleadosByJornadaFromList(empleadosFiltradosDTO, jornada);
 		return ResponseEntity.ok(empleadosDTOFiltrados);
 	}
+	
+	@GetMapping("/jornada/todos")
+    public ResponseEntity<List<BigDecimal>> findAllJornadas() {
+        List<BigDecimal> jornadas = empleadoRepository.findAllDistinctJornadas();
+        return ResponseEntity.ok(jornadas);
+    }
 
 	
 	
@@ -143,6 +163,12 @@ public class EmpleadoRestController {
 		return ResponseEntity.ok(empleadosDTOFiltrados);
 	}
 	
+	@GetMapping("groups/todos")
+	public ResponseEntity<List<String>> findAllGroups() {
+	    List<String> grupos = empleadoRepository.findAllDistinctGroups();
+	    return ResponseEntity.ok(grupos);
+	}
+	
 	
 	@GetMapping("n4/{n4}")
 	public ResponseEntity<?> findByN4(@PathVariable String n4) {
@@ -160,6 +186,12 @@ public class EmpleadoRestController {
 		return ResponseEntity.ok(empleadosDTOFiltrados);
 	}
 	
+	 @GetMapping("/n4/todos")
+	    public ResponseEntity<List<String>> findAllN4s() {
+	        List<String> n4s = empleadoRepository.findAllDistinctN4s();
+	        return ResponseEntity.ok(n4s);
+	    }
+	
 	@GetMapping("categoria/{categoria}")
 	public ResponseEntity<?> findByCategoria(@PathVariable String categoria) {
 	    List<Empleado> empleados = empleadoRepository.findbyCategoria(categoria);
@@ -175,6 +207,12 @@ public class EmpleadoRestController {
 		List<EmpleadoDTO> empleadosDTOFiltrados = empleadoService.getEmpleadosByCategoriaFromList(empleadosFiltradosDTO, categoria);
 		return ResponseEntity.ok(empleadosDTOFiltrados);
 		}
+	
+	 @GetMapping("/categoria/todos")
+	    public ResponseEntity<List<String>> findAllCategorias() {
+	        List<String> categorias = empleadoRepository.findAllDistinctCategorias();
+	        return ResponseEntity.ok(categorias);
+	    }
 	
 	/*@GetMapping("ccname/{ccname}")
 	public List<Empleado> findbyCcname(@PathVariable String ccname){
@@ -196,5 +234,11 @@ public class EmpleadoRestController {
 			List<EmpleadoDTO> empleadosDTOFiltrados = empleadoService.getEmpleadosByScrFromList(empleadosFiltradosDTO, scr);
 			return ResponseEntity.ok(empleadosDTOFiltrados);
 		}
+	
+	 @GetMapping("/scr/todos")
+	    public ResponseEntity<List<BigDecimal>> findAllScrs() {
+	        List<BigDecimal> scrs = empleadoRepository.findAllDistinctScrs();
+	        return ResponseEntity.ok(scrs);
+	    }
 
 }

@@ -5,6 +5,7 @@ package com.grupotres.back_personal_disponible.restController;
 import com.grupotres.back_personal_disponible.model.Empleado;
 import com.grupotres.back_personal_disponible.model.SkTechSkill;
 import com.grupotres.back_personal_disponible.model.dto.EmpleadoDTO;
+import com.grupotres.back_personal_disponible.model.dto.SkTechSkillDTO;
 import com.grupotres.back_personal_disponible.service.EmpleadoService;
 import com.grupotres.back_personal_disponible.service.SkTechSkillService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,15 @@ public class SkTechSkillRestController {
 	@Autowired
     private SkTechSkillService skTechSkillService;
 
+	@GetMapping("/todos")
+    public ResponseEntity<List<SkTechSkillDTO>> selectAllSkTechSkills() {
+        List<SkTechSkill> skTechSkills = skTechSkillService.selectAllSkTechSkills();
+        List<SkTechSkillDTO> skTechSkillsDTO = new ArrayList<>();
+        for (SkTechSkill skTechSkill : skTechSkills) {
+            skTechSkillsDTO.add(new SkTechSkillDTO(skTechSkill));
+        }
+        return ResponseEntity.ok(skTechSkillsDTO);
+    }
     @GetMapping("/{skTechSkill}")
     public ResponseEntity<?> findBySkTechSkill(@PathVariable String skTechSkill){
 		List<Empleado> empleados = skTechSkillService.findBySkTechSkill(skTechSkill);
