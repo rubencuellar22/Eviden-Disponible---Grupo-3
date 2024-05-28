@@ -27,8 +27,6 @@ import { MenuService } from '../../../services/menu.service';
     ],
 })
 export class SidebarMenuComponent implements OnInit {
-
-  //@ViewChild(SearchBarComponent) searchBarComponent: SearchBarComponent; // Referenciar el SearchBarComponent
   
   constructor(public menuService: MenuService, public comunicacionMenu: ComunicacionMenuService) {}
   
@@ -42,6 +40,10 @@ export class SidebarMenuComponent implements OnInit {
     this.selectedItem = item.label;
     console.log('Item seleccionado: ', this.selectedItem);
     this.comunicacionMenu.triggerFocusSearchBar(); // Enfocar la barra de búsqueda
+  }
+
+  applyFilter(){
+    
   }
 
   ngOnInit(): void {}
