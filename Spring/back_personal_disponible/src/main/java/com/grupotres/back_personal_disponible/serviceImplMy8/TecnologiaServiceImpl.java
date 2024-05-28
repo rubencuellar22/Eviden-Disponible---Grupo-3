@@ -35,6 +35,7 @@ public class TecnologiaServiceImpl implements SkTechnologyService {
 	@Override
 	public void deleteAllSkTechnologies() {
 		skTechnologyRepository.deleteAllInBatch();
+	}
 
 	@Override
 	public List<SkTechnology> selectAllSkTechnologies() {
