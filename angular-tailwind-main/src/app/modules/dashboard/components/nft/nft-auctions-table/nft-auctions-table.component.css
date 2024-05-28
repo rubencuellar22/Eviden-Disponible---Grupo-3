@@ -10,7 +10,8 @@
   th,td,span {
     border-bottom: 2px solid rgb(255, 255, 255);
     text-align: center;
-    min-width: 100px;
+    min-width: 120px;
+    width: auto;
   }
 
   /* width */
