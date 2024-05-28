@@ -49,7 +49,7 @@
           <td>{{ empleado.name }}</td>
           <td>{{ empleado.subgroup }}</td>
           <td>{{ empleado.status }}</td>
-          <td>{{ empleado.bench.toString().split("T")[0] }}</td>
+          <td>{{ empleado.bench ? empleado.bench.toString().split("T")[0] : '' }}</td>
           <td>{{ empleado.das }}</td>
           <td>{{ empleado.ciudad }}</td>
           <td>{{ empleado.agrupacion }}</td>
