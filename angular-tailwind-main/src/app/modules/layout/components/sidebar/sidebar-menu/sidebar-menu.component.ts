@@ -5,6 +5,7 @@ import { SidebarSubmenuComponent } from '../sidebar-submenu/sidebar-submenu.comp
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { NgFor, NgClass, NgTemplateOutlet, NgIf } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'app-sidebar-menu',
@@ -21,6 +22,7 @@ import { NgFor, NgClass, NgTemplateOutlet, NgIf } from '@angular/common';
         RouterLinkActive,
         NgIf,
         SidebarSubmenuComponent,
+        FormsModule
     ],
 })
 export class SidebarMenuComponent implements OnInit {
@@ -28,6 +30,12 @@ export class SidebarMenuComponent implements OnInit {
 
   public toggleMenu(subMenu: SubMenuItem) {
     this.menuService.toggleMenu(subMenu);
+  }
+
+  selectedItem:string;
+  selectFilter(item: any): void {
+    console.log("Item seleccionado: ", item);
+    this.selectedItem = item;
   }
 
   ngOnInit(): void {}
