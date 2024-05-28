@@ -10,8 +10,10 @@ import { ResponsiveHelperComponent } from './shared/components/responsive-helper
   standalone: true,
   imports: [NgClass, RouterOutlet, ResponsiveHelperComponent],
 })
+
 export class AppComponent {
   title = 'Angular Tailwind';
 
   constructor(public themeService: ThemeService) {}
 }
+
