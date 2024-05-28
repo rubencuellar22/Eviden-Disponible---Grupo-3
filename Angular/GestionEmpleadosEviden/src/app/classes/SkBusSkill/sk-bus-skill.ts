@@ -1,6 +1,6 @@
-export class SkBusSkill {
+export class SkBusSkills {
     id_skbusskill: number;
   ginEmpleado: number;
-  skbusskill: string;
+  skBusSkill: string;
   nivel: number;
 }
