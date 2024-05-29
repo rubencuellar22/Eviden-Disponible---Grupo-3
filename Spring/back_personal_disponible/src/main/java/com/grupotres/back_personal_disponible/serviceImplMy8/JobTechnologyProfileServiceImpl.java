@@ -25,7 +25,18 @@ public class JobTechnologyProfileServiceImpl implements JobTechnologyProfileServ
 	public List<Empleado> findByJobTechnologyProfileAndLvl(String jobTechnologyProfile, int nivel) {
 		return jobTechnologyProfileRepository.findByJobTechnologyProfileAndLvl(jobTechnologyProfile, nivel);
 	}
+	
+	@Override
+	public void saveAllJobTechnologyProfiles(List<JobTechnologyProfile> jobTechnologyProfiles) {
+		jobTechnologyProfileRepository.saveAll(jobTechnologyProfiles);
+	}
 
+	@Override
+	public void deleteAllJobTechnologyProfiles() {
+		jobTechnologyProfileRepository.deleteAllInBatch();
+	}
+
+	@Override
 	public List<JobTechnologyProfile> selectAllJobTechnologyProfile() {
         return jobTechnologyProfileRepository.selectAllJobTechnologyProfile();
     }

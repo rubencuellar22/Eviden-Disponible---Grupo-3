@@ -1,0 +1,104 @@
+<div class="flex-col rounded-lg bg-background px-8 py-8 sm:flex-row">
+  <div class="mb-4 flex items-center justify-between">
+    <div class="flex-col items-center">
+      <h3 class="text-md font-bold text-foreground">List of employees</h3>
+      <span class="text-xs text-muted-foreground">Updated 37 minutes ago</span>
+    </div>
+    <button class="flex-none rounded-md bg-card px-4 py-2.5 text-xs font-semibold text-muted-foreground hover:bg-muted hover:text-foreground">
+      Pack de filtros favoritos
+    </button>
+  </div>
+
+  <div class="relative overflow-x-auto">
+    <table class="w-full table-auto">
+      <!-- Table head -->
+      <thead class="cabecera text-xs uppercase text-muted-foreground">
+        <tr>
+          <th class="py-3 text-left">Gin</th>
+          <th class="py-3 text-left">Name</th>
+          <th class="py-3 text-left">Subgroup</th>
+          <th class="py-3 text-left">Status</th>
+          <th class="py-3 text-left">Bench</th>
+          <th class="py-3 text-left">Das</th>
+          <th class="py-3 text-left">Ciudad</th>
+          <th class="py-3 text-left">Agrupacion</th>
+          <th class="py-3 text-left">Line Manager</th>
+          <th class="py-3 text-left">Jornada</th>
+          <th class="py-3 text-left">Gcm</th>
+          <th class="py-3 text-left">Categoria</th>
+          <th class="py-3 text-left">Nivel GCM</th>
+          <th class="py-3 text-left">SCR</th>
+          <th class="py-3 text-left">Grupo</th>
+          <th class="py-3 text-left">N4</th>
+          <th class="py-3 text-left">Job Technology</th>
+          <th class="py-3 text-left">Skills</th>
+          <th class="py-3 text-left">Role</th>
+          <th class="py-3 text-left">RLT</th>
+          <th class="py-3 text-left">Sk Languages</th>
+          <th class="py-3 text-left">Sk Methods</th>
+          <th class="py-3 text-left">Sk Tech Skills</th>
+          <th class="py-3 text-left">Sk Certifs</th>
+          <th class="py-3 text-left">Sk Technologies</th>
+          <th class="py-3 text-left">Sk Bus Skills</th>
+        </tr>
+      </thead>
+      <!-- Table body -->
+      <tbody *ngFor="let empleado of empleados">
+        <tr *ngIf="empleado.gin != 0"  class="gap-5 text-foreground">
+          <td>{{ empleado.gin }}</td>
+          <td>{{ empleado.name }}</td>
+          <td>{{ empleado.subgroup }}</td>
+          <td>{{ empleado.status }}</td>
+          <td>{{ empleado.bench ? empleado.bench.toString().split("T")[0] : '' }}</td>
+          <td>{{ empleado.das }}</td>
+          <td>{{ empleado.ciudad }}</td>
+          <td>{{ empleado.agrupacion }}</td>
+          <td>{{ empleado.lineManager }}</td>
+          <td>{{ empleado.jornada }}</td>
+          <td>{{ empleado.gcm }}</td>
+          <td>{{ empleado.categoria }}</td>
+          <td>{{ empleado.nivelgcm }}</td>
+          <td>{{ empleado.scr }}</td>
+          <td>{{ empleado.grupo.grupos }}</td>
+          <td>{{ empleado.n4 }}</td>
+          <td>{{ empleado.jobTechnology }}</td>
+          <td>{{ empleado.skills }}</td>
+          <td *ngIf="empleado.role.role != ''">
+            {{ empleado.role.role }} - {{ empleado.role.nivel }}
+          </td>
+          <td>{{ empleado.rlt }}</td>
+          <td>
+            <ul *ngFor="let skLenguages of empleado.skLenguages">
+              <li *ngIf="skLenguages.sklenguage != ''">{{ skLenguages.sklenguage }} - {{ skLenguages.nivel }}</li>
+            </ul>
+          </td>
+          <td>
+            <ul *ngFor="let skMethods of empleado.skMethods">
+              <li *ngIf="skMethods.skmethod != ''">{{ skMethods.skmethod }} - {{ skMethods.nivel }}</li>
+            </ul>
+          </td>
+          <td>
+            <ul *ngFor="let skTechSkills of empleado.skTechSkills">
+              <li *ngIf="skTechSkills.skTechSkill != ''">{{ skTechSkills.skTechSkill }} - {{ skTechSkills.nivel }}</li>
+            </ul>
+          </td>
+          <td>
+            <ul *ngFor="let skCertifs of empleado.skCertifs">
+              <li *ngIf="skCertifs.skCertif != ''">{{ skCertifs.skCertif }} - {{ skCertifs.external }}</li>
+            </ul>
+          </td>
+          <td>
+            <ul *ngFor="let skTechnologies of empleado.skTechnologies">
+              <li *ngIf="skTechnologies.sktechnology != ''">{{ skTechnologies.sktechnology }} - {{ skTechnologies.nivel }}</li>
+            </ul>
+          </td>
+          <td>
+            <ul *ngFor="let skBusSkills of empleado.skBusSkills">
+              <li *ngIf="skBusSkills.skBusSkill != ''">{{ skBusSkills.skBusSkill }} - {{ skBusSkills.nivel }}</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -11,6 +11,10 @@ public interface SkMethodService {
     
     List<Empleado> findBySkMethodAndNivel(String skMethod, int nivel);
 
+    void saveAllSkMethods(List<SkMethod> empSkMethods);
+
+    void deleteAllSkMethods();
+    
 	List<SkMethod> selectAllSkMethods();
     
 }

@@ -7,7 +7,7 @@ import { SkLanguages } from '../../classes/SkLanguages/sk-languages';
   providedIn: 'root'
 })
 export class SkLanguagesService {
-  private apiUrl = 'http://localhost:8080/empleado/api';
+  private apiUrl = 'http://localhost:8080/empleado/skLenguage';
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<SkLanguages[]> {

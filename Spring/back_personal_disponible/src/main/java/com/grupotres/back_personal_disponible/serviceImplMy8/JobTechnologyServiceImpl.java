@@ -1,5 +1,5 @@
 package com.grupotres.back_personal_disponible.serviceImplMy8;
 
-public class JobTechnologyServiceImpl {
+public class JobTechnologyServiceImpl  {
 
 }

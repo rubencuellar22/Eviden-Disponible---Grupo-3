@@ -1,6 +1,6 @@
-export class SkCertif {
+export class SkCertifs {
     id_skcertif: number;
   ginEmpleado: number;
-  skcertif: string;
+  skCertif: string;
   external: boolean;
 }
