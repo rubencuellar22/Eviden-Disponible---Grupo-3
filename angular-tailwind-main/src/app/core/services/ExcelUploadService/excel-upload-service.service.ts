@@ -9,7 +9,7 @@ export class ExcelUploadServiceService {
 
   constructor(private http: HttpClient) { }
 
-  uploadFile(file: File): Observable<string> {
+  uploadFile(file: File): Observable<any> {
     const formData = new FormData();
     formData.append('file', file);
 

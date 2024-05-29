@@ -11,11 +11,21 @@ export class EmpleadoStateService {
 
   empleado$ = this.empleadoSubject.asObservable();
 
+  private showImportExcel = new BehaviorSubject<boolean>(true);
+  showImportExcel$ = this.showImportExcel.asObservable();
+
   constructor(private empleadoService: EmpleadoService) { }
 
   updateEmpleados() {
     this.empleadoService.getEmpleados().subscribe(empleados => {
       this.empleadoSubject.next(empleados);
+      if (empleados.length > 0) {
+        this.showImportExcel.next(false);
+      }
     });
+  }
+
+  toggleShowImportExcel() {
+    this.showImportExcel.next(!this.showImportExcel.value);
   }
 }

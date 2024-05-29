@@ -5,6 +5,7 @@ import { ExcelUploadServiceService } from 'src/app/core/services/ExcelUploadServ
 import { EmpleadoService } from 'src/app/core/services/empleado-service.service';
 import { EmpleadoStateService } from 'src/app/core/services/EmpleadosStateService/empleado-state.service';
 import { switchMap } from 'rxjs';
+import { Empleado } from 'src/app/core/models/empleado';
 
 @Component({
     selector: '[nft-single-card]',
@@ -19,11 +20,21 @@ export class NftSingleCardComponent implements OnInit {
   @ViewChild('customText', { static: false }) customText: ElementRef;
   @ViewChild('dropzoneLabel', { static: false }) dropzoneLabel: ElementRef;
   @ViewChild('sendExcelElement', { static: false }) sendExcelElement: ElementRef;
+
   isLoading: boolean = false;
+
+  toastOpenSuccess: boolean = false;
+  toastOpenFailed: boolean = false;
+
+  empleadosEmpty: boolean = true;
 
   constructor(private excelUploadService: ExcelUploadServiceService, private empleadoStateService: EmpleadoStateService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.empleadoStateService.showImportExcel$.subscribe((data: boolean) => {
+      this.empleadosEmpty = data;
+    });
+  }
 
   handleDragOver($event: DragEvent) {
     $event.preventDefault();
@@ -69,6 +80,8 @@ export class NftSingleCardComponent implements OnInit {
     this.customText.nativeElement.innerText = $event.dataTransfer.files[0].name;
 
     this.sendExcelElement.nativeElement.style.display = 'block';
+
+    this.dropzoneFile.nativeElement.files = $event.dataTransfer.files;
   }
 
   sendExcel() {
@@ -77,7 +90,8 @@ export class NftSingleCardComponent implements OnInit {
     var responseString: string;
 
     const file = this.dropzoneFile.nativeElement.files[0];
-    this.excelUploadService.uploadFile(file).subscribe(response => {
+    console.log(file == null ? 'File is null' : 'File is not null');
+    this.excelUploadService.uploadFile(file).subscribe({next : (response) => {
       console.log('File uploaded successfully');
       responseString = response;
       console.log(response);
@@ -85,6 +99,24 @@ export class NftSingleCardComponent implements OnInit {
       this.empleadoStateService.updateEmpleados();
 
       this.isLoading = false;
-    });
+
+      this.toastOpenSuccess = true;
+
+      setTimeout(() => {
+        this.toastOpenSuccess = false;
+      }, 2000);
+    },
+    error: (error) => {
+      console.log('Error uploading file');
+      console.log(error);
+      this.isLoading = false;
+
+      this.toastOpenFailed = true;
+
+      setTimeout(() => {
+        this.toastOpenFailed = false;
+      }, 2000);
+    }
+  });
   }
 }
