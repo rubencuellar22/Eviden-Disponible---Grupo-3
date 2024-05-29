@@ -12,6 +12,7 @@ export class FiltersComponent {
   newTag: string = '';
   tags: string[] = [];
   empleados: Empleado[] = [];
+  empleadosFilter: Empleado[];
   arrayGrupo: Grupo[] = [];
   selectedFilter: string = '';
   errorMessage: string = '';
@@ -102,11 +103,13 @@ export class FiltersComponent {
         return;
     }
 
+    console.log(this.empleadosFilter);
+
     this.http.get<Empleado[]>(endpoint).subscribe(
       (data: Empleado[]) => {
         console.log(data); // Agrega console.log aquí
         this.empleados = data;
-        this.recogerGrupo();
+        this.empleadosFilter = this.empleados;
         this.empleadosFiltrados.emit({
           empleados: this.empleados,
           filter: this.selectedFilter,
@@ -119,14 +122,14 @@ export class FiltersComponent {
     );
   }
 
-  recogerGrupo(): Grupo[] {
-    let data: Grupo = new Grupo;
-    for(let empleado of this.empleados) {
-        data = empleado.grupo; 
-        this.arrayGrupo.push(data);
-    }
-    console.log(this.arrayGrupo);
+  // recogerGrupo(): Grupo[] {
+  //   let data: Grupo = new Grupo;
+  //   for(let empleado of this.empleados) {
+  //       data = empleado.grupo; 
+  //       this.arrayGrupo.push(data);
+  //   }
+  //   console.log(this.arrayGrupo);
 
-    return this.arrayGrupo;
-  }
+  //   return this.arrayGrupo;
+  // }
 }
