@@ -45,9 +45,20 @@ export class NavbarComponent implements OnInit {
   }
 
   addFilterTag(): void {
-    if (this.filter.trim()) {
-      this.filterTags.push(this.filter.trim());
+    const trimmedFilter = this.filter.trim();
+    if (trimmedFilter && !this.filterTags.includes(trimmedFilter)) {
+      this.filterTags.push(trimmedFilter);
       this.filter = ''; // Clear the input
+    }
+  }
+
+  removeFilterTag(tag: string): void {
+    this.filterTags = this.filterTags.filter(t => t !== tag);
+  }
+
+  handleKeydown(event: KeyboardEvent): void {
+    if (event.key === 'Enter') {
+      this.addFilterTag();
     }
   }
 }
