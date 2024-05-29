@@ -2,6 +2,7 @@ package com.grupotres.back_personal_disponible.restController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.grupotres.back_personal_disponible.model.Empleado;
@@ -42,6 +44,15 @@ public class SkCertifRestController {
             skCertifsDTO.add(new SkCertifDTO(skCertif));
         }
         return ResponseEntity.ok(skCertifsDTO);
+    }
+	
+	@GetMapping("/autocomplete")
+    public ResponseEntity<List<SkCertifDTO>> autocomplete(@RequestParam String query) {
+        List<SkCertif> skCertifs = skCertifService.findByNombreContaining(query);
+        List<SkCertifDTO> skCertifDTOs = skCertifs.stream()
+                                                  .map(SkCertifDTO::new)
+                                                  .collect(Collectors.toList());
+        return ResponseEntity.ok(skCertifDTOs);
     }
 	
 	 @GetMapping("/{nombre}")

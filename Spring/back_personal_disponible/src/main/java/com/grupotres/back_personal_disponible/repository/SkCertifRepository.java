@@ -26,5 +26,9 @@ public interface SkCertifRepository extends JpaRepository<SkCertif, Integer> {
 	@Query
 	("SELECT s FROM SkCertif s")
     List<SkCertif> selectAllSkCertifs();
+	
+	@Query("SELECT s FROM SkCertif s WHERE s.skcertif LIKE %:nombre%")
+    List<SkCertif> findByNombreContaining(@Param("nombre") String nombre);
+
 }
 

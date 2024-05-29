@@ -16,6 +16,8 @@ public interface SkCertifService {
 
 	List<SkCertif> selectAllSkCertifs(); 
 	
+	List<SkCertif> findByNombreContaining(String nombre);
+	
 } 
 
 	
