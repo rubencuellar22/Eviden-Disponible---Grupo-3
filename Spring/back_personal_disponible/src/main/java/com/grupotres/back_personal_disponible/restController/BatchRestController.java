@@ -24,6 +24,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class BatchRestController {
 
     @Autowired
