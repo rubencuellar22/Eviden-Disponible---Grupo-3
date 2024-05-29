@@ -69,4 +69,8 @@ public interface EmpleadoService {
 	
 
     void deleteAllEmpleados();
+
+    List<Empleado> findByCiudadContaining(String ciudad);
 }
+
+

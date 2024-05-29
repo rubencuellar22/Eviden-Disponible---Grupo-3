@@ -518,5 +518,9 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 		empleadoRepository.deleteAllInBatch();
 	}
 
+	  @Override
+	    public List<Empleado> findByCiudadContaining(String ciudad) {
+	        return empleadoRepository.findByCiudadContaining(ciudad);
+	    }
 
 }
