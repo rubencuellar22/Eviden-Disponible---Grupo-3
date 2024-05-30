@@ -2,7 +2,42 @@
     display: inline-block;
     padding: 0.5em 1em;
     border-radius: 9999px;
-    margin-right: 0.5em;
-    margin-top: 0.5em;
+    margin-right: 2em;
+    margin-top: 0.25em;
+    margin-left: 2em;
+    margin-bottom: 2em;
+    position: relative;
+  }
+  
+  .tag-close {
+    border: none;
+    font-size: 1em;
+    position: absolute;
+    top: 0.2em; /* Ajusta esta posición según sea necesario */
+    right: 0.2em; /* Ajusta esta posición según sea necesario */
+    cursor: pointer;
+    padding: 0; /* El padding interno del botón */
+    border-radius: 50%; /* Esto hace que el botón sea un círculo */
+    line-height: 1; /* Ajusta la altura de línea */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5em; /* Ajusta el ancho del círculo */
+    height: 1.5em; /* Ajusta la altura del círculo */border: none;
+  font-size: 1em;
+  position: absolute;
+  top: 50%;
+  right: -0.5em;
+  transform: translate(50%, -50%);
+  cursor: pointer;
+  padding: 0.2em 0.6em; /* Ajusta el padding para el tamaño del círculo */
+  border-radius: 50%; /* Esto hace que el botón sea un círculo */
+  line-height: 1; /* Ajusta la altura de línea */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5em; /* Ajusta el ancho del círculo */
+  height: 1.5em; /* Ajusta la altura del círculo */
+    
   }
   
