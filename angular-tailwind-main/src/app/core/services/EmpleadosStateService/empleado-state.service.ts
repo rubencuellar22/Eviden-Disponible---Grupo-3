@@ -8,7 +8,6 @@ import { EmpleadoService } from '../empleado-service.service';
 })
 export class EmpleadoStateService {
   private empleadoSubject = new BehaviorSubject<Empleado[]>([]);
-
   empleado$ = this.empleadoSubject.asObservable();
 
   private showImportExcel = new BehaviorSubject<boolean>(true);

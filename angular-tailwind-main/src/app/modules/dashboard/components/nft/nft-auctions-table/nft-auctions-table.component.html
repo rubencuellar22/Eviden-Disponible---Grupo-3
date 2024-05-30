@@ -64,7 +64,7 @@
           <td class="fixed-height">
             <div class="scrollable">{{ empleado.role.role }} - {{ empleado.role.nivel }}</div>
           </td>
-          <td class="fixed-height">{{ empleado.rlt }}</td>
+          <td class="fixed-height">{{ (empleado.rlt) ? 'YES' : '' }}</td>
           <td class="fixed-height">
             <ul class="scrollable">
               <ng-container *ngFor="let skLenguages of empleado.skLenguages">
@@ -89,7 +89,7 @@
           <td class="fixed-height">
             <ul class="scrollable">
               <ng-container *ngFor="let skCertifs of empleado.skCertifs">
-                <li *ngIf="skCertifs.skCertif != ''">{{ skCertifs.skCertif }} - {{ skCertifs.external }}</li>
+                <li *ngIf="skCertifs.skCertif != ''">{{ skCertifs.skCertif }} - {{ (skCertifs.external) ? 'external' : 'internal' }}</li>
               </ng-container>
             </ul>
           </td>
