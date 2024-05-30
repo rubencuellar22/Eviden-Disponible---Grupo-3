@@ -1,7 +1,7 @@
-import { SkCertifs } from './sk-certif';
+import { SkCertif } from './sk-certif';
 
 describe('SkCertif', () => {
   it('should create an instance', () => {
-    expect(SkCertifs).toBeTruthy();
+    expect(SkCertif).toBeTruthy();
   });
 });

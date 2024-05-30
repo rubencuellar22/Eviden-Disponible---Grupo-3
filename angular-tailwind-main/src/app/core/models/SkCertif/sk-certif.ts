@@ -1,4 +1,4 @@
-export class SkCertifs {
+export class SkCertif {
   id_skcertif: number;
 ginEmpleado: number;
 skCertif: string;

@@ -94,7 +94,7 @@ export class SidebarMenuComponent implements OnInit {
         endpoint = `http://localhost:8080/empleado/sk_methods/${filterValue}`;
         break;
       case 'CCName':
-        endpoint = `http://localhost:8080/empleado/sk_techskills/${filterValue}`;
+        endpoint = `http://localhost:8080/empleado/skTechskill/${filterValue}`;
         break;
         case 'Grupo':
         endpoint = `http://localhost:8080/empleado/sk_techskills/${filterValue}`;
