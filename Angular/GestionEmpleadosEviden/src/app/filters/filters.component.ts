@@ -11,11 +11,13 @@ import { Grupo } from '../classes/Grupo/grupo';
 export class FiltersComponent {
   newTag: string = '';
   tags: string[] = [];
+  filterTags: string[] = [];
   empleados: Empleado[] = [];
-  empleadosFilter: Empleado[];
+  empleadosFilter: Empleado[] = [];
   arrayGrupo: Grupo[] = [];
   selectedFilter: string = '';
   errorMessage: string = '';
+  filtroCheck: string;
 
   @Output() empleadosFiltrados = new EventEmitter<{
     empleados: Empleado[];
@@ -28,6 +30,7 @@ export class FiltersComponent {
     if (this.newTag && !this.tags.includes(this.newTag)) {
       this.tags.push(this.newTag);
       this.newTag = '';
+      this.filterTags.push(this.selectedFilter);
     }
   }
 
@@ -49,7 +52,7 @@ export class FiltersComponent {
     const filterValue = this.tags[0];
     let endpoint: string;
 
-    switch (this.selectedFilter) {
+    switch (this.filterTags[0]) {
       case 'status':
         endpoint = `http://localhost:8080/empleado/status/${filterValue}`;
         break;
@@ -103,23 +106,34 @@ export class FiltersComponent {
         return;
     }
 
-    console.log(this.empleadosFilter);
+    console.log(this.tags);
+    console.log(this.filterTags);
 
-    this.http.get<Empleado[]>(endpoint).subscribe(
-      (data: Empleado[]) => {
-        console.log(data); // Agrega console.log aquí
-        this.empleados = data;
-        this.empleadosFilter = this.empleados;
-        this.empleadosFiltrados.emit({
-          empleados: this.empleados,
-          filter: this.selectedFilter,
-        });
-      },
-      (error) => {
-        console.error('Error al buscar empleados:', error);
-        this.errorMessage = 'Error fetching data.';
+    for(let i = 0; i < this.filterTags.length; i++){     
+      if (this.empleados.length === 0) {
+        console.log(endpoint);
+        this.http.get<Empleado[]>(endpoint).subscribe(
+          (data: Empleado[]) => {
+            console.log(this.empleadosFilter);
+            this.empleados = data;
+            this.empleadosFilter = this.empleados;
+            this.empleadosFiltrados.emit({
+              empleados: this.empleados,
+              filter: this.selectedFilter,
+            });
+          },
+          (error) => {
+            console.error('Error al buscar empleados:', error);
+            this.errorMessage = 'Error fetching data.';
+          }
+        );
       }
-    );
+      else {
+        console.log('adios');
+        
+        
+      }
+    }
   }
 
   // recogerGrupo(): Grupo[] {
