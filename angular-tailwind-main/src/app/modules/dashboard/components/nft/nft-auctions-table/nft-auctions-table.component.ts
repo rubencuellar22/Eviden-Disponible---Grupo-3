@@ -28,7 +28,6 @@ export class NftAuctionsTableComponent implements OnInit {
     this.empleadoStateService.updateEmpleados(); // Llamamos al método updateEmpleados del servicio
     this.empleadoStateService.empleado$.subscribe((data: Empleado[]) => {
       this.empleados = data; // Asignamos los empleados obtenidos al arreglo empleados
-      console.log(this.empleados);
     });
   }
 }
