@@ -7,7 +7,7 @@ import { SkTechnology } from '../../classes/SkTechnology/sk-technology';
   providedIn: 'root'
 })
 export class SkTechnologyService {
-  private apiUrl = 'http://localhost:8080/empleado/sk_technology/technology/'; 
+  private apiUrl = 'http://localhost:8080/empleado/skTechnology/'; 
 
   constructor(private http: HttpClient) { }
 

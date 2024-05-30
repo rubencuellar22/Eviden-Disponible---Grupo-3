@@ -4,6 +4,7 @@ import { Empleado } from '../classes/empleado';
 import { Grupo } from '../classes/Grupo/grupo';
 import { JobTechnologyProfile } from '../classes/JobTechnologyProfile/job-technology-profile';
 import { SkTechSkill } from '../classes/SkTechSkill/sk-tech-skill';
+import { Role } from '../classes/role/role';
 
 @Component({
   selector: 'app-filters',
@@ -18,6 +19,7 @@ export class FiltersComponent {
   empleadosFilter: Empleado[] = [];
   jobTechnologyProfile: JobTechnologyProfile[] = [];
   skTechSkill: SkTechSkill[] = [];
+  role : Role[] = [];
 
   selectedFilter: string = '';
   errorMessage: string = '';
@@ -73,7 +75,7 @@ export class FiltersComponent {
           this.getFunction(endpoint);
           break;
         case 'job_technology':
-          endpoint = `http://localhost:8080/empleado/job_technology_profile/${filterValue}`;
+          endpoint = `http://localhost:8080/empleado/jobTechnologyProfile/${filterValue}`;
           if(this.empleadosFilter.length === 0) {
             this.http.get<JobTechnologyProfile[]>(endpoint).subscribe(
               (data: JobTechnologyProfile[]) => {
@@ -88,7 +90,7 @@ export class FiltersComponent {
           }
           break;
         case 'sk_bus_skill':
-          endpoint = `http://localhost:8080/empleado/sk_bussskill/bussskill/${filterValue}`;
+          endpoint = `http://localhost:8080/empleado/skBussskill/${filterValue}`;
           if(this.empleadosFilter.length === 0) {
             this.http.get<Empleado[]>(endpoint).subscribe(
               (data: Empleado[]) => {
@@ -103,7 +105,7 @@ export class FiltersComponent {
           }
           break;
         case 'sk_tecnology':
-          endpoint = `http://localhost:8080/empleado/sk_technology/technology/${filterValue}`;
+          endpoint = `http://localhost:8080/empleado/skTechnology/${filterValue}`;
           if(this.empleadosFilter.length === 0) {
             this.http.get<Empleado[]>(endpoint).subscribe(
               (data: Empleado[]) => {
@@ -118,7 +120,7 @@ export class FiltersComponent {
           }
           break;
         case 'sk_certif':
-          endpoint = `http://localhost:8080/empleado/sk_certif/certif/${filterValue}`;
+          endpoint = `http://localhost:8080/empleado/skCertif/${filterValue}`;
           if(this.empleadosFilter.length === 0) {
             this.http.get<Empleado[]>(endpoint).subscribe(
               (data: Empleado[]) => {
@@ -148,7 +150,7 @@ export class FiltersComponent {
           }
           break;
         case 'sk_method':
-          endpoint = `http://localhost:8080/empleado/sk_methods/${filterValue}`;
+          endpoint = `http://localhost:8080/empleado/skMethod/${filterValue}`;
           if(this.empleadosFilter.length === 0) {
             this.http.get<Empleado[]>(endpoint).subscribe(
               (data: Empleado[]) => {
@@ -165,10 +167,10 @@ export class FiltersComponent {
         case 'sk_tecskill':
           endpoint = `http://localhost:8080/empleado/skTechskill/${filterValue}`;
           if(this.empleadosFilter.length === 0) {
-            this.http.get<SkTechSkill[]>(endpoint).subscribe(
-              (data: SkTechSkill[]) => {
-                this.skTechSkill = data;
-                console.log(this.skTechSkill);
+            this.http.get<Empleado[]>(endpoint).subscribe(
+              (data: Empleado[]) => {
+                this.empleados = data;
+                this.empleadosFilter = this.empleados;
               },
               (error) => {
                 console.error('Error al buscar empleados:', error);
@@ -177,6 +179,24 @@ export class FiltersComponent {
             );
           }
           break;  
+
+          case 'role':
+          endpoint = `http://localhost:8080/empleado/role/${filterValue}`;
+          if(this.empleadosFilter.length === 0) {
+            this.http.get<Empleado[]>(endpoint).subscribe(
+              (data: Empleado[]) => {
+                this.empleados = data;
+                this.empleadosFilter = this.empleados;
+              },
+              (error) => {
+                console.error('Error al buscar empleados:', error);
+                this.errorMessage = 'Error fetching data.';
+              }
+            );
+          }
+          break;
+
+          
         
         default:
           console.error('Filtro no reconocido:', this.selectedFilter);
