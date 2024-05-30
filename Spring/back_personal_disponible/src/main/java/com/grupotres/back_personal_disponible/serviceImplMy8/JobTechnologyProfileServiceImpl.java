@@ -41,6 +41,11 @@ public class JobTechnologyProfileServiceImpl implements JobTechnologyProfileServ
         return jobTechnologyProfileRepository.selectAllJobTechnologyProfile();
     }
 
+	@Override
+	public List<String> findAutocompleteOptions(String profile, String query) {
+        return jobTechnologyProfileRepository.findAutocompleteOptions(profile, query);
+	}
+
 
 
 	

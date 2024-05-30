@@ -71,11 +71,12 @@ public class JobTechProfRestController {
     }
     
     
-    /*@GetMapping("/autocomplete")
+    @GetMapping("/autocomplete")
     public ResponseEntity<List<String>> autocomplete(@RequestParam String profile, @RequestParam String query) {
         List<String> autocompleteOptions = jobTechnologyProfileService.findAutocompleteOptions(profile, query);
-        return ResponseEntity.ok(autocompleteOptions);*/
+        return ResponseEntity.ok(autocompleteOptions);
     }
 
+}
 
 
