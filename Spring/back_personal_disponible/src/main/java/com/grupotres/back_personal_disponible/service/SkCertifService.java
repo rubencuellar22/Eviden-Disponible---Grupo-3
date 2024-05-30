@@ -17,6 +17,8 @@ public interface SkCertifService {
 
 	List<SkCertif> selectAllSkCertifs(); 
 	
+	List<SkCertif> findByNombreContaining(String nombre);
+	
     void saveAllSkCertifs(List<SkCertif> empSkCertifs);
 
     void deleteAllSkCertifs();

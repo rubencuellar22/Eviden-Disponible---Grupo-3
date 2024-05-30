@@ -51,6 +51,11 @@ public class SkLenguageServiceImpl implements SkLenguageService {
 	public List<SkLenguage> selectAllSkLenguages() {
 		return skLenguageRepository.selectAllSkLenguages();
 	}
+
+    @Override
+    public List<SkLenguage> findByNombreContaining(String nombre) {
+        return skLenguageRepository.findByNombreContaining(nombre);
  
 	
+}
 }

@@ -64,4 +64,10 @@ public interface EmpleadoRepository extends JpaRepository<Empleado, Long> {
 	    
 	    @Query("SELECT DISTINCT e.scr FROM Empleado e")
 	    List<BigDecimal> findAllDistinctScrs();
+	    
+	    
+	    
+	    //querys busquedas
+	    @Query("SELECT e FROM Empleado e WHERE e.ciudad LIKE %:ciudad%")
+	    List<Empleado> findByCiudadContaining(String ciudad);
 }

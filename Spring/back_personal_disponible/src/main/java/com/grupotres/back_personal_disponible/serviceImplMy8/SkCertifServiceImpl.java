@@ -42,4 +42,9 @@ public class SkCertifServiceImpl implements SkCertifService {
 	public List<SkCertif> selectAllSkCertifs() {
 		return skCertifRepository.selectAllSkCertifs();
 	}
+	
+	@Override
+    public List<SkCertif> findByNombreContaining(String nombre) {
+        return skCertifRepository.findByNombreContaining(nombre);
+    }
 }

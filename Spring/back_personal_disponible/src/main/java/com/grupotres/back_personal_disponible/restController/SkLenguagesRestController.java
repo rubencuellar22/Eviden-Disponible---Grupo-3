@@ -2,7 +2,8 @@ package com.grupotres.back_personal_disponible.restController;
  
 import java.util.ArrayList;
 import java.util.List;
- 
+import java.util.stream.Collectors;
+
 import com.grupotres.back_personal_disponible.model.Empleado;
 import com.grupotres.back_personal_disponible.model.SkLenguage;
 import com.grupotres.back_personal_disponible.model.dto.EmpleadoDTO;
@@ -72,5 +73,14 @@ public class SkLenguagesRestController {
 	    List<EmpleadoDTO> empleadosDTOFiltrados = empleadoService.getEmpleadosBySkLenguageAndNivelFromList(empleadosFiltradosDTO, sklenguage, nivel);
 	    return ResponseEntity.ok(empleadosDTOFiltrados);
 	}
+	
+	 @GetMapping("/autocomplete")
+	    public ResponseEntity<List<SkLenguageDTO>> autocomplete(@RequestBody String query) {
+	        List<SkLenguage> skLenguages = skLenguageService.findByNombreContaining(query);
+	        List<SkLenguageDTO> skLenguageDTOs = skLenguages.stream()
+	                                                        .map(SkLenguageDTO::new)
+	                                                        .collect(Collectors.toList());
+	        return ResponseEntity.ok(skLenguageDTOs);
+	    }
  
 }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.grupotres.back_personal_disponible.model.Empleado;
 import com.grupotres.back_personal_disponible.model.JobTechnologyProfile;
@@ -70,4 +71,13 @@ public class JobTechProfRestController {
         List<EmpleadoDTO> empleadosDTOFiltrados = empleadoService.getEmpleadosByJobTechProfileAndLvlFromList(empleadosFiltradosDTO, jobTechnologyProfile, nivel);
         return ResponseEntity.ok(empleadosDTOFiltrados);
     }
-}
+    
+    
+    /*@GetMapping("/autocomplete")
+    public ResponseEntity<List<String>> autocomplete(@RequestParam String profile, @RequestParam String query) {
+        List<String> autocompleteOptions = jobTechnologyProfileService.findAutocompleteOptions(profile, query);
+        return ResponseEntity.ok(autocompleteOptions);*/
+    }
+
+
+

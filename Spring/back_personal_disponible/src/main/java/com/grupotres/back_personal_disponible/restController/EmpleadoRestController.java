@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.grupotres.back_personal_disponible.model.dto.EmpleadoDTO;
 import com.grupotres.back_personal_disponible.model.dto.SkLenguageDTO;
@@ -241,4 +242,57 @@ public class EmpleadoRestController {
 	        return ResponseEntity.ok(scrs);
 	    }
 
-}
+	 
+	 //querys autocomplete
+	 @GetMapping("/autocomplete")
+	    public ResponseEntity<List<String>> autocomplete(@RequestParam String query, @RequestParam String filterType) {
+	        List<String> results;
+	        switch (filterType) {
+	            case "status":
+	                results = empleadoRepository.findAllDistinctStatuses().stream()
+	                    .filter(status -> status.toLowerCase().contains(query.toLowerCase()))
+	                    .collect(Collectors.toList());
+	                break;
+	            case "bench":
+	                // Implementar lógica específica para 'bench'
+	                results = new ArrayList<>(); // Placeholder
+	                break;
+	            case "ciudad":
+	                results = empleadoRepository.findAllDistinctCiudades().stream()
+	                    .filter(ciudad -> ciudad.toLowerCase().contains(query.toLowerCase()))
+	                    .collect(Collectors.toList());
+	                break;
+	            case "jornada":
+	                results = empleadoRepository.findAllDistinctJornadas().stream()
+	                    .filter(jornada -> jornada.toString().contains(query))
+	                    .map(BigDecimal::toString)
+	                    .collect(Collectors.toList());
+	                break;
+	            case "grupo":
+	                results = empleadoRepository.findAllDistinctGroups().stream()
+	                    .filter(group -> group.toLowerCase().contains(query.toLowerCase()))
+	                    .collect(Collectors.toList());
+	                break;
+	            case "n4":
+	                results = empleadoRepository.findAllDistinctN4s().stream()
+	                    .filter(n4 -> n4.toLowerCase().contains(query.toLowerCase()))
+	                    .collect(Collectors.toList());
+	                break;
+	            case "categoria":
+	                results = empleadoRepository.findAllDistinctCategorias().stream()
+	                    .filter(categoria -> categoria.toLowerCase().contains(query.toLowerCase()))
+	                    .collect(Collectors.toList());
+	                break;
+	            case "scr":
+	                results = empleadoRepository.findAllDistinctScrs().stream()
+	                    .filter(scr -> scr.toString().contains(query))
+	                    .map(BigDecimal::toString)
+	                    .collect(Collectors.toList());
+	                break;
+	            default:
+	                results = new ArrayList<>();
+	        }
+	        System.out.println("Results: " + results); // Mensaje de depuración
+	        return ResponseEntity.ok(results);
+	    }
+	}

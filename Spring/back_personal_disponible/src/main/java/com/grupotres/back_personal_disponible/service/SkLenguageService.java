@@ -12,6 +12,8 @@ public interface SkLenguageService {
 	
 	public List<Empleado> findEmpleadosBySkLenguageAndLvl(String sklenguage,String nivel);
 	
+	List<SkLenguage> findByNombreContaining(String nombre);
+	
     void saveAllSkLenguages(List<SkLenguage> empSkLenguages);
 
     void deleteAllSkLenguages();
