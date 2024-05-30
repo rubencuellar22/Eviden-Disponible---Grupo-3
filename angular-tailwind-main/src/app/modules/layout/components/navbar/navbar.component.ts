@@ -1,12 +1,13 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { MenuService } from '../../services/menu.service';
 import { ProfileMenuComponent } from './profile-menu/profile-menu.component';
 import { NavbarMenuComponent } from './navbar-menu/navbar-menu.component';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { ComunicacionMenuService } from '../../services/comunicacion-menu.service';
-import { CommonModule } from '@angular/common'; // Importa CommonModule
-import { FormsModule } from '@angular/forms';  // Importa FormsModule
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { NavbarMobileComponent } from './navbar-mobile/navbar-mobilecomponent';
+import { SidebarMenuComponent } from '../sidebar/sidebar-menu/sidebar-menu.component';
 
 @Component({
   selector: 'app-navbar',
@@ -14,8 +15,8 @@ import { NavbarMobileComponent } from './navbar-mobile/navbar-mobilecomponent';
   styleUrls: ['./navbar.component.scss'],
   standalone: true,
   imports: [
-    CommonModule, // Asegúrate de importar CommonModule
-    FormsModule,  // Asegúrate de importar FormsModule
+    CommonModule,
+    FormsModule,
     AngularSvgIconModule,
     NavbarMenuComponent,
     ProfileMenuComponent,
@@ -25,6 +26,8 @@ import { NavbarMobileComponent } from './navbar-mobile/navbar-mobilecomponent';
 export class NavbarComponent implements OnInit {
   filter: string = '';
   filterTags: string[] = [];
+  filterComponent: string[] = [];
+  endpoint: string ="";
 
   @ViewChild('searchInput') searchInput: ElementRef;
 
@@ -49,6 +52,8 @@ export class NavbarComponent implements OnInit {
     if (trimmedFilter && !this.filterTags.includes(trimmedFilter)) {
       this.filterTags.push(trimmedFilter);
       this.filter = ''; // Clear the input
+      this.endpoint = localStorage.getItem("_endpoint")
+      console.log(this.endpoint);
     }
   }
 

@@ -6,7 +6,7 @@
   </div>
   <ul class="flex flex-col space-y-1">
     <!-- List items -->
-    <li *ngFor="let item of menu.items" (click)="selectFilter(item); $event.stopPropagation()">
+    <li *ngFor="let item of menu.items" (click)="selectFilter(item); applyFilter(); $event.stopPropagation()">
       <!-- Menu List -->
       <div (click)="toggleMenu(item)" [ngClass]="{'selected': selectedItem === item}" class="group relative text-muted-foreground">
         <!-- Icon -->
