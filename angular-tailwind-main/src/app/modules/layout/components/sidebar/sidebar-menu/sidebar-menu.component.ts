@@ -48,72 +48,30 @@ export class SidebarMenuComponent implements OnInit {
     let endpoint: string;
 
     switch (this.selectedItem) {
-      case 'GIN':
-        endpoint = `http://localhost:8080/empleado/${filterValue}`;
-        console.log('He pillado ' + endpoint);
-        break;
-      case 'Nombre':
-        endpoint = `http://localhost:8080/empleado/bench/${filterValue}`;
-        console.log("He pillado "+endpoint);
-        break;
-      case 'Subgrupo':
-        endpoint = `http://localhost:8080/empleado/ciudad/${filterValue}`;
-        console.log("He pillado "+endpoint);
-        break;
       case 'Status':
-        endpoint = `http://localhost:8080/empleado/jornada/${filterValue}`;
-        break;
-      case 'Bench':
-        endpoint = `http://localhost:8080/empleado/groups/${filterValue}`;
-        break;
-      case 'Das':
-        endpoint = `http://localhost:8080/empleado/n4/${filterValue}`;
-        break;
-      case 'Ciudad':
-        endpoint = `http://localhost:8080/empleado/categoria/${filterValue}`;
-        break;
-      case 'Line_manager':
-        endpoint = `http://localhost:8080/empleado/scr/${filterValue}`;
-        break;
-      case 'Jornada':
-        endpoint = `http://localhost:8080/empleado/job_technology_profile/${filterValue}`;
-        break;
-      case 'GCM':
-        endpoint = `http://localhost:8080/empleado/sk_bussskill/bussskill/${filterValue}`;
-        break;
-      case 'Categoría':
-        endpoint = `http://localhost:8080/empleado/sk_technology/technology/${filterValue}`;
-        break;
-      case 'NivelGCM':
-        endpoint = `http://localhost:8080/empleado/sk_certif/certif/${filterValue}`;
-        break;
-      case 'SCR (+iud)':
-        endpoint = `http://localhost:8080/empleado/skLenguage/${filterValue}`;
-        break;
-      case 'CC':
-        endpoint = `http://localhost:8080/empleado/sk_methods/${filterValue}`;
-        break;
-      case 'CCName':
-        endpoint = `http://localhost:8080/empleado/skTechskill/${filterValue}`;
-        break;
+          endpoint = `http://localhost:8080/empleado/status/`;
+          break;
+        case 'Bench':
+          endpoint = `http://localhost:8080/empleado/bench/`;
+          break;
+        case 'Ciudad':
+          endpoint = `http://localhost:8080/empleado/ciudad/`;
+          break;
+        case 'Jornada':
+          endpoint = `http://localhost:8080/empleado/jornada/`;
+          break;
         case 'Grupo':
-        endpoint = `http://localhost:8080/empleado/sk_techskills/${filterValue}`;
-        break;
-        case 'Agrupacion':
-        endpoint = `http://localhost:8080/empleado/sk_techskills/${filterValue}`;
-        break;
-        case 'Job Technology':
-        endpoint = `http://localhost:8080/empleado/sk_techskills/${filterValue}`;
-        break;
-        case 'Job Technology Profile':
-        endpoint = `http://localhost:8080/empleado/sk_techskills/${filterValue}`;
-        break;
-        case 'Skills':
-        endpoint = `http://localhost:8080/empleado/sk_techskills/${filterValue}`;
-        break;
-        case 'Role':
-        endpoint = `http://localhost:8080/empleado/sk_techskills/${filterValue}`;
-        break;
+          endpoint = `http://localhost:8080/empleado/groups/`;
+          break;
+        case 'N_4':
+          endpoint = `http://localhost:8080/empleado/n4/`;
+          break;
+        case 'Categoria':
+          endpoint = `http://localhost:8080/empleado/categoria/`;
+          break;
+        case 'SCR (+iud)':
+          endpoint = `http://localhost:8080/empleado/scr/`;
+          break;
 
         default:
           console.error('No hay un endpoint válido para el elemento seleccionado.');

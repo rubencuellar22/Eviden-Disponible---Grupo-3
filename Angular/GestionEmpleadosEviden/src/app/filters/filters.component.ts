@@ -333,14 +333,5 @@ export class FiltersComponent {
     });
   }
 
-  // recogerGrupo(): Grupo[] {
-  //   let data: Grupo = new Grupo;
-  //   for(let empleado of this.empleados) {
-  //       data = empleado.grupo; 
-  //       this.arrayGrupo.push(data);
-  //   }
-  //   console.log(this.arrayGrupo);
 
-  //   return this.arrayGrupo;
-  // }
 }
