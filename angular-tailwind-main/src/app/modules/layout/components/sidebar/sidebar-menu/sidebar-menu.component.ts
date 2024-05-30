@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { SubMenuItem } from 'src/app/core/models/menu.model';
 import { SidebarSubmenuComponent } from '../sidebar-submenu/sidebar-submenu.component';
 import { RouterLink, RouterLinkActive } from '@angular/router';
@@ -34,16 +34,16 @@ export class SidebarMenuComponent implements OnInit {
     this.menuService.toggleMenu(subMenu);
   }
 
-  selectedItem:string;
+  selectedItem: SubMenuItem | null = null;
   
-  selectFilter(item: any): void {
-    this.selectedItem = item.label;
+  selectFilter(item: SubMenuItem): void {
+    this.selectedItem = item;
     console.log('Item seleccionado: ', this.selectedItem);
     this.comunicacionMenu.triggerFocusSearchBar(); // Enfocar la barra de búsqueda
   }
 
   applyFilter(){
-    
+    // Lógica de aplicación de filtro
   }
 
   ngOnInit(): void {}
