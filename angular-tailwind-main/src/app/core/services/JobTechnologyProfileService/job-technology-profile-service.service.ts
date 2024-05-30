@@ -7,7 +7,7 @@ import { JobTechnologyProfile } from '../../models/JobTechnologyProfile/job-tech
   providedIn: 'root'
 })
 export class JobTechnologyProfileService {
-  private apiUrl = 'http://localhost:8080/empleado/job_technology_profile/jobtechnologyprofile';
+  private apiUrl = 'http://localhost:8080/empleado/jobTechnologyProfile/';
 
   constructor(private http: HttpClient) {}
 

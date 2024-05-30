@@ -1,12 +1,12 @@
 import { Grupo } from './Grupo/grupo';
 import { Role } from './role/role';
 import { SkBusSkills } from './SkBusSkill/sk-bus-skill';
-import { SkCertifs } from './SkCertif/sk-certif';
 import { SkLanguages } from './SkLanguages/sk-languages';
 import { SkMethod } from './SkMethod/sk-method';
 import { SkTechSkill } from './SkTechSkill/sk-tech-skill';
 import { SkTechnology } from './SkTechnology/sk-technology';
 import { JobTechnologyProfile } from './JobTechnologyProfile/job-technology-profile';
+import { SkCertif } from './SkCertif/sk-certif';
 
 export class Empleado {
   gin: number;
@@ -33,7 +33,7 @@ rlt: boolean;
 skLenguages: SkLanguages[];
 skMethods: SkMethod[];
 skTechSkills: SkTechSkill[];
-skCertifs: SkCertifs[];
+skCertifs: SkCertif[];
 skTechnologies: SkTechnology[];
 skBusSkills: SkBusSkills[];
 [key: string]: any;
