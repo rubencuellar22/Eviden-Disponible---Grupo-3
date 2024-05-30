@@ -20,5 +20,9 @@ public interface JobTechnologyProfileRepository extends JpaRepository<JobTechnol
 	@Query
 	("SELECT jobp FROM JobTechnologyProfile jobp")
     List<JobTechnologyProfile> selectAllJobTechnologyProfile();
+
+
+
+ 
 	
 }

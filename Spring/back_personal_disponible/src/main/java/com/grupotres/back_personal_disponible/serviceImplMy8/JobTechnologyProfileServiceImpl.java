@@ -40,5 +40,9 @@ public class JobTechnologyProfileServiceImpl implements JobTechnologyProfileServ
 	public List<JobTechnologyProfile> selectAllJobTechnologyProfile() {
         return jobTechnologyProfileRepository.selectAllJobTechnologyProfile();
     }
+
+
+
+	
  
 }
