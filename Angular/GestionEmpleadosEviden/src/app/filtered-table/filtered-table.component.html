@@ -38,8 +38,8 @@
           <!-- <th class="py-2">{{ selectedFilter | titlecase }}</th> -->
         </tr>
       </thead>
-      <tbody *ngFor="let empleado of empleados">
-        <tr *ngIf="empleado.gin != 0">
+      <tbody >
+        <tr *ngFor="let empleado of empleados">
           <td class="border px-4 py-2">{{ empleado.gin }}</td>
           <td class="border px-4 py-2">{{ empleado.name }}</td>
           <td class="border px-4 py-2">{{ empleado.subgroup }}</td>
@@ -92,7 +92,6 @@
               <li *ngIf="skBusSkills.skBusSkill != ''">{{ skBusSkills.skBusSkill }} - {{ skBusSkills.nivel }}</li>
             </ul>
           </td>
-          <!-- <td class="border px-4 py-2">{{ empleado[selectedFilter]?.toString() }}</td> -->
         </tr>
       </tbody>
     </table>

@@ -1,5 +1,8 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map, startWith, debounceTime, switchMap } from 'rxjs/operators';
+import { FormControl } from '@angular/forms';
 import { Empleado } from '../classes/empleado';
 import { Grupo } from '../classes/Grupo/grupo';
 import { JobTechnologyProfile } from '../classes/JobTechnologyProfile/job-technology-profile';
@@ -14,9 +17,13 @@ import { Role } from '../classes/role/role';
 export class FiltersComponent {
   newTag: string = '';
   tags: string[] = [];
+  filterOptions: string[] = [];
+  filteredOptions: Observable<string[]>;
+  tagControl = new FormControl();
   filterTags: string[] = [];
   empleados: Empleado[] = [];
   empleadosFilter: Empleado[] = [];
+  empleadosDuplicado: Empleado[] = [];
   jobTechnologyProfile: JobTechnologyProfile[] = [];
   skTechSkill: SkTechSkill[] = [];
   role : Role[] = [];
@@ -30,7 +37,37 @@ export class FiltersComponent {
     filter: string;
   }>();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.filteredOptions = this.tagControl.valueChanges.pipe(
+      debounceTime(300),
+      switchMap(value => this.fetchFilteredOptions(value || ''))
+    );
+  }
+
+  fetchFilteredOptions(query: string): Observable<string[]> {
+    console.log('fetchFilteredOptions called with query:', query); // Mensaje de depuración
+  
+    if (!this.selectedFilter) {
+      return new Observable<string[]>(subscriber => {
+        subscriber.next([]);
+      });
+    }
+  
+    let endpoint: string;
+  
+    switch (this.selectedFilter) {
+      case 'job_technology_profile':
+        endpoint = `http://localhost:8080/empleado/jobTechnologyProfile/autocomplete`;
+        break;
+      default:
+        endpoint = `http://localhost:8080/empleado/autocomplete`;
+        break;
+    }
+  
+    return this.http.get<string[]>(endpoint, { params: { query, filterType: this.selectedFilter } });
+  }
+  
+
 
   addTag(): void {
     if (this.newTag && !this.tags.includes(this.newTag)) {
@@ -219,12 +256,19 @@ export class FiltersComponent {
           this.errorMessage = 'Error fetching data.';
         }
       );
+
     }
   }
 
   removeTag(tag: string): void {
     this.tags = this.tags.filter((t) => t !== tag);
   }
+
+  selectOption(option: string): void {
+    this.tagControl.setValue(option);
+    this.filterOptions = []; // Limpiar las opciones después de seleccionar una
+  }
+  
 
   applyFilter(): void {
     this.errorMessage = '';
@@ -236,23 +280,15 @@ export class FiltersComponent {
       this.errorMessage = 'Please add at least one tag.';
       return;
     }
-    
+   
 
-    // console.log(this.tags);
-    // console.log(this.filterTags);
-    // console.log(this.empleadosFilter.length);
-
-    this.empleados = [];
-    
-
-    for(let i = 0; i < this.filterTags.length; i++){ 
-      if (this.empleadosFilter.length != 0) {
-        console.log(this.empleados);  
+    if (this.empleadosFilter.length != 0) {
+      for(let i = 1; i < this.filterTags.length; i++){ 
         for(let empleado of this.empleadosFilter){
           switch (this.filterTags[i]) {
             case 'status':
               if(empleado.status = this.tags[i]){
-                this.empleados.push(empleado);
+                this.empleadosDuplicado.push(empleado);
               }
               break;
             case 'bench':
@@ -262,78 +298,80 @@ export class FiltersComponent {
               break;
             case 'ciudad':
               if(empleado.ciudad = this.tags[i]){
-                this.empleados.push(empleado);
+                this.empleadosDuplicado.push(empleado);
               }
               break;
             case 'jornada':
               if(empleado.jornada = parseInt(this.tags[i])){
-                this.empleados.push(empleado);
+                this.empleadosDuplicado.push(empleado);
+                console.log(empleado);
               }
               break;
             case 'grupo':
               if(empleado.grupo.grupos.includes(this.tags[i])){
-                this.empleados.push(empleado);
+                this.empleadosDuplicado.push(empleado);
+                
               }
               break;
             case 'n4':
               if(empleado.n4 = this.tags[i]){
-                this.empleados.push(empleado);
+                this.empleadosDuplicado.push(empleado);
               }
               break;
             case 'categoria':
               if(empleado.categoria = this.tags[i]){
-                this.empleados.push(empleado);
+                this.empleadosDuplicado.push(empleado);
               }
               break;
             case 'scr':
               if(empleado.scr = parseInt(this.tags[i])){
-                this.empleados.push(empleado);
+                this.empleadosDuplicado.push(empleado);
               }
               break;
             case 'job_technology':
               if(empleado.jobTechnology = this.tags[i]){
-                this.empleados.push(empleado);
+                this.empleadosDuplicado.push(empleado);
               }
               break;
             case 'sk_bus_skill':
               for(let sk_bus_skill of empleado.skBusSkills){
                 if(sk_bus_skill.skBusSkill.includes(this.tags[i])){
-                  this.empleados.push(empleado);
+                  this.empleadosDuplicado.push(empleado);
                 }
               }
               break;
             case 'sk_tecnology':
               for(let sk_technology of empleado.skTechnologies){
                 if(sk_technology.sktechnology.includes(this.tags[i])){
-                  this.empleados.push(empleado);
+                  this.empleadosDuplicado.push(empleado);
                 }
               }
               break;
             case 'sk_certif':
               for(let sk_certif of empleado.skCertifs){
                 if(sk_certif.skCertif.includes(this.tags[i])){
-                  this.empleados.push(empleado);
+                  this.empleadosDuplicado.push(empleado);
                 }
               }
               break;
             case 'sk_lenguage':
               for(let skLenguage of empleado.skLenguages){
                 if(skLenguage.sklenguage.includes(this.tags[i])){
-                  this.empleados.push(empleado);
+                  this.empleadosDuplicado.push(empleado);
                 }
               }
               break;
             case 'sk_method':
               for(let sk_method of empleado.skMethods){
                 if(sk_method.skmethod.includes(this.tags[i])){
-                  this.empleados.push(empleado);
+                  this.empleadosDuplicado.push(empleado);
                 }
               }
               break;
             case 'sk_tecskill':
               for(let skTechSkills of empleado.skTechSkills){
                 if(skTechSkills.skTechSkill.includes(this.tags[i])){
-                  this.empleados.push(empleado);
+                  this.empleadosDuplicado.push(empleado);
                 }
               }
               break;  
@@ -347,10 +385,28 @@ export class FiltersComponent {
         
       }
     }
+
+    if(this.empleadosDuplicado.length != 0) {
+      this.empleados = this.empleadosDuplicado;
+    }
+
     this.empleadosFiltrados.emit({
       empleados: this.empleados,
       filter: this.selectedFilter,
     });
+  }
+
+  onInputChange(): void {
+    const query = this.tagControl.value;
+    if (query && this.selectedFilter) {
+      this.fetchFilteredOptions(query).subscribe(
+        options => {
+          this.filterOptions = options;
+          console.log('Filtered options:', options); // Mensaje de depuración
+        },
+        error => console.error('Error fetching options', error)
+      );
+    }
   }
 
 

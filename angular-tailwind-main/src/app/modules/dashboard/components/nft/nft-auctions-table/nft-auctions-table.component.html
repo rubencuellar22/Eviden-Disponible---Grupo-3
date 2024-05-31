@@ -42,7 +42,7 @@
         </tr>
       </thead>
       <tbody *ngFor="let empleado of empleados">
-        <tr *ngIf="empleado.gin != 0" class="gap-5 text-foreground">
+        <tr class="gap-5 text-foreground">
           <td class="fixed-height">{{ empleado.gin }}</td>
           <td class="fixed-height">{{ empleado.name }}</td>
           <td class="fixed-height">{{ empleado.subgroup }}</td>
