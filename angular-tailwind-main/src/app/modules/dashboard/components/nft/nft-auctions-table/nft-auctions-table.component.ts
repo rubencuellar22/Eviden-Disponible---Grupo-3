@@ -3,6 +3,7 @@ import { CommonModule, DatePipe } from '@angular/common'; // Importa CommonModul
 import { Nft } from '../../../models/nft';
 import { EmpleadoService } from 'src/app/core/services/empleado-service.service';
 import { Empleado } from 'src/app/core/models/empleado';
+import { EmpleadoStateService } from 'src/app/core/services/EmpleadosStateService/empleado-state.service';
 
 @Component({
     selector: '[nft-auctions-table]',
@@ -15,14 +16,18 @@ import { Empleado } from 'src/app/core/models/empleado';
 export class NftAuctionsTableComponent implements OnInit {
   public activeAuction: Nft[] = [];
   empleados: Empleado[] = []; // Inicializamos empleados como un array vacío
-  
-  constructor(private empleadoService: EmpleadoService) {} // Inyectamos el servicio
-  
+
+  constructor(private empleadoStateService: EmpleadoStateService) {} // Inyectamos el servicio
+
   ngOnInit(): void {
     // Llamamos al método del servicio para obtener los empleados
-    this.empleadoService.getEmpleados().subscribe((data: Empleado[]) => {
+    // this.empleadoService.getEmpleados().subscribe((data: Empleado[]) => {
+    //   this.empleados = data; // Asignamos los empleados obtenidos al arreglo empleados
+    //   console.log(this.empleados);
+    // });
+    this.empleadoStateService.updateEmpleados(); // Llamamos al método updateEmpleados del servicio
+    this.empleadoStateService.empleado$.subscribe((data: Empleado[]) => {
       this.empleados = data; // Asignamos los empleados obtenidos al arreglo empleados
-      console.log(this.empleados);
     });
   }
 }

@@ -1,6 +1,6 @@
 import { SkCertifs } from './sk-certif';
 
-describe('SkCertif', () => {
+describe('SkCertifs', () => {
   it('should create an instance', () => {
     expect(SkCertifs).toBeTruthy();
   });

@@ -7,7 +7,7 @@ import { SkMethod } from '../../models/SkMethod/sk-method';
   providedIn: 'root'
 })
 export class SkMethodService {
-  private apiUrl = 'http://localhost:8080/empleado/sk_methods'
+  private apiUrl = 'http://localhost:8080/empleado/skMethod/'
 
   constructor(private http: HttpClient) { }
 

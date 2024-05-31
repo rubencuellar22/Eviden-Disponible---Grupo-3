@@ -3,6 +3,7 @@
   "displayName": "Angular Tailwind",
   "version": "0.5.0",
   "description": "Angular & Tailwind CSS Admin Dashboard Starter Kit, Free and Open Source",
+  "main": "src/main.ts",
   "homepage": "https://github.com/luciano-work/angular-tailwind#readme",
   "repository": {
     "type": "git",

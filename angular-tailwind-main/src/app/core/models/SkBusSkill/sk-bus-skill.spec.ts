@@ -1,6 +1,6 @@
 import { SkBusSkills } from './sk-bus-skill';
 
-describe('SkBusSkill', () => {
+describe('SkBusSkills', () => {
   it('should create an instance', () => {
     expect(SkBusSkills).toBeTruthy();
   });

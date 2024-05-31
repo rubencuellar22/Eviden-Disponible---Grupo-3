@@ -1,23 +1,23 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs'; 
-import { SkCertif } from '../../classes/SkCertif/sk-certif';
+import { SkCertifs } from '../../classes/SkCertif/sk-certif';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SkCertifService {
-  private apiUrl = 'http://localhost:8080/empleado/sk_certif/certif'; 
+  private apiUrl = 'http://localhost:8080/empleado/skCertif/'; 
 
   constructor(private http: HttpClient) { }
 
-  getAll(): Observable<SkCertif[]> {
-    return this.http.get<SkCertif[]>(this.apiUrl);
+  getAll(): Observable<SkCertifs[]> {
+    return this.http.get<SkCertifs[]>(this.apiUrl);
   }
 
-  getById(id: number): Observable<SkCertif> {
+  getById(id: number): Observable<SkCertifs> {
     const url = `${this.apiUrl}/${id}`;
-    return this.http.get<SkCertif>(url);
+    return this.http.get<SkCertifs>(url);
   }
 
   // create(skCertif: SkCertif): Observable<SkCertif> {

@@ -7,7 +7,7 @@ import { SkCertif } from '../../models/SkCertif/sk-certif';
   providedIn: 'root'
 })
 export class SkCertifService {
-  private apiUrl = 'http://localhost:8080/empleado/sk_certif/certif'; 
+  private apiUrl = 'http://localhost:8080/empleado/skCertif/'; 
 
   constructor(private http: HttpClient) { }
 

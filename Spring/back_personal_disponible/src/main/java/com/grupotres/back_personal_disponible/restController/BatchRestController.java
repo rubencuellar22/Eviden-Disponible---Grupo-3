@@ -24,6 +24,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class BatchRestController {
 
     @Autowired
@@ -73,13 +74,15 @@ public class BatchRestController {
             System.out.println("Proceso batch completado.");
 
 
-            List<Empleado> emps = empleadoService.getAllEmpleados();
+            /* List<Empleado> emps = empleadoService.getAllEmpleados();
             List<EmpleadoDTO> empleadosDTO = new ArrayList<>();
             for (Empleado emp : emps) {
                 empleadosDTO.add(new EmpleadoDTO(emp));
-            }
+            } */
 
-            return ResponseEntity.ok(empleadosDTO);
+            String mensaje = "Excel persistido con exito";
+
+            return ResponseEntity.ok(mensaje);
         } catch (Exception e) {
             System.err.printf("Error al iniciar el proceso batch: %s%n", e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al iniciar el proceso batch: " + e.getMessage());

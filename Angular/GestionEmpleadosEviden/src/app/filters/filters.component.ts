@@ -4,6 +4,10 @@ import { Observable } from 'rxjs';
 import { map, startWith, debounceTime, switchMap } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
 import { Empleado } from '../classes/empleado';
+import { Grupo } from '../classes/Grupo/grupo';
+import { JobTechnologyProfile } from '../classes/JobTechnologyProfile/job-technology-profile';
+import { SkTechSkill } from '../classes/SkTechSkill/sk-tech-skill';
+import { Role } from '../classes/role/role';
 
 @Component({
   selector: 'app-filters',
@@ -13,11 +17,19 @@ import { Empleado } from '../classes/empleado';
 export class FiltersComponent {
   newTag: string = '';
   tags: string[] = [];
-  selectedFilter: string = '';
-  errorMessage: string = '';
   filterOptions: string[] = [];
   filteredOptions: Observable<string[]>;
   tagControl = new FormControl();
+  filterTags: string[] = [];
+  empleados: Empleado[] = [];
+  empleadosFilter: Empleado[] = [];
+  jobTechnologyProfile: JobTechnologyProfile[] = [];
+  skTechSkill: SkTechSkill[] = [];
+  role : Role[] = [];
+
+  selectedFilter: string = '';
+  errorMessage: string = '';
+  filtroCheck: string;
 
   @Output() empleadosFiltrados = new EventEmitter<{
     empleados: Empleado[];
@@ -57,10 +69,193 @@ export class FiltersComponent {
 
 
   addTag(): void {
-    const newTag = this.tagControl.value;
-    if (newTag && !this.tags.includes(newTag)) {
-      this.tags.push(newTag);
-      this.tagControl.setValue('');
+    if (this.newTag && !this.tags.includes(this.newTag)) {
+      this.tags.push(this.newTag);
+      this.newTag = '';
+      this.filterTags.push(this.selectedFilter);
+      
+      const filterValue = this.tags[0];
+      let endpoint: string;
+
+      switch (this.filterTags[0]) {
+        case 'status':
+          endpoint = `http://localhost:8080/empleado/status/${filterValue}`;
+          this.getFunction(endpoint);
+          break;
+        case 'bench':
+          endpoint = `http://localhost:8080/empleado/bench/${filterValue}`;
+          this.getFunction(endpoint);
+          break;
+        case 'ciudad':
+          endpoint = `http://localhost:8080/empleado/ciudad/${filterValue}`;
+          this.getFunction(endpoint);
+          break;
+        case 'jornada':
+          endpoint = `http://localhost:8080/empleado/jornada/${filterValue}`;
+          this.getFunction(endpoint);
+          break;
+        case 'grupo':
+          endpoint = `http://localhost:8080/empleado/groups/${filterValue}`;
+          this.getFunction(endpoint);
+          break;
+        case 'n4':
+          endpoint = `http://localhost:8080/empleado/n4/${filterValue}`;
+          this.getFunction(endpoint);
+          break;
+        case 'categoria':
+          endpoint = `http://localhost:8080/empleado/categoria/${filterValue}`;
+          this.getFunction(endpoint);
+          break;
+        case 'scr':
+          endpoint = `http://localhost:8080/empleado/scr/${filterValue}`;
+          this.getFunction(endpoint);
+          break;
+        case 'job_technology':
+          endpoint = `http://localhost:8080/empleado/jobTechnologyProfile/${filterValue}`;
+          if(this.empleadosFilter.length === 0) {
+            this.http.get<JobTechnologyProfile[]>(endpoint).subscribe(
+              (data: JobTechnologyProfile[]) => {
+                this.jobTechnologyProfile = data;
+                console.log(this.jobTechnologyProfile);
+              },
+              (error) => {
+                console.error('Error al buscar empleados:', error);
+                this.errorMessage = 'Error fetching data.';
+              }
+            );
+          }
+          break;
+        case 'sk_bus_skill':
+          endpoint = `http://localhost:8080/empleado/skBussskill/${filterValue}`;
+          if(this.empleadosFilter.length === 0) {
+            this.http.get<Empleado[]>(endpoint).subscribe(
+              (data: Empleado[]) => {
+                this.empleados = data;
+                this.empleadosFilter = this.empleados;
+              },
+              (error) => {
+                console.error('Error al buscar empleados:', error);
+                this.errorMessage = 'Error fetching data.';
+              }
+            );
+          }
+          break;
+        case 'sk_tecnology':
+          endpoint = `http://localhost:8080/empleado/skTechnology/${filterValue}`;
+          if(this.empleadosFilter.length === 0) {
+            this.http.get<Empleado[]>(endpoint).subscribe(
+              (data: Empleado[]) => {
+                this.empleados = data;
+                this.empleadosFilter = this.empleados;
+              },
+              (error) => {
+                console.error('Error al buscar empleados:', error);
+                this.errorMessage = 'Error fetching data.';
+              }
+            );
+          }
+          break;
+        case 'sk_certif':
+          endpoint = `http://localhost:8080/empleado/skCertif/${filterValue}`;
+          if(this.empleadosFilter.length === 0) {
+            this.http.get<Empleado[]>(endpoint).subscribe(
+              (data: Empleado[]) => {
+                this.empleados = data;
+                this.empleadosFilter = this.empleados;
+              },
+              (error) => {
+                console.error('Error al buscar empleados:', error);
+                this.errorMessage = 'Error fetching data.';
+              }
+            );
+          }
+          break;
+        case 'sk_lenguage':
+          endpoint = `http://localhost:8080/empleado/skLenguage/${filterValue}`;
+          if(this.empleadosFilter.length === 0) {
+            this.http.get<Empleado[]>(endpoint).subscribe(
+              (data: Empleado[]) => {
+                this.empleados = data;
+                this.empleadosFilter = this.empleados;
+              },
+              (error) => {
+                console.error('Error al buscar empleados:', error);
+                this.errorMessage = 'Error fetching data.';
+              }
+            );
+          }
+          break;
+        case 'sk_method':
+          endpoint = `http://localhost:8080/empleado/skMethod/${filterValue}`;
+          if(this.empleadosFilter.length === 0) {
+            this.http.get<Empleado[]>(endpoint).subscribe(
+              (data: Empleado[]) => {
+                this.empleados = data;
+                this.empleadosFilter = this.empleados;
+              },
+              (error) => {
+                console.error('Error al buscar empleados:', error);
+                this.errorMessage = 'Error fetching data.';
+              }
+            );
+          }
+          break;
+        case 'sk_tecskill':
+          endpoint = `http://localhost:8080/empleado/skTechskill/${filterValue}`;
+          if(this.empleadosFilter.length === 0) {
+            this.http.get<Empleado[]>(endpoint).subscribe(
+              (data: Empleado[]) => {
+                this.empleados = data;
+                this.empleadosFilter = this.empleados;
+              },
+              (error) => {
+                console.error('Error al buscar empleados:', error);
+                this.errorMessage = 'Error fetching data.';
+              }
+            );
+          }
+          break;  
+
+          case 'role':
+          endpoint = `http://localhost:8080/empleado/role/${filterValue}`;
+          if(this.empleadosFilter.length === 0) {
+            this.http.get<Empleado[]>(endpoint).subscribe(
+              (data: Empleado[]) => {
+                this.empleados = data;
+                this.empleadosFilter = this.empleados;
+              },
+              (error) => {
+                console.error('Error al buscar empleados:', error);
+                this.errorMessage = 'Error fetching data.';
+              }
+            );
+          }
+          break;
+
+          
+        
+        default:
+          console.error('Filtro no reconocido:', this.selectedFilter);
+          this.errorMessage = 'Unrecognized filter selected.';
+          return;
+      }
+      
+    }
+  }
+
+  getFunction(endpoint: string){
+    if(this.empleadosFilter.length === 0) {
+      this.http.get<Empleado[]>(endpoint).subscribe(
+        (data: Empleado[]) => {
+          this.empleados = data;
+          this.empleadosFilter = this.empleados;
+        },
+        (error) => {
+          console.error('Error al buscar empleados:', error);
+          this.errorMessage = 'Error fetching data.';
+        }
+      );
+
     }
   }
 
@@ -84,71 +279,121 @@ export class FiltersComponent {
       this.errorMessage = 'Please add at least one tag.';
       return;
     }
+    
 
-    const filterValue = this.tags[0];
-    let endpoint: string;
+    // console.log(this.tags);
+    // console.log(this.filterTags);
+    // console.log(this.empleadosFilter.length);
 
-    switch (this.selectedFilter) {
-      case 'status':
-        endpoint = `http://localhost:8080/empleado/status/${filterValue}`;
-        break;
-      case 'bench':
-        endpoint = `http://localhost:8080/empleado/bench/${filterValue}`;
-        break;
-      case 'ciudad':
-        endpoint = `http://localhost:8080/empleado/ciudad/${filterValue}`;
-        break;
-      case 'jornada':
-        endpoint = `http://localhost:8080/empleado/jornada/${filterValue}`;
-        break;
-      case 'grupo':
-        endpoint = `http://localhost:8080/empleado/groups/${filterValue}`;
-        break;
-      case 'n4':
-        endpoint = `http://localhost:8080/empleado/n4/${filterValue}`;
-        break;
-      case 'categoria':
-        endpoint = `http://localhost:8080/empleado/categoria/${filterValue}`;
-        break;
-      case 'scr':
-        endpoint = `http://localhost:8080/empleado/scr/${filterValue}`;
-        break;
-      case 'job_technology':
-        endpoint = `http://localhost:8080/empleado/job_technology_profile/${filterValue}`;
-        break;
-      case 'sk_bus_skill':
-        endpoint = `http://localhost:8080/empleado/sk_bussskill/bussskill/${filterValue}`;
-        break;
-      case 'sk_tecnology':
-        endpoint = `http://localhost:8080/empleado/sk_technology/technology/${filterValue}`;
-        break;
-      case 'sk_certif':
-        endpoint = `http://localhost:8080/empleado/sk_certif/certif/${filterValue}`;
-        break;
-      case 'sk_lenguage':
-        endpoint = `http://localhost:8080/empleado/skLenguage/${filterValue}`;
-        break;
-      case 'sk_method':
-        endpoint = `http://localhost:8080/empleado/sk_methods/${filterValue}`;
-        break;
-      case 'sk_tecskill':
-        endpoint = `http://localhost:8080/empleado/sk_techskills/${filterValue}`;
-        break;
-      default:
-        console.error('Filtro no reconocido:', this.selectedFilter);
-        this.errorMessage = 'Unrecognized filter selected.';
-        return;
-    }
+    this.empleados = [];
+    
 
-    this.http.get<string[]>(endpoint).subscribe(
-      (data: string[]) => {
-        this.filterOptions = data;
-        console.log('Data fetched:', data); // Mensaje de depuración
-      },
-      (error) => {
-        console.error('Error fetching filter options:', error);
+    for(let i = 0; i < this.filterTags.length; i++){ 
+      if (this.empleadosFilter.length != 0) {
+        console.log(this.empleados);  
+        for(let empleado of this.empleadosFilter){
+          switch (this.filterTags[i]) {
+            case 'status':
+              if(empleado.status = this.tags[i]){
+                this.empleados.push(empleado);
+              }
+              break;
+            case 'bench':
+              // if(empleado.bench = this.tags[i]){
+              //   this.empleados.push(empleado);
+              // }
+              break;
+            case 'ciudad':
+              if(empleado.ciudad = this.tags[i]){
+                this.empleados.push(empleado);
+              }
+              break;
+            case 'jornada':
+              if(empleado.jornada = parseInt(this.tags[i])){
+                this.empleados.push(empleado);
+              }
+              break;
+            case 'grupo':
+              if(empleado.grupo.grupos.includes(this.tags[i])){
+                this.empleados.push(empleado);
+              }
+              break;
+            case 'n4':
+              if(empleado.n4 = this.tags[i]){
+                this.empleados.push(empleado);
+              }
+              break;
+            case 'categoria':
+              if(empleado.categoria = this.tags[i]){
+                this.empleados.push(empleado);
+              }
+              break;
+            case 'scr':
+              if(empleado.scr = parseInt(this.tags[i])){
+                this.empleados.push(empleado);
+              }
+              break;
+            case 'job_technology':
+              if(empleado.jobTechnology = this.tags[i]){
+                this.empleados.push(empleado);
+              }
+              break;
+            case 'sk_bus_skill':
+              for(let sk_bus_skill of empleado.skBusSkills){
+                if(sk_bus_skill.skBusSkill.includes(this.tags[i])){
+                  this.empleados.push(empleado);
+                }
+              }
+              break;
+            case 'sk_tecnology':
+              for(let sk_technology of empleado.skTechnologies){
+                if(sk_technology.sktechnology.includes(this.tags[i])){
+                  this.empleados.push(empleado);
+                }
+              }
+              break;
+            case 'sk_certif':
+              for(let sk_certif of empleado.skCertifs){
+                if(sk_certif.skCertif.includes(this.tags[i])){
+                  this.empleados.push(empleado);
+                }
+              }
+              break;
+            case 'sk_lenguage':
+              for(let skLenguage of empleado.skLenguages){
+                if(skLenguage.sklenguage.includes(this.tags[i])){
+                  this.empleados.push(empleado);
+                }
+              }
+              break;
+            case 'sk_method':
+              for(let sk_method of empleado.skMethods){
+                if(sk_method.skmethod.includes(this.tags[i])){
+                  this.empleados.push(empleado);
+                }
+              }
+              break;
+            case 'sk_tecskill':
+              for(let skTechSkills of empleado.skTechSkills){
+                if(skTechSkills.skTechSkill.includes(this.tags[i])){
+                  this.empleados.push(empleado);
+                }
+              }
+              break;  
+            
+            default:
+              console.error('Filtro no reconocido:', this.selectedFilter);
+              this.errorMessage = 'Unrecognized filter selected.';
+              return;
+          }
+        }
+        
       }
-    );
+    }
+    this.empleadosFiltrados.emit({
+      empleados: this.empleados,
+      filter: this.selectedFilter,
+    });
   }
 
   onInputChange(): void {
@@ -163,4 +408,5 @@ export class FiltersComponent {
       );
     }
   }
+
 }

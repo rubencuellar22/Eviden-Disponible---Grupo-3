@@ -8,7 +8,7 @@ import { SkTechSkill } from '../../classes/SkTechSkill/sk-tech-skill';
   providedIn: 'root'
 })
 export class SkTechSkillService {
-  private apiUrl = 'http://localhost:8080/empleado/sk_techskills';
+  private apiUrl = 'http://localhost:8080/empleado/skTechskill/';
 
   constructor(private http: HttpClient) { }
 

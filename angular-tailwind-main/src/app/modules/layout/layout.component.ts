@@ -13,6 +13,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 })
 export class LayoutComponent implements OnInit {
   private mainContent: HTMLElement | null = null;
+  _endpoint: string;
+  _selectedItem: string;
 
   constructor(private router: Router) {
     this.router.events.subscribe((event: Event) => {

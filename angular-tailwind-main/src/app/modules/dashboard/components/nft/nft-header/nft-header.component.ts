@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EmpleadoStateService } from 'src/app/core/services/EmpleadosStateService/empleado-state.service';
 
 @Component({
     selector: 'app-nft-header',
@@ -6,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
     standalone: true,
 })
 export class NftHeaderComponent implements OnInit {
-  constructor() {}
+  constructor(private empleadoStateService: EmpleadoStateService) {}
 
   ngOnInit(): void {}
+
+  toggleShowImportExcel() {
+    this.empleadoStateService.toggleShowImportExcel();
+  }
 }
