@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MenuService } from '../../services/menu.service';
 import { ProfileMenuComponent } from './profile-menu/profile-menu.component';
 import { NavbarMenuComponent } from './navbar-menu/navbar-menu.component';
@@ -7,25 +7,27 @@ import { ComunicacionMenuService } from '../../services/comunicacion-menu.servic
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NavbarMobileComponent } from './navbar-mobile/navbar-mobilecomponent';
-import { SidebarMenuComponent } from '../sidebar/sidebar-menu/sidebar-menu.component';
 import { Empleado } from 'src/app/core/models/empleado';
 import { JobTechnologyProfile } from 'src/app/core/models/JobTechnologyProfile/job-technology-profile';
 import { SkTechSkill } from 'src/app/core/models/SkTechSkill/sk-tech-skill';
 import { HttpClient } from '@angular/common/http';
+import { NftAuctionsTableComponent } from "../../../dashboard/components/nft/nft-auctions-table/nft-auctions-table.component";
+import { DataService } from 'src/app/app.service.import';
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss'],
-  standalone: true,
-  imports: [
-    CommonModule,
-    FormsModule,
-    AngularSvgIconModule,
-    NavbarMenuComponent,
-    ProfileMenuComponent,
-    NavbarMobileComponent,
-  ],
+    selector: 'app-navbar',
+    templateUrl: './navbar.component.html',
+    styleUrls: ['./navbar.component.scss'],
+    standalone: true,
+    imports: [
+        CommonModule,
+        FormsModule,
+        AngularSvgIconModule,
+        NavbarMenuComponent,
+        ProfileMenuComponent,
+        NavbarMobileComponent,
+        NftAuctionsTableComponent
+    ]
 })
 export class NavbarComponent implements OnInit {
   filter: string = '';
@@ -42,11 +44,9 @@ export class NavbarComponent implements OnInit {
   selectedItem: string = '';
   tags: [] = [];
 
-  constructor(
-    private menuService: MenuService,
-    private http: HttpClient,
-    private comunicacionMenu: ComunicacionMenuService,
-  ) {}
+
+  constructor(private menuService: MenuService, private http: HttpClient, private comunicacionMenu: ComunicacionMenuService, private dataService: DataService) {}
+
 
   ngOnInit(): void {
     this.comunicacionMenu.focusSearchBar$.subscribe(() => {
@@ -70,20 +70,36 @@ export class NavbarComponent implements OnInit {
       this.endpoint = localStorage.getItem('_endpoint');
       this.selectedItem = localStorage.getItem('_selectedItem');
       this.filterComponent.push(this.selectedItem); // Añadir selectedFilter a filterComponent
+  
       this.endpoint += trimmedFilter;
       console.log(this.endpoint + '/' + trimmedFilter);
       this.getFunction(this.endpoint);
-      console.log(this.filterComponent)
     }
   }
 
-  getFunction(endpoint: string) {
-    if (this.empleadosFilter.length === 0) {
+  // updateEmployeeList(): void {
+  //   // Filtramos los empleados según los filtros seleccionados
+  //   let filteredEmployees = this.empleadosFilter;
+  //   this.filterTags.forEach(tag => {
+  //     filteredEmployees = filteredEmployees.filter(empleado => empleado.ciudad === tag);
+  //   });
+  //   // Asignamos los empleados filtrados a la lista principal de empleados
+  //   this.empleados = filteredEmployees;
+  // }
+  
+
+  getFunction(endpoint: string): void {
+    if(this.empleadosFilter.length === 0) {
       this.http.get<Empleado[]>(endpoint).subscribe(
         (data: Empleado[]) => {
           this.empleados = data;
           this.empleadosFilter = this.empleados;
           console.log(this.empleados);
+          this.dataService.changeData(this.empleados);
+
+          localStorage.setItem('empleadosFiltrados', JSON.stringify(this.empleados));
+          // Aquí llamamos a la función para actualizar la lista de empleados después de obtener los datos del servidor
+          //this.updateEmployeeList();
         },
         (error) => {
           console.error('Error al buscar empleados:', error);
@@ -91,6 +107,10 @@ export class NavbarComponent implements OnInit {
         },
       );
     }
+  }
+
+  sendData() {
+    
   }
 
   applyFilter(): void {

@@ -20,6 +20,9 @@ public interface JobTechnologyProfileRepository extends JpaRepository<JobTechnol
 	@Query
 	("SELECT jobp FROM JobTechnologyProfile jobp")
     List<JobTechnologyProfile> selectAllJobTechnologyProfile();
+	
+	@Query("SELECT DISTINCT jtp.jobTechnologyProfile FROM JobTechnologyProfile jtp WHERE jtp.jobTechnologyProfile LIKE %:query% AND jtp.jobTechnologyProfile = :profile")
+    List<String> findAutocompleteOptions(String profile, String query);
 
 
 

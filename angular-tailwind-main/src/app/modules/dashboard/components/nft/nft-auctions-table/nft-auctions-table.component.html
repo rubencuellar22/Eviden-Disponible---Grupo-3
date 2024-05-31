@@ -41,74 +41,146 @@
           <th class="py-3 text-left">Sk Bus Skills</th>
         </tr>
       </thead>
-      <tbody *ngFor="let empleado of empleados">
-        <tr *ngIf="empleado.gin != 0" class="gap-5 text-foreground">
-          <td class="fixed-height">{{ empleado.gin }}</td>
-          <td class="fixed-height">{{ empleado.name }}</td>
-          <td class="fixed-height">{{ empleado.subgroup }}</td>
-          <td class="fixed-height">{{ empleado.status }}</td>
-          <td class="fixed-height">{{ empleado.bench ? empleado.bench.toString().split('T')[0] : '' }}</td>
-          <td class="fixed-height">{{ empleado.das }}</td>
-          <td class="fixed-height">{{ empleado.ciudad }}</td>
-          <td class="fixed-height">{{ empleado.agrupacion }}</td>
-          <td class="fixed-height">{{ empleado.lineManager }}</td>
-          <td class="fixed-height">{{ empleado.jornada }}</td>
-          <td class="fixed-height">{{ empleado.gcm }}</td>
-          <td class="fixed-height">{{ empleado.categoria }}</td>
-          <td class="fixed-height">{{ empleado.nivelgcm }}</td>
-          <td class="fixed-height">{{ empleado.scr }}</td>
-          <td class="fixed-height">{{ empleado.grupo.grupos }}</td>
-          <td class="fixed-height">{{ empleado.n4 }}</td>
-          <td class="fixed-height">{{ empleado.jobTechnology }}</td>
-          <td class="fixed-height">{{ empleado.skills }}</td>
-          <td class="fixed-height">
-            <div class="scrollable">{{ empleado.role.role }} - {{ empleado.role.nivel }}</div>
-          </td>
-          <td class="fixed-height">{{ (empleado.rlt) ? 'YES' : '' }}</td>
-          <td class="fixed-height">
-            <ul class="scrollable">
-              <ng-container *ngFor="let skLenguages of empleado.skLenguages">
-                <li *ngIf="skLenguages.sklenguage != ''">{{ skLenguages.sklenguage }} - {{ skLenguages.nivel }}</li>
-              </ng-container>
-            </ul>
-          </td>
-          <td class="fixed-height">
-            <ul class="scrollable">
-              <ng-container *ngFor="let skMethods of empleado.skMethods">
-                <li *ngIf="skMethods.skmethod != ''">{{ skMethods.skmethod }} - {{ skMethods.nivel }}</li>
-              </ng-container>
-            </ul>
-          </td>
-          <td class="fixed-height">
-            <ul class="scrollable">
-              <ng-container *ngFor="let skTechSkills of empleado.skTechSkills">
-                <li *ngIf="skTechSkills.skTechSkill != ''">{{ skTechSkills.skTechSkill }} - {{ skTechSkills.nivel }}</li>
-              </ng-container>
-            </ul>
-          </td>
-          <td class="fixed-height">
-            <ul class="scrollable">
-              <ng-container *ngFor="let skCertifs of empleado.skCertifs">
-                <li *ngIf="skCertifs.skCertif != ''">{{ skCertifs.skCertif }} - {{ (skCertifs.external) ? 'external' : 'internal' }}</li>
-              </ng-container>
-            </ul>
-          </td>
-          <td class="fixed-height">
-            <ul class="scrollable">
-              <ng-container *ngFor="let skTechnologies of empleado.skTechnologies">
-                <li *ngIf="skTechnologies.sktechnology != ''">{{ skTechnologies.sktechnology }} - {{ skTechnologies.nivel }}</li>
-              </ng-container>
-            </ul>
-          </td>
-          <td class="fixed-height">
-            <ul class="scrollable">
-              <ng-container *ngFor="let skBusSkills of empleado.skBusSkills">
-                <li *ngIf="skBusSkills.skBusSkill != ''">{{ skBusSkills.skBusSkill }} - {{ skBusSkills.nivel }}</li>
-              </ng-container>
-            </ul>
-          </td>
-        </tr>
-      </tbody>
+      @if (check) {
+        <tbody *ngFor="let empleado of empleadosMostrar">
+          <tr class="gap-5 text-foreground">
+            <td class="fixed-height">{{ empleado.gin }}</td>
+            <td class="fixed-height">{{ empleado.name }}</td>
+            <td class="fixed-height">{{ empleado.subgroup }}</td>
+            <td class="fixed-height">{{ empleado.status }}</td>
+            <td class="fixed-height">{{ empleado.bench ? empleado.bench.toString().split('T')[0] : '' }}</td>
+            <td class="fixed-height">{{ empleado.das }}</td>
+            <td class="fixed-height">{{ empleado.ciudad }}</td>
+            <td class="fixed-height">{{ empleado.agrupacion }}</td>
+            <td class="fixed-height">{{ empleado.lineManager }}</td>
+            <td class="fixed-height">{{ empleado.jornada }}</td>
+            <td class="fixed-height">{{ empleado.gcm }}</td>
+            <td class="fixed-height">{{ empleado.categoria }}</td>
+            <td class="fixed-height">{{ empleado.nivelgcm }}</td>
+            <td class="fixed-height">{{ empleado.scr }}</td>
+            <td class="fixed-height">{{ empleado.grupo.grupos }}</td>
+            <td class="fixed-height">{{ empleado.n4 }}</td>
+            <td class="fixed-height">{{ empleado.jobTechnology }}</td>
+            <td class="fixed-height">{{ empleado.skills }}</td>
+            <td class="fixed-height">
+              <div class="scrollable">{{ empleado.role.role }} - {{ empleado.role.nivel }}</div>
+            </td>
+            <td class="fixed-height">{{ (empleado.rlt) ? 'YES' : '' }}</td>
+            <td class="fixed-height">
+              <ul class="scrollable">
+                <ng-container *ngFor="let skLenguages of empleado.skLenguages">
+                  <li *ngIf="skLenguages.sklenguage != ''">{{ skLenguages.sklenguage }} - {{ skLenguages.nivel }}</li>
+                </ng-container>
+              </ul>
+            </td>
+            <td class="fixed-height">
+              <ul class="scrollable">
+                <ng-container *ngFor="let skMethods of empleado.skMethods">
+                  <li *ngIf="skMethods.skmethod != ''">{{ skMethods.skmethod }} - {{ skMethods.nivel }}</li>
+                </ng-container>
+              </ul>
+            </td>
+            <td class="fixed-height">
+              <ul class="scrollable">
+                <ng-container *ngFor="let skTechSkills of empleado.skTechSkills">
+                  <li *ngIf="skTechSkills.skTechSkill != ''">{{ skTechSkills.skTechSkill }} - {{ skTechSkills.nivel }}</li>
+                </ng-container>
+              </ul>
+            </td>
+            <td class="fixed-height">
+              <ul class="scrollable">
+                <ng-container *ngFor="let skCertifs of empleado.skCertifs">
+                  <li *ngIf="skCertifs.skCertif != ''">{{ skCertifs.skCertif }} - {{ (skCertifs.external) ? 'external' : 'internal' }}</li>
+                </ng-container>
+              </ul>
+            </td>
+            <td class="fixed-height">
+              <ul class="scrollable">
+                <ng-container *ngFor="let skTechnologies of empleado.skTechnologies">
+                  <li *ngIf="skTechnologies.sktechnology != ''">{{ skTechnologies.sktechnology }} - {{ skTechnologies.nivel }}</li>
+                </ng-container>
+              </ul>
+            </td>
+            <td class="fixed-height">
+              <ul class="scrollable">
+                <ng-container *ngFor="let skBusSkills of empleado.skBusSkills">
+                  <li *ngIf="skBusSkills.skBusSkill != ''">{{ skBusSkills.skBusSkill }} - {{ skBusSkills.nivel }}</li>
+                </ng-container>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      }
+      @if (!check) {
+        <tbody *ngFor="let empleado of empleadosFlitrados">
+          <tr class="gap-5 text-foreground">
+            <td class="fixed-height">{{ empleado.gin }}</td>
+            <td class="fixed-height">{{ empleado.name }}</td>
+            <td class="fixed-height">{{ empleado.subgroup }}</td>
+            <td class="fixed-height">{{ empleado.status }}</td>
+            <td class="fixed-height">{{ empleado.bench ? empleado.bench.toString().split('T')[0] : '' }}</td>
+            <td class="fixed-height">{{ empleado.das }}</td>
+            <td class="fixed-height">{{ empleado.ciudad }}</td>
+            <td class="fixed-height">{{ empleado.agrupacion }}</td>
+            <td class="fixed-height">{{ empleado.lineManager }}</td>
+            <td class="fixed-height">{{ empleado.jornada }}</td>
+            <td class="fixed-height">{{ empleado.gcm }}</td>
+            <td class="fixed-height">{{ empleado.categoria }}</td>
+            <td class="fixed-height">{{ empleado.nivelgcm }}</td>
+            <td class="fixed-height">{{ empleado.scr }}</td>
+            <td class="fixed-height">{{ empleado.grupo.grupos }}</td>
+            <td class="fixed-height">{{ empleado.n4 }}</td>
+            <td class="fixed-height">{{ empleado.jobTechnology }}</td>
+            <td class="fixed-height">{{ empleado.skills }}</td>
+            <td class="fixed-height">
+              <div class="scrollable">{{ empleado.role.role }} - {{ empleado.role.nivel }}</div>
+            </td>
+            <td class="fixed-height">{{ (empleado.rlt) ? 'YES' : '' }}</td>
+            <td class="fixed-height">
+              <ul class="scrollable">
+                <ng-container *ngFor="let skLenguages of empleado.skLenguages">
+                  <li *ngIf="skLenguages.sklenguage != ''">{{ skLenguages.sklenguage }} - {{ skLenguages.nivel }}</li>
+                </ng-container>
+              </ul>
+            </td>
+            <td class="fixed-height">
+              <ul class="scrollable">
+                <ng-container *ngFor="let skMethods of empleado.skMethods">
+                  <li *ngIf="skMethods.skmethod != ''">{{ skMethods.skmethod }} - {{ skMethods.nivel }}</li>
+                </ng-container>
+              </ul>
+            </td>
+            <td class="fixed-height">
+              <ul class="scrollable">
+                <ng-container *ngFor="let skTechSkills of empleado.skTechSkills">
+                  <li *ngIf="skTechSkills.skTechSkill != ''">{{ skTechSkills.skTechSkill }} - {{ skTechSkills.nivel }}</li>
+                </ng-container>
+              </ul>
+            </td>
+            <td class="fixed-height">
+              <ul class="scrollable">
+                <ng-container *ngFor="let skCertifs of empleado.skCertifs">
+                  <li *ngIf="skCertifs.skCertif != ''">{{ skCertifs.skCertif }} - {{ (skCertifs.external) ? 'external' : 'internal' }}</li>
+                </ng-container>
+              </ul>
+            </td>
+            <td class="fixed-height">
+              <ul class="scrollable">
+                <ng-container *ngFor="let skTechnologies of empleado.skTechnologies">
+                  <li *ngIf="skTechnologies.sktechnology != ''">{{ skTechnologies.sktechnology }} - {{ skTechnologies.nivel }}</li>
+                </ng-container>
+              </ul>
+            </td>
+            <td class="fixed-height">
+              <ul class="scrollable">
+                <ng-container *ngFor="let skBusSkills of empleado.skBusSkills">
+                  <li *ngIf="skBusSkills.skBusSkill != ''">{{ skBusSkills.skBusSkill }} - {{ skBusSkills.nivel }}</li>
+                </ng-container>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      }
     </table>
   </div>
 </div>

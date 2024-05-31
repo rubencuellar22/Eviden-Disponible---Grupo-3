@@ -9,22 +9,22 @@ export class Menu {
       separator: false,
       items: [
     
-        {
-          icon: 'assets/icons/heroicons/outline/id-insignia.svg',
-          label: 'GIN',
-          route: '/id-insignia',
-        },
+        // {
+        //   icon: 'assets/icons/heroicons/outline/id-insignia.svg',
+        //   label: 'GIN',
+        //   route: '/id-insignia',
+        // },
         {
           icon: 'assets/icons/heroicons/outline/user-circle.svg',
           label: 'Nombre',
           route: '/user-circle',
         },
         
-        {
-          icon: 'assets/icons/heroicons/outline/usuarios.svg',
-          label: 'Subgrupo',
-          route: '/usuarios',
-        },
+        // {
+        //   icon: 'assets/icons/heroicons/outline/usuarios.svg',
+        //   label: 'Subgrupo',
+        //   route: '/usuarios',
+        // },
         {
           icon: 'assets/icons/heroicons/outline/informacion.svg',
           label: 'Status',
@@ -35,11 +35,11 @@ export class Menu {
           label: 'Bench',
           route: '/marca-de-calendario',
         },
-        {
-          icon: 'assets/icons/heroicons/outline/lectura-de-codigo-de-barras.svg',
-          label: 'Das',
-          route: '/lectura-de-codigo-de-barras',
-        },
+        // {
+        //   icon: 'assets/icons/heroicons/outline/lectura-de-codigo-de-barras.svg',
+        //   label: 'Das',
+        //   route: '/lectura-de-codigo-de-barras',
+        // },
         {
           icon: 'assets/icons/heroicons/outline/construccion-de-casas.svg',
           label: 'Ciudad',
@@ -55,32 +55,32 @@ export class Menu {
           label: 'Jornada',
           route: '/tiempo-de-negocios',
         },
-        {
-          icon: 'assets/icons/heroicons/outline/money-cheque-editar-alt.svg',
-          label: 'GCM',
-          route: '/money-cheque-editar-alt',
-        },
+        // {
+        //   icon: 'assets/icons/heroicons/outline/money-cheque-editar-alt.svg',
+        //   label: 'GCM',
+        //   route: '/money-cheque-editar-alt',
+        // },
         {
           icon: 'assets/icons/heroicons/outline/categoria.svg',
           label: 'Categoría',
           route: '/categoria',
         },
         // NIVELGCM   SCR (+iud)   CC   CCNAME 
-        {
-          icon: 'assets/icons/heroicons/outline/dinero-calculadora.svg',
-          label: 'NivelGCM',
-          route: '/dinero-calculadora',
-        },  
+        // {
+        //   icon: 'assets/icons/heroicons/outline/dinero-calculadora.svg',
+        //   label: 'NivelGCM',
+        //   route: '/dinero-calculadora',
+        // },  
         {
           icon: 'assets/icons/heroicons/outline/mano-sosteniendo-usd.svg',
           label: 'SCR (+iud)',
           route: '/mano-sosteniendo-usd',
         },  
-        {
-          icon: 'assets/icons/heroicons/outline/codigo-de-barras-rectangulo.svg',
-          label: 'CC',
-          route: '/codigo-de-barras-rectangulo',
-        }, 
+        // {
+        //   icon: 'assets/icons/heroicons/outline/codigo-de-barras-rectangulo.svg',
+        //   label: 'CC',
+        //   route: '/codigo-de-barras-rectangulo',
+        // }, 
         {
           icon: 'assets/icons/heroicons/outline/departamento.svg',
           label: 'CCName',
@@ -96,36 +96,36 @@ export class Menu {
           label: 'N_4',
           route: '/navegador',
         },  
-        {
-          icon: 'assets/icons/heroicons/outline/departamento (1).svg',
-          label: 'Agrupacion',
-          route: '/departamento (1)',
-        },  
-        {
-          icon: 'assets/icons/heroicons/outline/computadora.svg',
-          label: 'Job Technology',
-          route: '/computadora',
-        },  
+        // {
+        //   icon: 'assets/icons/heroicons/outline/departamento (1).svg',
+        //   label: 'Agrupacion',
+        //   route: '/departamento (1)',
+        // },  
+        // {
+        //   icon: 'assets/icons/heroicons/outline/computadora.svg',
+        //   label: 'Job Technology',
+        //   route: '/computadora',
+        // },  
         {
           icon: 'assets/icons/heroicons/outline/dispositivos.svg',
           label: 'Job Technology Profile',
           route: '/dispositivos',
         },  
-        {
-          icon: 'assets/icons/heroicons/outline/mostrar-codigo.svg',
-          label: 'Skills',
-          route: '/mostrar-codigo',
-        },  
+        // {
+        //   icon: 'assets/icons/heroicons/outline/mostrar-codigo.svg',
+        //   label: 'Skills',
+        //   route: '/mostrar-codigo',
+        // },  
         {
           icon: 'assets/icons/heroicons/outline/maleta-alternativa.svg',
           label: 'Role',
           route: '/maleta-alternativa',
         },  
-        {
-          icon: 'assets/icons/heroicons/outline/comenta-alt-check.svg',
-          label: 'RLT',
-          route: '/comenta-alt-check',
-        },  
+        // {
+        //   icon: 'assets/icons/heroicons/outline/comenta-alt-check.svg',
+        //   label: 'RLT',
+        //   route: '/comenta-alt-check',
+        // },  
         {
           icon: 'assets/icons/heroicons/outline/idioma.svg',
           label: 'SkLanguage',
