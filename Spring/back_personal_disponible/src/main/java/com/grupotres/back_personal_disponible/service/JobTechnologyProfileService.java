@@ -23,6 +23,8 @@ public interface JobTechnologyProfileService {
 	
 	List<JobTechnologyProfile> selectAllJobTechnologyProfile();
 
+	List<String> findAutocompleteOptions(String profile, String query);
+
 
 
 	
