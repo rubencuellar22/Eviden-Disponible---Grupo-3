@@ -6,6 +6,8 @@ import { EmpleadoService } from 'src/app/core/services/empleado-service.service'
 import { EmpleadoStateService } from 'src/app/core/services/EmpleadosStateService/empleado-state.service';
 import { switchMap } from 'rxjs';
 import { Empleado } from 'src/app/core/models/empleado';
+import { DataService } from 'src/app/app.service.import';
+
 
 @Component({
     selector: '[nft-single-card]',
@@ -28,7 +30,7 @@ export class NftSingleCardComponent implements OnInit {
 
   empleadosEmpty: boolean = true;
 
-  constructor(private excelUploadService: ExcelUploadServiceService, private empleadoStateService: EmpleadoStateService) {}
+  constructor(private excelUploadService: ExcelUploadServiceService, private empleadoStateService: EmpleadoStateService, private dataService: DataService) {}
 
   ngOnInit(): void {
     this.empleadoStateService.showImportExcel$.subscribe((data: boolean) => {
@@ -105,6 +107,8 @@ export class NftSingleCardComponent implements OnInit {
       setTimeout(() => {
         this.toastOpenSuccess = false;
       }, 2000);
+      
+      this.dataService. changeToExport();
     },
     error: (error) => {
       console.log('Error uploading file');
