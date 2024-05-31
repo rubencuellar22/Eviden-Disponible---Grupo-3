@@ -286,11 +286,16 @@ export class FiltersComponent {
     // console.log(this.empleadosFilter.length);
 
     this.empleados = [];
+
+    this.empleadosFiltrados.emit({
+      empleados: [],
+      filter: '',
+    });
     
 
-    for(let i = 0; i < this.filterTags.length; i++){ 
-      if (this.empleadosFilter.length != 0) {
-        console.log(this.empleados);  
+    if (this.empleadosFilter.length != 0) {
+      for(let i = 0; i < this.filterTags.length; i++){ 
+        console.log(this.empleadosFilter);  
         for(let empleado of this.empleadosFilter){
           switch (this.filterTags[i]) {
             case 'status':
@@ -390,6 +395,7 @@ export class FiltersComponent {
         
       }
     }
+    console.log(this.empleados);
     this.empleadosFiltrados.emit({
       empleados: this.empleados,
       filter: this.selectedFilter,
