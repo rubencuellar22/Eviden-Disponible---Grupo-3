@@ -15,29 +15,27 @@ import { DataService } from 'src/app/app.service.import';
 })
 export class NftAuctionsTableComponent implements OnInit {
   public activeAuction: Nft[] = [];
-  check: boolean;
-  empleados: Empleado[] = []; // Inicializamos empleados como un array vacío
+  check: boolean = true;
+  empleadosMostrar: Empleado[] = [];
+  empleadosFlitrados: Empleado[] = [];
 
   
   constructor(private empleadoStateService: EmpleadoStateService, private dataService: DataService) {} // Inyectamos el servicio
 
   ngOnInit(): void {
-    // Llamamos al método del servicio para obtener los empleados
-    // this.empleadoService.getEmpleados().subscribe((data: Empleado[]) => {
-    //   this.empleados = data; // Asignamos los empleados obtenidos al arreglo empleados
-    //   console.log(this.empleados);
-    // });
-    if(this.check){
+
       this.empleadoStateService.updateEmpleados(); // Llamamos al método updateEmpleados del servicio
-      this.check = false;
+      
       this.empleadoStateService.empleado$.subscribe((data: Empleado[]) => {
-        this.empleados = data; // Asignamos los empleados obtenidos al arreglo empleados
+        this.empleadosMostrar = data; // Asignamos los empleados obtenidos al arreglo empleados
+      });
+
+      this.dataService.currentData.subscribe((data: Empleado[]) => {
+        this.empleadosFlitrados = data;
+      });
+  
+      this.dataService.currentCheck.subscribe((check: boolean) => {
+        this.check = check;
       });
     }
-    else{
-      this.dataService.currentData.subscribe(data => this.empleados = data);
-      console.log(this.empleados)
-    }
-
-  }
 }
