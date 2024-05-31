@@ -23,6 +23,7 @@ export class FiltersComponent {
   filterTags: string[] = [];
   empleados: Empleado[] = [];
   empleadosFilter: Empleado[] = [];
+  empleadosDuplicado: Empleado[] = [];
   jobTechnologyProfile: JobTechnologyProfile[] = [];
   skTechSkill: SkTechSkill[] = [];
   role : Role[] = [];
@@ -279,28 +280,15 @@ export class FiltersComponent {
       this.errorMessage = 'Please add at least one tag.';
       return;
     }
-    
-
-    // console.log(this.tags);
-    // console.log(this.filterTags);
-    // console.log(this.empleadosFilter.length);
-
-    this.empleados = [];
-
-    this.empleadosFiltrados.emit({
-      empleados: [],
-      filter: '',
-    });
-    
+   
 
     if (this.empleadosFilter.length != 0) {
-      for(let i = 0; i < this.filterTags.length; i++){ 
-        console.log(this.empleadosFilter);  
+      for(let i = 1; i < this.filterTags.length; i++){ 
         for(let empleado of this.empleadosFilter){
           switch (this.filterTags[i]) {
             case 'status':
               if(empleado.status = this.tags[i]){
-                this.empleados.push(empleado);
+                this.empleadosDuplicado.push(empleado);
               }
               break;
             case 'bench':
@@ -310,78 +298,80 @@ export class FiltersComponent {
               break;
             case 'ciudad':
               if(empleado.ciudad = this.tags[i]){
-                this.empleados.push(empleado);
+                this.empleadosDuplicado.push(empleado);
               }
               break;
             case 'jornada':
               if(empleado.jornada = parseInt(this.tags[i])){
-                this.empleados.push(empleado);
+                this.empleadosDuplicado.push(empleado);
+                console.log(empleado);
               }
               break;
             case 'grupo':
               if(empleado.grupo.grupos.includes(this.tags[i])){
-                this.empleados.push(empleado);
+                this.empleadosDuplicado.push(empleado);
+                
               }
               break;
             case 'n4':
               if(empleado.n4 = this.tags[i]){
-                this.empleados.push(empleado);
+                this.empleadosDuplicado.push(empleado);
               }
               break;
             case 'categoria':
               if(empleado.categoria = this.tags[i]){
-                this.empleados.push(empleado);
+                this.empleadosDuplicado.push(empleado);
               }
               break;
             case 'scr':
               if(empleado.scr = parseInt(this.tags[i])){
-                this.empleados.push(empleado);
+                this.empleadosDuplicado.push(empleado);
               }
               break;
             case 'job_technology':
               if(empleado.jobTechnology = this.tags[i]){
-                this.empleados.push(empleado);
+                this.empleadosDuplicado.push(empleado);
               }
               break;
             case 'sk_bus_skill':
               for(let sk_bus_skill of empleado.skBusSkills){
                 if(sk_bus_skill.skBusSkill.includes(this.tags[i])){
-                  this.empleados.push(empleado);
+                  this.empleadosDuplicado.push(empleado);
                 }
               }
               break;
             case 'sk_tecnology':
               for(let sk_technology of empleado.skTechnologies){
                 if(sk_technology.sktechnology.includes(this.tags[i])){
-                  this.empleados.push(empleado);
+                  this.empleadosDuplicado.push(empleado);
                 }
               }
               break;
             case 'sk_certif':
               for(let sk_certif of empleado.skCertifs){
                 if(sk_certif.skCertif.includes(this.tags[i])){
-                  this.empleados.push(empleado);
+                  this.empleadosDuplicado.push(empleado);
                 }
               }
               break;
             case 'sk_lenguage':
               for(let skLenguage of empleado.skLenguages){
                 if(skLenguage.sklenguage.includes(this.tags[i])){
-                  this.empleados.push(empleado);
+                  this.empleadosDuplicado.push(empleado);
                 }
               }
               break;
             case 'sk_method':
               for(let sk_method of empleado.skMethods){
                 if(sk_method.skmethod.includes(this.tags[i])){
-                  this.empleados.push(empleado);
+                  this.empleadosDuplicado.push(empleado);
                 }
               }
               break;
             case 'sk_tecskill':
               for(let skTechSkills of empleado.skTechSkills){
                 if(skTechSkills.skTechSkill.includes(this.tags[i])){
-                  this.empleados.push(empleado);
+                  this.empleadosDuplicado.push(empleado);
                 }
               }
               break;  
@@ -395,7 +385,11 @@ export class FiltersComponent {
         
       }
     }
-    console.log(this.empleados);
+
+    if(this.empleadosDuplicado.length != 0) {
+      this.empleados = this.empleadosDuplicado;
+    }
+
     this.empleadosFiltrados.emit({
       empleados: this.empleados,
       filter: this.selectedFilter,
@@ -414,5 +408,6 @@ export class FiltersComponent {
       );
     }
   }
+
 
 }
