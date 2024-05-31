@@ -1,7 +1,9 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map, startWith, debounceTime, switchMap } from 'rxjs/operators';
+import { FormControl } from '@angular/forms';
 import { Empleado } from '../classes/empleado';
-import { Grupo } from '../classes/Grupo/grupo';
 
 @Component({
   selector: 'app-filters',
@@ -11,29 +13,66 @@ import { Grupo } from '../classes/Grupo/grupo';
 export class FiltersComponent {
   newTag: string = '';
   tags: string[] = [];
-  empleados: Empleado[] = [];
-  empleadosFilter: Empleado[];
-  arrayGrupo: Grupo[] = [];
   selectedFilter: string = '';
   errorMessage: string = '';
+  filterOptions: string[] = [];
+  filteredOptions: Observable<string[]>;
+  tagControl = new FormControl();
 
   @Output() empleadosFiltrados = new EventEmitter<{
     empleados: Empleado[];
     filter: string;
   }>();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.filteredOptions = this.tagControl.valueChanges.pipe(
+      debounceTime(300),
+      switchMap(value => this.fetchFilteredOptions(value || ''))
+    );
+  }
+
+  fetchFilteredOptions(query: string): Observable<string[]> {
+    console.log('fetchFilteredOptions called with query:', query); // Mensaje de depuración
+  
+    if (!this.selectedFilter) {
+      return new Observable<string[]>(subscriber => {
+        subscriber.next([]);
+      });
+    }
+  
+    let endpoint: string;
+  
+    switch (this.selectedFilter) {
+      case 'job_technology_profile':
+        endpoint = `http://localhost:8080/empleado/jobTechnologyProfile/autocomplete`;
+        break;
+      default:
+        endpoint = `http://localhost:8080/empleado/autocomplete`;
+        break;
+    }
+  
+    return this.http.get<string[]>(endpoint, { params: { query, filterType: this.selectedFilter } });
+  }
+  
+
 
   addTag(): void {
-    if (this.newTag && !this.tags.includes(this.newTag)) {
-      this.tags.push(this.newTag);
-      this.newTag = '';
+    const newTag = this.tagControl.value;
+    if (newTag && !this.tags.includes(newTag)) {
+      this.tags.push(newTag);
+      this.tagControl.setValue('');
     }
   }
 
   removeTag(tag: string): void {
     this.tags = this.tags.filter((t) => t !== tag);
   }
+
+  selectOption(option: string): void {
+    this.tagControl.setValue(option);
+    this.filterOptions = []; // Limpiar las opciones después de seleccionar una
+  }
+  
 
   applyFilter(): void {
     this.errorMessage = '';
@@ -94,42 +133,34 @@ export class FiltersComponent {
         break;
       case 'sk_tecskill':
         endpoint = `http://localhost:8080/empleado/sk_techskills/${filterValue}`;
-        break;  
-       
-
+        break;
       default:
         console.error('Filtro no reconocido:', this.selectedFilter);
         this.errorMessage = 'Unrecognized filter selected.';
         return;
     }
 
-    console.log(this.empleadosFilter);
-
-    this.http.get<Empleado[]>(endpoint).subscribe(
-      (data: Empleado[]) => {
-        console.log(data); // Agrega console.log aquí
-        this.empleados = data;
-        this.empleadosFilter = this.empleados;
-        this.empleadosFiltrados.emit({
-          empleados: this.empleados,
-          filter: this.selectedFilter,
-        });
+    this.http.get<string[]>(endpoint).subscribe(
+      (data: string[]) => {
+        this.filterOptions = data;
+        console.log('Data fetched:', data); // Mensaje de depuración
       },
       (error) => {
-        console.error('Error al buscar empleados:', error);
-        this.errorMessage = 'Error fetching data.';
+        console.error('Error fetching filter options:', error);
       }
     );
   }
 
-  // recogerGrupo(): Grupo[] {
-  //   let data: Grupo = new Grupo;
-  //   for(let empleado of this.empleados) {
-  //       data = empleado.grupo; 
-  //       this.arrayGrupo.push(data);
-  //   }
-  //   console.log(this.arrayGrupo);
-
-  //   return this.arrayGrupo;
-  // }
+  onInputChange(): void {
+    const query = this.tagControl.value;
+    if (query && this.selectedFilter) {
+      this.fetchFilteredOptions(query).subscribe(
+        options => {
+          this.filterOptions = options;
+          console.log('Filtered options:', options); // Mensaje de depuración
+        },
+        error => console.error('Error fetching options', error)
+      );
+    }
+  }
 }

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'; 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +14,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { LanguageLevelsComponent } from './language-levels/language-levels.component';
 import { ProgrammingLevelsComponent } from './programming-levels/programming-levels.component';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ProgrammingLevelsComponent } from './programming-levels/programming-lev
     RouterModule,
     CommonModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule, 
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
