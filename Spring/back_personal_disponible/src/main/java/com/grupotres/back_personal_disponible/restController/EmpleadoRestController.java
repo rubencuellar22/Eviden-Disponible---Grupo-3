@@ -36,6 +36,23 @@ public class EmpleadoRestController {
     @Qualifier("empleadoServiceImpl")
     @Autowired
     private EmpleadoService empleadoService;
+    
+    @GetMapping("/empleados")
+    public ResponseEntity<?> findByFilters(
+            @RequestParam(required = false) String status,
+            @RequestParam(required = false) BigDecimal jornada,
+            @RequestParam(required = false) String ciudad,
+            @RequestParam(required = false) String n4,
+            @RequestParam(required = false) String categoria,
+            @RequestParam(required = false) BigDecimal scr
+    ) {
+        List<Empleado> empleados = empleadoRepository.findByFilters(status, jornada, ciudad, n4, categoria, scr);
+        List<EmpleadoDTO> empleadosDTO = new ArrayList<>();
+        for (Empleado emp : empleados) {
+            empleadosDTO.add(new EmpleadoDTO(emp));
+        }
+        return ResponseEntity.ok(empleadosDTO);
+    }
 
 
 	@GetMapping()

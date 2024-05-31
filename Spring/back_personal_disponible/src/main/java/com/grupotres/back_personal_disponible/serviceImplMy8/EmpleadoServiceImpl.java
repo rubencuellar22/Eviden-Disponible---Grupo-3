@@ -523,4 +523,10 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 	        return empleadoRepository.findByCiudadContaining(ciudad);
 	    }
 
+	@Override
+	public List<Empleado> findByFilters(String status, BigDecimal jornada, String ciudad, String n4, String categoria,
+			BigDecimal scr) {
+		return empleadoRepository.findByFilters(status, jornada, ciudad, n4, categoria, scr);
+	}
+
 }

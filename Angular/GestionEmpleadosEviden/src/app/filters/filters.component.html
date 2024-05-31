@@ -22,20 +22,24 @@
             <option value="sk_tecnology">Tecnology</option>
             <option value="sk_tecskill">Tecnology Skills</option>
             <option value="role">Role</option>
-            
-
           </select>
         </div>
 
         <div class="flex flex-wrap flex-row">
           <div class="flex flex-wrap flex-col">
-            <div>
-              <input
-                type="text"
-                [(ngModel)]="newTag"
-                id="small-input"
-                class="block p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs"
-              />
+            <input
+              type="text"
+              [formControl]="tagControl"
+              id="small-input"
+              class="block p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs"
+              (input)="onInputChange()"
+              [(ngModel)]="newTag"
+            />
+            <!-- Lista de opciones de autocompletado -->
+            <div *ngIf="filterOptions.length > 0" class="autocomplete-menu">
+              <div *ngFor="let option of filterOptions" class="autocomplete-option" (click)="selectOption(option)">
+                {{ option }}
+              </div>
             </div>
           </div>
           <div class="flex flex-col ml-3">

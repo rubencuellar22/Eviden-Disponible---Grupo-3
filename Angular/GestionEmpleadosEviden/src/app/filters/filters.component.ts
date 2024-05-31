@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { forkJoin } from 'rxjs';
 import { map, startWith, debounceTime, switchMap } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
 import { Empleado } from '../classes/empleado';
@@ -26,7 +27,7 @@ export class FiltersComponent {
   empleadosDuplicado: Empleado[] = [];
   jobTechnologyProfile: JobTechnologyProfile[] = [];
   skTechSkill: SkTechSkill[] = [];
-  role : Role[] = [];
+  role: Role[] = [];
 
   selectedFilter: string = '';
   errorMessage: string = '';
@@ -46,15 +47,15 @@ export class FiltersComponent {
 
   fetchFilteredOptions(query: string): Observable<string[]> {
     console.log('fetchFilteredOptions called with query:', query); // Mensaje de depuración
-  
+
     if (!this.selectedFilter) {
       return new Observable<string[]>(subscriber => {
         subscriber.next([]);
       });
     }
-  
+
     let endpoint: string;
-  
+
     switch (this.selectedFilter) {
       case 'job_technology_profile':
         endpoint = `http://localhost:8080/empleado/jobTechnologyProfile/autocomplete`;
@@ -63,339 +64,20 @@ export class FiltersComponent {
         endpoint = `http://localhost:8080/empleado/autocomplete`;
         break;
     }
-  
+
     return this.http.get<string[]>(endpoint, { params: { query, filterType: this.selectedFilter } });
   }
-  
-
 
   addTag(): void {
     if (this.newTag && !this.tags.includes(this.newTag)) {
       this.tags.push(this.newTag);
+      console.log(`Tag added: ${this.newTag}`); // Mensaje de depuración
       this.newTag = '';
-      this.filterTags.push(this.selectedFilter);
-      
-      const filterValue = this.tags[0];
-      let endpoint: string;
-
-      switch (this.filterTags[0]) {
-        case 'status':
-          endpoint = `http://localhost:8080/empleado/status/${filterValue}`;
-          this.getFunction(endpoint);
-          break;
-        case 'bench':
-          endpoint = `http://localhost:8080/empleado/bench/${filterValue}`;
-          this.getFunction(endpoint);
-          break;
-        case 'ciudad':
-          endpoint = `http://localhost:8080/empleado/ciudad/${filterValue}`;
-          this.getFunction(endpoint);
-          break;
-        case 'jornada':
-          endpoint = `http://localhost:8080/empleado/jornada/${filterValue}`;
-          this.getFunction(endpoint);
-          break;
-        case 'grupo':
-          endpoint = `http://localhost:8080/empleado/groups/${filterValue}`;
-          this.getFunction(endpoint);
-          break;
-        case 'n4':
-          endpoint = `http://localhost:8080/empleado/n4/${filterValue}`;
-          this.getFunction(endpoint);
-          break;
-        case 'categoria':
-          endpoint = `http://localhost:8080/empleado/categoria/${filterValue}`;
-          this.getFunction(endpoint);
-          break;
-        case 'scr':
-          endpoint = `http://localhost:8080/empleado/scr/${filterValue}`;
-          this.getFunction(endpoint);
-          break;
-        case 'job_technology':
-          endpoint = `http://localhost:8080/empleado/jobTechnologyProfile/${filterValue}`;
-          if(this.empleadosFilter.length === 0) {
-            this.http.get<JobTechnologyProfile[]>(endpoint).subscribe(
-              (data: JobTechnologyProfile[]) => {
-                this.jobTechnologyProfile = data;
-                console.log(this.jobTechnologyProfile);
-              },
-              (error) => {
-                console.error('Error al buscar empleados:', error);
-                this.errorMessage = 'Error fetching data.';
-              }
-            );
-          }
-          break;
-        case 'sk_bus_skill':
-          endpoint = `http://localhost:8080/empleado/skBussskill/${filterValue}`;
-          if(this.empleadosFilter.length === 0) {
-            this.http.get<Empleado[]>(endpoint).subscribe(
-              (data: Empleado[]) => {
-                this.empleados = data;
-                this.empleadosFilter = this.empleados;
-              },
-              (error) => {
-                console.error('Error al buscar empleados:', error);
-                this.errorMessage = 'Error fetching data.';
-              }
-            );
-          }
-          break;
-        case 'sk_tecnology':
-          endpoint = `http://localhost:8080/empleado/skTechnology/${filterValue}`;
-          if(this.empleadosFilter.length === 0) {
-            this.http.get<Empleado[]>(endpoint).subscribe(
-              (data: Empleado[]) => {
-                this.empleados = data;
-                this.empleadosFilter = this.empleados;
-              },
-              (error) => {
-                console.error('Error al buscar empleados:', error);
-                this.errorMessage = 'Error fetching data.';
-              }
-            );
-          }
-          break;
-        case 'sk_certif':
-          endpoint = `http://localhost:8080/empleado/skCertif/${filterValue}`;
-          if(this.empleadosFilter.length === 0) {
-            this.http.get<Empleado[]>(endpoint).subscribe(
-              (data: Empleado[]) => {
-                this.empleados = data;
-                this.empleadosFilter = this.empleados;
-              },
-              (error) => {
-                console.error('Error al buscar empleados:', error);
-                this.errorMessage = 'Error fetching data.';
-              }
-            );
-          }
-          break;
-        case 'sk_lenguage':
-          endpoint = `http://localhost:8080/empleado/skLenguage/${filterValue}`;
-          if(this.empleadosFilter.length === 0) {
-            this.http.get<Empleado[]>(endpoint).subscribe(
-              (data: Empleado[]) => {
-                this.empleados = data;
-                this.empleadosFilter = this.empleados;
-              },
-              (error) => {
-                console.error('Error al buscar empleados:', error);
-                this.errorMessage = 'Error fetching data.';
-              }
-            );
-          }
-          break;
-        case 'sk_method':
-          endpoint = `http://localhost:8080/empleado/skMethod/${filterValue}`;
-          if(this.empleadosFilter.length === 0) {
-            this.http.get<Empleado[]>(endpoint).subscribe(
-              (data: Empleado[]) => {
-                this.empleados = data;
-                this.empleadosFilter = this.empleados;
-              },
-              (error) => {
-                console.error('Error al buscar empleados:', error);
-                this.errorMessage = 'Error fetching data.';
-              }
-            );
-          }
-          break;
-        case 'sk_tecskill':
-          endpoint = `http://localhost:8080/empleado/skTechskill/${filterValue}`;
-          if(this.empleadosFilter.length === 0) {
-            this.http.get<Empleado[]>(endpoint).subscribe(
-              (data: Empleado[]) => {
-                this.empleados = data;
-                this.empleadosFilter = this.empleados;
-              },
-              (error) => {
-                console.error('Error al buscar empleados:', error);
-                this.errorMessage = 'Error fetching data.';
-              }
-            );
-          }
-          break;  
-
-          case 'role':
-          endpoint = `http://localhost:8080/empleado/role/${filterValue}`;
-          if(this.empleadosFilter.length === 0) {
-            this.http.get<Empleado[]>(endpoint).subscribe(
-              (data: Empleado[]) => {
-                this.empleados = data;
-                this.empleadosFilter = this.empleados;
-              },
-              (error) => {
-                console.error('Error al buscar empleados:', error);
-                this.errorMessage = 'Error fetching data.';
-              }
-            );
-          }
-          break;
-
-          
-        
-        default:
-          console.error('Filtro no reconocido:', this.selectedFilter);
-          this.errorMessage = 'Unrecognized filter selected.';
-          return;
-      }
-      
+      this.filterTags.push(this.selectedFilter); // Agrega el filtro seleccionado a la lista
     }
   }
 
-  getFunction(endpoint: string){
-    if(this.empleadosFilter.length === 0) {
-      this.http.get<Empleado[]>(endpoint).subscribe(
-        (data: Empleado[]) => {
-          this.empleados = data;
-          this.empleadosFilter = this.empleados;
-        },
-        (error) => {
-          console.error('Error al buscar empleados:', error);
-          this.errorMessage = 'Error fetching data.';
-        }
-      );
-
-    }
-  }
-
-  removeTag(tag: string): void {
-    this.tags = this.tags.filter((t) => t !== tag);
-  }
-
-  selectOption(option: string): void {
-    this.tagControl.setValue(option);
-    this.filterOptions = []; // Limpiar las opciones después de seleccionar una
-  }
-  
-
-  applyFilter(): void {
-    this.errorMessage = '';
-    if (!this.selectedFilter) {
-      this.errorMessage = 'Please select a filter.';
-      return;
-    }
-    if (this.tags.length === 0) {
-      this.errorMessage = 'Please add at least one tag.';
-      return;
-    }
-   
-
-    if (this.empleadosFilter.length != 0) {
-      for(let i = 1; i < this.filterTags.length; i++){ 
-        for(let empleado of this.empleadosFilter){
-          switch (this.filterTags[i]) {
-            case 'status':
-              if(empleado.status = this.tags[i]){
-                this.empleadosDuplicado.push(empleado);
-              }
-              break;
-            case 'bench':
-              // if(empleado.bench = this.tags[i]){
-              //   this.empleados.push(empleado);
-              // }
-              break;
-            case 'ciudad':
-              if(empleado.ciudad = this.tags[i]){
-                this.empleadosDuplicado.push(empleado);
-              }
-              break;
-            case 'jornada':
-              if(empleado.jornada = parseInt(this.tags[i])){
-                this.empleadosDuplicado.push(empleado);
-                console.log(empleado);
-              }
-              break;
-            case 'grupo':
-              if(empleado.grupo.grupos.includes(this.tags[i])){
-                this.empleadosDuplicado.push(empleado);
-                
-              }
-              break;
-            case 'n4':
-              if(empleado.n4 = this.tags[i]){
-                this.empleadosDuplicado.push(empleado);
-              }
-              break;
-            case 'categoria':
-              if(empleado.categoria = this.tags[i]){
-                this.empleadosDuplicado.push(empleado);
-              }
-              break;
-            case 'scr':
-              if(empleado.scr = parseInt(this.tags[i])){
-                this.empleadosDuplicado.push(empleado);
-              }
-              break;
-            case 'job_technology':
-              if(empleado.jobTechnology = this.tags[i]){
-                this.empleadosDuplicado.push(empleado);
-              }
-              break;
-            case 'sk_bus_skill':
-              for(let sk_bus_skill of empleado.skBusSkills){
-                if(sk_bus_skill.skBusSkill.includes(this.tags[i])){
-                  this.empleadosDuplicado.push(empleado);
-                }
-              }
-              break;
-            case 'sk_tecnology':
-              for(let sk_technology of empleado.skTechnologies){
-                if(sk_technology.sktechnology.includes(this.tags[i])){
-                  this.empleadosDuplicado.push(empleado);
-                }
-              }
-              break;
-            case 'sk_certif':
-              for(let sk_certif of empleado.skCertifs){
-                if(sk_certif.skCertif.includes(this.tags[i])){
-                  this.empleadosDuplicado.push(empleado);
-                }
-              }
-              break;
-            case 'sk_lenguage':
-              for(let skLenguage of empleado.skLenguages){
-                if(skLenguage.sklenguage.includes(this.tags[i])){
-                  this.empleadosDuplicado.push(empleado);
-                }
-              }
-              break;
-            case 'sk_method':
-              for(let sk_method of empleado.skMethods){
-                if(sk_method.skmethod.includes(this.tags[i])){
-                  this.empleadosDuplicado.push(empleado);
-                }
-              }
-              break;
-            case 'sk_tecskill':
-              for(let skTechSkills of empleado.skTechSkills){
-                if(skTechSkills.skTechSkill.includes(this.tags[i])){
-                  this.empleadosDuplicado.push(empleado);
-                }
-              }
-              break;  
-            
-            default:
-              console.error('Filtro no reconocido:', this.selectedFilter);
-              this.errorMessage = 'Unrecognized filter selected.';
-              return;
-          }
-        }
-        
-      }
-    }
-
-    if(this.empleadosDuplicado.length != 0) {
-      this.empleados = this.empleadosDuplicado;
-    }
-
-    this.empleadosFiltrados.emit({
-      empleados: this.empleados,
-      filter: this.selectedFilter,
-    });
-  }
-
+  // Método para manejar el cambio de entrada en el campo de entrada
   onInputChange(): void {
     const query = this.tagControl.value;
     if (query && this.selectedFilter) {
@@ -408,6 +90,112 @@ export class FiltersComponent {
       );
     }
   }
+
+  // Método para manejar la selección de una opción de autocompletado
+  selectOption(option: string): void {
+    this.tagControl.setValue(option);
+    this.filterOptions = []; // Limpiar las opciones después de seleccionar una
+  }
+
+  // Método para manejar la eliminación de una etiqueta de la lista de etiquetas seleccionadas
+  removeTag(tag: string): void {
+    this.tags = this.tags.filter((t) => t !== tag);
+  }
+  
+  applyFilter(): void {
+    this.errorMessage = '';
+    if (!this.filterTags.length) {
+      this.errorMessage = 'Please select at least one filter.';
+      return;
+    }
+    if (this.tags.length === 0) {
+      this.errorMessage = 'Please add at least one tag.';
+      return;
+    }
+  
+    // Construye la URL con todos los filtros seleccionados
+    let endpoint = `http://localhost:8080/empleado/empleados?`;
+  
+    for (let i = 0; i < this.filterTags.length; i++) {
+      const filterValue = this.tags[i];
+      switch (this.filterTags[i]) {
+        case 'status':
+          endpoint += `status=${filterValue}&`;
+          break;
+        case 'bench':
+          endpoint += `bench=${filterValue}&`;
+          break;
+        case 'ciudad':
+          endpoint += `ciudad=${filterValue}&`;
+          break;
+        case 'jornada':
+          endpoint += `jornada=${filterValue}&`;
+          break;
+        case 'grupo':
+          endpoint += `grupo=${filterValue}&`;
+          break;
+        case 'n4':
+          endpoint += `n4=${filterValue}&`;
+          break;
+        case 'categoria':
+          endpoint += `categoria=${filterValue}&`;
+          break;
+        case 'scr':
+          endpoint += `scr=${filterValue}&`;
+          break;
+        case 'job_technology_profile':
+          endpoint += `jobTechnologyProfile=${filterValue}&`;
+          break;
+        case 'sk_bus_skill':
+          endpoint += `skBussskill=${filterValue}&`;
+          break;
+        case 'sk_technology':
+          endpoint += `skTechnology=${filterValue}&`;
+          break;
+        case 'sk_certif':
+          endpoint += `skCertif=${filterValue}&`;
+          break;
+        case 'sk_lenguage':
+          endpoint += `skLenguage=${filterValue}&`;
+          break;
+        case 'sk_method':
+          endpoint += `skMethod=${filterValue}&`;
+          break;
+        case 'sk_tecskill':
+          endpoint += `skTechskill=${filterValue}&`;
+          break;
+        case 'role':
+          endpoint += `role=${filterValue}&`;
+          break;
+        default:
+          console.error('Unrecognized filter:', this.filterTags[i]);
+          this.errorMessage = 'Unrecognized filter selected.';
+          return;
+      }
+    }
+  
+    // Elimina el último '&' si existe
+    endpoint = endpoint.slice(0, -1);
+  
+    // Realiza la llamada HTTP con la URL construida
+    this.http.get<Empleado[]>(endpoint).subscribe(
+      (data: Empleado[]) => {
+        // Actualiza la lista de empleados filtrados
+        this.empleados = data;
+        // Emite el evento con los empleados filtrados
+        this.empleadosFiltrados.emit({
+          empleados: this.empleados,
+          filter: this.selectedFilter,
+        });
+      },
+      (error) => {
+        console.error(`Error fetching data:`, error);
+        this.errorMessage = 'Error fetching data.';
+      }
+    );
+  }
+  
+  
 
 
 }

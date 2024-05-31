@@ -15,6 +15,8 @@ public interface EmpleadoService {
 
 	void saveAllEmpleados(List<Empleado> empleados);
 
+	List<Empleado> findByFilters(String status,BigDecimal jornada,String ciudad,String n4,String categoria,BigDecimal scr);
+	
 	List<Empleado> getAllEmpleados();
 	
 	List<Empleado> findbyStatus(String status);
