@@ -35,14 +35,18 @@ export class NavbarComponent implements OnInit {
   empleadosFilter: Empleado[] = [];
   jobTechnologyProfile: JobTechnologyProfile[] = [];
   skTechSkill: SkTechSkill[] = [];
-  endpoint: string ="";
+  endpoint: string = '';
 
   @ViewChild('searchInput') searchInput: ElementRef;
-  errorMessage: string = "";
-  selectedFilter: string = "";
+  errorMessage: string = '';
+  selectedItem: string = '';
   tags: [] = [];
 
-  constructor(private menuService: MenuService, private http: HttpClient, private comunicacionMenu: ComunicacionMenuService) {}
+  constructor(
+    private menuService: MenuService,
+    private http: HttpClient,
+    private comunicacionMenu: ComunicacionMenuService,
+  ) {}
 
   ngOnInit(): void {
     this.comunicacionMenu.focusSearchBar$.subscribe(() => {
@@ -61,21 +65,20 @@ export class NavbarComponent implements OnInit {
   addFilterTag(): void {
     const trimmedFilter = this.filter.trim();
     if (trimmedFilter && !this.filterTags.includes(trimmedFilter)) {
-      this.filterTags.push(trimmedFilter);
+      this.filterTags.push(trimmedFilter);  
       this.filter = ''; // Clear the input
-      this.endpoint = localStorage.getItem("_endpoint");
-      this.selectedFilter = localStorage.getItem("_selectedFilter");
-
+      this.endpoint = localStorage.getItem('_endpoint');
+      this.selectedItem = localStorage.getItem('_selectedItem');
+      this.filterComponent.push(this.selectedItem); // Añadir selectedFilter a filterComponent
       this.endpoint += trimmedFilter;
-      console.log(this.endpoint+"/"+trimmedFilter);
+      console.log(this.endpoint + '/' + trimmedFilter);
       this.getFunction(this.endpoint);
-
+      console.log(this.filterComponent)
     }
-
   }
 
-  getFunction(endpoint: string){
-    if(this.empleadosFilter.length === 0) {
+  getFunction(endpoint: string) {
+    if (this.empleadosFilter.length === 0) {
       this.http.get<Empleado[]>(endpoint).subscribe(
         (data: Empleado[]) => {
           this.empleados = data;
@@ -85,14 +88,14 @@ export class NavbarComponent implements OnInit {
         (error) => {
           console.error('Error al buscar empleados:', error);
           this.errorMessage = 'Error fetching data.';
-        }
+        },
       );
     }
   }
 
   applyFilter(): void {
     this.errorMessage = '';
-    if (!this.selectedFilter) {
+    if (!this.selectedItem) {
       this.errorMessage = 'Please select a filter.';
       return;
     }
@@ -100,22 +103,20 @@ export class NavbarComponent implements OnInit {
       this.errorMessage = 'Please add at least one tag.';
       return;
     }
-    
 
     // console.log(this.tags);
     // console.log(this.filterTags);
     // console.log(this.empleadosFilter.length);
 
     this.empleados = [];
-    
 
-    for(let i = 0; i < this.filterTags.length; i++){ 
+    for (let i = 0; i < this.filterTags.length; i++) {
       if (this.empleadosFilter.length != 0) {
-        console.log(this.empleados);  
-        for(let empleado of this.empleadosFilter){
+        console.log(this.empleados);
+        for (let empleado of this.empleadosFilter) {
           switch (this.filterTags[i]) {
             case 'status':
-              if(empleado.status = this.tags[i]){
+              if ((empleado.status = this.tags[i])) {
                 this.empleados.push(empleado);
               }
               break;
@@ -125,100 +126,106 @@ export class NavbarComponent implements OnInit {
               // }
               break;
             case 'ciudad':
-              if(empleado.ciudad = this.tags[i]){
+              if ((empleado.ciudad = this.tags[i])) {
                 this.empleados.push(empleado);
               }
               break;
             case 'jornada':
-              if(empleado.jornada = parseInt(this.tags[i])){
+              if ((empleado.jornada = parseInt(this.tags[i]))) {
                 this.empleados.push(empleado);
               }
               break;
             case 'grupo':
-              if(empleado.grupo.grupos.includes(this.tags[i])){
+              if (empleado.grupo.grupos.includes(this.tags[i])) {
                 this.empleados.push(empleado);
               }
               break;
             case 'n4':
-              if(empleado.n4 = this.tags[i]){
+              if ((empleado.n4 = this.tags[i])) {
                 this.empleados.push(empleado);
               }
               break;
             case 'categoria':
-              if(empleado.categoria = this.tags[i]){
+              if ((empleado.categoria = this.tags[i])) {
                 this.empleados.push(empleado);
               }
               break;
             case 'scr':
-              if(empleado.scr = parseInt(this.tags[i])){
+              if ((empleado.scr = parseInt(this.tags[i]))) {
                 this.empleados.push(empleado);
               }
               break;
             case 'job_technology':
-              if(empleado.jobTechnology = this.tags[i]){
+              if ((empleado.jobTechnology = this.tags[i])) {
                 this.empleados.push(empleado);
               }
               break;
             case 'sk_bus_skill':
-              for(let sk_bus_skill of empleado.skBusSkills){
-                if(sk_bus_skill.skBusSkill.includes(this.tags[i])){
+              for (let sk_bus_skill of empleado.skBusSkills) {
+                if (sk_bus_skill.skBusSkill.includes(this.tags[i])) {
                   this.empleados.push(empleado);
                 }
               }
               break;
             case 'sk_tecnology':
-              for(let sk_technology of empleado.skTechnologies){
-                if(sk_technology.sktechnology.includes(this.tags[i])){
+              for (let sk_technology of empleado.skTechnologies) {
+                if (sk_technology.sktechnology.includes(this.tags[i])) {
                   this.empleados.push(empleado);
                 }
               }
               break;
             case 'sk_certif':
-              for(let sk_certif of empleado.skCertifs){
-                if(sk_certif.skCertif.includes(this.tags[i])){
+              for (let sk_certif of empleado.skCertifs) {
+                if (sk_certif.skCertif.includes(this.tags[i])) {
                   this.empleados.push(empleado);
                 }
               }
               break;
             case 'sk_lenguage':
-              for(let skLenguage of empleado.skLenguages){
-                if(skLenguage.sklenguage.includes(this.tags[i])){
+              for (let skLenguage of empleado.skLenguages) {
+                if (skLenguage.sklenguage.includes(this.tags[i])) {
                   this.empleados.push(empleado);
                 }
               }
               break;
             case 'sk_method':
-              for(let sk_method of empleado.skMethods){
-                if(sk_method.skmethod.includes(this.tags[i])){
+              for (let sk_method of empleado.skMethods) {
+                if (sk_method.skmethod.includes(this.tags[i])) {
                   this.empleados.push(empleado);
                 }
               }
               break;
             case 'sk_tecskill':
-              for(let skTechSkills of empleado.skTechSkills){
-                if(skTechSkills.skTechSkill.includes(this.tags[i])){
+              for (let skTechSkills of empleado.skTechSkills) {
+                if (skTechSkills.skTechSkill.includes(this.tags[i])) {
                   this.empleados.push(empleado);
                 }
               }
-              break;  
-            
+              break;
+
             default:
-              console.error('Filtro no reconocido:', this.selectedFilter);
+              console.error('Filtro no reconocido:', this.selectedItem);
               this.errorMessage = 'Unrecognized filter selected.';
               return;
           }
         }
-        
       }
     }
-   
-    localStorage.setItem("empleado", JSON.stringify(this.empleados));
-    const empleadosJSON = JSON.stringify(localStorage.getItem("empleado"));
+
+    localStorage.setItem('empleado', JSON.stringify(this.empleados));
+    const empleadosJSON = JSON.stringify(localStorage.getItem('empleado'));
     console.log(empleadosJSON);
   }
 
   removeFilterTag(tag: string): void {
-    this.filterTags = this.filterTags.filter(t => t !== tag);
+    const index = this.filterTags.indexOf(tag);
+    if (index !== -1) {
+      this.filterTags = this.filterTags.filter((t) => t !== tag);
+      this.filterComponent.splice(index, 1);
+      console.log(this.filterTags);
+      console.log(this.filterComponent);
+    }
+    //Llamar al método que haga los filtros múltiples
   }
 
   handleKeydown(event: KeyboardEvent): void {
