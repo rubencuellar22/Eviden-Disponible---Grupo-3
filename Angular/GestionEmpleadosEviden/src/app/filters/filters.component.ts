@@ -26,7 +26,7 @@ export class FiltersComponent {
   empleadosDuplicado: Empleado[] = [];
   jobTechnologyProfile: JobTechnologyProfile[] = [];
   skTechSkill: SkTechSkill[] = [];
-  role : Role[] = [];
+  role: Role[] = [];
 
   selectedFilter: string = '';
   errorMessage: string = '';
@@ -46,15 +46,15 @@ export class FiltersComponent {
 
   fetchFilteredOptions(query: string): Observable<string[]> {
     console.log('fetchFilteredOptions called with query:', query); // Mensaje de depuración
-  
+
     if (!this.selectedFilter) {
       return new Observable<string[]>(subscriber => {
         subscriber.next([]);
       });
     }
-  
+
     let endpoint: string;
-  
+
     switch (this.selectedFilter) {
       case 'job_technology_profile':
         endpoint = `http://localhost:8080/empleado/jobTechnologyProfile/autocomplete`;
@@ -63,18 +63,17 @@ export class FiltersComponent {
         endpoint = `http://localhost:8080/empleado/autocomplete`;
         break;
     }
-  
+
     return this.http.get<string[]>(endpoint, { params: { query, filterType: this.selectedFilter } });
   }
-  
-
 
   addTag(): void {
     if (this.newTag && !this.tags.includes(this.newTag)) {
       this.tags.push(this.newTag);
+      console.log(`Tag added: ${this.newTag}`); // Mensaje de depuración
       this.newTag = '';
       this.filterTags.push(this.selectedFilter);
-      
+
       const filterValue = this.tags[0];
       let endpoint: string;
 
