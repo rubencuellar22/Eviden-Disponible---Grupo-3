@@ -72,6 +72,10 @@ export class SidebarMenuComponent implements OnInit {
         case 'SCR (+iud)':
           endpoint = `http://localhost:8080/empleado/scr/`;
           break;
+          
+          case 'SkLanguage':
+          endpoint = `http://localhost:8080/empleado/skLenguage/`;
+          break;
 
         default:
           console.error('No hay un endpoint válido para el elemento seleccionado.');
