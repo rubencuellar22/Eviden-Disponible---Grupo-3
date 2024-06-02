@@ -37,12 +37,11 @@ export class NavbarComponent implements OnInit {
   empleadosFilter: Empleado[] = [];
   jobTechnologyProfile: JobTechnologyProfile[] = [];
   skTechSkill: SkTechSkill[] = [];
-  endpoint: string = '';
 
   @ViewChild('searchInput') searchInput: ElementRef;
   errorMessage: string = '';
   selectedItem: string = '';
-  tags: [] = [];
+  tags: string[] = [];
 
 
   constructor(private menuService: MenuService, private http: HttpClient, private comunicacionMenu: ComunicacionMenuService, private dataService: DataService) {}
@@ -67,13 +66,10 @@ export class NavbarComponent implements OnInit {
     if (trimmedFilter && !this.filterTags.includes(trimmedFilter)) {
       this.filterTags.push(trimmedFilter);  
       this.filter = ''; // Clear the input
-      this.endpoint = localStorage.getItem('_endpoint');
       this.selectedItem = localStorage.getItem('_selectedItem');
       this.filterComponent.push(this.selectedItem); // Añadir selectedFilter a filterComponent
-  
-      this.endpoint += trimmedFilter;
-      console.log(this.endpoint + '/' + trimmedFilter);
-      this.getFunction(this.endpoint);
+
+      this.getFunction();
     }
   }
 
@@ -88,28 +84,63 @@ export class NavbarComponent implements OnInit {
   // }
   
 
-  getFunction(endpoint: string): void {
-    if(this.empleadosFilter.length === 0) {
+  getFunction(): void {
+    let endpoint = `http://localhost:8080/empleado/empleados?`;
+  
+    for (let i = 0; i < this.filterTags.length; i++) {
+      const filterValue = this.filterTags[i];
+      console.log(filterValue)
+      console.log(this.filterComponent[i])
+      switch (this.filterComponent[i]) {
+        case 'Status':
+          endpoint += `status=${filterValue}&`;
+          break;
+        case 'Bench':
+          endpoint += `bench=${filterValue}&`;
+          break;
+        case 'Ciudad':
+          endpoint += `ciudad=${filterValue}&`;
+          break;
+        case 'Jornada':
+          endpoint += `jornada=${filterValue}&`;
+          break;
+        case 'Grupo':
+          endpoint += `grupo=${filterValue}&`;
+          break;
+        case 'N_4':
+          endpoint += `n4=${filterValue}&`;
+          break;
+        case 'Categoria':
+          endpoint += `categoria=${filterValue}&`;
+          break;
+        case 'SCR (+iud)':
+          endpoint += `scr=${filterValue}&`;
+          break;
+        default:
+          console.error('Unrecognized filter:', this.filterTags[i]);
+          this.errorMessage = 'Unrecognized filter selected.';
+          return;
+     
+      }
+      // Elimina el último '&' si existe
+      endpoint = endpoint.slice(0, -1);
+  
+      // Realiza la llamada HTTP con la URL construida
       this.http.get<Empleado[]>(endpoint).subscribe(
         (data: Empleado[]) => {
+          // Actualiza la lista de empleados filtrados
           this.empleados = data;
-          this.empleadosFilter = this.empleados;
+          console.log(endpoint)
           console.log(this.empleados);
+          // Emite el evento con los empleados filtrados
           this.dataService.changeData(this.empleados);
-
-          localStorage.setItem('empleadosFiltrados', JSON.stringify(this.empleados));
-          // Aquí llamamos a la función para actualizar la lista de empleados después de obtener los datos del servidor
-          //this.updateEmployeeList();
         },
         (error) => {
-          console.error('Error al buscar empleados:', error);
+          console.error(`Error fetching data:`, error);
           this.errorMessage = 'Error fetching data.';
-        },
+        }
       );
-    }
-  }
-
-  sendData() {
+      }
     
   }
 
@@ -232,9 +263,6 @@ export class NavbarComponent implements OnInit {
       }
     }
 
-    localStorage.setItem('empleado', JSON.stringify(this.empleados));
-    const empleadosJSON = JSON.stringify(localStorage.getItem('empleado'));
-    console.log(empleadosJSON);
   }
 
   removeFilterTag(tag: string): void {
@@ -242,8 +270,6 @@ export class NavbarComponent implements OnInit {
     if (index !== -1) {
       this.filterTags = this.filterTags.filter((t) => t !== tag);
       this.filterComponent.splice(index, 1);
-      console.log(this.filterTags);
-      console.log(this.filterComponent);
     }
     //Llamar al método que haga los filtros múltiples
   }

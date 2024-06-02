@@ -44,7 +44,6 @@ export class SidebarMenuComponent implements OnInit {
 
   applyFilter() {
     console.log('Item seleccionado: ', this.selectedItem);
-    const filterValue = this.selectedItem;
     let endpoint: string;
 
     switch (this.selectedItem) {
@@ -80,6 +79,7 @@ export class SidebarMenuComponent implements OnInit {
         default:
           console.error('No hay un endpoint válido para el elemento seleccionado.');
     }
+
     if (endpoint) {
       localStorage.setItem("_endpoint", endpoint);
       localStorage.setItem("_selectedItem", this.selectedItem);

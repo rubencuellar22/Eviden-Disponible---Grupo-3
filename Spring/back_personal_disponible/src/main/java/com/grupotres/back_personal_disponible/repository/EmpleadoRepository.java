@@ -70,4 +70,22 @@ public interface EmpleadoRepository extends JpaRepository<Empleado, Long> {
 	    //querys busquedas
 	    @Query("SELECT e FROM Empleado e WHERE e.ciudad LIKE %:ciudad%")
 	    List<Empleado> findByCiudadContaining(String ciudad);
+	    
+	    @Query("SELECT e FROM Empleado e WHERE " +
+	    	       "(:status IS NULL OR e.status = :status) AND " +
+	    	       "(:jornada IS NULL OR e.jornada = :jornada) AND " +
+	    	       "(:ciudad IS NULL OR e.ciudad = :ciudad) AND " +
+	    	       "(:n4 IS NULL OR e.n4 = :n4) AND " +
+	    	       "(:categoria IS NULL OR e.categoria = :categoria) AND " +
+	    	       "(:scr IS NULL OR e.scr BETWEEN 1 AND 100)"
+	    	)
+	    	List<Empleado> findByFilters(@Param("status") String status,
+	    	                             @Param("jornada") BigDecimal jornada,
+	    	                             @Param("ciudad") String ciudad,
+	    	                             @Param("n4") String n4,
+	    	                             @Param("categoria") String categoria,
+	    	                             @Param("scr") BigDecimal scr);
+
+	    
+
 }
