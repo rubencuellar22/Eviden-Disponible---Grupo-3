@@ -73,23 +73,10 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  // updateEmployeeList(): void {
-  //   // Filtramos los empleados según los filtros seleccionados
-  //   let filteredEmployees = this.empleadosFilter;
-  //   this.filterTags.forEach(tag => {
-  //     filteredEmployees = filteredEmployees.filter(empleado => empleado.ciudad === tag);
-  //   });
-  //   // Asignamos los empleados filtrados a la lista principal de empleados
-  //   this.empleados = filteredEmployees;
-  // }
-  
-
   getFunction(): void {
     for (let i = 0; i < this.filterTags.length; i++) {
       let endpoint = `http://localhost:8080/empleado/empleados?`;
       const filterValue = this.filterTags[i];
-      console.log(filterValue)
-      console.log(this.filterComponent[i])
       switch (this.filterComponent[i]) {
         case 'Status':
           endpoint += `status=${filterValue}&`;
@@ -141,145 +128,35 @@ export class NavbarComponent implements OnInit {
       }
       // Elimina el último '&' si existe
       endpoint = endpoint.slice(0, -1);
+
+      
   
       // Realiza la llamada HTTP con la URL construida
-      this.http.get<Empleado[]>(endpoint).subscribe(
-        (data: Empleado[]) => {
-          // Actualiza la lista de empleados filtrados
-          this.empleados = data;
-          console.log(endpoint)
-          console.log(this.empleados);
-          // Emite el evento con los empleados filtrados
-          this.dataService.changeData(this.empleados);
-        },
-        (error) => {
-          console.error(`Error fetching data:`, error);
-          this.errorMessage = 'Error fetching data.';
-        }
-      );
-      }
+      this.consultaGet(endpoint);
+    }
     
+    if(this.filterTags.length == 0){
+      endpoint = 'http://localhost:8080/empleado/';
+
+      this.consultaGet(endpoint);
+    }
   }
 
-  applyFilter(): void {
-    this.errorMessage = '';
-    if (!this.selectedItem) {
-      this.errorMessage = 'Please select a filter.';
-      return;
-    }
-    if (this.tags.length === 0) {
-      this.errorMessage = 'Please add at least one tag.';
-      return;
-    }
-
-    // console.log(this.tags);
-    // console.log(this.filterTags);
-    // console.log(this.empleadosFilter.length);
-
-    this.empleados = [];
-
-    for (let i = 0; i < this.filterTags.length; i++) {
-      if (this.empleadosFilter.length != 0) {
+  consultaGet(endpoint: string): void {
+    this.http.get<Empleado[]>(endpoint).subscribe(
+      (data: Empleado[]) => {
+        // Actualiza la lista de empleados filtrados
+        this.empleados = data;
+        console.log(endpoint);
         console.log(this.empleados);
-        for (let empleado of this.empleadosFilter) {
-          switch (this.filterTags[i]) {
-            case 'status':
-              if ((empleado.status = this.tags[i])) {
-                this.empleados.push(empleado);
-              }
-              break;
-            case 'bench':
-              // if(empleado.bench = this.tags[i]){
-              //   this.empleados.push(empleado);
-              // }
-              break;
-            case 'ciudad':
-              if ((empleado.ciudad = this.tags[i])) {
-                this.empleados.push(empleado);
-              }
-              break;
-            case 'jornada':
-              if ((empleado.jornada = parseInt(this.tags[i]))) {
-                this.empleados.push(empleado);
-              }
-              break;
-            case 'grupo':
-              if (empleado.grupo.grupos.includes(this.tags[i])) {
-                this.empleados.push(empleado);
-              }
-              break;
-            case 'n4':
-              if ((empleado.n4 = this.tags[i])) {
-                this.empleados.push(empleado);
-              }
-              break;
-            case 'categoria':
-              if ((empleado.categoria = this.tags[i])) {
-                this.empleados.push(empleado);
-              }
-              break;
-            case 'scr':
-              if ((empleado.scr = parseInt(this.tags[i]))) {
-                this.empleados.push(empleado);
-              }
-              break;
-            case 'job_technology':
-              if ((empleado.jobTechnology = this.tags[i])) {
-                this.empleados.push(empleado);
-              }
-              break;
-            case 'sk_bus_skill':
-              for (let sk_bus_skill of empleado.skBusSkills) {
-                if (sk_bus_skill.skBusSkill.includes(this.tags[i])) {
-                  this.empleados.push(empleado);
-                }
-              }
-              break;
-            case 'sk_tecnology':
-              for (let sk_technology of empleado.skTechnologies) {
-                if (sk_technology.sktechnology.includes(this.tags[i])) {
-                  this.empleados.push(empleado);
-                }
-              }
-              break;
-            case 'sk_certif':
-              for (let sk_certif of empleado.skCertifs) {
-                if (sk_certif.skCertif.includes(this.tags[i])) {
-                  this.empleados.push(empleado);
-                }
-              }
-              break;
-            case 'sk_lenguage':
-              for (let skLenguage of empleado.skLenguages) {
-                if (skLenguage.sklenguage.includes(this.tags[i])) {
-                  this.empleados.push(empleado);
-                }
-              }
-              break;
-            case 'sk_method':
-              for (let sk_method of empleado.skMethods) {
-                if (sk_method.skmethod.includes(this.tags[i])) {
-                  this.empleados.push(empleado);
-                }
-              }
-              break;
-            case 'sk_tecskill':
-              for (let skTechSkills of empleado.skTechSkills) {
-                if (skTechSkills.skTechSkill.includes(this.tags[i])) {
-                  this.empleados.push(empleado);
-                }
-              }
-              break;
-
-            default:
-              console.error('Filtro no reconocido:', this.selectedItem);
-              this.errorMessage = 'Unrecognized filter selected.';
-              return;
-          }
-        }
+        // Emite el evento con los empleados filtrados
+        this.dataService.changeData(this.empleados);
+      },
+      (error) => {
+        console.error(`Error fetching data:`, error);
+        this.errorMessage = 'Error fetching data.';
       }
-    }
-
+    );
   }
 
   removeFilterTag(tag: string): void {
@@ -289,6 +166,7 @@ export class NavbarComponent implements OnInit {
       this.filterComponent.splice(index, 1);
     }
     //Llamar al método que haga los filtros múltiples
+    this.getFunction();
   }
 
   handleKeydown(event: KeyboardEvent): void {
