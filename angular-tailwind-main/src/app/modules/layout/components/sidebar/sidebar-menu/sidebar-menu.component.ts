@@ -44,7 +44,6 @@ export class SidebarMenuComponent implements OnInit {
 
   applyFilter() {
     console.log('Item seleccionado: ', this.selectedItem);
-    const filterValue = this.selectedItem;
     let endpoint: string;
 
     switch (this.selectedItem) {
@@ -77,9 +76,30 @@ export class SidebarMenuComponent implements OnInit {
           endpoint = `http://localhost:8080/empleado/skLenguage/`;
           break;
 
+          case 'SkTechnologies':
+          endpoint = `http://localhost:8080/empleado/skTechnology/`;
+          break;
+
+          case 'SkTechSkills':
+          endpoint = `http://localhost:8080/empleado/skTechskill/`;
+          break;
+
+          case 'SkCertif':
+          endpoint = `http://localhost:8080/empleado/skCertif/`;
+          break;
+
+          case 'SkMethods':
+          endpoint = `http://localhost:8080/empleado/skMethod/`;
+          break;
+
+          case 'SkBusSkills':
+          endpoint = `http://localhost:8080/empleado/skBussskill/`;
+          break;
+
         default:
           console.error('No hay un endpoint válido para el elemento seleccionado.');
     }
+
     if (endpoint) {
       localStorage.setItem("_endpoint", endpoint);
       localStorage.setItem("_selectedItem", this.selectedItem);

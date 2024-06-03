@@ -117,6 +117,7 @@ export class FiltersComponent {
     let endpoint = `http://localhost:8080/empleado/empleados?`;
   
     for (let i = 0; i < this.filterTags.length; i++) {
+      
       const filterValue = this.tags[i];
       switch (this.filterTags[i]) {
         case 'status':
@@ -182,6 +183,7 @@ export class FiltersComponent {
       (data: Empleado[]) => {
         // Actualiza la lista de empleados filtrados
         this.empleados = data;
+        console.log(endpoint);
         // Emite el evento con los empleados filtrados
         this.empleadosFiltrados.emit({
           empleados: this.empleados,
