@@ -85,9 +85,8 @@ export class NavbarComponent implements OnInit {
   
 
   getFunction(): void {
-    let endpoint = `http://localhost:8080/empleado/empleados?`;
-  
     for (let i = 0; i < this.filterTags.length; i++) {
+      let endpoint = `http://localhost:8080/empleado/empleados?`;
       const filterValue = this.filterTags[i];
       console.log(filterValue)
       console.log(this.filterComponent[i])
@@ -116,6 +115,24 @@ export class NavbarComponent implements OnInit {
         case 'SCR (+iud)':
           endpoint += `scr=${filterValue}&`;
           break;
+          case 'SkLanguage':
+            endpoint = `http://localhost:8080/empleado/skLenguage/${filterValue}&`;
+            break;
+            case 'SkTechnologies':
+              endpoint = `http://localhost:8080/empleado/skTechnology/${filterValue}&`;
+            break;
+            case 'SkTechSkills':
+              endpoint = `http://localhost:8080/empleado/skTechskill/${filterValue}&`;
+            break;
+            case 'SkCertif':
+              endpoint = `http://localhost:8080/empleado/skCertif/${filterValue}&`;
+            break;
+            case 'SkMethods':
+              endpoint = `http://localhost:8080/empleado/skMethod/${filterValue}&`;
+            break;
+            case 'SkBusSkills':
+              endpoint = `http://localhost:8080/empleado/skBussskill/${filterValue}&`;
+            break;
         default:
           console.error('Unrecognized filter:', this.filterTags[i]);
           this.errorMessage = 'Unrecognized filter selected.';
