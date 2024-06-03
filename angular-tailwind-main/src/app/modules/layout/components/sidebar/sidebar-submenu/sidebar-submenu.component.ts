@@ -35,6 +35,8 @@ export class SidebarSubmenuComponent implements OnInit {
     this.subMenuItem = item.label;
     console.log('Subitem seleccionado: ', this.subMenuItem);
     this.comunicacionMenu.triggerFocusSearchBar(); // Enfocar la barra de búsqueda
+
+    localStorage.setItem("_selectedSubItem", this.subMenuItem);
   }
 
   applyFilter() {
