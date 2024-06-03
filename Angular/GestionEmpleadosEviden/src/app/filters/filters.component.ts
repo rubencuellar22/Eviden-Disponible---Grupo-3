@@ -1,11 +1,9 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { forkJoin } from 'rxjs';
 import { map, startWith, debounceTime, switchMap } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
 import { Empleado } from '../classes/empleado';
-import { Grupo } from '../classes/Grupo/grupo';
 import { JobTechnologyProfile } from '../classes/JobTechnologyProfile/job-technology-profile';
 import { SkTechSkill } from '../classes/SkTechSkill/sk-tech-skill';
 import { Role } from '../classes/role/role';
@@ -31,7 +29,6 @@ export class FiltersComponent {
 
   selectedFilter: string = '';
   errorMessage: string = '';
-  filtroCheck: string;
 
   @Output() empleadosFiltrados = new EventEmitter<{
     empleados: Empleado[];
@@ -77,7 +74,17 @@ export class FiltersComponent {
     }
   }
 
-  // Método para manejar el cambio de entrada en el campo de entrada
+  getEmpleadoProperties(empleado: Empleado): { key: string, value: any }[] {
+    const properties: { key: string, value: any }[] = [];
+    for (const key in empleado) {
+      if (empleado.hasOwnProperty(key)) {
+        properties.push({ key, value: empleado[key] });
+      }
+    }
+    return properties;
+  }
+  
+
   onInputChange(): void {
     const query = this.tagControl.value;
     if (query && this.selectedFilter) {
@@ -91,17 +98,16 @@ export class FiltersComponent {
     }
   }
 
-  // Método para manejar la selección de una opción de autocompletado
   selectOption(option: string): void {
     this.tagControl.setValue(option);
     this.filterOptions = []; // Limpiar las opciones después de seleccionar una
   }
 
-  // Método para manejar la eliminación de una etiqueta de la lista de etiquetas seleccionadas
   removeTag(tag: string): void {
     this.tags = this.tags.filter((t) => t !== tag);
+    this.filterTags = this.filterTags.filter((t, index) => this.tags[index] !== tag); // Asegúrate de mantener los tags y filterTags sincronizados
   }
-  
+
   applyFilter(): void {
     this.errorMessage = '';
     if (!this.filterTags.length) {
@@ -112,14 +118,22 @@ export class FiltersComponent {
       this.errorMessage = 'Please add at least one tag.';
       return;
     }
-  
-    // Construye la URL con todos los filtros seleccionados
+
+    const filterOrder = [
+      'status', 'bench', 'ciudad', 'jornada', 'grupo', 'n4', 'categoria', 'scr', 
+      'job_technology_profile', 'sk_bus_skill', 'sk_technology', 'sk_certif', 
+      'sk_lenguage', 'sk_method', 'sk_tecskill', 'role'
+    ];
+
+    const sortedFilterTags = this.filterTags.slice().sort((a, b) => filterOrder.indexOf(a) - filterOrder.indexOf(b));
+
     let endpoint = `http://localhost:8080/empleado/empleados?`;
-  
-    for (let i = 0; i < this.filterTags.length; i++) {
-      
-      const filterValue = this.tags[i];
-      switch (this.filterTags[i]) {
+
+    for (let i = 0; i < sortedFilterTags.length; i++) {
+      const filterKey = sortedFilterTags[i];
+      const filterValue = this.tags[this.filterTags.indexOf(filterKey)];
+
+      switch (filterKey) {
         case 'status':
           endpoint += `status=${filterValue}&`;
           break;
@@ -169,35 +183,31 @@ export class FiltersComponent {
           endpoint += `role=${filterValue}&`;
           break;
         default:
-          console.error('Unrecognized filter:', this.filterTags[i]);
+          console.error('Unrecognized filter:', filterKey);
           this.errorMessage = 'Unrecognized filter selected.';
           return;
       }
     }
-  
-    // Elimina el último '&' si existe
-    endpoint = endpoint.slice(0, -1);
-  
-    // Realiza la llamada HTTP con la URL construida
+
+    if (endpoint.endsWith('&')) {
+      endpoint = endpoint.slice(0, -1);
+    }
+
+    console.log('Endpoint construido:', endpoint);
+
     this.http.get<Empleado[]>(endpoint).subscribe(
       (data: Empleado[]) => {
-        // Actualiza la lista de empleados filtrados
         this.empleados = data;
-        console.log(endpoint);
-        // Emite el evento con los empleados filtrados
+        console.log('Datos recibidos:', this.empleados); // Depuración
         this.empleadosFiltrados.emit({
           empleados: this.empleados,
           filter: this.selectedFilter,
         });
       },
       (error) => {
-        console.error(`Error fetching data:`, error);
+        console.error('Error fetching data:', error);
         this.errorMessage = 'Error fetching data.';
       }
     );
   }
-  
-  
-
-
 }
