@@ -73,6 +73,7 @@ export class NavbarComponent implements OnInit {
   }
   
   getFunction(): void {
+    this.empleados = [];
     for (let i = 0; i < this.filterTags.length; i++) {
       let endpoint = `http://localhost:8080/empleado/empleados?`;
       const filterValue = this.filterTags[i];
@@ -103,50 +104,64 @@ export class NavbarComponent implements OnInit {
         case 'SCR (+iud)':
           endpoint += `scr=${filterValue}&`;
           break;
-          case 'SkLanguage':
-            endpoint = `http://localhost:8080/empleado/skLenguage/${filterValue}&`;
-            break;
-            case 'SkTechnologies':
-              endpoint = `http://localhost:8080/empleado/skTechnology/${filterValue}&`;
-            break;
-            case 'SkTechSkills':
-              endpoint = `http://localhost:8080/empleado/skTechskill/${filterValue}&`;
-            break;
-            case 'SkCertif':
-              endpoint = `http://localhost:8080/empleado/skCertif/${filterValue}&`;
-            break;
-            case 'SkMethods':
-              endpoint = `http://localhost:8080/empleado/skMethod/${filterValue}&`;
-            break;
-            case 'SkBusSkills':
-              endpoint = `http://localhost:8080/empleado/skBussskill/${filterValue}&`;
-            break;
+        case 'Job Technology Profile':
+          endpoint = `http://localhost:8080/empleado/jobTechnologyProfile/${filterValue}&`;
+          break;
+        case 'SkLanguage':
+          endpoint = `http://localhost:8080/empleado/skLenguage/${filterValue}&`;
+          break;
+        case 'SkTechnologies':
+          endpoint = `http://localhost:8080/empleado/skTechnology/${filterValue}&`;
+          break;
+        case 'SkTechSkills':
+          endpoint = `http://localhost:8080/empleado/skTechskill/${filterValue}&`;
+          break;
+        case 'SkCertif':
+          endpoint = `http://localhost:8080/empleado/skCertif/${filterValue}&`;
+          break;
+        case 'SkMethods':
+          endpoint = `http://localhost:8080/empleado/skMethod/${filterValue}&`;
+          break;
+        case 'SkBusSkills':
+          endpoint = `http://localhost:8080/empleado/skBussskill/${filterValue}&`;
+          break;
         default:
           console.error('Unrecognized filter:', this.filterTags[i]);
           this.errorMessage = 'Unrecognized filter selected.';
-          return;
+        return;
      
       }
       // Elimina el último '&' si existe
       endpoint = endpoint.slice(0, -1);
   
       // Realiza la llamada HTTP con la URL construida
-      this.http.get<Empleado[]>(endpoint).subscribe(
-        (data: Empleado[]) => {
-          // Actualiza la lista de empleados filtrados
-          this.empleados = data;
-          console.log(endpoint)
-          console.log(this.empleados);
-          // Emite el evento con los empleados filtrados
-          this.dataService.changeData(this.empleados);
-
-        },
-        (error) => {
-          console.error(`Error fetching data:`, error);
-          this.errorMessage = 'Error fetching data.';
-        }
-      );
+      this.consultaGet(endpoint);
     }
+
+    if(this.filterComponent.length == 0) {
+      let endpoint = 'http://localhost:8080/empleado/';
+
+      this.consultaGet(endpoint);
+    }
+  }
+
+  consultaGet(endpoint: string): void{
+    this.http.get<Empleado[]>(endpoint).subscribe(
+      (data: Empleado[]) => {
+        console.log(data);
+        // Actualiza la lista de empleados filtrados
+        this.empleados = data;
+        console.log(endpoint)
+        console.log(this.empleados);
+        // Emite el evento con los empleados filtrados
+        this.dataService.changeData(this.empleados);
+
+      },
+      (error) => {
+        console.error(`Error fetching data:`, error);
+        this.errorMessage = 'Error fetching data.';
+      }
+    );
   }
 
   removeFilterTag(tag: string): void {
@@ -156,6 +171,7 @@ export class NavbarComponent implements OnInit {
       this.filterComponent.splice(index, 1);
     }
     //Llamar al método que haga los filtros múltiples
+    this.getFunction();
   }
 
   handleKeydown(event: KeyboardEvent): void {

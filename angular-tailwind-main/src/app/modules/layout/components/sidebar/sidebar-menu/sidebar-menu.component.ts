@@ -72,6 +72,10 @@ export class SidebarMenuComponent implements OnInit {
           endpoint = `http://localhost:8080/empleado/scr/`;
           break;
           
+          case 'Job Technology Profile':
+            endpoint = `http://localhost:8080/empleado/jobTechnologyProfile/`;
+            break;
+
           case 'SkLanguage':
           endpoint = `http://localhost:8080/empleado/skLenguage/`;
           break;
