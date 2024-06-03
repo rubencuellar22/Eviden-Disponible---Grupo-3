@@ -11,23 +11,23 @@ import { Empleado } from 'src/app/core/models/empleado';
 import { JobTechnologyProfile } from 'src/app/core/models/JobTechnologyProfile/job-technology-profile';
 import { SkTechSkill } from 'src/app/core/models/SkTechSkill/sk-tech-skill';
 import { HttpClient } from '@angular/common/http';
-import { NftAuctionsTableComponent } from "../../../dashboard/components/nft/nft-auctions-table/nft-auctions-table.component";
+import { NftAuctionsTableComponent } from '../../../dashboard/components/nft/nft-auctions-table/nft-auctions-table.component';
 import { DataService } from 'src/app/app.service.import';
 
 @Component({
-    selector: 'app-navbar',
-    templateUrl: './navbar.component.html',
-    styleUrls: ['./navbar.component.scss'],
-    standalone: true,
-    imports: [
-        CommonModule,
-        FormsModule,
-        AngularSvgIconModule,
-        NavbarMenuComponent,
-        ProfileMenuComponent,
-        NavbarMobileComponent,
-        NftAuctionsTableComponent
-    ]
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.scss'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    AngularSvgIconModule,
+    NavbarMenuComponent,
+    ProfileMenuComponent,
+    NavbarMobileComponent,
+    NftAuctionsTableComponent,
+  ],
 })
 export class NavbarComponent implements OnInit {
   filter: string = '';
@@ -40,11 +40,15 @@ export class NavbarComponent implements OnInit {
   @ViewChild('searchInput') searchInput: ElementRef;
   errorMessage: string = '';
   selectedItem: string = '';
+  selectedSubItem: string = '';
   tags: string[] = [];
 
-
-  constructor(private menuService: MenuService, private http: HttpClient, private comunicacionMenu: ComunicacionMenuService, private dataService: DataService) {}
-
+  constructor(
+    private menuService: MenuService,
+    private http: HttpClient,
+    private comunicacionMenu: ComunicacionMenuService,
+    private dataService: DataService,
+  ) {}
 
   ngOnInit(): void {
     this.comunicacionMenu.focusSearchBar$.subscribe(() => {
@@ -63,21 +67,22 @@ export class NavbarComponent implements OnInit {
   addFilterTag(): void {
     const trimmedFilter = this.filter.trim();
     if (trimmedFilter && !this.filterTags.includes(trimmedFilter)) {
-      this.filterTags.push(trimmedFilter);  
+      this.filterTags.push(trimmedFilter);
       this.filter = ''; // Clear the input
       this.selectedItem = localStorage.getItem('_selectedItem');
+      this.selectedSubItem = localStorage.getItem('_selectedSubItem');
       this.filterComponent.push(this.selectedItem); // Añadir selectedFilter a filterComponent
 
       this.getFunction();
     }
   }
-  
+
   getFunction(): void {
     for (let i = 0; i < this.filterTags.length; i++) {
       let endpoint = `http://localhost:8080/empleado/empleados?`;
       const filterValue = this.filterTags[i];
-      console.log(filterValue)
-      console.log(this.filterComponent[i])
+      console.log(filterValue);
+      console.log(this.filterComponent[i]);
       switch (this.filterComponent[i]) {
         case 'Status':
           endpoint += `status=${filterValue}&`;
@@ -103,48 +108,47 @@ export class NavbarComponent implements OnInit {
         case 'SCR (+iud)':
           endpoint += `scr=${filterValue}&`;
           break;
-          case 'SkLanguage':
-            endpoint = `http://localhost:8080/empleado/skLenguage/${filterValue}&`;
-            break;
-            case 'SkTechnologies':
-              endpoint = `http://localhost:8080/empleado/skTechnology/${filterValue}&`;
-            break;
-            case 'SkTechSkills':
-              endpoint = `http://localhost:8080/empleado/skTechskill/${filterValue}&`;
-            break;
-            case 'SkCertif':
-              endpoint = `http://localhost:8080/empleado/skCertif/${filterValue}&`;
-            break;
-            case 'SkMethods':
-              endpoint = `http://localhost:8080/empleado/skMethod/${filterValue}&`;
-            break;
-            case 'SkBusSkills':
-              endpoint = `http://localhost:8080/empleado/skBussskill/${filterValue}&`;
-            break;
+        case 'SkLanguage':
+          endpoint = `http://localhost:8080/empleado/skLenguage/${filterValue}/${this.selectedSubItem}&`;
+          console.log("ENDPOINT: "+endpoint);
+          break;
+        case 'SkTechnologies':
+          endpoint = `http://localhost:8080/empleado/skTechnology/${filterValue}&`;
+          break;
+        case 'SkTechSkills':
+          endpoint = `http://localhost:8080/empleado/skTechskill/${filterValue}&`;
+          break;
+        case 'SkCertif':
+          endpoint = `http://localhost:8080/empleado/skCertif/${filterValue}&`;
+          break;
+        case 'SkMethods':
+          endpoint = `http://localhost:8080/empleado/skMethod/${filterValue}&`;
+          break;
+        case 'SkBusSkills':
+          endpoint = `http://localhost:8080/empleado/skBussskill/${filterValue}&`;
+          break;
         default:
           console.error('Unrecognized filter:', this.filterTags[i]);
           this.errorMessage = 'Unrecognized filter selected.';
           return;
-     
       }
       // Elimina el último '&' si existe
       endpoint = endpoint.slice(0, -1);
-  
+
       // Realiza la llamada HTTP con la URL construida
       this.http.get<Empleado[]>(endpoint).subscribe(
         (data: Empleado[]) => {
           // Actualiza la lista de empleados filtrados
           this.empleados = data;
-          console.log(endpoint)
+          console.log(endpoint);
           console.log(this.empleados);
           // Emite el evento con los empleados filtrados
           this.dataService.changeData(this.empleados);
-
         },
         (error) => {
           console.error(`Error fetching data:`, error);
           this.errorMessage = 'Error fetching data.';
-        }
+        },
       );
     }
   }
