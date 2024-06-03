@@ -97,7 +97,7 @@ export class NavbarComponent implements OnInit {
         case 'N_4':
           endpoint += `n4=${filterValue}&`;
           break;
-        case 'Categoria':
+        case 'Categoría':
           endpoint += `categoria=${filterValue}&`;
           break;
         case 'SCR (+iud)':

@@ -65,7 +65,7 @@ export class SidebarMenuComponent implements OnInit {
         case 'N_4':
           endpoint = `http://localhost:8080/empleado/n4/`;
           break;
-        case 'Categoria':
+        case 'Categoría':
           endpoint = `http://localhost:8080/empleado/categoria/`;
           break;
         case 'SCR (+iud)':
