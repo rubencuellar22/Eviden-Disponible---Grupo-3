@@ -73,8 +73,13 @@ export class NavbarComponent implements OnInit {
       this.selectedItem = localStorage.getItem('_selectedItem');
       this.selectedSubItem = localStorage.getItem('_selectedSubItem');
       this.filterComponent.push(this.selectedItem);
-      this.filterComponentSubItem.push(this.selectedSubItem);
-
+      if(this.selectedSubItem.length == 0){
+        this.filterComponentSubItem.push('vacio');
+      }
+      else{
+        this.filterComponentSubItem.push(this.selectedSubItem);
+      }
+      
       this.getFunction();
     }
   }
@@ -86,6 +91,7 @@ export class NavbarComponent implements OnInit {
       const filterValue = this.filterTags[i];
       console.log(filterValue);
       console.log(this.filterComponent[i]);
+      console.log(this.filterComponentSubItem[i]);
       switch (this.filterComponent[i]) {
         case 'Status':
           endpoint += `status=${filterValue}&`;
@@ -155,7 +161,7 @@ export class NavbarComponent implements OnInit {
       (data: Empleado[]) => {
         // Actualiza la lista de empleados filtrados
         this.empleados = data;
-        console.log(endpoint)
+        console.log(endpoint);
         console.log(this.empleados);
         // Emite el evento con los empleados filtrados
         this.dataService.changeData(this.empleados);
@@ -173,6 +179,7 @@ export class NavbarComponent implements OnInit {
     if (index !== -1) {
       this.filterTags = this.filterTags.filter((t) => t !== tag);
       this.filterComponent.splice(index, 1);
+      this.filterComponentSubItem.splice(index, 1);
     }
     //Llamar al método que haga los filtros múltiples
     this.getFunction();

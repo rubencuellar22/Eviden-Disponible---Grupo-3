@@ -44,6 +44,8 @@ export class SidebarMenuComponent implements OnInit {
 
   applyFilter() {
     console.log('Item seleccionado: ', this.selectedItem);
+    localStorage.setItem("_endpoint", '');
+    localStorage.setItem("_selectedItem", '');
     let endpoint: string;
 
     switch (this.selectedItem) {
