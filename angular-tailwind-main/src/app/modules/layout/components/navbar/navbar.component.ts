@@ -33,6 +33,7 @@ export class NavbarComponent implements OnInit {
   filter: string = '';
   filterTags: string[] = [];
   filterComponent: string[] = [];
+  filterComponentSubItem: string[] = [];
   empleados: Empleado[] = [];
   jobTechnologyProfile: JobTechnologyProfile[] = [];
   skTechSkill: SkTechSkill[] = [];
@@ -71,7 +72,8 @@ export class NavbarComponent implements OnInit {
       this.filter = ''; // Clear the input
       this.selectedItem = localStorage.getItem('_selectedItem');
       this.selectedSubItem = localStorage.getItem('_selectedSubItem');
-      this.filterComponent.push(this.selectedItem); // Añadir selectedFilter a filterComponent
+      this.filterComponent.push(this.selectedItem);
+      this.filterComponentSubItem.push(this.selectedSubItem);
 
       this.getFunction();
     }
@@ -151,7 +153,6 @@ export class NavbarComponent implements OnInit {
   consultaGet(endpoint: string): void{
     this.http.get<Empleado[]>(endpoint).subscribe(
       (data: Empleado[]) => {
-        console.log(data);
         // Actualiza la lista de empleados filtrados
         this.empleados = data;
         console.log(endpoint)
