@@ -114,19 +114,19 @@ export class NavbarComponent implements OnInit {
           console.log('ENDPOINT: ' + endpoint);
           break;
         case 'SkTechnologies':
-          endpoint = `http://localhost:8080/empleado/skTechnology/${filterValue}/${this.selectedSubItem}&`;
+          endpoint = `http://localhost:8080/empleado/skTechnology/${filterValue}&`;
           break;
         case 'SkTechSkills':
-          endpoint = `http://localhost:8080/empleado/skTechskill/${filterValue}/${this.selectedSubItem}&`;
+          endpoint = `http://localhost:8080/empleado/skTechskill/${filterValue}&`;
           break;
         case 'SkCertif':
-          endpoint = `http://localhost:8080/empleado/skCertif/${filterValue}/${this.selectedSubItem}&`;
+          endpoint = `http://localhost:8080/empleado/skCertif/${filterValue}&`;
           break;
         case 'SkMethods':
-          endpoint = `http://localhost:8080/empleado/skMethod/${filterValue}/${this.selectedSubItem}&`;
+          endpoint = `http://localhost:8080/empleado/skMethod/${filterValue}&`;
           break;
         case 'SkBusSkills':
-          endpoint = `http://localhost:8080/empleado/skBussskill/${filterValue}/${this.selectedSubItem}&`;
+          endpoint = `http://localhost:8080/empleado/skBussskill/${filterValue}&`;
           break;
         default:
           console.error('Unrecognized filter:', this.filterTags[i]);

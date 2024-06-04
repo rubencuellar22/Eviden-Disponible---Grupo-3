@@ -36,11 +36,7 @@ public class ExcelToCsvTasklet implements Tasklet {
                         String cellValue = " ";
 
                         cellValue = getCellValue(cell);
-                        cellValue = cellValue.replace(",", "-");
-                        if (cell.getColumnIndex() == 26) {
-                        	cellValue = cellValue.replace("/", "-");
-                        }
-                        
+                        cellValue = cellValue.replace(",", "/");
                         if (firstCell) {
                             writer.print((cellValue));
                         } else {
