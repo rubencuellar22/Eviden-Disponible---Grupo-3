@@ -13,7 +13,6 @@ import { SkTechSkill } from 'src/app/core/models/SkTechSkill/sk-tech-skill';
 import { HttpClient } from '@angular/common/http';
 import { NftAuctionsTableComponent } from '../../../dashboard/components/nft/nft-auctions-table/nft-auctions-table.component';
 import { DataService } from 'src/app/app.service.import';
-import { map } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -111,7 +110,7 @@ export class NavbarComponent implements OnInit {
           break;
         case 'SkLanguage':
           endpoint = `http://localhost:8080/empleado/skLenguage/${filterValue}/${this.selectedSubItem}&`;
-          console.log('ENDPOINT: ' + endpoint);
+          console.log("ENDPOINT: "+endpoint);
           break;
         case 'SkTechnologies':
           endpoint = `http://localhost:8080/empleado/skTechnology/${filterValue}/${this.selectedSubItem}&`;
@@ -167,99 +166,5 @@ export class NavbarComponent implements OnInit {
     if (event.key === 'Enter') {
       this.addFilterTag();
     }
-  }
-
-  //AUTOCOMPLETADO
-
-  // autocomplete(query: string) {
-  //   const endpoint = 'http://localhost:8080/empleado/autocomplete';
-  //   const params = { query, filterType: 'ciudad' }; // Modifica filterType según sea necesario
-  //   return this.http.get<string[]>(endpoint, { params }).pipe(
-  //     map((data: string[]) => {
-  //       // Filtrar las sugerencias basadas en la entrada del usuario
-  //       return data.filter((suggestion) => suggestion.toLowerCase().startsWith(query.toLowerCase()));
-  //     }),
-  //   );
-  // }
-  // suggestions: string[] = [];
-
-  // onFilterChange() {
-  //   // Llama al método de autocompletar cuando cambie el valor del filtro
-  //   this.autocomplete(this.filter).subscribe(
-  //     (data: string[]) => {
-  //       this.suggestions = data;
-  //     },
-  //     (error) => {
-  //       console.error('Error fetching autocomplete suggestions:', error);
-  //     },
-  //   );
-  // }
-
-  autocomplete(query: string) {
-    this.selectedItem = localStorage.getItem('_selectedItem').toLowerCase(); // Convertir a minúsculas
-    let endpoint: string;
-    let params: any = { query }; // Inicializar los parámetros con el query
-  
-    // Conversión específica para algunos valores de this.selectedItem
-    switch (this.selectedItem) {
-      case 'n_4':
-        params.filterType = 'n4'; // Agregar el tipo de filtro
-        break;
-      case 'categoría':
-        params.filterType = 'categoria'; // Agregar el tipo de filtro
-        break;
-      case 'scr (+iud)':
-        params.filterType = 'scr'; // Agregar el tipo de filtro
-        break;
-      case 'skcertif':
-        endpoint = 'http://localhost:8080/empleado/skCertif/autocomplete';
-        break;
-      default:
-        endpoint = 'http://localhost:8080/empleado/autocomplete';
-        params.filterType = this.selectedItem; // Agregar el tipo de filtro
-        break;
-    }
-  
-    if (!endpoint) {
-      // Si no hay un endpoint específico, usar el endpoint genérico
-      endpoint = 'http://localhost:8080/empleado/autocomplete';
-    }
-  
-    console.log("Endpoint completo:", endpoint); // Agregamos el console.log aquí
-  
-    console.log(params);
-    const request = this.http.get<string[]>(endpoint, { params }).pipe(
-      map((data: string[]) => {
-        // Filtrar las sugerencias basadas en la entrada del usuario
-        return data.filter(suggestion => typeof suggestion === 'string' && suggestion.toLowerCase().startsWith(query.toLowerCase()));
-      })
-    );
-  
-    console.log("Request:", request); // Agregamos el console.log para el request
-  
-    return request;
-  }
-  
-  
-  
-  
-
-  suggestions: string[] = [];
-
-  onFilterChange() {
-    // Llama al método de autocompletar cuando cambie el valor del filtro
-    this.autocomplete(this.filter).subscribe(
-      (data: string[]) => {
-        this.suggestions = data;
-      },
-      (error) => {
-        console.error('Error fetching autocomplete suggestions:', error);
-      },
-    );
-  }
-
-  selectSuggestion(suggestion: string) {
-    this.filter = suggestion;
-    this.suggestions = []; // Limpiar la lista de sugerencias
   }
 }
