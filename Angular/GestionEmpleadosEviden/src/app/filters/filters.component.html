@@ -14,13 +14,13 @@
             <option value="n4">N4</option>
             <option value="categoria">Categoria</option>
             <option value="scr">SCR</option>
-            <option value="job_technology">Job Tecnology Profile</option>
+            <option value="job_technology_profile">Job Tecnology Profile</option>
             <option value="sk_bus_skill">Business Skill</option>
             <option value="sk_certif">Certificate</option>
             <option value="sk_lenguage">Language</option>
             <option value="sk_method">Method</option>
-            <option value="sk_tecnology">Tecnology</option>
-            <option value="sk_tecskill">Tecnology Skills</option>
+            <option value="sk_technology">Technology</option>
+            <option value="sk_tecskill">Technology Skills</option>
             <option value="role">Role</option>
           </select>
         </div>
@@ -85,3 +85,73 @@
     </div>
   </div>
 </section>
+
+<h2 class="titulo text-2xl mb-2 text-center font-bold">List of Employees</h2>
+<section *ngIf="empleados && empleados.length > 0" class="mainbox flex-1 ml-10 mr-10 bg-white relative mt-4" style="overflow-y: auto;">
+  <ul class="mt-2">
+    <li *ngFor="let empleado of empleados" class="mb-2 p-2 border rounded">
+      <div><span>Gin: {{ empleado.gin }}</span></div>
+      <div><span>Nombre: {{ empleado.name }}</span></div>
+      <div><span>Subgroup: {{ empleado.subgroup }}</span></div>
+      <div><span>Status: {{ empleado.status }}</span></div>
+      <div><span>Bench: {{ empleado.bench.toString().split('T')[0] }}</span></div>
+      <div><span>Das: {{ empleado.das }}</span></div>
+      <div><span>Ciudad: {{ empleado.ciudad }}</span></div>
+      <div><span>Agrupación: {{ empleado.agrupacion }}</span></div>
+      <div><span>Line Manager: {{ empleado.lineManager }}</span></div>
+      <div><span>Jornada: {{ empleado.jornada }}</span></div>
+      <div><span>GCM: {{ empleado.gcm }}</span></div>
+      <div><span>Categoria: {{ empleado.categoria }}</span></div>
+      <div><span>Nivel GCM: {{ empleado.nivelgcm }}</span></div>
+      <div><span>SCR: {{ empleado.scr }}</span></div>
+      <div><span>Grupo: {{ empleado.grupo.grupos }}</span></div>
+      <div><span>N4: {{ empleado.n4 }}</span></div>
+      <div><span>Job Technology: {{ empleado.jobTechnology }}</span></div>
+      <div><span>Skills: {{ empleado.skills }}</span></div>
+      <div *ngIf="empleado.role.role != ''"><span>Role: {{ empleado.role.role }} - {{ empleado.role.nivel }}</span></div>
+      <div><span>RLT: {{ empleado.rlt }}</span></div>
+      <div>
+        <span>Sk Languages:</span>
+        <ul *ngFor="let skLenguages of empleado.skLenguages">
+          <li *ngIf="skLenguages.sklenguage != ''">{{ skLenguages.sklenguage }} - {{ skLenguages.nivel }}</li>
+        </ul>
+      </div>
+      <div>
+        <span>Sk Methods:</span>
+        <ul *ngFor="let skMethods of empleado.skMethods">
+          <li *ngIf="skMethods.skmethod != ''">{{ skMethods.skmethod }} - {{ skMethods.nivel }}</li>
+        </ul>
+      </div>
+      <div>
+        <span>Sk Tech Skills:</span>
+        <ul *ngFor="let skTechSkills of empleado.skTechSkills">
+          <li *ngIf="skTechSkills.skTechSkill != ''">{{ skTechSkills.skTechSkill }} - {{ skTechSkills.nivel }}</li>
+        </ul>
+      </div>
+      <div>
+        <span>Sk Certifs:</span>
+        <ul *ngFor="let skCertifs of empleado.skCertifs">
+          <li *ngIf="skCertifs.skCertif != ''">{{ skCertifs.skCertif }} - {{ skCertifs.external }}</li>
+        </ul>
+      </div>
+      <div>
+        <span>Sk Technologies:</span>
+        <ul *ngFor="let skTechnologies of empleado.skTechnologies">
+          <li *ngIf="skTechnologies.sktechnology != ''">{{ skTechnologies.sktechnology }} - {{ skTechnologies.nivel }}</li>
+        </ul>
+      </div>
+      <div>
+        <span>Sk Bus Skills:</span>
+        <ul *ngFor="let skBusSkills of empleado.skBusSkills">
+          <li *ngIf="skBusSkills.skBusSkill != ''">{{ skBusSkills.skBusSkill }} - {{ skBusSkills.nivel }}</li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+</section>
+<div *ngIf="empleados && empleados.length === 0" class="mt-4 ml-10 mr-10">
+  No employees found.
+</div>
+
+
+

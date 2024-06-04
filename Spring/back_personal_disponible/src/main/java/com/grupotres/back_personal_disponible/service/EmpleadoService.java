@@ -1,6 +1,7 @@
 package com.grupotres.back_personal_disponible.service;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 import com.grupotres.back_personal_disponible.model.dto.EmpleadoDTO;
@@ -15,13 +16,13 @@ public interface EmpleadoService {
 
 	void saveAllEmpleados(List<Empleado> empleados);
 
-	List<Empleado> findByFilters(String status,BigDecimal jornada,String ciudad,String n4,String categoria,BigDecimal scr);
+	List<Empleado> findByFilters(String status, Date bench, BigDecimal jornada,String ciudad,String n4,String categoria,BigDecimal scr);
 	
 	List<Empleado> getAllEmpleados();
 	
 	List<Empleado> findbyStatus(String status);
 
-	// List<Empleado> findByBench(String bench);
+	List<Empleado> findByBench (Date bench);
 
 	List<Empleado> findByCiudad(String ciudad);
 
@@ -39,6 +40,7 @@ public interface EmpleadoService {
 
     
 	List<EmpleadoDTO> getEmpleadosByStatusFromList(List<EmpleadoDTO> empleadosDTO, String status);
+	List<EmpleadoDTO> getEmpleadosBenchFromList(List<EmpleadoDTO> empleadosDTO, Date bench);
     List<EmpleadoDTO> getEmpleadosByCiudadFromList(List<EmpleadoDTO> empleadosDTO, String ciudad);
     List<EmpleadoDTO> getEmpleadosByJornadaFromList(List<EmpleadoDTO> empleadosDTO, String jornada);
 	List<EmpleadoDTO> getEmpleadosByGroupsFromList(List<EmpleadoDTO> empleadosDTO, String groups);
@@ -73,6 +75,8 @@ public interface EmpleadoService {
     void deleteAllEmpleados();
 
     List<Empleado> findByCiudadContaining(String ciudad);
+
+	
 }
 
 

@@ -9,21 +9,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.grupotres.back_personal_disponible.model.dto.EmpleadoDTO;
-import com.grupotres.back_personal_disponible.model.dto.SkLenguageDTO;
-
-
 import com.grupotres.back_personal_disponible.service.EmpleadoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.grupotres.back_personal_disponible.model.Empleado;
-import com.grupotres.back_personal_disponible.model.SkLenguage;
 import com.grupotres.back_personal_disponible.repository.EmpleadoRepository;
-import com.grupotres.back_personal_disponible.repository.SkLenguageRepository;
-import com.grupotres.back_personal_disponible.service.SkLenguageService;
 
 @RestController
 @RequestMapping("/empleado/")
@@ -40,13 +33,14 @@ public class EmpleadoRestController {
     @GetMapping("/empleados")
     public ResponseEntity<?> findByFilters(
             @RequestParam(required = false) String status,
+            @RequestParam(required = false) Date bench,
             @RequestParam(required = false) BigDecimal jornada,
             @RequestParam(required = false) String ciudad,
             @RequestParam(required = false) String n4,
             @RequestParam(required = false) String categoria,
             @RequestParam(required = false) BigDecimal scr
     ) {
-        List<Empleado> empleados = empleadoRepository.findByFilters(status, jornada, ciudad, n4, categoria, scr);
+        List<Empleado> empleados = empleadoRepository.findByFilters(status, bench, jornada, ciudad, n4, categoria, scr);
         List<EmpleadoDTO> empleadosDTO = new ArrayList<>();
         for (Empleado emp : empleados) {
             empleadosDTO.add(new EmpleadoDTO(emp));
@@ -87,33 +81,29 @@ public class EmpleadoRestController {
 	        return ResponseEntity.ok(statuses);
 	    }
 	
-	 @GetMapping("/bench/{bench}")
-	 public ResponseEntity<?> findByBench(@PathVariable String bench) {
-	     try {
-	         // Define el formato de fecha y hora esperado en la variable de la URL, incluyendo microsegundos
-	         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSSSS");
-	         // Parsea la cadena a un objeto Date
-	         Date benchDate = dateFormat.parse(bench);
-
-	         // Depuración: imprime la fecha parseada
-	         System.out.println("Fecha bench parseada: " + benchDate);
-
-	         // Encuentra empleados por la fecha bench
-	         List<Empleado> empleados = empleadoRepository.findByBench(benchDate);
-
-	         // Depuración: imprime el tamaño del resultado
-	         System.out.println("Número de empleados encontrados: " + empleados.size());
-
-	         List<EmpleadoDTO> empleadosDTO = new ArrayList<>();
-	         for (Empleado emp : empleados) {
-	             empleadosDTO.add(new EmpleadoDTO(emp));
-	         }
-	         return ResponseEntity.ok(empleadosDTO);
-	     } catch (ParseException e) {
-	         e.printStackTrace();
-	         return ResponseEntity.badRequest().body("Formato de fecha no válido. Por favor, utiliza yyyy-MM-dd HH:mm:ss.SSSSSS.");
-	     }
-	 }
+	 @GetMapping("bench/{bench}")
+	    public ResponseEntity<?> findByBench(@PathVariable String bench) {
+	        try {
+	            // Define the date format expected in the path variable
+	            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	            // Parse the string to a Date object
+	            Date benchDate = dateFormat.parse(bench);
+	 
+	      
+	 
+	       
+	            List<Empleado> empleados = empleadoService.findByBench(benchDate);
+	            
+	            List<EmpleadoDTO> empleadosDTO = new ArrayList<>();
+	            for (Empleado emp : empleados) {
+	                empleadosDTO.add(new EmpleadoDTO(emp));
+	            }
+	            return ResponseEntity.ok(empleadosDTO);
+	        } catch (ParseException e) {
+	            e.printStackTrace();
+	            return ResponseEntity.badRequest().body("Invalid date format. Please use yyyy-MM-dd.");
+	        }
+	    }
 
 
 

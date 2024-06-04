@@ -34,6 +34,7 @@ export class NavbarComponent implements OnInit {
   filter: string = '';
   filterTags: string[] = [];
   filterComponent: string[] = [];
+  filterComponentSubItem: string[] = [];
   empleados: Empleado[] = [];
   jobTechnologyProfile: JobTechnologyProfile[] = [];
   skTechSkill: SkTechSkill[] = [];
@@ -72,18 +73,26 @@ export class NavbarComponent implements OnInit {
       this.filter = ''; // Clear the input
       this.selectedItem = localStorage.getItem('_selectedItem');
       this.selectedSubItem = localStorage.getItem('_selectedSubItem');
-      this.filterComponent.push(this.selectedItem); // Añadir selectedFilter a filterComponent
-
+      this.filterComponent.push(this.selectedItem);
+      if(this.selectedSubItem.length == 0){
+        this.filterComponentSubItem.push('vacio');
+      }
+      else{
+        this.filterComponentSubItem.push(this.selectedSubItem);
+      }
+      
       this.getFunction();
     }
   }
 
   getFunction(): void {
+    this.empleados = [];
     for (let i = 0; i < this.filterTags.length; i++) {
       let endpoint = `http://localhost:8080/empleado/empleados?`;
       const filterValue = this.filterTags[i];
       console.log(filterValue);
       console.log(this.filterComponent[i]);
+      console.log(this.filterComponentSubItem[i]);
       switch (this.filterComponent[i]) {
         case 'Status':
           endpoint += `status=${filterValue}&`;
@@ -103,7 +112,7 @@ export class NavbarComponent implements OnInit {
         case 'N_4':
           endpoint += `n4=${filterValue}&`;
           break;
-        case 'Categoria':
+        case 'Categoría':
           endpoint += `categoria=${filterValue}&`;
           break;
         case 'SCR (+iud)':
@@ -131,27 +140,39 @@ export class NavbarComponent implements OnInit {
         default:
           console.error('Unrecognized filter:', this.filterTags[i]);
           this.errorMessage = 'Unrecognized filter selected.';
-          return;
+        return;
       }
       // Elimina el último '&' si existe
       endpoint = endpoint.slice(0, -1);
 
       // Realiza la llamada HTTP con la URL construida
-      this.http.get<Empleado[]>(endpoint).subscribe(
-        (data: Empleado[]) => {
-          // Actualiza la lista de empleados filtrados
-          this.empleados = data;
-          console.log(endpoint);
-          console.log(this.empleados);
-          // Emite el evento con los empleados filtrados
-          this.dataService.changeData(this.empleados);
-        },
-        (error) => {
-          console.error(`Error fetching data:`, error);
-          this.errorMessage = 'Error fetching data.';
-        },
-      );
+      this.consultaGet(endpoint);
+
     }
+
+    if(this.filterComponent.length == 0) {
+      let endpoint = 'http://localhost:8080/empleado/';
+
+      this.consultaGet(endpoint);
+    }
+  }
+
+  consultaGet(endpoint: string): void{
+    this.http.get<Empleado[]>(endpoint).subscribe(
+      (data: Empleado[]) => {
+        // Actualiza la lista de empleados filtrados
+        this.empleados = data;
+        console.log(endpoint);
+        console.log(this.empleados);
+        // Emite el evento con los empleados filtrados
+        this.dataService.changeData(this.empleados);
+
+      },
+      (error) => {
+        console.error(`Error fetching data:`, error);
+        this.errorMessage = 'Error fetching data.';
+      }
+    );
   }
 
   removeFilterTag(tag: string): void {
@@ -159,8 +180,10 @@ export class NavbarComponent implements OnInit {
     if (index !== -1) {
       this.filterTags = this.filterTags.filter((t) => t !== tag);
       this.filterComponent.splice(index, 1);
+      this.filterComponentSubItem.splice(index, 1);
     }
     //Llamar al método que haga los filtros múltiples
+    this.getFunction();
   }
 
   handleKeydown(event: KeyboardEvent): void {

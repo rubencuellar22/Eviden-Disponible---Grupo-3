@@ -1,3 +1,7 @@
+.titulo {
+    /*color: #ff6d43;*/
+    color: #ececed;
+  }
 section{
     background-color: #ececed;
 }
@@ -54,3 +58,4 @@ input#search-bar{
     }    
     }
 }
+
