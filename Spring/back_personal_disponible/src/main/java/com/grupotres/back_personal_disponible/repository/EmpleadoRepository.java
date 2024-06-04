@@ -16,8 +16,8 @@ public interface EmpleadoRepository extends JpaRepository<Empleado, Long> {
 	("SELECT e from Empleado e WHERE e.status=?1")
 	List<Empleado> findbyStatus(String status);
 	
-	 @Query("SELECT e FROM Empleado e WHERE e.bench = :benchDate")
-	 List<Empleado> findByBench(@Param("benchDate") Date benchDate);
+	@Query("SELECT e FROM Empleado e WHERE FUNCTION('DATE', e.bench) = :benchDate")
+	List<Empleado> findByBench(@Param("benchDate") Date benchDate);
 	
 	@Query("SELECT e FROM Empleado e WHERE e.jornada = ?1")
 	List<Empleado> findByJornada(BigDecimal jornada);
@@ -32,10 +32,6 @@ public interface EmpleadoRepository extends JpaRepository<Empleado, Long> {
 	@Query
 	("SELECT e from Empleado e WHERE e.categoria = ?1")
 	public List<Empleado> findbyCategoria(String categoria);
- 
-	/*@Query
-	("SELECT e from Empleado e WHERE e.ccname = ?1")
-	public List<Empleado> findbyCcname(String ccname);*/
 	
 	@Query
 	("SELECT e FROM Empleado e WHERE e.scr BETWEEN 1 AND 100")
@@ -73,6 +69,7 @@ public interface EmpleadoRepository extends JpaRepository<Empleado, Long> {
 	    
 	    @Query("SELECT e FROM Empleado e WHERE " +
 	    	       "(:status IS NULL OR e.status = :status) AND " +
+	    	       "(:bench IS NULL OR e.bench = :bench) AND " +
 	    	       "(:jornada IS NULL OR e.jornada = :jornada) AND " +
 	    	       "(:ciudad IS NULL OR e.ciudad = :ciudad) AND " +
 	    	       "(:n4 IS NULL OR e.n4 = :n4) AND " +
@@ -80,6 +77,7 @@ public interface EmpleadoRepository extends JpaRepository<Empleado, Long> {
 	    	       "(:scr IS NULL OR e.scr BETWEEN 1 AND 100)"
 	    	)
 	    	List<Empleado> findByFilters(@Param("status") String status,
+	    								 @Param("bench") Date bench,
 	    	                             @Param("jornada") BigDecimal jornada,
 	    	                             @Param("ciudad") String ciudad,
 	    	                             @Param("n4") String n4,

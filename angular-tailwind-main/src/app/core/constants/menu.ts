@@ -14,11 +14,11 @@ export class Menu {
         //   label: 'GIN',
         //   route: '/id-insignia',
         // },
-        {
-          icon: 'assets/icons/heroicons/outline/user-circle.svg',
-          label: 'Nombre',
-          route: '/user-circle',
-        },
+        // {
+        //   icon: 'assets/icons/heroicons/outline/user-circle.svg',
+        //   label: 'Nombre',
+        //   route: '/user-circle',
+        // },
         
         // {
         //   icon: 'assets/icons/heroicons/outline/usuarios.svg',
@@ -45,11 +45,11 @@ export class Menu {
           label: 'Ciudad',
           route: '/construccion-de-casas',
         },
-        {
-          icon: 'assets/icons/heroicons/outline/organigrama.svg',
-          label: 'Line_manager',
-          route: '/organigrama',
-        },
+        // {
+        //   icon: 'assets/icons/heroicons/outline/organigrama.svg',
+        //   label: 'Line_manager',
+        //   route: '/organigrama',
+        // },
         {
           icon: 'assets/icons/heroicons/outline/tiempo-de-negocios.svg',
           label: 'Jornada',
@@ -81,11 +81,11 @@ export class Menu {
         //   label: 'CC',
         //   route: '/codigo-de-barras-rectangulo',
         // }, 
-        {
-          icon: 'assets/icons/heroicons/outline/departamento.svg',
-          label: 'CCName',
-          route: '/departamento',
-        }, 
+        // {
+        //   icon: 'assets/icons/heroicons/outline/departamento.svg',
+        //   label: 'CCName',
+        //   route: '/departamento',
+        // }, 
         {
           icon: 'assets/icons/heroicons/outline/visita.svg',
           label: 'Grupo',

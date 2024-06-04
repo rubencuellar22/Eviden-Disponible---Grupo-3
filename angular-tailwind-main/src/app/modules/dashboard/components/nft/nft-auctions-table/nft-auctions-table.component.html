@@ -36,6 +36,7 @@
           <th class="py-3 text-left">Sk Languages</th>
           <th class="py-3 text-left">Sk Methods</th>
           <th class="py-3 text-left">Sk Tech Skills</th>
+          <th class="py-3 text-left">Job Technology Profile</th>
           <th class="py-3 text-left">Sk Certifs</th>
           <th class="py-3 text-left">Sk Technologies</th>
           <th class="py-3 text-left">Sk Bus Skills</th>
@@ -84,6 +85,13 @@
               <ul class="scrollable">
                 <ng-container *ngFor="let skTechSkills of empleado.skTechSkills">
                   <li *ngIf="skTechSkills.skTechSkill != ''">{{ skTechSkills.skTechSkill }} - {{ skTechSkills.nivel }}</li>
+                </ng-container>
+              </ul>
+            </td>
+            <td class="fixed-height">
+              <ul class="scrollable">
+                <ng-container *ngFor="let jobTechnologyProfiles of empleado.jobTechnologyProfiles">
+                  <li *ngIf="jobTechnologyProfiles.jobTechnologyProfile != ''">{{ jobTechnologyProfiles.jobTechnologyProfile }} - {{ jobTechnologyProfiles.nivel }}</li>
                 </ng-container>
               </ul>
             </td>
@@ -154,6 +162,13 @@
               <ul class="scrollable">
                 <ng-container *ngFor="let skTechSkills of empleado.skTechSkills">
                   <li *ngIf="skTechSkills.skTechSkill != ''">{{ skTechSkills.skTechSkill }} - {{ skTechSkills.nivel }}</li>
+                </ng-container>
+              </ul>
+            </td>
+            <td class="fixed-height">
+              <ul class="scrollable">
+                <ng-container *ngFor="let jobTechnologyProfiles of empleado.jobTechnologyProfiles">
+                  <li *ngIf="jobTechnologyProfiles.jobTechnologyProfile != ''">{{ jobTechnologyProfiles.jobTechnologyProfile }} - {{ jobTechnologyProfiles.nivel }}</li>
                 </ng-container>
               </ul>
             </td>

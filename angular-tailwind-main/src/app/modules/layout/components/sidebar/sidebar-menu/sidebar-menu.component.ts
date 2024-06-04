@@ -44,6 +44,8 @@ export class SidebarMenuComponent implements OnInit {
 
   applyFilter() {
     console.log('Item seleccionado: ', this.selectedItem);
+    localStorage.setItem("_endpoint", '');
+    localStorage.setItem("_selectedItem", '');
     let endpoint: string;
 
     switch (this.selectedItem) {
@@ -65,13 +67,17 @@ export class SidebarMenuComponent implements OnInit {
         case 'N_4':
           endpoint = `http://localhost:8080/empleado/n4/`;
           break;
-        case 'Categoria':
+        case 'Categoría':
           endpoint = `http://localhost:8080/empleado/categoria/`;
           break;
         case 'SCR (+iud)':
           endpoint = `http://localhost:8080/empleado/scr/`;
           break;
           
+          case 'Job Technology Profile':
+            endpoint = `http://localhost:8080/empleado/jobTechnologyProfile/`;
+            break;
+
           case 'SkLanguage':
           endpoint = `http://localhost:8080/empleado/skLenguage/`;
           break;

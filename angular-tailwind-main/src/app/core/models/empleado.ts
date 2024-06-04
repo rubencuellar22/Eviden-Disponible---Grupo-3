@@ -9,7 +9,7 @@ import { JobTechnologyProfile } from './JobTechnologyProfile/job-technology-prof
 import { SkCertifs } from './SkCertif/sk-certif';
 
 export class Empleado {
-  gin: number;
+gin: number;
 name: string;
 subgroup: string;
 status: string;

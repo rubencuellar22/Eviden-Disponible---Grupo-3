@@ -2,12 +2,12 @@ package com.grupotres.back_personal_disponible.serviceImplMy8;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.grupotres.back_personal_disponible.model.*;
 import com.grupotres.back_personal_disponible.model.dto.EmpleadoDTO;
 import com.grupotres.back_personal_disponible.model.dto.JobTechnologyProfileDTO;
-import com.grupotres.back_personal_disponible.model.dto.RoleDTO;
 import com.grupotres.back_personal_disponible.model.dto.SkBusSkillDTO;
 import com.grupotres.back_personal_disponible.model.dto.SkCertifDTO;
 import com.grupotres.back_personal_disponible.model.dto.SkLenguageDTO;
@@ -167,6 +167,11 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 	}
 	
 	@Override
+	public List<Empleado> findByBench(Date benchDate) {
+        return empleadoRepository.findByBench(benchDate);
+    }
+	
+	@Override
 	public List<Empleado> findByCiudad(String ciudad) {
 		// TODO Auto-generated method stub
 		return empleadoRepository.findByCiudad(ciudad);
@@ -185,11 +190,7 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 		// TODO Auto-generated method stub
 		return empleadoRepository.findbyCategoria(categoria);
 	}
-	/*@Override
-	public List<Empleado> findbyCcname(String ccname) {
-		// TODO Auto-generated method stub
-		return empleadoRepository.findbyCcname(ccname);
-	} Commented bc ccname is the name of the group cc in Grupos class*/
+
 	@Override
 	public List<Empleado> findbyScr(BigDecimal scr) {
 		// TODO Auto-generated method stub
@@ -206,6 +207,17 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 		List<EmpleadoDTO> empleadosDTOFiltered = new ArrayList<>();
 		for (EmpleadoDTO emp : empleadosDTO) {
 			if (emp.getStatus().equals(status)) {
+				empleadosDTOFiltered.add(emp);
+			}
+		}
+		return empleadosDTOFiltered;
+	}
+	
+	@Override
+	public List<EmpleadoDTO> getEmpleadosBenchFromList(List<EmpleadoDTO> empleadosDTO, Date bench) {
+		List<EmpleadoDTO> empleadosDTOFiltered = new ArrayList<>();
+		for (EmpleadoDTO emp : empleadosDTO) {
+			if (emp.getBench().equals(bench)) {
 				empleadosDTOFiltered.add(emp);
 			}
 		}
@@ -524,9 +536,9 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 	    }
 
 	@Override
-	public List<Empleado> findByFilters(String status, BigDecimal jornada, String ciudad, String n4, String categoria,
+	public List<Empleado> findByFilters(String status, Date bench, BigDecimal jornada, String ciudad, String n4, String categoria,
 			BigDecimal scr) {
-		return empleadoRepository.findByFilters(status, jornada, ciudad, n4, categoria, scr);
+		return empleadoRepository.findByFilters(status, bench, jornada, ciudad, n4, categoria, scr);
 	}
-
+	
 }
